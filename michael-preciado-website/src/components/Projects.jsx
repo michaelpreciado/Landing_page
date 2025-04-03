@@ -40,30 +40,34 @@ const ProjectCard = ({ iconPlaceholder, title, description, tech, codeLink, demo
 function Projects() {
   return (
     <section id="projects">
-      <h2>My Projects</h2>
-      {/* Removed inline style from <p> - style in CSS if needed */}
-      <p>A collection of my recent work</p> 
+      {/* Group header elements */}
+      <div> 
+        <h2>My Projects</h2>
+        {/* Removed inline style from <p> - style in CSS if needed */}
+        <p>A collection of my recent work</p> 
+      </div>
 
-      <ProjectCard 
-        // imageSrc="/placeholder-photography.png" // Replaced with icon placeholder
-        iconPlaceholder={<FaCode />} // Use FaCode icon
-        title="Photography Portfolio"
-        description="Minimalist photography showcase with responsive image gallery and smooth transitions."
-        codeLink="https://github.com/michaelpreciado/mario.preciado.photography" // Updated code link
-        demoLink="https://michaelpreciado.github.io/mario.preciado.photography/" // Added demo link (GitHub Pages assumed)
-      />
+      {/* Wrap cards in the container */}
+      <div className="projects-container">
+        <ProjectCard 
+          // imageSrc="/placeholder-photography.png" // Replaced with icon placeholder
+          iconPlaceholder={<FaCode />} // Use FaCode icon
+          title="Photography Portfolio"
+          description="Minimalist photography showcase with responsive image gallery and smooth transitions."
+          codeLink="https://github.com/michaelpreciado/mario.preciado.photography" // Updated code link
+          demoLink="https://michaelpreciado.github.io/mario.preciado.photography/" // Added demo link (GitHub Pages assumed)
+        />
 
-      <ProjectCard 
-        // imageSrc="/placeholder-ar.png" // Replaced with icon placeholder
-        iconPlaceholder={<FaProjectDiagram />} // Use FaProjectDiagram icon
-        title="AR Neural Network Project (in progress)"
-        description="Augmented reality applications leveraging neural networks for interactive and immersive experiences."
-        tech={['TensorFlow.js', 'D3.js', 'WebGL']}
-        codeLink="https://github.com/michaelpreciado/Interactive_Neural_Network" // Updated code link
-        demoLink="https://michaelpreciado.github.io/Interactive_Neural_Network/" // Updated demo link (GitHub Pages assumed)
-      />
-      
-      {/* Add more ProjectCard components as needed */}
+        <ProjectCard 
+          // imageSrc="/placeholder-ar.png" // Replaced with icon placeholder
+          iconPlaceholder={<FaProjectDiagram />} // Use FaProjectDiagram icon
+          title="AR Neural Network Project (in progress)"
+          description="Augmented reality applications leveraging neural networks for interactive and immersive experiences."
+          tech={['TensorFlow.js', 'D3.js', 'WebGL']}
+          codeLink="https://github.com/michaelpreciado/Interactive_Neural_Network" // Updated code link
+          demoLink="https://michaelpreciado.github.io/Interactive_Neural_Network/" // Updated demo link (GitHub Pages assumed)
+        />
+      </div>
     </section>
   );
 }
