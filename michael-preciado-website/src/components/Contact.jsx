@@ -38,7 +38,7 @@ function Contact() {
     <section id="contact">
       <h2>Contact Me</h2>
       {/* Use contact-form class and add Netlify attributes */}
-      <form name="contact" method="POST" data-netlify="true" className="contact-form">
+      <form name="contact" method="POST" data-netlify="true" action="/success" className="contact-form">
         {/* Required hidden field for Netlify */}
         <input type="hidden" name="form-name" value="contact" />
         <InputField

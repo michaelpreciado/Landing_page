@@ -35,7 +35,7 @@ const ScrollRevealTerminal = ({ children, threshold = 0.1 }) => {
   return (
     <div
       ref={elementRef}
-      className={`terminal-effect ${isVisible ? 'is-visible' : ''}`}
+      className={`animate-on-scroll ${isVisible ? 'is-visible' : ''}`}
     >
       {children}
     </div>

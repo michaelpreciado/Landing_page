@@ -659,8 +659,14 @@ img[src^="placeholder-"].project-image-placeholder {
 /* --- Animations --- */
 /* Keep fade-in, make it standard */
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(15px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(20px); /* Optional: slight upward movement */
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* Simple fade-in animation class */
@@ -830,3 +836,22 @@ main {
 }
 
 /* ... rest of existing styles ... */
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px); /* Optional: slight upward movement */
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-on-scroll {
+  opacity: 0; /* Start hidden */
+}
+
+.animate-on-scroll.is-visible {
+  animation: fadeIn 1s ease-out forwards;
+}
