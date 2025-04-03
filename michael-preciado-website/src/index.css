@@ -229,7 +229,8 @@ img[src^="placeholder-"].project-image-placeholder {
 
 .skills-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); /* Responsive columns */
+  /* grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); */ /* Responsive columns */
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Adjusted minmax for smaller buttons */
   gap: 10px; /* Spacing between buttons */
   justify-content: center; /* Center the grid items */
   flex-wrap: wrap; /* Allow wrapping */
@@ -243,16 +244,23 @@ img[src^="placeholder-"].project-image-placeholder {
   background: transparent;
   border: 1px solid var(--border-color);
   color: var(--light-text);
-  padding: 10px 20px; /* Standard padding */
+  /* padding: 10px 20px; */ /* Standard padding */
+  padding: 8px 15px; /* Reduced padding for mobile */
   border-radius: 20px; /* Pill shape */
   cursor: pointer;
   display: inline-flex;
   align-items: center;
-  font-size: 0.95rem; /* Adjust size */
-  font-family: var(--font-sans);
+  justify-content: center; /* Center content */
+  text-align: center;
+  /* font-family: var(--font-mono); */ /* Keep consistent sans-serif */
+  font-family: var(--font-sans); /* Use main sans font */
+  /* font-size: 1rem; */ /* Standard size */
+  font-size: 0.9rem; /* Reduced font size for mobile */
+  font-weight: 500; /* Medium weight */
+  /* text-shadow: 0 0 8px var(--glow-color-subtle); Remove glow */
   /* transition: background-color var(--transition-fast), transform var(--transition-fast); */
-  transition: background-color var(--transition-fast), border-color var(--transition-fast); /* Adjust transition */
-  /* box-shadow: 0 0 5px var(--border-color); Remove shadow */
+  transition: background-color var(--transition-fast), border-color var(--transition-fast); /* Corrected transition */
+  white-space: nowrap; /* Prevent text wrapping */
 }
 
 .skill-button:hover {
