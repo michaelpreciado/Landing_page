@@ -1,4 +1,4 @@
-<form id="contact-form" name="contact" netlify data-netlify="true">
+<form name="contact" netlify>
     <input type="hidden" name="form-name" value="contact" />
     <p>
       <label>Name <input type="text" name="name" /></label>
@@ -7,45 +7,6 @@
       <label>Email <input type="email" name="email" /></label>
     </p>
     <p>
-      <button type="submit" id="submit-button">Send</button>
+      <button type="submit">Send</button>
     </p>
   </form>
-
-<div id="form-success" style="display: none;">
-  Thank you for your message!
-</div>
-
-<script>
-  const form = document.getElementById('contact-form');
-  const successMessage = document.getElementById('form-success');
-  const submitButton = document.getElementById('submit-button');
-  const originalButtonText = submitButton.textContent;
-
-  form.addEventListener('submit', event => {
-    event.preventDefault();
-
-    const formData = new FormData(form);
-
-    // Disable button and show sending state
-    submitButton.disabled = true;
-    submitButton.textContent = 'Sending...';
-
-    fetch("", {
-      method: "POST",
-      headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: new URLSearchParams(formData).toString(),
-    })
-    .then(() => {
-      form.style.display = 'none'; // Hide the form
-      successMessage.style.display = 'block'; // Show success message
-      // No need to re-enable button as form is hidden
-    })
-    .catch((error) => {
-        alert('Sorry, there was an error submitting the form. Please try again. Error: ' + error);
-        // Re-enable button and restore text only on error
-        submitButton.disabled = false;
-        submitButton.textContent = originalButtonText;
-    });
-     // Removed the .finally() block as the button state is handled correctly in .then() and .catch() for this logic.
-  });
-</script>
