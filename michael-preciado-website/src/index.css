@@ -388,18 +388,18 @@ img[src^="placeholder-"].project-image-placeholder {
   /* justify-content: center; REMOVE */
 }
 
-/* Base style - single column, cards align left by default */
+/* Base style - single column, cards centered */
 .projects-container {
   display: grid;
-  grid-template-columns: repeat(2, 1fr); /* Changed to 2 columns */
-  gap: 30px; /* Adjusted gap */
-  /* justify-items: center; */ /* Removed from base */
+  grid-template-columns: 1fr; /* Single column by default */
+  gap: 30px; /* Keep gap */
+  justify-items: center; /* Center card in the single column */
 }
 
 /* Center items only on smaller screens (single column view) */
 @media (max-width: 767.98px) { 
   .projects-container {
-    /* justify-items: center; */ /* Commented out for 2-column layout */
+    /* justify-items: center; */ /* Rule moved to base style */
   }
 }
 
@@ -414,7 +414,7 @@ img[src^="placeholder-"].project-image-placeholder {
   /* box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); */ /* Reduced shadow */
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3); /* Subtle shadow */
   width: 100%; /* Ensure card tries to fill column before max-width applies */
-  max-width: 225px; /* Set max-width to make cards smaller */
+  max-width: 400px; /* Increased max-width */
 }
 
 .project-card:hover {
@@ -752,8 +752,9 @@ img[src^="placeholder-"].project-image-placeholder {
 
   /* Projects Adjustments - 2 columns */
   .projects-container {
-    /* grid-template-columns: repeat(2, 1fr); // Base style handles this */
+    grid-template-columns: repeat(2, 1fr); /* 2 columns for tablets and up */
     gap: 40px; /* Adjusted gap for larger screens */
+    justify-items: initial; /* Let cards fill column width */
   }
 
   /* Contact Form Adjustments */
@@ -776,6 +777,7 @@ img[src^="placeholder-"].project-image-placeholder {
   }
 
   /* Optional: 3 columns for projects on large screens */
+  /* You can uncomment this if you want 3 columns on very wide screens */
   /* .projects-container {
     grid-template-columns: repeat(3, 1fr);
     gap: 40px;
