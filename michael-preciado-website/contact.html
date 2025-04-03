@@ -1,4 +1,5 @@
-<form name="contact" netlify data-netlify="true" id="contact-form">
+<form id="contact-form" name="contact" netlify data-netlify="true">
+    <input type="hidden" name="form-name" value="contact" />
     <p>
       <label>Name <input type="text" name="name" /></label>
     </p>
@@ -6,56 +7,45 @@
       <label>Email <input type="email" name="email" /></label>
     </p>
     <p>
-      <button type="submit">Send</button>
+      <button type="submit" id="submit-button">Send</button>
     </p>
   </form>
-<div id="form-message"></div>
+
+<div id="form-success" style="display: none;">
+  Thank you for your message!
+</div>
 
 <script>
   const form = document.getElementById('contact-form');
-  const formMessage = document.getElementById('form-message');
+  const successMessage = document.getElementById('form-success');
+  const submitButton = document.getElementById('submit-button');
+  const originalButtonText = submitButton.textContent;
 
   form.addEventListener('submit', event => {
     event.preventDefault();
 
     const formData = new FormData(form);
-    const submitButton = form.querySelector('button[type="submit"]');
-    const originalButtonText = submitButton.textContent;
+
+    // Disable button and show sending state
     submitButton.disabled = true;
     submitButton.textContent = 'Sending...';
-    formMessage.textContent = ''; // Clear previous messages
-    formMessage.style.color = ''; // Reset color
 
-    fetch('/', { // Netlify handles submissions to the path defined in action, which defaults to '/' or the current page
-      method: 'POST',
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: new URLSearchParams(formData).toString()
+    fetch("", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: new URLSearchParams(formData).toString(),
     })
-    .then(response => {
-      if (response.ok) {
-        form.reset(); // Clear the form fields
-        formMessage.textContent = 'Thank you for your message!';
-        formMessage.style.color = 'green';
-      } else {
-        // Try to get error details if available
-        response.text().then(text => {
-           formMessage.textContent = `Oops! An error occurred: ${text || response.statusText}. Please try again.`;
-           formMessage.style.color = 'red';
-        }).catch(() => {
-            // Fallback if response text cannot be read
-            formMessage.textContent = `Oops! An error occurred: ${response.statusText}. Please try again.`;
-            formMessage.style.color = 'red';
-        });
-      }
+    .then(() => {
+      form.style.display = 'none'; // Hide the form
+      successMessage.style.display = 'block'; // Show success message
+      // No need to re-enable button as form is hidden
     })
-    .catch(error => {
-      console.error('Form submission error:', error);
-      formMessage.textContent = 'Oops! Something went wrong. Please check your connection and try again.';
-      formMessage.style.color = 'red';
-    })
-    .finally(() => {
-      submitButton.disabled = false; // Re-enable button
-      submitButton.textContent = originalButtonText; // Restore button text
+    .catch((error) => {
+        alert('Sorry, there was an error submitting the form. Please try again. Error: ' + error);
+        // Re-enable button and restore text only on error
+        submitButton.disabled = false;
+        submitButton.textContent = originalButtonText;
     });
+     // Removed the .finally() block as the button state is handled correctly in .then() and .catch() for this logic.
   });
 </script>
