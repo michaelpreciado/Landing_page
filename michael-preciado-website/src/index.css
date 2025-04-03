@@ -1,0 +1,832 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap'); /* Using Inter as a fallback, but system fonts preferred */
+@import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap'); /* Added Pixelify Sans */
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap'); /* Added VT323 font */
+
+/* --- Root Variables (Original Dodger Blue Theme) --- */
+:root {
+  --dark-bg: #020c1b; /* Very dark blue */
+  --medium-bg: #0a192f; /* Slightly lighter dark blue for elements (adjusted) */
+  --light-text: #ccd6f6;
+  --medium-text: #8892b0;
+  --primary-accent: #1E90FF; /* Dodger Blue */
+  --secondary-accent: #46a3ff; /* Lighter Dodger Blue */
+  --glow-color: rgba(30, 144, 255, 0.7); /* Dodger Blue glow */
+  --border-color: rgba(30, 144, 255, 0.3); /* Fainter Dodger Blue for borders */
+
+  /* Typography (Updated to use VT323) */
+  --font-sans: 'VT323', 'Pixelify Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", "Inter", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  --font-mono: 'VT323', 'Pixelify Sans', 'SF Mono', 'Fira Code', Menlo, Monaco, Consolas, 'Courier New', monospace;
+
+  /* Transitions (Keeping updated transitions) */
+  --transition-fast: 0.2s ease-out;
+  --transition-medium: 0.3s ease-out;
+}
+
+
+/* --- Reset and Base Styles (Mobile First) --- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth; /* Smooth scrolling */
+  font-size: 16px; /* Base font size */
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--dark-bg);
+  color: var(--light-text);
+  line-height: 1.6;
+  overflow-x: hidden; /* Prevent horizontal scroll */
+  -webkit-font-smoothing: antialiased; /* Smoother fonts on WebKit */
+  -moz-osx-font-smoothing: grayscale; /* Smoother fonts on Firefox on macOS */
+  /* Viewport meta tag assumed in HTML */
+}
+
+/* --- Typography (Mobile First Sizes) --- */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-sans); /* Use sans-serif for headings too */
+  color: var(--light-text);
+  margin-bottom: 1em; /* Consistent margin */
+  line-height: 1.3;
+  font-weight: 700; /* Bold headings typical for Apple */
+}
+
+h1 { font-size: 2.25rem; } /* 36px */
+h2 { font-size: 1.75rem; font-weight: 500; color: var(--light-text); } /* 28px, slightly lighter weight for section titles */
+h3 { font-size: 1.25rem; font-weight: 500; } /* 20px */
+
+p {
+  margin-bottom: 1.25em; /* Slightly more space after paragraphs */
+  color: var(--medium-text);
+  font-size: 1rem; /* 16px */
+  max-width: 65ch; /* Improve readability */
+}
+
+/* Center paragraph text within sections unless overridden */
+section p {
+  /* text-align: center; */ /* Removed - often better left-aligned for readability */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* --- Links --- */
+a {
+  color: var(--primary-accent);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+  /* text-shadow: 0 0 3px var(--glow-color-subtle); */ /* Remove text-shadow for cleaner look */
+}
+
+a:hover, a:focus {
+  color: var(--secondary-accent);
+  /* text-shadow: 0 0 8px var(--glow-color-medium); */
+  outline: none; /* Remove default focus outline if customizing */
+}
+
+/* Accessibility: Visible focus state for keyboard navigation */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 2px solid var(--primary-accent);
+  outline-offset: 2px;
+  box-shadow: none; /* Remove glow on focus */
+}
+
+
+/* --- Sections --- */
+section {
+  padding: 80px 20px; /* Increased mobile padding */
+  max-width: 1100px; /* Wider max-width for desktop */
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+  text-align: center; /* Center section titles and potentially content */
+}
+
+/* Add more vertical space between sections */
+section + section {
+  margin-top: 40px;
+}
+
+/* --- Canvas --- */
+/* Keep as is, but ensure it doesn't cause performance issues */
+canvas {
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  width: 100vw;
+  height: 100vh;
+  opacity: 0.5; /* Make it more subtle */
+  pointer-events: none; /* Ensure it doesn't intercept clicks */
+}
+
+
+/* --- Utility Classes --- */
+.text-center { text-align: center; }
+.margin-center { margin-left: auto; margin-right: auto; }
+
+/* --- Placeholder Images --- */
+/* Style placeholders minimally */
+img[src^="placeholder-"] {
+  background-color: var(--medium-bg);
+  color: var(--medium-text);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+  text-align: center;
+  width: 100%;
+  height: 200px; /* Default placeholder height */
+  object-fit: cover; /* Cover area if real image is used */
+  border-radius: 8px; /* Slightly rounded corners */
+  border: 1px solid var(--border-color);
+}
+img[src^="placeholder-"].profile-image-placeholder {
+  border-radius: 50%;
+  width: 150px;
+  height: 150px;
+  border: 3px solid var(--border-color); /* Simple border, no glow */
+}
+img[src^="placeholder-"].about-image-placeholder {
+  max-width: 500px;
+  height: auto;
+  display: block;
+  margin: 0 auto 40px auto;
+  border-radius: 12px; /* More rounded for larger images */
+}
+img[src^="placeholder-"].project-image-placeholder {
+  height: 250px;
+  border-radius: 8px 8px 0 0; /* Round only top corners */
+  border: none;
+  border-bottom: 1px solid var(--border-color);
+}
+
+
+/* --- Vite Default Styles (Can likely be removed) --- */
+/* #root { max-width: none; margin: 0; padding: 0; text-align: inherit; } */
+/* .logo { height: 6em; padding: 1.5em; will-change: filter; } */
+/* .logo:hover { filter: drop-shadow(0 0 2em #646cffaa); } */
+/* .logo.react:hover { filter: drop-shadow(0 0 2em #61dafbaa); } */
+/* .card { padding: 2em; } */
+/* .read-the-docs { color: #888; } */
+/* @keyframes logo-spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } } */
+
+
+/* --- Hero Section Styles --- */
+#hero {
+  padding-top: 120px; /* More top padding */
+  padding-bottom: 60px;
+  min-height: 60vh; /* Give hero more vertical space */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.profile-image {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  margin: 0 auto 30px auto; /* Center horizontally */
+  display: block;
+  border: 3px solid var(--border-color); /* Subtle border */
+  /* box-shadow: 0 0 15px var(--glow-color), inset 0 0 10px var(--border-color); Remove glow */
+  object-fit: cover; /* Ensure image covers the area */
+}
+
+#hero h1 {
+  margin-bottom: 0.5em;
+}
+
+.hero-subtitle {
+  color: var(--medium-text); /* Use secondary text color */
+  font-size: 1.25rem; /* Adjust size */
+  margin-bottom: 40px;
+  font-weight: 400;
+  /* text-shadow: 0 0 5px var(--glow-color-subtle); Remove glow */
+  max-width: 500px; /* Limit width */
+}
+
+/* --- Skills Section Styles --- */
+#skills {
+  padding-top: 40px; /* Less padding */
+  padding-bottom: 60px;
+}
+
+#skills h2 {
+  margin-bottom: 40px; /* More space below heading */
+}
+
+.skills-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px; /* Adjust gap */
+  max-width: 800px; /* Limit container width */
+  margin: 0 auto; /* Center container */
+}
+
+.skill-button {
+  /* background: var(--medium-bg); */ /* Use medium background */
+  /* border: 1px solid transparent; */ /* No border initially */
+  background: transparent;
+  border: 1px solid var(--border-color);
+  color: var(--light-text);
+  padding: 10px 20px; /* Standard padding */
+  border-radius: 20px; /* Pill shape */
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.95rem; /* Adjust size */
+  font-family: var(--font-sans);
+  /* transition: background-color var(--transition-fast), transform var(--transition-fast); */
+  transition: background-color var(--transition-fast), border-color var(--transition-fast); /* Adjust transition */
+  /* box-shadow: 0 0 5px var(--border-color); Remove shadow */
+}
+
+.skill-button:hover {
+  /* background-color: #3a3a3c; */ /* Slightly lighter gray on hover */
+  background-color: rgba(30, 144, 255, 0.1);
+  border-color: var(--primary-accent);
+  /* transform: translateY(-2px); */ /* Subtle lift */
+}
+
+.skill-button:focus-visible {
+  outline: 2px solid var(--primary-accent);
+  outline-offset: 2px;
+  /* background-color: #3a3a3c; */
+  background-color: rgba(30, 144, 255, 0.1); /* Match hover */
+}
+
+.skill-button span { /* Icon */
+  margin-right: 8px;
+  opacity: 0.8; /* Slightly dim icon */
+}
+
+
+/* --- Connect Section Styles --- */
+#connect {
+  max-width: 800px; /* Increased width from 700px */
+}
+
+#connect h2 {
+  margin-bottom: 40px;
+}
+
+.connect-buttons-container {
+  display: grid; /* Use grid for better alignment */
+  grid-template-columns: 1fr; /* Single column on mobile */
+  gap: 15px;
+}
+
+.connect-button {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  /* background: var(--medium-bg); */ /* Use medium background */
+  background: rgba(10, 25, 47, 0.9); /* Original darker blue */
+  border: 1px solid var(--border-color); /* Subtle border */
+  color: var(--light-text);
+  padding: 18px 25px; /* Adjust padding */
+  border-radius: 12px; /* Apple-like rounded corners */
+  text-decoration: none;
+  font-family: var(--font-sans);
+  /* transition: background-color var(--transition-fast), border-color var(--transition-fast), transform var(--transition-fast); */
+  transition: background-color var(--transition-fast), border-color var(--transition-fast), transform var(--transition-fast); /* Keep transform */
+  /* box-shadow: 0 0 10px rgba(10, 132, 255, 0.1); Remove shadow */
+}
+
+.connect-button:hover, .connect-button:focus-visible {
+  /* background-color: #3a3a3c; */ /* Slightly lighter gray */
+  background-color: rgba(30, 144, 255, 0.1); /* Original hover */
+  /* border-color: rgba(255, 255, 255, 0.3); */ /* Slightly more visible border */
+  border-color: var(--secondary-accent); /* Original hover border */
+  outline: none;
+  /* transform: scale(1.02); */ /* Subtle scale effect */
+  transform: translateY(-2px); /* Original lift effect */
+}
+
+.connect-button-content {
+  display: flex;
+  align-items: center;
+  gap: 15px; /* Keep gap between icon and text */
+  font-weight: 500; /* Medium weight text */
+  flex-grow: 1; /* Allow content to fill space */
+  justify-content: center; /* Center icon and text within this container */
+}
+
+.connect-button-icon {
+  font-size: 1.4rem; /* Adjust icon size */
+  line-height: 1;
+  color: var(--medium-text); /* Use secondary text for icon */
+  /* width: 28px; */ /* Removed fixed width */
+  /* text-align: center; */ /* Removed text-align */
+  transition: color var(--transition-fast);
+  /* Added display flex to ensure vertical alignment if needed */
+  display: inline-flex; 
+  align-items: center; 
+}
+/* Remove placeholder styles if using real icons */
+.icon-placeholder { /* Keep similar style if using text */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--medium-text);
+  border: 1px solid var(--border-color);
+  border-radius: 50%;
+  background-color: transparent;
+  flex-shrink: 0;
+  transition: border-color var(--transition-fast), color var(--transition-fast);
+}
+.connect-button:hover .icon-placeholder,
+.connect-button:focus-visible .icon-placeholder {
+  border-color: rgba(255, 255, 255, 0.3);
+  color: var(--light-text);
+}
+
+
+.connect-button-arrow {
+  font-size: 1.2rem; /* Adjust arrow size */
+  color: var(--medium-text);
+  transition: transform var(--transition-fast), color var(--transition-fast);
+}
+
+.connect-button:hover .connect-button-arrow,
+.connect-button:focus-visible .connect-button-arrow {
+  color: var(--light-text); /* Brighter arrow */
+  transform: translateX(4px); /* Move arrow */
+}
+
+/* --- Projects Section Styles --- */
+#projects h2 {
+  margin-bottom: 15px;
+}
+#projects > p { /* Style the intro paragraph */
+  margin-bottom: 2rem; /* Add some space below the intro paragraph */
+}
+
+/* Add styles for the projects container itself */
+#projects {
+  display: flex; /* Arrange project cards horizontally */
+  flex-wrap: wrap; /* Allow cards to wrap onto the next line */
+  gap: 2rem; /* Add space between cards */
+  justify-content: center; /* Center cards if they don't fill the row */
+}
+
+/* Base style - single column, cards align left by default */
+.projects-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* Changed to 2 columns */
+  gap: 30px; /* Adjusted gap */
+  /* justify-items: center; */ /* Removed from base */
+}
+
+/* Center items only on smaller screens (single column view) */
+@media (max-width: 767.98px) { 
+  .projects-container {
+    /* justify-items: center; */ /* Commented out for 2-column layout */
+  }
+}
+
+.project-card {
+  /* background: var(--medium-bg); */
+  background-color: rgba(26, 46, 79, 0.8); /* Use RGBA for transparency (Hex #1a2e4f with 80% opacity) */
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--border-color);
+  text-align: left; /* Left align text inside cards */
+  transition: transform var(--transition-medium), box-shadow var(--transition-medium);
+  /* box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); */ /* Reduced shadow */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3); /* Subtle shadow */
+  width: 100%; /* Ensure card tries to fill column before max-width applies */
+  max-width: 225px; /* Set max-width to make cards smaller */
+}
+
+.project-card:hover {
+  transform: translateY(-5px);
+  /* box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2); */
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+}
+
+/* Commented out image styles, replaced by icon placeholder below */
+/* .project-card img { 
+  width: 100%;
+  height: 250px; 
+  object-fit: cover;
+  display: block;
+  border-bottom: 1px solid var(--border-color);
+} */
+
+/* New styles for the icon placeholder */
+.project-icon-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 125px; /* Match previous image height */
+  background-color: var(--medium-bg); /* Use a background color */
+  border-bottom: 1px solid var(--border-color); /* Keep border */
+}
+
+.project-icon-placeholder svg {
+  font-size: 5rem; /* Adjust icon size as needed */
+  color: var(--medium-text); /* Use a subtle color */
+  opacity: 0.7;
+}
+
+.project-card-content {
+  padding: 12px 30px; /* More padding */
+}
+
+.project-card h3 {
+  margin-bottom: 0.5em;
+  font-size: 1.35rem; /* Slightly larger title */
+  color: var(--light-text);
+}
+
+.project-card p {
+  margin-bottom: 1.5em;
+  font-size: 0.95rem; /* Slightly smaller desc text */
+  color: var(--medium-text);
+  max-width: none; /* Remove max-width constraint */
+}
+
+.project-tech-tags {
+  margin-bottom: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.tech-tag {
+  /* background: #3a3a3c; */ /* Darker tags */
+  background: #0a192f; /* Original tag background */
+  /* color: var(--medium-text); */
+  color: var(--secondary-accent); /* Use lighter accent for tags */
+  padding: 4px 10px;
+  border-radius: 15px; /* Pill shape */
+  font-size: 0.75rem; /* Smaller font */
+  font-weight: 500;
+}
+
+/* Updated .project-links for flex layout */
+.project-links {
+  display: flex;
+  flex-wrap: wrap; /* Allow buttons to wrap on smaller screens */
+  gap: 15px; /* Space between buttons */
+}
+
+/* Removed margin rules from individual links */
+/* .project-links a {
+  margin-right: 15px;
+}
+.project-links a:last-child {
+  margin-right: 0;
+} */
+
+/* Base project button style (acts as secondary by default) */
+.project-button {
+  background: transparent;
+  border: 1px solid var(--primary-accent);
+  color: var(--primary-accent);
+  padding: 8px 15px; /* Adjust padding */
+  border-radius: 20px; /* Pill shape */
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-weight: 500;
+  transition: background-color var(--transition-fast), color var(--transition-fast);
+  text-decoration: none; /* Ensure no underline from <a> */
+  display: inline-block; /* Ensure padding is applied correctly */
+}
+
+/* Secondary button style (explicitly defined, same as base for clarity) */
+.project-button-secondary {
+  /* Inherits from .project-button */
+}
+
+/* Primary button style (Live Demo) */
+.project-button-primary {
+  background-color: var(--primary-accent);
+  border-color: var(--primary-accent);
+  color: var(--dark-bg); /* Text color contrasts with primary accent */
+}
+
+/* Hover/Focus for Secondary Button */
+.project-button-secondary:hover,
+.project-button-secondary:focus-visible {
+  background-color: var(--primary-accent);
+  color: var(--dark-bg); /* Invert color on hover */
+  outline: none;
+}
+
+/* Hover/Focus for Primary Button */
+.project-button-primary:hover,
+.project-button-primary:focus-visible {
+  background-color: var(--secondary-accent); /* Use secondary accent for hover */
+  border-color: var(--secondary-accent);
+  color: var(--dark-bg);
+  outline: none;
+}
+
+/* --- About Section Styles --- */
+#about {
+  text-align: center;
+}
+
+#about h2 {
+  margin-bottom: 30px;
+}
+
+.about-image { /* Styles for actual image */
+  width: 100%;
+  max-width: 500px;
+  height: auto;
+  display: block;
+  margin: 0 auto 40px auto;
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+  opacity: 0.7; /* Add transparency */
+}
+
+#about p {
+  max-width: 700px; /* Wider text block */
+  margin-bottom: 1.5em;
+  text-align: center; /* Center align longer text for symmetry */
+  margin-left: auto; 
+  margin-right: auto;
+}
+
+/* --- Contact Section Styles --- */
+#contact h2 {
+  margin-bottom: 40px;
+}
+
+.contact-form {
+  max-width: 250px; /* Reduced max-width further */
+  margin: 0 auto;
+  text-align: left; /* Align form elements left */
+}
+
+.form-group {
+  margin-bottom: 25px;
+  /* display: flex; */ /* Remove flex for stacked layout */
+  /* align-items: center; */
+}
+
+.form-group label {
+  display: block; /* Stack label above input */
+  margin-bottom: 8px; /* Space between label and input */
+  color: var(--medium-text);
+  font-size: 0.9rem;
+  font-weight: 500;
+  /* min-width: 80px; */
+  /* margin-right: 10px; */
+}
+
+.form-input,
+.form-textarea {
+  width: 100%; /* Full width */
+  padding: 15px; /* Generous padding */
+  /* background: var(--medium-bg); */ /* Use medium background */
+  background: rgba(26, 46, 79, 0.7); /* Original input background with transparency */
+  /* border: 1px solid var(--border-color); */
+  border: 1px solid var(--primary-accent); /* Match original */
+  border-radius: 8px; /* Consistent rounding */
+  color: var(--light-text);
+  font-size: 1rem;
+  font-family: var(--font-sans);
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.form-input:focus,
+.form-textarea:focus {
+  outline: none;
+  border-color: var(--primary-accent);
+  box-shadow: 0 0 0 3px var(--glow-color); /* Focus ring using main glow */
+}
+
+.form-textarea {
+  resize: vertical; /* Allow vertical resize */
+  min-height: 120px; /* Minimum height */
+}
+
+.submit-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 15px 30px; /* Larger button */
+  background: var(--primary-accent);
+  border: none;
+  border-radius: 8px;
+  /* color: #ffffff; */ /* White text on blue button */
+  color: #0a192f; /* Original dark text */
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color var(--transition-fast), transform var(--transition-fast);
+}
+
+.submit-button:hover {
+  background-color: var(--secondary-accent);
+  /* transform: translateY(-2px); */ /* Keep subtle lift */
+}
+
+.submit-button:active {
+  transform: translateY(0);
+}
+
+.submit-button span { /* Icon */
+  margin-right: 10px;
+  font-size: 1.2em;
+  line-height: 1;
+}
+
+
+/* --- Animations --- */
+/* Keep fade-in, make it standard */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Simple fade-in animation class */
+.fade-in-section {
+  opacity: 0; /* Start hidden */
+  animation: fadeIn 0.8s ease-out forwards;
+  /* Delay can be added with animation-delay or via JS */
+}
+
+/* Apply animations only if motion is preferred */
+@media (prefers-reduced-motion: no-preference) {
+  /* Add transitions back for specific elements */
+  a { transition: color var(--transition-fast); }
+  /* .skill-button { transition: background-color var(--transition-fast), transform var(--transition-fast); } */
+  .skill-button { transition: background-color var(--transition-fast), border-color var(--transition-fast); } /* Corrected transition */
+  .connect-button { transition: background-color var(--transition-fast), border-color var(--transition-fast), transform var(--transition-medium); }
+  .connect-button-arrow { transition: transform var(--transition-fast), color var(--transition-fast); }
+  .project-card { transition: transform var(--transition-medium), box-shadow var(--transition-medium); }
+  .project-button { transition: background-color var(--transition-fast), color var(--transition-fast); }
+  .form-input, .form-textarea { transition: border-color var(--transition-fast), box-shadow var(--transition-fast); }
+  .submit-button { transition: background-color var(--transition-fast), transform var(--transition-fast); }
+
+  /* Apply fade-in animation using JS Intersection Observer is recommended */
+  /* Example: section { opacity: 0; transition: opacity 0.6s ease-out, transform 0.6s ease-out; transform: translateY(20px); } */
+  /* section.is-visible { opacity: 1; transform: translateY(0); } */
+}
+
+/* Respect Reduced Motion Preference */
+@media (prefers-reduced-motion: reduce) {
+  html {
+      scroll-behavior: auto; /* Disable smooth scrolling */
+  }
+  *,
+  *::before,
+  *::after {
+    /* Turn off all animations and transitions */
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    transition-delay: 0ms !important; /* Add this */
+  }
+}
+
+
+/* --- Tablet and Larger Screen Adjustments --- */
+@media (min-width: 768px) {
+  html {
+    font-size: 17px; /* Slightly larger base font on tablets+ */
+  }
+
+  /* Restore/Increase heading sizes */
+  h1 { font-size: 3rem; } /* 51px */
+  h2 { font-size: 2rem; } /* 34px */
+  h3 { font-size: 1.5rem; } /* 25.5px */
+  p { font-size: 1.05rem; } /* ~18px */
+
+  /* Increase section padding */
+  section { padding: 100px 40px; }
+
+  /* Hero adjustments */
+  #hero { padding-top: 150px; min-height: 70vh; }
+  .profile-image { width: 180px; height: 180px; margin-bottom: 40px; }
+  .hero-subtitle { font-size: 1.5rem; max-width: 600px; }
+
+  /* Skills adjustments */
+  .skills-container { gap: 15px; }
+
+  /* Connect adjustments - maybe 2 columns */
+  .connect-buttons-container {
+    grid-template-columns: repeat(2, 1fr); /* Two columns */
+    gap: 20px;
+  }
+
+  /* Projects Adjustments - 2 columns */
+  .projects-container {
+    /* grid-template-columns: repeat(2, 1fr); // Base style handles this */
+    gap: 40px; /* Adjusted gap for larger screens */
+  }
+
+  /* Contact Form Adjustments */
+  .contact-form { max-width: 300px; } /* Reduced max-width further for larger screens */
+  /* Keep stacked layout for labels/inputs - it's cleaner */
+}
+
+/* --- Larger Desktop Adjustments --- */
+@media (min-width: 1024px) {
+  html {
+    /* font-size: 18px; */ /* Optional further increase */
+  }
+  h1 { font-size: 3.5rem; } /* ~60px */
+
+  section { padding: 120px 50px; }
+
+  /* Optional: 3 columns for projects on large screens */
+  /* .projects-container {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+  } */
+}
+
+/* --- Specific Component Refinements (Add as needed) --- */
+
+/* Example: Refine About text alignment */
+#about p {
+  /* text-align: justify; */ /* Justify can look bad, left is often better */
+}
+
+/* --- Footer Styles --- */
+.site-footer {
+  padding: 30px 20px;
+  text-align: center;
+  font-size: 0.85rem; /* Smaller text */
+  color: var(--medium-text);
+  margin-top: 60px; /* Space above footer */
+  border-top: 1px solid var(--border-color); /* Subtle separator line */
+}
+
+.text-load-in {
+  opacity: 0;
+  transform: translateY(20px); /* Optional: adds a subtle slide-up effect */
+  transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+}
+
+.text-load-in.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Optional: Staggered animation for multiple elements */
+.text-load-in.is-visible:nth-child(2) { transition-delay: 0.1s; }
+.text-load-in.is-visible:nth-child(3) { transition-delay: 0.2s; }
+/* Add more rules if you have more elements */
+
+/* --- Base Layout --- */
+main {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Ensure it takes at least the full height */
+  width: 100%; /* Ensure it takes the full width */
+  position: relative; /* Keep relative positioning for z-index */
+  z-index: 1; /* Keep content above background */
+}
+
+/* src/index.css */
+/* ... existing styles ... */
+
+.terminal-effect {
+  overflow: hidden;
+  max-height: 0; /* Start collapsed */
+  opacity: 0;
+  transform: translateY(20px); /* Optional: slight upward move */
+  transition: max-height 0.8s cubic-bezier(0.25, 0.1, 0.25, 1), /* Control reveal speed */
+              opacity 0.5s ease-in 0.2s, /* Fade in slightly delayed */
+              transform 0.5s ease-out 0.2s; /* Move up slightly delayed */
+  will-change: max-height, opacity, transform; /* Optimize transitions */
+  /* Apply a monospace font if you want the classic terminal look */
+  /* font-family: 'Courier New', Courier, monospace; */
+  /* Add other terminal-like styles if desired, e.g., green text on black background */
+  /* color: #0f0; background-color: #000; padding: 1em; margin-bottom: 1em; */
+  /* The background/color might be better applied inside the child component */
+}
+
+.terminal-effect.is-visible {
+  max-height: 1000px; /* Set to a value larger than any expected content height */
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ... rest of existing styles ... */
