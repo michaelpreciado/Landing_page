@@ -1,4 +1,4 @@
-<form name="contact" netlify>
+<form name="contact" netlify id="contact-form">
     <p>
       <label>Name <input type="text" name="name" /></label>
     </p>
@@ -9,3 +9,53 @@
       <button type="submit">Send</button>
     </p>
   </form>
+<div id="form-message"></div>
+
+<script>
+  const form = document.getElementById('contact-form');
+  const formMessage = document.getElementById('form-message');
+
+  form.addEventListener('submit', event => {
+    event.preventDefault();
+
+    const formData = new FormData(form);
+    const submitButton = form.querySelector('button[type="submit"]');
+    const originalButtonText = submitButton.textContent;
+    submitButton.disabled = true;
+    submitButton.textContent = 'Sending...';
+    formMessage.textContent = ''; // Clear previous messages
+    formMessage.style.color = ''; // Reset color
+
+    fetch('/', { // Netlify handles submissions to the path defined in action, which defaults to '/' or the current page
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: new URLSearchParams(formData).toString()
+    })
+    .then(response => {
+      if (response.ok) {
+        form.reset(); // Clear the form fields
+        formMessage.textContent = 'Thank you for your message!';
+        formMessage.style.color = 'green';
+      } else {
+        // Try to get error details if available
+        response.text().then(text => {
+           formMessage.textContent = `Oops! An error occurred: ${text || response.statusText}. Please try again.`;
+           formMessage.style.color = 'red';
+        }).catch(() => {
+            // Fallback if response text cannot be read
+            formMessage.textContent = `Oops! An error occurred: ${response.statusText}. Please try again.`;
+            formMessage.style.color = 'red';
+        });
+      }
+    })
+    .catch(error => {
+      console.error('Form submission error:', error);
+      formMessage.textContent = 'Oops! Something went wrong. Please check your connection and try again.';
+      formMessage.style.color = 'red';
+    })
+    .finally(() => {
+      submitButton.disabled = false; // Re-enable button
+      submitButton.textContent = originalButtonText; // Restore button text
+    });
+  });
+</script>
