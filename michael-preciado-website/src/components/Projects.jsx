@@ -55,7 +55,7 @@ function Projects() {
           title="Photography Portfolio"
           description="Minimalist photography showcase with responsive image gallery and smooth transitions."
           codeLink="https://github.com/michaelpreciado/mario.preciado.photography" // Updated code link
-          demoLink="https://michaelpreciado.github.io/mario.preciado.photography/" // Added demo link (GitHub Pages assumed)
+          demoLink="https://mariopreciado-photography.netlify.app" // Updated demo link
         />
 
         <ProjectCard 
