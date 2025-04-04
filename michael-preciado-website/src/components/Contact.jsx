@@ -48,7 +48,7 @@ function Contact() {
         <p className="text-md text-gray-400 mb-6">e.g., building a web application, developing a mobile app, automating a task, or bringing your creative project to life.</p>
         <h2>Contact Me</h2>
         {/* Use contact-form class and add Netlify attributes */}
-        <form name="contact" method="POST" netlify action="/success" className="contact-form">
+        <form name="contact" method="POST" netlify action="/success.html" className="contact-form">
           {/* Required hidden field for Netlify */}
           <input type="hidden" name="form-name" value="contact" />
           <InputField
