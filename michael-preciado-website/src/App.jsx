@@ -5,7 +5,6 @@ import Skills from './components/Skills';
 import Connect from './components/Connect';
 import Projects from './components/Projects';
 import About from './components/About';
-import Contact from './components/Contact';
 import ScrollRevealTerminal from './components/ScrollRevealTerminal';
 // Removed './App.css' import as global styles are in index.css
 
@@ -27,13 +26,7 @@ function App() {
         <ScrollRevealTerminal>
           <About />
         </ScrollRevealTerminal>
-        <ScrollRevealTerminal>
-          <Contact />
-        </ScrollRevealTerminal>
       </main>
-      <footer className="site-footer">
-        Created by MP
-      </footer>
     </>
   );
 }

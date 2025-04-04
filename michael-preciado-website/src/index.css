@@ -585,7 +585,7 @@ img[src^="placeholder-"].project-image-placeholder {
 }
 
 .contact-form {
-  max-width: 250px; /* Reduced max-width further */
+  max-width: 400px; /* Increased max-width */
   margin: 0 auto;
   text-align: left; /* Align form elements left */
 }
@@ -599,7 +599,7 @@ img[src^="placeholder-"].project-image-placeholder {
 .form-group label {
   display: block; /* Stack label above input */
   margin-bottom: 8px; /* Space between label and input */
-  color: var(--medium-text);
+  color: var(--light-text); /* Changed to light text (white) */
   font-size: 0.9rem;
   font-weight: 500;
   /* min-width: 80px; */
@@ -610,11 +610,9 @@ img[src^="placeholder-"].project-image-placeholder {
 .form-textarea {
   width: 100%; /* Full width */
   padding: 15px; /* Generous padding */
-  /* background: var(--medium-bg); */ /* Use medium background */
-  background: rgba(26, 46, 79, 0.7); /* Original input background with transparency */
-  /* border: 1px solid var(--border-color); */
+  background: rgba(15, 30, 55, 0.8); /* Adjusted background: darker, slightly more opaque */
   border: 1px solid var(--primary-accent); /* Match original */
-  border-radius: 8px; /* Consistent rounding */
+  border-radius: 12px; /* Increased rounding */
   color: var(--light-text);
   font-size: 1rem;
   font-family: var(--font-sans);
@@ -766,7 +764,7 @@ img[src^="placeholder-"].project-image-placeholder {
   }
 
   /* Contact Form Adjustments */
-  .contact-form { max-width: 300px; } /* Reduced max-width further for larger screens */
+  .contact-form { max-width: 450px; } /* Increased max-width further for larger screens */
   /* Keep stacked layout for labels/inputs - it's cleaner */
 }
 
