@@ -6,6 +6,7 @@ import Connect from './components/Connect';
 import Projects from './components/Projects';
 import About from './components/About';
 import ScrollRevealTerminal from './components/ScrollRevealTerminal';
+import Contact from './components/Contact';
 // Removed './App.css' import as global styles are in index.css
 
 function App() {
@@ -25,6 +26,9 @@ function App() {
         </ScrollRevealTerminal>
         <ScrollRevealTerminal>
           <About />
+        </ScrollRevealTerminal>
+        <ScrollRevealTerminal>
+          <Contact />
         </ScrollRevealTerminal>
       </main>
     </>

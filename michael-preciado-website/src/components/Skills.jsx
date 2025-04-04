@@ -12,7 +12,7 @@ function Skills() {
     <section id="skills">
       <div className="skills-container">
         <SkillButton icon="⚙️" text="Tech Enthusiast" />
-        <SkillButton icon="</>" text="AI Software Engineer" />
+        <SkillButton icon="</>" text="Software Developer" />
         <SkillButton icon="📊" text="Data Analyst" />
         <SkillButton icon="🤖" text="AI Tools" />
       </div>
