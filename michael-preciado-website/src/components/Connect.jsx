@@ -24,7 +24,7 @@ function Connect() {
         <ConnectButton icon={<FaGithub />} text="GitHub" link="https://github.com/michaelpreciado?tab=repositories" />
         <ConnectButton icon={<FaLinkedin />} text="LinkedIn" link="https://www.linkedin.com/in/michael-preciado-74959b227/" />
         <ConnectButton icon={<FaTwitter />} text="X (Twitter)" link="https://x.com/mpdollars" />
-        <ConnectButton icon={<FaInstagram />} text="Instagram" link="https://www.instagram.com" />
+        <ConnectButton icon={<FaInstagram />} text="Instagram" link="https://www.instagram.com/michael.preciado/" />
         <ConnectButton icon={<FaEtsy />} text="Etsy Shop" link="https://printsbypreciado.etsy.com" />
         <ConnectButton icon={<FaTiktok />} text="TikTok" link="https://www.tiktok.com/@.michael.preciado" />
       </div>
