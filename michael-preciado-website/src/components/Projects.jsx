@@ -1,6 +1,6 @@
 import React from 'react';
 // Import icons to use as placeholders
-import { FaCode, FaProjectDiagram } from 'react-icons/fa'; 
+import { FaCode, FaProjectDiagram, FaCamera, FaGlobeAmericas } from 'react-icons/fa'; 
 
 // Use CSS classes instead of inline styles
 const ProjectCard = ({ iconPlaceholder, title, description, tech, codeLink, demoLink }) => (
@@ -51,7 +51,7 @@ function Projects() {
       <div className="projects-container">
         <ProjectCard 
           // imageSrc="/placeholder-photography.png" // Replaced with icon placeholder
-          iconPlaceholder={<FaCode />} // Use FaCode icon
+          iconPlaceholder={<FaCamera />} // Use FaCamera icon
           title="Photography Portfolio"
           description="Minimalist photography showcase with responsive image gallery and smooth transitions."
           codeLink="https://github.com/michaelpreciado/mario.preciado.photography" // Updated code link
@@ -60,12 +60,12 @@ function Projects() {
 
         <ProjectCard 
           // imageSrc="/placeholder-ar.png" // Replaced with icon placeholder
-          iconPlaceholder={<FaProjectDiagram />} // Use FaProjectDiagram icon
-          title="AR Neural Network Project (in progress)"
-          description="Augmented reality applications leveraging neural networks for interactive and immersive experiences."
-          tech={['TensorFlow.js', 'D3.js', 'WebGL']}
-          codeLink="https://github.com/michaelpreciado/Interactive_Neural_Network" // Updated code link
-          demoLink="https://michaelpreciado.github.io/Interactive_Neural_Network/" // Updated demo link (GitHub Pages assumed)
+          iconPlaceholder={<FaGlobeAmericas />} // Use FaGlobeAmericas icon
+          title="Interactive Solar System"
+          description="An interactive 3D model of the solar system built with JavaScript."
+          tech={['JavaScript', 'HTML', 'CSS']}
+          codeLink="https://github.com/michaelpreciado/Interactive_Solar_System" // Updated code link
+          demoLink="https://michaelpreciado.github.io/Interactive_Solar_System/" // Updated demo link
         />
       </div>
     </section>
