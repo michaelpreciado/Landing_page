@@ -7,8 +7,12 @@ function Contact() {
       <div className="text-center" style={{ position: 'relative', zIndex: 1 }}>
         {/* Wrap motion.span with an anchor tag */}
         <a href="https://buymeacoffee.com/mpreciado" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none', color: 'inherit' }}>
+          {/* Moved text span above the emoji and adjusted margins */}
+          <span style={{ fontSize: '2em', display: 'block', marginBottom: '10px' }}> 
+            Buy me a coffee
+          </span>
           <motion.span
-            style={{ fontSize: '4em', display: 'block', marginBottom: '15px', cursor: 'pointer' }} // Added cursor: pointer
+            style={{ fontSize: '4em', display: 'block', cursor: 'pointer' }}
             animate={{ y: [0, -8, 0] }} // Simple bobbing animation
             transition={{
               duration: 3,
@@ -19,6 +23,7 @@ function Contact() {
           >
             ☕
           </motion.span>
+          
         </a>
         <h2>Contact Me</h2>
         {/* Ensure form attributes are correct for Netlify */}
