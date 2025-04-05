@@ -5,9 +5,9 @@ function About() {
     <section id="about">
       {/* Update image source and add class */}
       <img 
-        src="/images/goku.JPG" 
-        alt="Goku illustration" 
-        className="about-image" // Add the class for styling
+        src="/images/jump.jpeg"
+        alt="Michael Preciado jumping"
+        className="about-image"
         style={{
           // Remove inline styles, they are now in index.css via .about-image
           // width: '100%', 
