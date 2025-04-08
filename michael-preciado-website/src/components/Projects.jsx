@@ -67,6 +67,15 @@ function Projects() {
           codeLink="https://github.com/michaelpreciado/Interactive_Solar_System" // Updated code link
           demoLink="https://michaelpreciado.github.io/Interactive_Solar_System/" // Updated demo link
         />
+
+        <ProjectCard 
+          iconPlaceholder={<FaCode />} // Using FaCode icon
+          title="Flappy Dog Game"
+          description="A simple Flappy Bird clone featuring dogs, built with JavaScript."
+          tech={['JavaScript', 'HTML', 'CSS']} // Based on GitHub repo
+          codeLink="https://github.com/michaelpreciado/Flappy-Dog" 
+          demoLink="https://flappy-dogs.netlify.app/" 
+        />
       </div>
     </section>
   );
