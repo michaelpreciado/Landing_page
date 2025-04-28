@@ -76,6 +76,15 @@ function Projects() {
           codeLink="https://github.com/michaelpreciado/Flappy-Dog" 
           demoLink="https://flappy-dogs.netlify.app/" 
         />
+
+        <ProjectCard 
+          iconPlaceholder={<FaProjectDiagram />} // Using FaProjectDiagram icon for AI
+          title="Personal AI Assistant"
+          description="A personal AI assistant application leveraging OpenAI."
+          tech={['Python', 'Flask', 'TypeScript']} // Updated tech stack
+          codeLink="https://github.com/michaelpreciado/F.R.I.D.A.Y"
+          demoLink="https://michaelpreciado.github.io/F.R.I.D.A.Y/"
+        />
       </div>
     </section>
   );
