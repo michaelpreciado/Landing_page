@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <defs>
+    <mask id="glassMask">
+      <!-- White areas are visible, black areas are clipped -->
+      <rect width="200" height="200" fill="black"/>
+      <rect x="4" y="4" width="192" height="192" rx="24" ry="24" fill="white"/>
+    </mask>
+  </defs>
+  <!-- Invisible rect to define mask boundaries -->
+  <rect width="200" height="200" mask="url(#glassMask)" fill="transparent"/>
+</svg> 

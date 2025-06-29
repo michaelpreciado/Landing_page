@@ -4,7 +4,7 @@ import useTypewriter from '../hooks/useTypewriter';
 function Hero() {
   const firstName = "Michael";
   const lastName = "Preciado";
-  const subtitle = "Software & AI Solutions";
+  const subtitle = "Software Developer & AI Automation";
 
   const typedFirstName = useTypewriter(firstName, 75);
   const typedLastName = useTypewriter(lastName, 75);

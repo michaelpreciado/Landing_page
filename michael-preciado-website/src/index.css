@@ -296,12 +296,15 @@ img[src^="placeholder-"].project-image-placeholder {
   display: grid; /* Use grid for better alignment */
   grid-template-columns: 1fr; /* Single column on mobile */
   gap: 15px;
+  justify-content: center; /* Center the grid within parent */
+  width: 100%; /* Take full width so columns are equal */
 }
 
 .connect-button {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  width: 100%; /* Make button fill column width for symmetry */
   /* background: var(--medium-bg); */ /* Use medium background */
   background: rgba(10, 25, 47, 0.9); /* Original darker blue */
   border: 1px solid var(--border-color); /* Subtle border */
@@ -418,27 +421,40 @@ img[src^="placeholder-"].project-image-placeholder {
   overflow: hidden;
   border: 1px solid var(--border-color);
   text-align: left; /* Left align text inside cards */
-  transition: transform var(--transition-medium), box-shadow var(--transition-medium);
+  transition: transform var(--transition-medium), box-shadow var(--transition-medium), border-color var(--transition-fast), background-color var(--transition-fast);
   /* box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); */ /* Reduced shadow */
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3); /* Subtle shadow */
   width: 100%; /* Ensure card tries to fill column before max-width applies */
   max-width: 400px; /* Increased max-width */
 }
 
-.project-card:hover {
-  transform: translateY(-5px);
-  /* box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2); */
+/* Hover / focus styles mimic connect-button animation */
+.project-card:hover,
+.project-card:focus-visible {
+  transform: translateY(-2px);
+  border-color: var(--secondary-accent);
   box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
 }
 
-/* Commented out image styles, replaced by icon placeholder below */
-/* .project-card img { 
+/* Project image container and image styles */
+.project-image-container {
   width: 100%;
-  height: 250px; 
-  object-fit: cover;
-  display: block;
+  height: 125px; /* Fixed height to match icon placeholder */
+  overflow: hidden;
   border-bottom: 1px solid var(--border-color);
-} */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--medium-bg);
+}
+
+.project-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Maintain aspect ratio while filling container */
+  object-position: center; /* Center the image */
+  display: block;
+}
 
 /* New styles for the icon placeholder */
 .project-icon-placeholder {
@@ -446,7 +462,7 @@ img[src^="placeholder-"].project-image-placeholder {
   align-items: center;
   justify-content: center;
   width: 100%;
-  height: 125px; /* Match previous image height */
+  height: 125px; /* Match image container height */
   background-color: var(--medium-bg); /* Use a background color */
   border-bottom: 1px solid var(--border-color); /* Keep border */
 }
@@ -877,4 +893,124 @@ main {
 
 .animate-on-scroll.is-visible {
   animation: fadeIn 1s ease-out forwards;
+}
+
+/* New styles for Projects header containing blog link */
+.projects-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.5rem;
+}
+
+.blog-link {
+  border: 1px solid var(--border-color);
+  padding: 6px 18px;
+  border-radius: 8px;
+  color: var(--light-text);
+  background: rgba(255, 255, 255, 0.02);
+  text-decoration: none;
+  font-size: 1rem;
+}
+
+.blog-link:hover,
+.blog-link:focus-visible {
+  background: var(--primary-accent);
+  color: #fff;
+}
+
+/* --- Return Button --- */
+.return-button {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.02);
+  color: var(--light-text);
+  text-decoration: none;
+  font-size: 0.95rem;
+  z-index: 1000;
+  transition: background-color var(--transition-fast), border-color var(--transition-fast), transform var(--transition-fast);
+}
+
+.return-button:hover, .return-button:focus-visible {
+  background: var(--primary-accent);
+  border-color: var(--secondary-accent);
+  transform: translateY(-2px);
+  color: #fff;
+}
+
+.return-button svg {
+  font-size: 1rem;
+}
+
+/* --- Blog Date Styling --- */
+.blog-date {
+  color: var(--medium-text);
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem !important;
+  font-style: italic;
+}
+
+/* --- Blog Article Content Styling --- */
+.blog-article-content {
+  background: rgba(10, 25, 47, 0.7);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 2.5rem 2rem;
+  margin: 1rem 0;
+  text-align: left;
+  line-height: 1.8;
+  font-family: 'Inter', var(--font-sans);
+}
+
+.blog-article-content h2,
+.blog-article-content h3,
+.blog-article-content h4 {
+  color: var(--light-text);
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  font-weight: 700;
+}
+
+.blog-article-content h2:first-child {
+  margin-top: 0;
+}
+
+.blog-article-content p {
+  color: var(--light-text);
+  margin-bottom: 1.2rem;
+  max-width: none;
+}
+
+/* List styling */
+.blog-article-content ul {
+  margin-left: 1.5rem;
+  list-style-type: disc;
+}
+
+.blog-article-content li {
+  margin-bottom: 0.6rem;
+  line-height: 1.7;
+}
+
+/* --- Blog Article Image Styling --- */
+.blog-article-image {
+  margin: 1rem 0 2rem 0;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--border-color);
+}
+
+.blog-article-image img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
 }

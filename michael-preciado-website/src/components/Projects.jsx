@@ -3,12 +3,18 @@ import React from 'react';
 import { FaCode, FaProjectDiagram, FaCamera, FaGlobeAmericas } from 'react-icons/fa'; 
 
 // Use CSS classes instead of inline styles
-const ProjectCard = ({ iconPlaceholder, title, description, tech, codeLink, demoLink }) => (
+const ProjectCard = ({ iconPlaceholder, imageSrc, title, description, tech, codeLink, demoLink }) => (
   <div className="project-card">
-    {/* Render icon placeholder div instead of img */}
-    <div className="project-icon-placeholder">
-      {iconPlaceholder} 
-    </div>
+    {/* Render image if provided, otherwise use icon placeholder */}
+    {imageSrc ? (
+      <div className="project-image-container">
+        <img src={imageSrc} alt={title} className="project-image" />
+      </div>
+    ) : (
+      <div className="project-icon-placeholder">
+        {iconPlaceholder} 
+      </div>
+    )}
     <div className="project-card-content">
       <h3>{title}</h3>
       <p>{description}</p>
@@ -41,7 +47,7 @@ function Projects() {
   return (
     <section id="projects">
       {/* Group header elements */}
-      <div> 
+      <div className="projects-header"> 
         <h2>My Projects</h2>
         {/* Removed inline style from <p> - style in CSS if needed */}
         <p>A collection of my recent work</p> 
@@ -50,8 +56,7 @@ function Projects() {
       {/* Wrap cards in the container */}
       <div className="projects-container">
         <ProjectCard 
-          // imageSrc="/placeholder-photography.png" // Replaced with icon placeholder
-          iconPlaceholder={<FaCamera />} // Use FaCamera icon
+          imageSrc="/images/photography.png" // Use the actual photography image
           title="Photography Portfolio"
           description="Minimalist photography showcase with responsive image gallery and smooth transitions."
           codeLink="https://github.com/michaelpreciado/mario.preciado.photography" // Updated code link
@@ -59,8 +64,7 @@ function Projects() {
         />
 
         <ProjectCard 
-          // imageSrc="/placeholder-ar.png" // Replaced with icon placeholder
-          iconPlaceholder={<FaGlobeAmericas />} // Use FaGlobeAmericas icon
+          imageSrc="/images/Solar.png" // Use the actual Solar System image
           title="Interactive Solar System"
           description="An interactive 3D model of the solar system built with JavaScript."
           tech={['JavaScript', 'HTML', 'CSS']}
@@ -69,21 +73,30 @@ function Projects() {
         />
 
         <ProjectCard 
-          iconPlaceholder={<FaCode />} // Using FaCode icon
+          imageSrc="/images/flattenhund.png" // Use the actual Flappy Dog Game image
           title="Flappy Dog Game"
-          description="A simple Flappy Bird clone featuring dogs, built with JavaScript."
+          description="A playful Flappy-Bird-style game starring my dogs Taz & Chloe, featuring an online leaderboard powered by Supabase."
           tech={['JavaScript', 'HTML', 'CSS']} // Based on GitHub repo
-          codeLink="https://github.com/michaelpreciado/Flappy-Dog" 
-          demoLink="https://flappy-dogs.netlify.app/" 
+          codeLink="https://github.com/michaelpreciado/Flattenhund" 
+          demoLink="https://flatterhund.netlify.app/" 
         />
 
         <ProjectCard 
-          iconPlaceholder={<FaProjectDiagram />} // Using FaProjectDiagram icon for AI
-          title="Personal AI Assistant"
+          imageSrc="/images/friday.png" // Use the actual Friday AI Assistant image
+          title="Friday"
           description="A personal AI assistant application leveraging OpenAI."
           tech={['Python', 'Flask', 'TypeScript']} // Updated tech stack
           codeLink="https://github.com/michaelpreciado/F.R.I.D.A.Y"
           demoLink="https://michaelpreciado.github.io/F.R.I.D.A.Y/"
+        />
+
+        <ProjectCard 
+          imageSrc="/images/planttracker.png" // Use the actual Plant Tracker image
+          title="Plant Tracker"
+          description="Offline-first Next.js PWA that tracks plant care, sends smart watering reminders, stores photos, and syncs via Supabase."
+          tech={['Next.js', 'TypeScript', 'Tailwind', 'Supabase']}
+          codeLink="https://github.com/michaelpreciado/Planter"
+          demoLink="https://planttracker.netlify.app/"
         />
       </div>
     </section>

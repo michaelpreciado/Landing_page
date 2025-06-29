@@ -7,11 +7,12 @@ import Projects from './components/Projects';
 import About from './components/About';
 import ScrollRevealTerminal from './components/ScrollRevealTerminal';
 import Contact from './components/Contact';
+import PageTransition from './components/PageTransition';
 // Removed './App.css' import as global styles are in index.css
 
 function App() {
   return (
-    <>
+    <PageTransition>
       <MatrixRainBackground />
       <main style={{ position: 'relative', zIndex: 1 }}> {/* Ensure content is above background */}
         <Hero />
@@ -31,7 +32,7 @@ function App() {
           <Contact />
         </ScrollRevealTerminal>
       </main>
-    </>
+    </PageTransition>
   );
 }
 
