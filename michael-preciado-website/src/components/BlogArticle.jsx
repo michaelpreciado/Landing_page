@@ -80,6 +80,14 @@ function BlogArticle() {
       if (block.startsWith('### ')) {
         return <h4 key={idx}>{block.replace('### ', '')}</h4>;
       }
+      // Handle HTML div blocks (like images)
+      if (block.trim().startsWith('<div') && block.includes('</div>')) {
+        return <div key={idx} dangerouslySetInnerHTML={{ __html: block.trim() }} />;
+      }
+      // Handle standalone HTML elements
+      if (block.trim().startsWith('<') && block.trim().endsWith('>')) {
+        return <div key={idx} dangerouslySetInnerHTML={{ __html: block.trim() }} />;
+      }
       // Detect markdown-style bullet list (lines starting with '- ')
       if (/^- /.test(block.trim())) {
         const items = block.split(/\n+/).map(l => l.replace(/^-\s*/, ''));
@@ -105,14 +113,15 @@ function BlogArticle() {
           </ol>
         );
       }
+      // Handle horizontal rules
+      if (block.trim() === '---') {
+        return <hr key={idx} style={{ margin: '2rem 0', border: '1px solid var(--border-color)' }} />;
+      }
       
       // More robust HTML processing with error handling
       let sanitized;
       try {
         sanitized = block.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
-        // Additional cleanup for any malformed tags
-        sanitized = sanitized.replace(/<([^>]*?)(?=>|$)/g, '&lt;$1');
-        sanitized = sanitized.replace(/(<\/?)([^>]*?)(>)/g, '$1$2$3');
       } catch (error) {
         console.warn('Error processing HTML in blog content:', error);
         sanitized = block; // Fallback to original text
