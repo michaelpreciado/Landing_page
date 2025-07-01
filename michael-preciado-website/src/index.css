@@ -576,15 +576,23 @@ img[src^="placeholder-"].project-image-placeholder {
   margin-bottom: 30px;
 }
 
-.about-image { /* Styles for actual image */
+.about-image-wrapper {
+  position: relative;
+  display: inline-block;
+  overflow: hidden; /* Clip overlay strictly to image */
+  border-radius: 12px; /* Match image rounding */
+  margin: 0 auto 40px auto; /* center & space below */
+}
+
+.about-image {
   width: 100%;
   max-width: 500px;
   height: auto;
   display: block;
-  margin: 0 auto 40px auto;
+  margin: 0; /* margin handled by wrapper */
   border-radius: 12px;
   border: 1px solid var(--border-color);
-  opacity: 0.7; /* Add transparency */
+  opacity: 0.85;
 }
 
 #about p {
@@ -1011,6 +1019,186 @@ main {
 .blog-article-image img {
   display: block;
   width: 100%;
-  height: auto;
+  aspect-ratio: 1 / 1; /* Ensures square */
+  object-fit: cover; /* Crop to fill */
+}
+
+.about-image-wrapper {
+  position: relative;
+  display: inline-block;
+  overflow: hidden; /* Clip overlay strictly to image */
+  border-radius: 12px; /* Match image rounding */
+  margin: 0 auto 40px auto; /* center & space below */
+}
+
+.about-image-wrapper::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 12px;
+  /* Matrix effect: subtle animated vertical binary stripes */
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(30, 144, 255, 0.25) 0px,
+    rgba(30, 144, 255, 0.25) 2px,
+    transparent 2px,
+    transparent 4px
+  );
+  mix-blend-mode: screen; /* Blend with underlying image */
+  animation: matrixScroll 6s linear infinite;
+  /* Fade-out tail */
+  mask-image: linear-gradient(to bottom,
+    rgba(0,0,0,0) 0%,
+    rgba(0,0,0,1) 15%,
+    rgba(0,0,0,1) 85%,
+    rgba(0,0,0,0) 100%);
+  -webkit-mask-image: linear-gradient(to bottom,
+    rgba(0,0,0,0) 0%,
+    rgba(0,0,0,1) 15%,
+    rgba(0,0,0,1) 85%,
+    rgba(0,0,0,0) 100%);
+  pointer-events: none;
+}
+
+@keyframes matrixScroll {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100%); }
+}
+
+/* -------------------- Matrix Overlay Reusable -------------------- */
+.matrix-overlay {
+  position: relative;
+  overflow: hidden;
+}
+
+.matrix-overlay::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(30, 144, 255, 0.25) 0px,
+    rgba(30, 144, 255, 0.25) 2px,
+    transparent 2px,
+    transparent 4px
+  );
+  mix-blend-mode: screen;
+  animation: matrixScroll 6s linear infinite;
+  mask-image: linear-gradient(to bottom,
+    rgba(0,0,0,0) 0%,
+    rgba(0,0,0,1) 15%,
+    rgba(0,0,0,1) 85%,
+    rgba(0,0,0,0) 100%);
+  -webkit-mask-image: linear-gradient(to bottom,
+    rgba(0,0,0,0) 0%,
+    rgba(0,0,0,1) 15%,
+    rgba(0,0,0,1) 85%,
+    rgba(0,0,0,0) 100%);
+  pointer-events: none;
+}
+
+/* Apply matrix overlay to common image containers */
+.project-image-container { position: relative; overflow: hidden; }
+.profile-image { position: relative; overflow: hidden; }
+.blog-article-image img { position: relative; overflow: hidden; }
+
+.project-image-container::after,
+.profile-image::after,
+.blog-article-image img::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit; /* respect rounding (circle for profile) */
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(30, 144, 255, 0.25) 0px,
+    rgba(30, 144, 255, 0.25) 2px,
+    transparent 2px,
+    transparent 4px
+  );
+  mix-blend-mode: screen;
+  animation: matrixScroll 6s linear infinite;
+  mask-image: linear-gradient(to bottom,
+    rgba(0,0,0,0) 0%,
+    rgba(0,0,0,1) 15%,
+    rgba(0,0,0,1) 85%,
+    rgba(0,0,0,0) 100%);
+  -webkit-mask-image: linear-gradient(to bottom,
+    rgba(0,0,0,0) 0%,
+    rgba(0,0,0,1) 15%,
+    rgba(0,0,0,1) 85%,
+    rgba(0,0,0,0) 100%);
+  pointer-events: none;
+}
+
+.blog-article-header {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 2rem;
+  justify-content: flex-start; /* align left */
+}
+
+.blog-header-thumb {
+  width: 160px;
+  height: 160px;
   object-fit: cover;
+  border-radius: 8px;
+  flex-shrink: 0;
+  border: 1px solid var(--border-color);
+}
+
+/* ---------- New Layout Additions ---------- */
+.blog-meta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.75rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--medium-text);
+  margin-bottom: 1rem;
+}
+
+.blog-categories {
+  color: var(--medium-text);
+}
+
+.blog-date-inline {
+  color: var(--medium-text);
+}
+
+.blog-article-title {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--light-text);
+}
+
+.blog-hero-image {
+  margin: 0 auto 2rem auto; /* center */
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--border-color);
+  text-align: center;
+  width: 100%;
+  max-width: 450px; /* smaller square */
+}
+
+.blog-hero-image img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1 / 1; /* Ensures square */
+  object-fit: cover; /* Crop to fill */
+}
+
+.blog-hero-caption {
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+  font-style: italic;
+  color: var(--medium-text);
 }

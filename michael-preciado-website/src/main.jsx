@@ -7,6 +7,7 @@ import './styles/liquidGlass.css'
 import App from './App.jsx'
 import Blog from './components/Blog.jsx'
 import BlogArticle from './components/BlogArticle.jsx'
+import ProjectsPage from './components/ProjectsPage.jsx'
 import { initLiquidGlass, autoApplyLiquidGlass } from './utils/liquidGlass.js'
 
 // Initialize liquid glass effects
@@ -22,6 +23,7 @@ function AnimatedRoutes() {
         <Route path="/" element={<App />} />
         <Route path="/blog" element={<Blog />} />
         <Route path="/blog/:slug" element={<BlogArticle />} />
+        <Route path="/projects" element={<ProjectsPage />} />
       </Routes>
     </AnimatePresence>
   );

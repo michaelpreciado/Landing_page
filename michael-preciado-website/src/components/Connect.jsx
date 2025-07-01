@@ -1,5 +1,5 @@
 import React from 'react';
-import { FaLinkedin, FaInstagram, FaBook } from 'react-icons/fa';
+import { FaLinkedin, FaInstagram, FaBook, FaProjectDiagram } from 'react-icons/fa';
 import { FaXTwitter } from 'react-icons/fa6';
 
 const ConnectButton = ({ icon, text, link }) => (
@@ -26,6 +26,7 @@ function Connect() {
         <ConnectButton icon={<FaXTwitter />} text="X (Twitter)" link="https://x.com/mpdollars" />
         <ConnectButton icon={<FaInstagram />} text="Instagram" link="https://www.instagram.com/michael.preciado/" />
         <ConnectButton icon={<FaBook />} text="Blogs" link="/blog" />
+        <ConnectButton icon={<FaProjectDiagram />} text="Projects" link="/projects" />
       </div>
     </section>
   );

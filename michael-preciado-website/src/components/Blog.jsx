@@ -8,9 +8,9 @@ import PageTransition from './PageTransition.jsx';
 import useTypewriter from '../hooks/useTypewriter';
 
 // Reuse the card styling from projects by applying the same classes
-const BlogCard = ({ iconPlaceholder, title, excerpt, date, to }) => {
-  const typedTitle = useTypewriter(title, 40);
-  const typedExcerpt = useTypewriter(excerpt, 15);
+const BlogCard = ({ iconPlaceholder, imageSrc, title, excerpt, date, to }) => {
+  const typedTitle = useTypewriter(title, 20);
+  const typedExcerpt = useTypewriter(excerpt, 7);
   const formatDate = (dateString) => {
     return new Date(dateString).toLocaleDateString('en-US', {
       year: 'numeric',
@@ -21,9 +21,15 @@ const BlogCard = ({ iconPlaceholder, title, excerpt, date, to }) => {
 
   return (
     <div className="project-card"> {/* Reuse project-card styles */}
-      <div className="project-icon-placeholder"> {/* Reuse icon placeholder styles */}
-        {iconPlaceholder}
-      </div>
+      {imageSrc ? (
+        <div className="project-image-container">
+          <img src={imageSrc} alt={title} className="project-image" />
+        </div>
+      ) : (
+        <div className="project-icon-placeholder"> {/* Reuse icon placeholder styles */}
+          {iconPlaceholder}
+        </div>
+      )}
       <div className="project-card-content">
         <h3>{typedTitle}</h3>
         <p className="blog-date">{formatDate(date)}</p>
@@ -61,6 +67,7 @@ function Blog() {
               <BlogCard
                 key={post.slug}
                 iconPlaceholder={iconMap[post.icon] || <FaCode size={48} />}
+                imageSrc={post.heroImage}
                 title={post.title}
                 excerpt={post.excerpt}
                 date={post.date}
@@ -74,4 +81,4 @@ function Blog() {
   );
 }
 
-export default Blog; 
+export default Blog;

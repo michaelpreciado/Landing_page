@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import MatrixRainBackground from './MatrixRainBackground';
 import { blogPosts } from '../data/blogData.js';
@@ -7,8 +7,16 @@ import PageTransition from './PageTransition.jsx';
 import useTypewriter from '../hooks/useTypewriter';
 
 // Reusable paragraph component with fast typewriter effect
-const BlogTextBlock = ({ text }) => {
-  const typed = useTypewriter(text, 10);
+const BlogTextBlock = ({ text, delay = 0 }) => {
+  const [startTyping, setStartTyping] = useState(delay === 0);
+
+  useEffect(() => {
+    if (delay === 0) return;
+    const timer = setTimeout(() => setStartTyping(true), delay);
+    return () => clearTimeout(timer);
+  }, [delay]);
+
+  const typed = useTypewriter(startTyping ? text : '', 5);
   return <p dangerouslySetInnerHTML={{ __html: typed }} />;
 };
 
@@ -16,7 +24,7 @@ function BlogArticle() {
   const { slug } = useParams();
   const post = blogPosts.find((p) => p.slug === slug);
 
-  const typedTitle = useTypewriter(post ? post.title : '', 70);
+  const typedTitle = useTypewriter(post ? post.title : '', 35);
 
   if (!post) {
     return (
@@ -57,7 +65,7 @@ function BlogArticle() {
         return <h4 key={idx}>{block.replace('### ', '')}</h4>;
       }
       const sanitized = block.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
-      return <BlogTextBlock key={idx} text={sanitized} />;
+      return <BlogTextBlock key={idx} text={sanitized} delay={idx * 300} />;
     });
   };
 
@@ -67,16 +75,31 @@ function BlogArticle() {
       <ReturnButton to="/blog" />
       <main style={{ position: 'relative', zIndex: 1 }}>
         <section style={{ maxWidth: '800px', margin: '0 auto' }}>
-          <h2 style={{ textAlign: 'center', marginBottom: '1rem' }}>{typedTitle}</h2>
-          <p className="blog-date" style={{ textAlign: 'center', marginBottom: '2rem' }}>{formatDate(post.date)}</p>
-          <div className="blog-article-image">
-            <img 
-              src={`https://via.placeholder.com/800x400/1a2e4f/ccd6f6?text=${encodeURIComponent(post.title)}`}
-              alt={post.title}
-              style={{ width: '100%', height: 'auto', borderRadius: '12px' }}
-            />
-          </div>
           <article className="blog-article-content">
+            {/* --- Meta Row (Categories & Date) --- */}
+            <div className="blog-meta-row">
+              {post.categories && post.categories.length > 0 && (
+                <span className="blog-categories">
+                  {post.categories.join(' • ').toUpperCase()}
+                </span>
+              )}
+              <span className="blog-date-inline">{formatDate(post.date)}</span>
+            </div>
+
+            {/* Title */}
+            <h1 className="blog-article-title">{typedTitle}</h1>
+
+            {/* Hero Image */}
+            {post.heroImage && (
+              <figure className="blog-hero-image matrix-overlay">
+                <img src={post.heroImage} alt={post.title} />
+                {post.excerpt && (
+                  <figcaption className="blog-hero-caption">{post.excerpt}</figcaption>
+                )}
+              </figure>
+            )}
+
+            {/* Article Body */}
             {renderContent(post.content)}
           </article>
           <div style={{ marginTop: '2rem', textAlign: 'center' }}>
