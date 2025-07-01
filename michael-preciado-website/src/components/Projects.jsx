@@ -101,11 +101,11 @@ function Projects() {
 
         <ProjectCard 
           iconPlaceholder={<FaTv size={48} />}
-          title="CRT Archive"
-          description="A digital preservation project featuring authentic CRT monitor effects, retro computing aesthetics, and nostalgic interface elements."
-          tech={['React', 'CSS', 'JavaScript', 'WebGL']}
-          codeLink="https://github.com/michaelpreciado/CRT-Archive"
-          demoLink="https://crt-archive.netlify.app/"
+          title="CRT Interactive Album"
+          description="A visually stunning 3D scene showcasing a 90s era CRT computer with dynamic slideshow, atmospheric effects, and glass-morphism cards. Built with React Three Fiber."
+          tech={['React', 'TypeScript', 'Three.js', 'Tailwind CSS', 'Framer Motion']}
+          codeLink="https://github.com/michaelpreciado/CRTinteractiveAlbum"
+          demoLink="https://crtarchve.netlify.app"
         />
       </div>
     </section>
