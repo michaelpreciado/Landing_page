@@ -9,6 +9,7 @@ import useTypewriter from '../hooks/useTypewriter';
 // Reusable paragraph component with fast typewriter effect
 const BlogTextBlock = ({ text, delay = 0 }) => {
   const [startTyping, setStartTyping] = useState(delay === 0);
+  const [shouldUseTypewriter, setShouldUseTypewriter] = useState(true);
 
   useEffect(() => {
     if (delay === 0) return;
@@ -16,8 +17,23 @@ const BlogTextBlock = ({ text, delay = 0 }) => {
     return () => clearTimeout(timer);
   }, [delay]);
 
-  const typed = useTypewriter(startTyping ? text : '', 1);
-  return <p dangerouslySetInnerHTML={{ __html: typed }} />;
+  // Check if text contains complex HTML that might cause issues
+  useEffect(() => {
+    const hasComplexHTML = /<[^>]+>/g.test(text) && text.includes('<');
+    const isMobile = window.innerWidth <= 768;
+    
+    // Disable typewriter on mobile or for complex HTML to prevent rendering issues
+    if (isMobile || hasComplexHTML) {
+      setShouldUseTypewriter(false);
+    }
+  }, [text]);
+
+  const typed = useTypewriter(startTyping && shouldUseTypewriter ? text : '', 1);
+  
+  // If typewriter is disabled, show full text immediately
+  const displayText = shouldUseTypewriter ? typed : text;
+  
+  return <p dangerouslySetInnerHTML={{ __html: displayText }} />;
 };
 
 function BlogArticle() {
@@ -89,7 +105,19 @@ function BlogArticle() {
           </ol>
         );
       }
-      const sanitized = block.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+      
+      // More robust HTML processing with error handling
+      let sanitized;
+      try {
+        sanitized = block.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+        // Additional cleanup for any malformed tags
+        sanitized = sanitized.replace(/<([^>]*?)(?=>|$)/g, '&lt;$1');
+        sanitized = sanitized.replace(/(<\/?)([^>]*?)(>)/g, '$1$2$3');
+      } catch (error) {
+        console.warn('Error processing HTML in blog content:', error);
+        sanitized = block; // Fallback to original text
+      }
+      
       return <BlogTextBlock key={idx} text={sanitized} delay={idx * 300} />;
     });
   };

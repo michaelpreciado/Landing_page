@@ -1208,3 +1208,36 @@ main {
   object-fit: contain; /* Show entire image */
   object-position: center; /* Center inside container */
 }
+
+/* --- Mobile-Specific Font and Text Improvements --- */
+@media (max-width: 767.98px) {
+  /* Use more reliable fonts on mobile for better rendering */
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Inter", Roboto, Helvetica, Arial, sans-serif;
+    -webkit-text-size-adjust: 100%; /* Prevent iOS font scaling */
+    text-rendering: optimizeLegibility;
+  }
+  
+  /* Override VT323 font on mobile for better readability */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Inter", Roboto, Helvetica, Arial, sans-serif;
+    font-weight: 700;
+  }
+  
+  p, span, div {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Inter", Roboto, Helvetica, Arial, sans-serif;
+  }
+  
+  /* Ensure blog content is readable on mobile */
+  .blog-article-content {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Inter", Roboto, Helvetica, Arial, sans-serif;
+    padding: 1.5rem 1rem;
+    line-height: 1.6;
+  }
+  
+  /* Fix mobile text selection and rendering */
+  * {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}

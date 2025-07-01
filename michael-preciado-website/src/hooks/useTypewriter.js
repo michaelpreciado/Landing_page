@@ -12,10 +12,40 @@ function useTypewriter(text, speed = 50) {
       return;
     }
 
-    // Only start the interval if the text isn't fully displayed yet
-    if (currentIndex < text.length) {
+    // Parse text into chunks where HTML tags are treated as single units
+    const parseTextIntoChunks = (inputText) => {
+      const chunks = [];
+      let i = 0;
+      
+      while (i < inputText.length) {
+        // Check if we're at the start of an HTML tag
+        if (inputText[i] === '<') {
+          const tagEnd = inputText.indexOf('>', i);
+          if (tagEnd !== -1) {
+            // Add the entire HTML tag as one chunk
+            chunks.push(inputText.substring(i, tagEnd + 1));
+            i = tagEnd + 1;
+          } else {
+            // No closing >, treat as regular character
+            chunks.push(inputText[i]);
+            i++;
+          }
+        } else {
+          // Regular character
+          chunks.push(inputText[i]);
+          i++;
+        }
+      }
+      
+      return chunks;
+    };
+
+    const chunks = parseTextIntoChunks(text);
+
+    // Only start the interval if we haven't displayed all chunks yet
+    if (currentIndex < chunks.length) {
       const intervalId = setInterval(() => {
-        setDisplayText((prev) => prev + text[currentIndex]);
+        setDisplayText((prev) => prev + chunks[currentIndex]);
         setCurrentIndex((prevIndex) => prevIndex + 1);
       }, speed);
 
@@ -29,7 +59,6 @@ function useTypewriter(text, speed = 50) {
     setDisplayText('');
     setCurrentIndex(0);
   }, [text]);
-
 
   return displayText;
 }
