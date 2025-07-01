@@ -16,7 +16,7 @@ const BlogTextBlock = ({ text, delay = 0 }) => {
     return () => clearTimeout(timer);
   }, [delay]);
 
-  const typed = useTypewriter(startTyping ? text : '', 5);
+  const typed = useTypewriter(startTyping ? text : '', 1);
   return <p dangerouslySetInnerHTML={{ __html: typed }} />;
 };
 
@@ -63,6 +63,31 @@ function BlogArticle() {
       }
       if (block.startsWith('### ')) {
         return <h4 key={idx}>{block.replace('### ', '')}</h4>;
+      }
+      // Detect markdown-style bullet list (lines starting with '- ')
+      if (/^- /.test(block.trim())) {
+        const items = block.split(/\n+/).map(l => l.replace(/^-\s*/, ''));
+        return (
+          <ul key={idx} style={{ marginBottom: '1.2rem', paddingLeft: '1.5rem' }}>
+            {items.map((item, liIdx) => (
+              <li key={liIdx}>
+                <BlogTextBlock text={item} delay={idx * 300} />
+              </li>
+            ))}
+          </ul>
+        );
+      }
+      if (/^\d+\. /.test(block.trim())) {
+        const items = block.split(/\n+/).map(l => l.replace(/^\d+\.\s*/, ''));
+        return (
+          <ol key={idx} style={{ marginBottom: '1.2rem', paddingLeft: '1.5rem' }}>
+            {items.map((item, liIdx) => (
+              <li key={liIdx}>
+                <BlogTextBlock text={item} delay={idx * 100} />
+              </li>
+            ))}
+          </ol>
+        );
       }
       const sanitized = block.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
       return <BlogTextBlock key={idx} text={sanitized} delay={idx * 300} />;

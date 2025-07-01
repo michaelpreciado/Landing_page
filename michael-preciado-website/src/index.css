@@ -1000,7 +1000,8 @@ main {
 /* List styling */
 .blog-article-content ul {
   margin-left: 1.5rem;
-  list-style-type: disc;
+  list-style-type: none;
+  padding-left: 0;
 }
 
 .blog-article-content li {
@@ -1201,4 +1202,9 @@ main {
   font-size: 0.9rem;
   font-style: italic;
   color: var(--medium-text);
+}
+
+#blogs .project-image {
+  object-fit: contain; /* Show entire image */
+  object-position: center; /* Center inside container */
 }
