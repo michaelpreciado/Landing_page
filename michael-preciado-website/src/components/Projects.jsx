@@ -1,6 +1,6 @@
 import React from 'react';
 // Import icons to use as placeholders
-import { FaCode, FaProjectDiagram, FaCamera, FaGlobeAmericas } from 'react-icons/fa'; 
+import { FaCode, FaProjectDiagram, FaCamera, FaGlobeAmericas, FaTv } from 'react-icons/fa'; 
 
 // Use CSS classes instead of inline styles
 const ProjectCard = ({ iconPlaceholder, imageSrc, title, description, tech, codeLink, demoLink }) => (
@@ -97,6 +97,15 @@ function Projects() {
           tech={['Next.js', 'TypeScript', 'Tailwind', 'Supabase']}
           codeLink="https://github.com/michaelpreciado/Planter"
           demoLink="https://planttracker.netlify.app/"
+        />
+
+        <ProjectCard 
+          iconPlaceholder={<FaTv size={48} />}
+          title="CRT Archive"
+          description="A digital preservation project featuring authentic CRT monitor effects, retro computing aesthetics, and nostalgic interface elements."
+          tech={['React', 'CSS', 'JavaScript', 'WebGL']}
+          codeLink="https://github.com/michaelpreciado/CRT-Archive"
+          demoLink="https://crt-archive.netlify.app/"
         />
       </div>
     </section>
