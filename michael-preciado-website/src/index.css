@@ -419,6 +419,13 @@ img[src^="placeholder-"].project-image-placeholder {
 @media (max-width: 767.98px) { 
   .projects-container {
     /* justify-items: center; */ /* Rule moved to base style */
+    padding: 0 8px; /* Narrow side padding */
+  }
+
+  /* Smaller cards on mobile */
+  .project-card {
+    max-width: 280px;
+    width: 85%;
   }
 }
 
