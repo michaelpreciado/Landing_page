@@ -5,8 +5,8 @@ function About() {
     <section id="about">
       <div className="about-image-wrapper">
         <img 
-          src="/images/jump.jpeg"
-          alt="Michael Preciado jumping"
+          src="/images/seattle.jpeg"
+          alt="Seattle skyline"
           className="about-image"
         />
       </div>

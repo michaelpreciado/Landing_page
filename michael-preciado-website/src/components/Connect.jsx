@@ -25,8 +25,8 @@ function Connect() {
         <ConnectButton icon={<FaLinkedin />} text="LinkedIn" link="https://www.linkedin.com/in/michael-preciado-74959b227/" />
         <ConnectButton icon={<FaXTwitter />} text="X (Twitter)" link="https://x.com/mpdollars" />
         <ConnectButton icon={<FaInstagram />} text="Instagram" link="https://www.instagram.com/michael.preciado/" />
-        <ConnectButton icon={<FaBook />} text="Blogs" link="/blog" />
         <ConnectButton icon={<FaProjectDiagram />} text="Projects" link="/projects" />
+        <ConnectButton icon={<FaBook />} text="Blogs" link="/blog" />
       </div>
     </section>
   );

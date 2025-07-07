@@ -14,8 +14,7 @@ const BlogCard = ({ iconPlaceholder, imageSrc, title, excerpt, date, to }) => {
   const formatDate = (dateString) => {
     return new Date(dateString).toLocaleDateString('en-US', {
       year: 'numeric',
-      month: 'long',
-      day: 'numeric'
+      month: 'long'
     });
   };
 
@@ -52,6 +51,7 @@ function Blog() {
   };
 
   const typedTitle = useTypewriter('Blogs', 75);
+  const isSingleBlog = blogPosts.length === 1; // Determine if there's only one blog post
 
   return (
     <PageTransition>
@@ -62,7 +62,7 @@ function Blog() {
           <h2>{typedTitle}</h2>
           <p>Insights, tutorials, and stories &mdash; fresh out of the oven.</p>
 
-          <div className="projects-container"> {/* Reuse grid layout */}
+          <div className={`projects-container ${isSingleBlog ? 'single-blog-layout' : ''}`}> {/* Reuse grid layout */}
             {blogPosts.map(post => (
               <BlogCard
                 key={post.slug}

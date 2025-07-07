@@ -35,6 +35,7 @@
 html {
   scroll-behavior: smooth; /* Smooth scrolling */
   font-size: 16px; /* Base font size */
+  overflow-x: hidden; /* Prevent horizontal scroll */
 }
 
 body {
@@ -46,11 +47,17 @@ body {
   -webkit-font-smoothing: antialiased; /* Smoother fonts on WebKit */
   -moz-osx-font-smoothing: grayscale; /* Smoother fonts on Firefox on macOS */
   /* Viewport meta tag assumed in HTML */
+  -webkit-text-size-adjust: 100%; /* Prevent iOS font scaling */
+  text-rendering: optimizeLegibility;
+}
+
+h1, h2, h3, h4, h5, h6,
+p, span, div {
+  font-family: var(--font-sans);
 }
 
 /* --- Typography (Mobile First Sizes) --- */
 h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-sans); /* Use sans-serif for headings too */
   color: var(--light-text);
   margin-bottom: 1em; /* Consistent margin */
   line-height: 1.3;
@@ -309,10 +316,11 @@ img[src^="placeholder-"].project-image-placeholder {
   background: rgba(10, 25, 47, 0.9); /* Original darker blue */
   border: 1px solid var(--border-color); /* Subtle border */
   color: var(--light-text);
-  padding: 18px 25px; /* Adjust padding */
+  padding: 12px 18px; /* Reduced padding for smaller size */
   border-radius: 12px; /* Apple-like rounded corners */
   text-decoration: none;
   font-family: var(--font-sans);
+  font-size: 0.95rem; /* Slightly smaller text */
   /* transition: background-color var(--transition-fast), border-color var(--transition-fast), transform var(--transition-fast); */
   transition: background-color var(--transition-fast), border-color var(--transition-fast), transform var(--transition-fast); /* Keep transform */
   /* box-shadow: 0 0 10px rgba(10, 132, 255, 0.1); Remove shadow */
@@ -438,8 +446,12 @@ img[src^="placeholder-"].project-image-placeholder {
 
 /* Project image container and image styles */
 .project-image-container {
-  width: 100%;
-  height: 125px; /* Fixed height to match icon placeholder */
+  width: 100%; /* Fill the card width */
+  /* Maintain a perfect square regardless of width */
+  aspect-ratio: 1 / 1;
+  /* Provide a fallback height for very old browsers */
+  height: auto;
+  /* Previously centered via margin; no longer needed */
   overflow: hidden;
   border-bottom: 1px solid var(--border-color);
   display: flex;
@@ -462,7 +474,10 @@ img[src^="placeholder-"].project-image-placeholder {
   align-items: center;
   justify-content: center;
   width: 100%;
-  height: 125px; /* Match image container height */
+  /* Match square aspect ratio of image container */
+  aspect-ratio: 1 / 1;
+  height: auto;
+  /* Centering no longer necessary */
   background-color: var(--medium-bg); /* Use a background color */
   border-bottom: 1px solid var(--border-color); /* Keep border */
 }
@@ -586,7 +601,7 @@ img[src^="placeholder-"].project-image-placeholder {
 
 .about-image {
   width: 100%;
-  max-width: 500px;
+  max-width: 350px; /* Reduced max width of About image */
   height: auto;
   display: block;
   margin: 0; /* margin handled by wrapper */
@@ -604,18 +619,22 @@ img[src^="placeholder-"].project-image-placeholder {
 }
 
 /* --- Contact Section Styles --- */
+#contact {
+  padding: 40px 20px; /* Reduce vertical padding for a more compact section */
+}
+
 #contact h2 {
-  margin-bottom: 40px;
+  margin-bottom: 20px; /* Reduced spacing under section title */
 }
 
 .contact-form {
-  max-width: 400px; /* Increased max-width */
+  max-width: 280px; /* Further reduce form width */
   margin: 0 auto;
-  text-align: left; /* Align form elements left */
+  text-align: left;
 }
 
 .form-group {
-  margin-bottom: 25px;
+  margin-bottom: 10px; /* Further reduce spacing between fields */
   /* display: flex; */ /* Remove flex for stacked layout */
   /* align-items: center; */
 }
@@ -630,15 +649,15 @@ img[src^="placeholder-"].project-image-placeholder {
   /* margin-right: 10px; */
 }
 
-.form-input,
-.form-textarea {
+#contact .form-input,
+#contact .form-textarea {
   width: 100%; /* Full width */
-  padding: 15px; /* Generous padding */
+  padding: 10px; /* Slimmer padding inside inputs */
   background: rgba(15, 30, 55, 0.8); /* Adjusted background: darker, slightly more opaque */
   border: 1px solid var(--primary-accent); /* Match original */
   border-radius: 12px; /* Increased rounding */
   color: var(--light-text);
-  font-size: 1rem;
+  font-size: 0.9rem; /* Slightly smaller font */
   font-family: var(--font-sans);
   transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
 }
@@ -650,16 +669,16 @@ img[src^="placeholder-"].project-image-placeholder {
   box-shadow: 0 0 0 3px var(--glow-color); /* Focus ring using main glow */
 }
 
-.form-textarea {
+#contact .form-textarea {
   resize: vertical; /* Allow vertical resize */
-  min-height: 120px; /* Minimum height */
+  min-height: 100px; /* Slightly shorter textarea */
 }
 
-.submit-button {
+#contact .submit-button {
   background: var(--primary-accent);
   color: var(--dark-bg); /* Changed for better contrast */
   border: none;
-  padding: 12px 24px;
+  padding: 10px 20px; /* Smaller button */
   border-radius: 25px; /* Rounded pill shape */
   cursor: pointer;
   font-family: var(--font-sans); /* Consistent font */
@@ -671,8 +690,8 @@ img[src^="placeholder-"].project-image-placeholder {
   /* Removed box-shadow and text-shadow for cleaner look */
   transition: background-color var(--transition-fast), transform var(--transition-fast);
   width: auto; /* Allow button to size based on content */
-  min-width: 150px; /* Ensure a minimum clickable area */
-  margin: 20px auto 0 auto; /* Re-added auto horizontal margins for centering */
+  min-width: 120px;
+  margin: 10px auto 0 auto; /* Reduced top margin */
 }
 
 .submit-button:hover {
@@ -788,8 +807,19 @@ img[src^="placeholder-"].project-image-placeholder {
   }
 
   /* Contact Form Adjustments */
-  .contact-form { max-width: 450px; } /* Increased max-width further for larger screens */
+  .contact-form { max-width: 340px; } /* Further reduced width for larger screens */
   /* Keep stacked layout for labels/inputs - it's cleaner */
+
+  /* --- Single Blog Layout --- */
+  .projects-container.single-blog-layout {
+    grid-template-columns: 1fr; /* Force single column on larger screens */
+    justify-items: center; /* Center the card horizontally */
+  }
+
+  /* Increase card size when using single blog layout */
+  .projects-container.single-blog-layout .project-card {
+    max-width: 420px; /* Shrink overall card to ~30% smaller */
+  }
 }
 
 /* --- Larger Desktop Adjustments --- */
@@ -1014,7 +1044,9 @@ main {
   margin: 1rem 0 2rem 0;
   border-radius: 12px;
   overflow: hidden;
-  border: 1px solid var(--border-color);
+  /* Only left/right borders, no top/bottom */
+  border-left: 1px solid var(--border-color);
+  border-right: 1px solid var(--border-color);
 }
 
 .blog-article-image img {
@@ -1040,8 +1072,8 @@ main {
   /* Matrix effect: subtle animated vertical binary stripes */
   background: repeating-linear-gradient(
     to bottom,
-    rgba(30, 144, 255, 0.25) 0px,
-    rgba(30, 144, 255, 0.25) 2px,
+    rgba(30, 144, 255, 0.12) 0px,
+    rgba(30, 144, 255, 0.12) 2px,
     transparent 2px,
     transparent 4px
   );
@@ -1079,8 +1111,8 @@ main {
   border-radius: inherit;
   background: repeating-linear-gradient(
     to bottom,
-    rgba(30, 144, 255, 0.25) 0px,
-    rgba(30, 144, 255, 0.25) 2px,
+    rgba(30, 144, 255, 0.12) 0px,
+    rgba(30, 144, 255, 0.12) 2px,
     transparent 2px,
     transparent 4px
   );
@@ -1113,8 +1145,8 @@ main {
   border-radius: inherit; /* respect rounding (circle for profile) */
   background: repeating-linear-gradient(
     to bottom,
-    rgba(30, 144, 255, 0.25) 0px,
-    rgba(30, 144, 255, 0.25) 2px,
+    rgba(30, 144, 255, 0.12) 0px,
+    rgba(30, 144, 255, 0.12) 2px,
     transparent 2px,
     transparent 4px
   );
@@ -1188,6 +1220,7 @@ main {
   text-align: center;
   width: 100%;
   max-width: 450px; /* smaller square */
+  position: relative; /* enable overlay */
 }
 
 .blog-hero-image img {
@@ -1195,6 +1228,16 @@ main {
   width: 100%;
   aspect-ratio: 1 / 1; /* Ensures square */
   object-fit: cover; /* Crop to fill */
+}
+
+/* Soft edge fade overlay for hero image */
+.blog-hero-image::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  /* Fade transparent in middle to dark background at edges */
+  background: radial-gradient(circle at center, rgba(10, 25, 47, 0) 65%, rgba(10, 25, 47, 0.9) 100%);
 }
 
 .blog-hero-caption {
@@ -1205,32 +1248,32 @@ main {
 }
 
 #blogs .project-image {
-  object-fit: contain; /* Show entire image */
-  object-position: center; /* Center inside container */
+  object-fit: cover; /* Fill the square container */
+  object-position: center;
+  opacity: 0.65; /* 35% transparency */
 }
 
 /* --- Mobile-Specific Font and Text Improvements --- */
 @media (max-width: 767.98px) {
   /* Use more reliable fonts on mobile for better rendering */
   body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Inter", Roboto, Helvetica, Arial, sans-serif;
+    font-family: var(--font-sans);
     -webkit-text-size-adjust: 100%; /* Prevent iOS font scaling */
     text-rendering: optimizeLegibility;
   }
   
-  /* Override VT323 font on mobile for better readability */
   h1, h2, h3, h4, h5, h6 {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Inter", Roboto, Helvetica, Arial, sans-serif;
+    font-family: var(--font-sans);
     font-weight: 700;
   }
   
   p, span, div {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Inter", Roboto, Helvetica, Arial, sans-serif;
+    font-family: var(--font-sans);
   }
   
   /* Ensure blog content is readable on mobile */
   .blog-article-content {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Inter", Roboto, Helvetica, Arial, sans-serif;
+    font-family: var(--font-sans);
     padding: 1.5rem 1rem;
     line-height: 1.6;
   }

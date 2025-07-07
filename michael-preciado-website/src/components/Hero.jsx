@@ -26,7 +26,7 @@ function Hero() {
         className="profile-image"
       />
       <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'center', minHeight: '3rem' }}>
-        <h1 style={{ marginRight: '10px' }}>{typedFirstName}</h1> 
+        <h1 style={{ marginRight: '10px', marginBottom: '0.2rem' }}>{typedFirstName}</h1> 
         {showSymbol && (
           <span 
             aria-hidden="true" 
@@ -43,9 +43,9 @@ function Hero() {
             &lt;/&gt; 
           </span>
         )}
-        <h1>{typedLastName}</h1>
+        <h1 style={{ marginBottom: '0.2rem' }}>{typedLastName}</h1>
       </div>
-      <p className="hero-subtitle" style={{ minHeight: '1.5rem' }}>{typedSubtitle}</p>
+      <p className="hero-subtitle" style={{ minHeight: '1.5rem', fontSize: '1rem', marginTop: '0' }}>{typedSubtitle}</p>
       {/* Skills buttons will be in the Skills component */}
     </section>
   );
