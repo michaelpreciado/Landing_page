@@ -1,78 +1,78 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
 import MatrixRainBackground from './MatrixRainBackground';
-import { FaCamera, FaGlobeAmericas, FaCode } from 'react-icons/fa';
 import { blogPosts } from '../data/blogData.js';
 import ReturnButton from './ReturnButton.jsx';
 import PageTransition from './PageTransition.jsx';
-import useTypewriter from '../hooks/useTypewriter';
 
-// Reuse the card styling from projects by applying the same classes
-const BlogCard = ({ iconPlaceholder, imageSrc, title, excerpt, date, to }) => {
-  const typedTitle = useTypewriter(title, 20);
-  const typedExcerpt = useTypewriter(excerpt, 7);
-  const formatDate = (dateString) => {
-    return new Date(dateString).toLocaleDateString('en-US', {
-      year: 'numeric',
-      month: 'long'
-    });
+const formatDate = (dateString) => {
+  return new Date(dateString).toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+  });
+};
+
+const BlogPostCard = ({ post, index }) => {
+  const cardVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.4,
+        delay: 0.4 + index * 0.1,
+      },
+    },
   };
 
   return (
-    <div className="project-card"> {/* Reuse project-card styles */}
-      {imageSrc ? (
-        <div className="project-image-container">
-          <img src={imageSrc} alt={title} className="project-image" />
-        </div>
-      ) : (
-        <div className="project-icon-placeholder"> {/* Reuse icon placeholder styles */}
-          {iconPlaceholder}
-        </div>
-      )}
-      <div className="project-card-content">
-        <h3>{typedTitle}</h3>
-        <p className="blog-date">{formatDate(date)}</p>
-        <p>{typedExcerpt}</p>
-        <div className="project-links"> {/* Reuse project-links styles */}
-          <Link to={to}>
-            <button className="project-button project-button-primary">Read Article</button>
-          </Link>
-        </div>
+    <motion.div
+      className="blog-post-card"
+      variants={cardVariants}
+      initial="hidden"
+      animate="visible"
+      whileHover={{ y: -5, transition: { duration: 0.2 } }}
+    >
+      <img src={post.heroImage} alt={post.title} className="thumbnail" />
+      <div className="blog-post-card-content">
+        <span className="category-pill">{post.categories[0]}</span>
+        <h3>{post.title}</h3>
+        <p className="blog-date">{formatDate(post.date)}</p>
+        <p className="teaser">{post.excerpt}</p>
+        <Link to={`/blog/${post.slug}`} className="read-more-link">
+          Read →
+        </Link>
       </div>
-    </div>
+    </motion.div>
   );
 };
 
 function Blog() {
-  const iconMap = {
-    camera: <FaCamera size={48} />,
-    globe: <FaGlobeAmericas size={48} />,
-    code: <FaCode size={48} />,
-  };
-
-  const typedTitle = useTypewriter('Blogs', 75);
-  const isSingleBlog = blogPosts.length === 1; // Determine if there's only one blog post
-
   return (
     <PageTransition>
       <MatrixRainBackground />
       <ReturnButton />
       <main style={{ position: 'relative', zIndex: 1 }}>
         <section id="blogs">
-          <h2>{typedTitle}</h2>
-          <p>Insights, tutorials, and stories &mdash; fresh out of the oven.</p>
-
-          <div className={`projects-container ${isSingleBlog ? 'single-blog-layout' : ''}`}> {/* Reuse grid layout */}
-            {blogPosts.map(post => (
-              <BlogCard
-                key={post.slug}
-                iconPlaceholder={iconMap[post.icon] || <FaCode size={48} />}
-                imageSrc={post.heroImage}
-                title={post.title}
-                excerpt={post.excerpt}
-                date={post.date}
-                to={`/blog/${post.slug}`}
-              />
+          <motion.h2
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5 }}
+          >
+            🗒️ Blogs
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+          >
+            Insights, tutorials, and stories &mdash; fresh out of the oven.
+          </motion.p>
+          
+          <div className="blogs-grid">
+            {blogPosts.map((post, index) => (
+              <BlogPostCard key={post.slug} post={post} index={index} />
             ))}
           </div>
         </section>

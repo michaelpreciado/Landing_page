@@ -1,112 +1,157 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 // Import icons to use as placeholders
 import { FaCode, FaProjectDiagram, FaCamera, FaGlobeAmericas, FaTv } from 'react-icons/fa'; 
 
-// Use CSS classes instead of inline styles
-const ProjectCard = ({ iconPlaceholder, imageSrc, title, description, tech, codeLink, demoLink }) => (
-  <div className="project-card">
-    {/* Render image if provided, otherwise use icon placeholder */}
-    {imageSrc ? (
-      <div className="project-image-container">
-        <img src={imageSrc} alt={title} className="project-image" />
-      </div>
-    ) : (
-      <div className="project-icon-placeholder">
-        {iconPlaceholder} 
-      </div>
-    )}
-    <div className="project-card-content">
-      <h3>{title}</h3>
-      <p>{description}</p>
-      {tech && tech.length > 0 && ( // Conditionally render tech tags section
-        <div className="project-tech-tags">
-          {tech.map((t, i) => (
+// --- Reusable IntroCard Component ---
+const IntroCard = () => (
+  <motion.div
+    className="blog-intro-card" // Reusing the same style from the blog page
+    initial={{ opacity: 0, y: 20 }}
+    animate={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.5, delay: 0.2 }}
+  >
+    <div className="blog-intro-text">
+      <p>
+        Welcome to my workshop. Here you'll find a collection of my favorite projects, from web apps to hardware experiments. Each one is a story of a problem solved and something new learned.
+      </p>
+      <p>
+        Dive in and see what I've been building.
+      </p>
+    </div>
+    <div className="blog-image-placeholder">
+      🛠️
+    </div>
+  </motion.div>
+);
+
+// --- Updated ProjectCard Component ---
+const ProjectCard = ({ imageSrc, title, description, tech, codeLink, demoLink, index }) => {
+  const cardVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.4,
+        delay: 0.4 + index * 0.1,
+      },
+    },
+  };
+
+  return (
+    <motion.div
+      className="blog-post-card" // Using the new, more generic card style
+      variants={cardVariants}
+      initial="hidden"
+      animate="visible"
+      whileHover={{ y: -5, transition: { duration: 0.2 } }}
+    >
+      {imageSrc && <img src={imageSrc} alt={title} className="thumbnail" />}
+      <div className="blog-post-card-content">
+        <h3>{title}</h3>
+        <p className="teaser">{description}</p>
+        
+        <div className="project-tech-tags" style={{ marginBottom: '1.5rem', flexGrow: 0 }}>
+          {tech && tech.map((t, i) => (
             <span key={i} className="tech-tag">{t}</span>
           ))}
         </div>
-      )}
-      <div className="project-links">
-        {/* Primary Button: Live Demo (if available) */}
-        {demoLink && (
-          <a href={demoLink} target="_blank" rel="noopener noreferrer">
-            <button className="project-button project-button-primary">Live Demo</button>
-          </a>
-        )}
-        {/* Secondary Button: View Code */}
-        {codeLink && (
-          <a href={codeLink} target="_blank" rel="noopener noreferrer">
-            <button className="project-button project-button-secondary">View Code</button>
-          </a>
-        )}
-      </div>
-    </div>
-  </div>
-);
 
+        <div className="project-links">
+          {demoLink && (
+            <a href={demoLink} target="_blank" rel="noopener noreferrer">
+              <button className="project-button project-button-primary">Live Demo</button>
+            </a>
+          )}
+          {codeLink && (
+            <a href={codeLink} target="_blank" rel="noopener noreferrer">
+              <button className="project-button project-button-secondary">View Code</button>
+            </a>
+          )}
+        </div>
+      </div>
+    </motion.div>
+  );
+};
+
+// --- Main Projects Component ---
 function Projects() {
+  const projectsData = [
+    {
+      imageSrc: "/images/photography.png",
+      title: "Photography Portfolio",
+      description: "Minimalist photography showcase with responsive image gallery and smooth transitions.",
+      codeLink: "https://github.com/michaelpreciado/mario.preciado.photography",
+      demoLink: "https://mariopreciado-photography.netlify.app"
+    },
+    {
+      imageSrc: "/images/Solar.png",
+      title: "Interactive Solar System",
+      description: "An interactive 3D model of the solar system built with JavaScript.",
+      tech: ['JavaScript', 'HTML', 'CSS'],
+      codeLink: "https://github.com/michaelpreciado/Interactive_Solar_System",
+      demoLink: "https://michaelpreciado.github.io/Interactive_Solar_System/"
+    },
+    {
+      imageSrc: "/images/flattenhund.png",
+      title: "Flappy Dog Game",
+      description: "A playful Flappy-Bird-style game starring my dogs Taz & Chloe, featuring an online leaderboard powered by Supabase.",
+      tech: ['JavaScript', 'HTML', 'CSS'],
+      codeLink: "https://github.com/michaelpreciado/Flattenhund",
+      demoLink: "https://flatterhund.netlify.app/"
+    },
+    {
+      imageSrc: "/images/friday.png",
+      title: "Friday",
+      description: "A personal AI assistant application leveraging OpenAI.",
+      tech: ['Python', 'Flask', 'TypeScript'],
+      codeLink: "https://github.com/michaelpreciado/F.R.I.D.A.Y",
+      demoLink: "https://michaelpreciado.github.io/F.R.I.D.A.Y/"
+    },
+    {
+      imageSrc: "/images/planttracker.png",
+      title: "Plant Tracker",
+      description: "Offline-first Next.js PWA that tracks plant care, sends smart watering reminders, stores photos, and syncs via Supabase.",
+      tech: ['Next.js', 'TypeScript', 'Tailwind', 'Supabase'],
+      codeLink: "https://github.com/michaelpreciado/Planter",
+      demoLink: "https://planttracker.netlify.app/"
+    },
+    {
+      imageSrc: "/images/pcbuild.jpeg",
+      title: "CRT Interactive Album",
+      description: "A visually stunning 3D scene showcasing a 90s era CRT computer with dynamic slideshow, atmospheric effects, and glass-morphism cards. Built with React Three Fiber.",
+      tech: ['React', 'TypeScript', 'Three.js', 'Tailwind CSS', 'Framer Motion'],
+      codeLink: "https://github.com/michaelpreciado/CRTinteractiveAlbum",
+      demoLink: "https://crtarchve.netlify.app"
+    }
+  ];
+
   return (
     <section id="projects">
-      {/* Group header elements */}
-      <div className="projects-header"> 
-        <h2>My Projects</h2>
-        {/* Removed inline style from <p> - style in CSS if needed */}
-        <p>A collection of my recent work</p> 
-      </div>
+      <motion.h2
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.5 }}
+        style={{ fontFamily: 'var(--font-pixel)', fontSize: '2rem', textAlign: 'center', marginBottom: '0.5rem' }}
+      >
+        My Projects
+      </motion.h2>
+      <motion.p
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.5, delay: 0.1 }}
+        style={{ textAlign: 'center', color: 'var(--medium-text)', marginBottom: '3rem' }}
+      >
+        A collection of my recent work
+      </motion.p>
 
-      {/* Wrap cards in the container */}
-      <div className="projects-container">
-        <ProjectCard 
-          imageSrc="/images/photography.png" // Use the actual photography image
-          title="Photography Portfolio"
-          description="Minimalist photography showcase with responsive image gallery and smooth transitions."
-          codeLink="https://github.com/michaelpreciado/mario.preciado.photography" // Updated code link
-          demoLink="https://mariopreciado-photography.netlify.app" // Updated demo link
-        />
+      <IntroCard />
 
-        <ProjectCard 
-          imageSrc="/images/Solar.png" // Use the actual Solar System image
-          title="Interactive Solar System"
-          description="An interactive 3D model of the solar system built with JavaScript."
-          tech={['JavaScript', 'HTML', 'CSS']}
-          codeLink="https://github.com/michaelpreciado/Interactive_Solar_System" // Updated code link
-          demoLink="https://michaelpreciado.github.io/Interactive_Solar_System/" // Updated demo link
-        />
-
-        <ProjectCard 
-          imageSrc="/images/flattenhund.png" // Use the actual Flappy Dog Game image
-          title="Flappy Dog Game"
-          description="A playful Flappy-Bird-style game starring my dogs Taz & Chloe, featuring an online leaderboard powered by Supabase."
-          tech={['JavaScript', 'HTML', 'CSS']} // Based on GitHub repo
-          codeLink="https://github.com/michaelpreciado/Flattenhund" 
-          demoLink="https://flatterhund.netlify.app/" 
-        />
-
-        <ProjectCard 
-          imageSrc="/images/friday.png" // Use the actual Friday AI Assistant image
-          title="Friday"
-          description="A personal AI assistant application leveraging OpenAI."
-          tech={['Python', 'Flask', 'TypeScript']} // Updated tech stack
-          codeLink="https://github.com/michaelpreciado/F.R.I.D.A.Y"
-          demoLink="https://michaelpreciado.github.io/F.R.I.D.A.Y/"
-        />
-
-        <ProjectCard 
-          imageSrc="/images/planttracker.png" // Use the actual Plant Tracker image
-          title="Plant Tracker"
-          description="Offline-first Next.js PWA that tracks plant care, sends smart watering reminders, stores photos, and syncs via Supabase."
-          tech={['Next.js', 'TypeScript', 'Tailwind', 'Supabase']}
-          codeLink="https://github.com/michaelpreciado/Planter"
-          demoLink="https://planttracker.netlify.app/"
-        />
-
-        <ProjectCard 
-          iconPlaceholder={<FaTv size={48} />}
-          title="CRT Interactive Album"
-          description="A visually stunning 3D scene showcasing a 90s era CRT computer with dynamic slideshow, atmospheric effects, and glass-morphism cards. Built with React Three Fiber."
-          tech={['React', 'TypeScript', 'Three.js', 'Tailwind CSS', 'Framer Motion']}
-          codeLink="https://github.com/michaelpreciado/CRTinteractiveAlbum"
-          demoLink="https://crtarchve.netlify.app"
-        />
+      <div className="blogs-grid"> {/* Reusing the responsive grid from the blog page */}
+        {projectsData.map((project, index) => (
+          <ProjectCard key={index} {...project} index={index} />
+        ))}
       </div>
     </section>
   );
