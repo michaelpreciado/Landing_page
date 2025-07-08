@@ -54,7 +54,7 @@ const BlogPostCard = ({ post, index }) => {
 
 function Blog() {
   const typedTitle = useTypewriter("🗒️ Blogs", { speed: 30, scrambleOnMount: true, scrambleDuration: 1500 });
-  const typedSubtitle = useTypewriter("Insights, tutorials, and stories — fresh out of the oven.", { speed: 20, scrambleOnMount: true, scrambleDuration: 2000 });
+  const typedSubtitle = useTypewriter("Insights, tutorials, and stories.", { speed: 20, scrambleOnMount: true, scrambleDuration: 2000 });
 
   // Apply liquid glass effects after DOM is ready
   useEffect(() => {
@@ -65,7 +65,7 @@ function Blog() {
     <PageTransition>
       <MatrixRainBackground />
       <PageHeader navTo="/projects" navText="Projects" />
-      <main style={{ position: 'relative', zIndex: 1 }}>
+      <main style={{ position: 'relative', zIndex: 1, paddingTop: '2rem' }}>
         <section id="blogs">
           <motion.h2
             initial={{ opacity: 0 }}

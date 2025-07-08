@@ -136,7 +136,7 @@ function Projects() {
   ];
 
   return (
-    <section id="projects">
+    <section id="projects" style={{ paddingTop: '8rem' }}>
       <motion.h2
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}

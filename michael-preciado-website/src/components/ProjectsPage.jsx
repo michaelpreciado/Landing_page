@@ -13,8 +13,8 @@ function ProjectsPage() {
   return (
     <PageTransition>
       <MatrixRainBackground />
-      <PageHeader navTo="/blog" navText="Blog" />
-      <main style={{ position: 'relative', zIndex: 1 }}>
+      <PageHeader navTo="/blog" navText="Blogs" />
+      <main style={{ position: 'relative', zIndex: 1, paddingTop: '2rem' }}>
         {/* Re-use existing Projects component so cards render consistently */}
         <Projects />
       </main>
