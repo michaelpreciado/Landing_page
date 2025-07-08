@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import useTypewriter from '../hooks/useTypewriter'; // Import the hook
 import MatrixRainBackground from './MatrixRainBackground';
+import LazyImage from './LazyImage';
 import { blogPosts } from '../data/blogData.js';
 import PageHeader from './PageHeader.jsx';
 import PageTransition from './PageTransition.jsx';
@@ -37,7 +38,12 @@ const BlogPostCard = ({ post, index }) => {
       whileHover={{ y: -5, transition: { duration: 0.2 } }}
     >
       <div className="project-image-container">
-        <img src={post.heroImage} alt={post.title} className="thumbnail" />
+        <LazyImage 
+          src={post.heroImage} 
+          alt={`${post.title} blog post cover`} 
+          className="thumbnail"
+          placeholder={<div style={{ width: '100%', height: '200px', background: 'var(--medium-bg)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '2rem' }}>📝</div>}
+        />
       </div>
       <div className="blog-post-card-content">
         <span className="category-pill">{post.categories[0]}</span>

@@ -18,7 +18,7 @@ const ConnectButton = ({ icon, text, link }) => (
 function Connect() {
   return (
     <section id="connect" style={{ maxWidth: '600px' }}>
-      <h2>Connect With Me</h2>
+      <h2>Connect</h2>
       <div className="connect-buttons-container">
         <ConnectButton icon={<FaLinkedin />} text="LinkedIn" link="https://www.linkedin.com/in/michael-preciado-74959b227/" />
         <ConnectButton icon={<FaXTwitter />} text="X (Twitter)" link="https://x.com/mpdollars" />

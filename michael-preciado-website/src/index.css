@@ -188,11 +188,137 @@ canvas {
 }
 
 
+/* --- Mobile Performance Optimizations --- */
+@media (max-width: 768px) {
+  /* Reduce animations on mobile for better performance */
+  * {
+    animation-duration: 0.3s !important;
+    animation-delay: 0s !important;
+    transition-duration: 0.2s !important;
+  }
+  
+  /* Optimize scrolling performance */
+  body {
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
+  }
+  
+  /* Reduce blur effects on mobile */
+  .glass-morphism,
+  .blur-bg {
+    backdrop-filter: blur(5px) !important;
+    -webkit-backdrop-filter: blur(5px) !important;
+  }
+  
+  /* Optimize image rendering on mobile */
+  img {
+    image-rendering: optimizeSpeed;
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: optimize-contrast;
+  }
+  
+  /* Reduce complexity of matrix overlays on mobile */
+  .matrix-overlay::after {
+    opacity: 0.3 !important;
+    animation-duration: 8s !important;
+  }
+  
+  /* Optimize fonts for mobile */
+  body {
+    text-rendering: optimizeSpeed;
+    -webkit-font-smoothing: subpixel-antialiased;
+  }
+}
+
+/* --- Reduced Motion Preferences --- */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  
+  .matrix-overlay::after {
+    animation: none !important;
+  }
+}
+
+/* --- High Performance Mode for Low-End Devices --- */
+@media (max-width: 480px) {
+  /* Disable expensive effects on very small screens */
+  .matrix-overlay::after {
+    display: none;
+  }
+  
+  /* Simplify gradients */
+  .lazy-image-placeholder {
+    background: var(--medium-bg) !important;
+    animation: none !important;
+  }
+  
+  /* Optimize transforms */
+  .transform-gpu {
+    transform: translateZ(0);
+    will-change: transform;
+  }
+}
+
 /* --- Utility Classes --- */
 .text-center { text-align: center; }
 .margin-center { margin-left: auto; margin-right: auto; }
 
-/* --- Placeholder Images --- */
+/* --- Lazy Image Components --- */
+.lazy-image-container {
+  position: relative;
+  overflow: hidden;
+  background-color: var(--medium-bg);
+  border-radius: 8px;
+}
+
+.lazy-image-placeholder {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(90deg, var(--medium-bg) 25%, var(--light-bg) 50%, var(--medium-bg) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  color: var(--medium-text);
+  font-size: 0.9rem;
+}
+
+.lazy-image-error {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--medium-bg);
+  color: var(--medium-text);
+  font-size: 0.8rem;
+  border: 1px solid var(--border-color);
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* --- Placeholder Images (Legacy) --- */
 /* Style placeholders minimally */
 img[src^="placeholder-"] {
   background-color: var(--medium-bg);
@@ -256,9 +382,66 @@ img[src^="placeholder-"].project-image-placeholder {
   border-radius: 50%;
   margin: 0 auto 30px auto; /* Center horizontally */
   display: block;
-  border: 3px solid var(--border-color); /* Subtle border */
-  /* box-shadow: 0 0 15px var(--glow-color), inset 0 0 10px var(--border-color); Remove glow */
-  object-fit: cover; /* Ensure image covers the area */
+}
+
+/* Ensure LazyImage containers inherit proper sizing */
+.lazy-image-container.profile-image {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  margin: 0 auto 30px auto;
+  display: block;
+  overflow: hidden;
+  position: relative;
+  isolation: isolate; /* Create a new stacking context */
+}
+
+.lazy-image-container.profile-image img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  transform: none !important; /* Prevent any transforms that might cause overflow */
+  will-change: auto; /* Reset will-change */
+  backface-visibility: hidden; /* Prevent rendering artifacts */
+}
+
+.lazy-image-container.about-image {
+  max-width: 500px;
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  margin: 0 auto 40px auto;
+  display: block;
+  overflow: hidden;
+  position: relative;
+  isolation: isolate; /* Create new stacking context */
+}
+
+.lazy-image-container.about-image img {
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+/* Disable matrix overlay on about image container */
+.lazy-image-container.about-image::after {
+  display: none !important;
+}
+
+.lazy-image-container.thumbnail {
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
+}
+
+.lazy-image-container.thumbnail img {
+  border-radius: 8px;
 }
 
 #hero h1 {
@@ -696,13 +879,13 @@ img[src^="placeholder-"].project-image-placeholder {
 
 .about-image {
   width: 100%;
-  max-width: 350px; /* Reduced max width of About image */
+  max-width: 500px; /* Increased max width for better filling */
   height: auto;
   display: block;
   margin: 0; /* margin handled by wrapper */
   border-radius: 12px;
   border: 1px solid var(--border-color);
-  opacity: 0.85;
+  opacity: 1; /* Full opacity for crisp image */
 }
 
 #about p {
@@ -722,9 +905,18 @@ img[src^="placeholder-"].project-image-placeholder {
   margin-bottom: 20px; /* Reduced spacing under section title */
 }
 
+.contact-form-container {
+  max-width: 350px; /* Slightly wider for better proportions */
+  margin: 0 auto 2rem auto;
+  padding: 2rem 1.5rem;
+  border-radius: 20px;
+  position: relative;
+  overflow: hidden;
+}
+
 .contact-form {
-  max-width: 280px; /* Further reduce form width */
-  margin: 0 auto;
+  max-width: 100%; /* Fill the container */
+  margin: 0;
   text-align: left;
 }
 
@@ -927,7 +1119,8 @@ img[src^="placeholder-"].project-image-placeholder {
 
   /* Hero adjustments */
   #hero { padding-top: 150px; min-height: 70vh; }
-  .profile-image { width: 180px; height: 180px; margin-bottom: 40px; }
+  .profile-image,
+  .lazy-image-container.profile-image { width: 180px; height: 180px; margin-bottom: 40px; }
   .hero-subtitle { font-size: 1.5rem; max-width: 600px; }
 
   /* Skills adjustments */
@@ -952,7 +1145,8 @@ img[src^="placeholder-"].project-image-placeholder {
   }
 
   /* Contact Form Adjustments */
-  .contact-form { max-width: 340px; } /* Further reduced width for larger screens */
+  .contact-form-container { max-width: 400px; } /* Larger container for desktop */
+  .contact-form { max-width: 100%; } /* Fill the container */
   /* Keep stacked layout for labels/inputs - it's cleaner */
 
   /* --- Single Blog Layout --- */
@@ -1300,35 +1494,9 @@ main {
   margin: 0 auto 40px auto; /* center & space below */
 }
 
+/* Disable matrix overlay on about image for clean appearance */
 .about-image-wrapper::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: 12px;
-  /* Matrix effect: subtle animated vertical binary stripes */
-  background: repeating-linear-gradient(
-    to bottom,
-    rgba(30, 144, 255, 0.15) 0px,
-    rgba(30, 144, 255, 0.15) 2px,
-    transparent 2px,
-    transparent 4px
-  );
-  mix-blend-mode: screen; /* Blend with underlying image */
-  animation: matrixScroll 6s linear infinite;
-  /* Fade-out tail */
-  mask-image: linear-gradient(to bottom,
-    rgba(0,0,0,0) 0%,
-    rgba(0,0,0,1) 15%,
-    rgba(0,0,0,1) 85%,
-    rgba(0,0,0,0) 100%);
-  -webkit-mask-image: linear-gradient(to bottom,
-    rgba(0,0,0,0) 0%,
-    rgba(0,0,0,1) 15%,
-    rgba(0,0,0,1) 85%,
-    rgba(0,0,0,0) 100%);
-  pointer-events: none;
-  z-index: 2;
-  opacity: 0.8; /* Make the overlay more visible */
+  display: none !important;
 }
 
 @keyframes matrixScroll {
@@ -1386,6 +1554,11 @@ main {
   object-fit: cover;
   aspect-ratio: inherit;
 }
+/* Disable matrix overlay on profile image to prevent artifacts */
+.lazy-image-container.profile-image::after {
+  display: none !important;
+}
+
 .profile-image { position: relative; overflow: hidden; }
 .blog-article-image img { position: relative; overflow: hidden; }
 
@@ -1411,7 +1584,7 @@ main {
 .profile-image::after,
 .blog-article-image img::after,
 .thumbnail::after,
-.about-image::after,
+/* .about-image::after, */ /* Disabled to prevent matrix overlay on about image */
 .blog-header-thumb::after,
 .blog-hero-image img::after {
   content: "";
@@ -1689,7 +1862,7 @@ h3:hover {
   .profile-image::after,
   .blog-article-image img::after,
   .thumbnail::after,
-  .about-image::after,
+  /* .about-image::after, */ /* Already disabled - no matrix overlay on about image */
   .blog-header-thumb::after,
   .blog-hero-image img::after,
   .about-image-wrapper::after {

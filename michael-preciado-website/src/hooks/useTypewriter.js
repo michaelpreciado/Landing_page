@@ -49,8 +49,24 @@ function useTypewriter(text, {
   const requestRef = useRef();
   const lastTimeRef = useRef();
   const startTimeRef = useRef();
+  
+  // Mobile and performance optimizations
+  const isMobile = typeof window !== 'undefined' && window.innerWidth <= 768;
+  const prefersReducedMotion = typeof window !== 'undefined' && 
+    window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  
+  // Adjust settings for mobile performance
+  const optimizedSpeed = isMobile ? Math.max(speed * 0.5, 20) : speed;
+  const optimizedScrambleDuration = isMobile ? scrambleDuration * 0.5 : scrambleDuration;
+  const shouldScramble = scrambleOnMount && !prefersReducedMotion && !isMobile;
 
   const animate = useCallback((time) => {
+    // Skip animation entirely if user prefers reduced motion
+    if (prefersReducedMotion) {
+      setDisplayText(text);
+      return;
+    }
+    
     if (lastTimeRef.current === undefined) {
       lastTimeRef.current = time;
     }
@@ -62,11 +78,11 @@ function useTypewriter(text, {
     const elapsedFromStart = time - startTimeRef.current;
     const elapsedFromLast = time - lastTimeRef.current;
 
-    if (elapsedFromLast > speed) {
+    if (elapsedFromLast > optimizedSpeed) {
       lastTimeRef.current = time;
 
-      if (scrambleOnMount) {
-        const progress = Math.min(elapsedFromStart / scrambleDuration, 1);
+      if (shouldScramble) {
+        const progress = Math.min(elapsedFromStart / optimizedScrambleDuration, 1);
         const nextText = Array.from(text).map((char, index) => {
           if (progress * text.length > index) {
             return char;
@@ -79,7 +95,7 @@ function useTypewriter(text, {
           return; // Stop animation
         }
       } else {
-        const currentIndex = Math.floor(elapsedFromStart / speed);
+        const currentIndex = Math.floor(elapsedFromStart / optimizedSpeed);
         if (currentIndex < text.length) {
           setDisplayText(text.substring(0, currentIndex + 1));
         } else {
@@ -90,7 +106,7 @@ function useTypewriter(text, {
     }
 
     requestRef.current = requestAnimationFrame(animate);
-  }, [text, speed, scrambleOnMount, scrambleDuration]);
+  }, [text, optimizedSpeed, shouldScramble, optimizedScrambleDuration, prefersReducedMotion]);
 
   useEffect(() => {
     if (text) {

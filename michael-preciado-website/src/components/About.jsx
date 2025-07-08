@@ -1,13 +1,15 @@
 import React from 'react';
+import LazyImage from './LazyImage';
 
 function About() {
   return (
     <section id="about">
       <div className="about-image-wrapper">
-        <img 
+        <LazyImage 
           src="/images/seattle.jpeg"
-          alt="Seattle skyline"
+          alt="Seattle skyline with modern architecture"
           className="about-image"
+          placeholder={<div style={{ width: '100%', height: '300px', background: 'var(--medium-bg)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>🏙️ Loading Seattle skyline...</div>}
         />
       </div>
       <h2>About Me</h2>

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import useTypewriter from '../hooks/useTypewriter';
+import LazyImage from './LazyImage';
 
 function Hero() {
   const firstName = "Michael";
@@ -20,10 +21,12 @@ function Hero() {
 
   return (
     <section id="hero">
-      <img 
+      <LazyImage 
         src="/images/mp.jpeg" 
-        alt="Profile" 
+        alt="Michael Preciado - Software Developer" 
         className="profile-image"
+        priority={true}
+        placeholder={<div style={{ width: '150px', height: '150px', borderRadius: '50%', background: 'var(--medium-bg)' }}></div>}
       />
       <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'center', minHeight: '3rem' }}>
         <h1 style={{ marginRight: '10px', marginBottom: '0.2rem' }}>{typedFirstName}</h1> 

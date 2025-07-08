@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import useTypewriter from '../hooks/useTypewriter'; // Import the hook
+import LazyImage from './LazyImage';
 // Import icons to use as placeholders
 import { FaCode, FaProjectDiagram, FaCamera, FaGlobeAmericas, FaTv } from 'react-icons/fa'; 
 
@@ -35,6 +36,7 @@ const ProjectCard = ({ imageSrc, title, description, tech, codeLink, demoLink, i
       y: 0,
       transition: {
         duration: 0.5,
+        delay: index * 0.1, // Stagger animation
       },
     },
   };
@@ -45,12 +47,17 @@ const ProjectCard = ({ imageSrc, title, description, tech, codeLink, demoLink, i
       variants={cardVariants}
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true, amount: 0.2 }}
+      viewport={{ once: false, amount: 0.1 }} // Allow re-triggering and lower threshold
       whileHover={{ y: -5, transition: { duration: 0.2 } }}
     >
       {imageSrc && (
         <div className="project-image-container">
-          <img src={imageSrc} alt={title} className="thumbnail" />
+          <LazyImage 
+            src={imageSrc} 
+            alt={`${title} project screenshot`} 
+            className="thumbnail"
+            placeholder={<div style={{ width: '100%', height: '200px', background: 'var(--medium-bg)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '2rem' }}>🚀</div>}
+          />
         </div>
       )}
       <div className="blog-post-card-content">

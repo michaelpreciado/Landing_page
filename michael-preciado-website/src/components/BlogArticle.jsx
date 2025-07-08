@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import MatrixRainBackground from './MatrixRainBackground';
+import LazyImage from './LazyImage';
 import { blogPosts } from '../data/blogData.js';
 import ReturnButton from './ReturnButton.jsx';
 import PageTransition from './PageTransition.jsx';
@@ -167,7 +168,11 @@ function BlogArticle() {
             {/* Hero Image */}
             {post.heroImage && (
               <figure className="blog-hero-image matrix-overlay">
-                <img src={post.heroImage} alt={post.title} />
+                <LazyImage 
+                  src={post.heroImage} 
+                  alt={`${post.title} blog article hero image`}
+                  placeholder={<div style={{ width: '100%', height: '300px', background: 'var(--medium-bg)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '2rem' }}>📖</div>}
+                />
                 {post.excerpt && (
                   <figcaption className="blog-hero-caption">{post.excerpt}</figcaption>
                 )}

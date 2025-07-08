@@ -1,14 +1,29 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, Suspense, lazy } from 'react';
 import MatrixRainBackground from './components/MatrixRainBackground';
 import Hero from './components/Hero';
 import Skills from './components/Skills';
-import Connect from './components/Connect';
-import About from './components/About';
 import ScrollRevealTerminal from './components/ScrollRevealTerminal';
-import Contact from './components/Contact';
 import PageTransition from './components/PageTransition';
 import { autoApplyLiquidGlass } from './utils/liquidGlass.js';
-// Removed './App.css' import as global styles are in index.css
+
+// Lazy load below-the-fold components for better initial performance
+const Connect = lazy(() => import('./components/Connect'));
+const About = lazy(() => import('./components/About'));
+const Contact = lazy(() => import('./components/Contact'));
+
+// Lightweight loading fallback for below-the-fold sections
+const SectionLoader = ({ height = '300px' }) => (
+  <div style={{ 
+    height, 
+    display: 'flex', 
+    alignItems: 'center', 
+    justifyContent: 'center',
+    color: 'var(--medium-text)',
+    fontSize: '0.9rem'
+  }}>
+    Loading section...
+  </div>
+);
 
 function App() {
   // Apply liquid glass effects after DOM is ready
@@ -24,13 +39,19 @@ function App() {
           <Skills />
         </ScrollRevealTerminal>
         <ScrollRevealTerminal>
-          <Connect />
+          <Suspense fallback={<SectionLoader height="200px" />}>
+            <Connect />
+          </Suspense>
         </ScrollRevealTerminal>
         <ScrollRevealTerminal>
-          <About />
+          <Suspense fallback={<SectionLoader height="400px" />}>
+            <About />
+          </Suspense>
         </ScrollRevealTerminal>
         <ScrollRevealTerminal>
-          <Contact />
+          <Suspense fallback={<SectionLoader height="300px" />}>
+            <Contact />
+          </Suspense>
         </ScrollRevealTerminal>
       </main>
     </PageTransition>
