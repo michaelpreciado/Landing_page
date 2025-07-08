@@ -2496,3 +2496,13 @@ h3:hover {
     text-align: center;
   }
 }
+
+/* Scale down hero typography so names fit on small screens */
+#hero h1 {
+  font-size: 1.75rem; /* approx 28px */
+}
+.code-symbols {
+  font-size: 1.2rem;
+  margin-left: 4px;
+  margin-right: 4px;
+}
