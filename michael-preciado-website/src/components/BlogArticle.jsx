@@ -5,42 +5,64 @@ import { blogPosts } from '../data/blogData.js';
 import ReturnButton from './ReturnButton.jsx';
 import PageTransition from './PageTransition.jsx';
 import useTypewriter from '../hooks/useTypewriter';
+import { autoApplyLiquidGlass } from '../utils/liquidGlass.js';
 
 // Reusable paragraph component with fast typewriter effect
 const BlogTextBlock = ({ text, delay = 0 }) => {
   const [startTyping, setStartTyping] = useState(delay === 0);
   const [shouldUseTypewriter, setShouldUseTypewriter] = useState(true);
+  const [isLoading, setIsLoading] = useState(true); // New loading state
 
   useEffect(() => {
-    if (delay === 0) return;
-    const timer = setTimeout(() => setStartTyping(true), delay);
-    return () => clearTimeout(timer);
+    // Prevent flash of un-animated content
+    const loadingTimer = setTimeout(() => setIsLoading(false), 10);
+    
+    if (delay === 0) return () => clearTimeout(loadingTimer);
+    
+    const typingTimer = setTimeout(() => setStartTyping(true), delay);
+    return () => {
+      clearTimeout(loadingTimer);
+      clearTimeout(typingTimer);
+    };
   }, [delay]);
 
-  // Check if text contains complex HTML that might cause issues
+  // Disable typewriter on mobile to prevent rendering issues
   useEffect(() => {
-    const hasComplexHTML = /<[^>]+>/g.test(text) && text.includes('<');
-    const isMobile = window.innerWidth <= 768;
-    
-    // Disable typewriter on mobile or for complex HTML to prevent rendering issues
-    if (isMobile || hasComplexHTML) {
+    if (window.innerWidth <= 768) {
       setShouldUseTypewriter(false);
     }
-  }, [text]);
+  }, []);
 
-  const typed = useTypewriter(startTyping && shouldUseTypewriter ? text : '', 1);
+  const typed = useTypewriter(
+    startTyping && shouldUseTypewriter ? text : '',
+    {
+      speed: 1,
+      scrambleOnMount: true // Re-enable scramble for body text
+    }
+  );
   
   // If typewriter is disabled, show full text immediately
   const displayText = shouldUseTypewriter ? typed : text;
   
-  return <p dangerouslySetInnerHTML={{ __html: displayText }} />;
+  // Apply a class to hide text while the typewriter is initializing
+  const textStyle = {
+    opacity: isLoading ? 0 : 1,
+    transition: 'opacity 0.2s ease-in-out',
+  };
+
+  return <p style={textStyle} dangerouslySetInnerHTML={{ __html: displayText }} />;
 };
 
 function BlogArticle() {
   const { slug } = useParams();
   const post = blogPosts.find((p) => p.slug === slug);
 
-  const typedTitle = useTypewriter(post ? post.title : '', 35);
+  const typedTitle = useTypewriter(post ? post.title : '', { speed: 35, scrambleOnMount: true });
+
+  // Apply liquid glass effects after DOM is ready
+  useEffect(() => {
+    autoApplyLiquidGlass();
+  }, []);
 
   if (!post) {
     return (
@@ -117,16 +139,8 @@ function BlogArticle() {
         return <hr key={idx} style={{ margin: '2rem 0', border: '1px solid var(--border-color)' }} />;
       }
       
-      // More robust HTML processing with error handling
-      let sanitized;
-      try {
-        sanitized = block.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
-      } catch (error) {
-        console.warn('Error processing HTML in blog content:', error);
-        sanitized = block; // Fallback to original text
-      }
-      
-      return <BlogTextBlock key={idx} text={sanitized} delay={idx * 300} />;
+      // Pass raw text to the block component; scrambling handles the visual effect
+      return <BlogTextBlock key={idx} text={block} delay={idx * 300} />;
     });
   };
 

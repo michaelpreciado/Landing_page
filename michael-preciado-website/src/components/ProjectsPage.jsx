@@ -1,14 +1,19 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import MatrixRainBackground from './MatrixRainBackground';
 import PageTransition from './PageTransition';
-import ReturnButton from './ReturnButton';
+import PageHeader from './PageHeader';
 import Projects from './Projects';
+import { autoApplyLiquidGlass } from '../utils/liquidGlass.js';
 
 function ProjectsPage() {
+  // Apply liquid glass effects after DOM is ready
+  useEffect(() => {
+    autoApplyLiquidGlass();
+  }, []);
   return (
     <PageTransition>
       <MatrixRainBackground />
-      <ReturnButton />
+      <PageHeader navTo="/blog" navText="Blog" />
       <main style={{ position: 'relative', zIndex: 1 }}>
         {/* Re-use existing Projects component so cards render consistently */}
         <Projects />

@@ -5,8 +5,6 @@ import { FaXTwitter } from 'react-icons/fa6';
 const ConnectButton = ({ icon, text, link }) => (
   <a 
     href={link} 
-    target="_blank" 
-    rel="noopener noreferrer" 
     className="connect-button"
   >
     <span className="connect-button-content">

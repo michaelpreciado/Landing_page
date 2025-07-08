@@ -10,9 +10,8 @@ import BlogArticle from './components/BlogArticle.jsx'
 import ProjectsPage from './components/ProjectsPage.jsx'
 import { initLiquidGlass, autoApplyLiquidGlass } from './utils/liquidGlass.js'
 
-// Initialize liquid glass effects
+// Initialize only the core liquid glass system (pointer tracking, etc.)
 initLiquidGlass();
-autoApplyLiquidGlass();
 
 function AnimatedRoutes() {
   const location = useLocation();

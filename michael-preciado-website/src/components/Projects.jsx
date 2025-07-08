@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import useTypewriter from '../hooks/useTypewriter'; // Import the hook
 // Import icons to use as placeholders
 import { FaCode, FaProjectDiagram, FaCamera, FaGlobeAmericas, FaTv } from 'react-icons/fa'; 
 
@@ -47,7 +48,11 @@ const ProjectCard = ({ imageSrc, title, description, tech, codeLink, demoLink, i
       animate="visible"
       whileHover={{ y: -5, transition: { duration: 0.2 } }}
     >
-      {imageSrc && <img src={imageSrc} alt={title} className="thumbnail" />}
+      {imageSrc && (
+        <div className="project-image-container">
+          <img src={imageSrc} alt={title} className="thumbnail" />
+        </div>
+      )}
       <div className="blog-post-card-content">
         <h3>{title}</h3>
         <p className="teaser">{description}</p>
@@ -60,12 +65,12 @@ const ProjectCard = ({ imageSrc, title, description, tech, codeLink, demoLink, i
 
         <div className="project-links">
           {demoLink && (
-            <a href={demoLink} target="_blank" rel="noopener noreferrer">
+            <a href={demoLink}>
               <button className="project-button project-button-primary">Live Demo</button>
             </a>
           )}
           {codeLink && (
-            <a href={codeLink} target="_blank" rel="noopener noreferrer">
+            <a href={codeLink}>
               <button className="project-button project-button-secondary">View Code</button>
             </a>
           )}
@@ -77,6 +82,9 @@ const ProjectCard = ({ imageSrc, title, description, tech, codeLink, demoLink, i
 
 // --- Main Projects Component ---
 function Projects() {
+  const typedTitle = useTypewriter("My Projects", { speed: 30, scrambleOnMount: true, scrambleDuration: 1500 });
+  const typedSubtitle = useTypewriter("A collection of my recent work", { speed: 20, scrambleOnMount: true, scrambleDuration: 2000 });
+
   const projectsData = [
     {
       imageSrc: "/images/photography.png",
@@ -135,7 +143,7 @@ function Projects() {
         transition={{ duration: 0.5 }}
         style={{ fontFamily: 'var(--font-pixel)', fontSize: '2rem', textAlign: 'center', marginBottom: '0.5rem' }}
       >
-        My Projects
+        {typedTitle}
       </motion.h2>
       <motion.p
         initial={{ opacity: 0 }}
@@ -143,7 +151,7 @@ function Projects() {
         transition={{ duration: 0.5, delay: 0.1 }}
         style={{ textAlign: 'center', color: 'var(--medium-text)', marginBottom: '3rem' }}
       >
-        A collection of my recent work
+        {typedSubtitle}
       </motion.p>
 
       <IntroCard />

@@ -31,14 +31,14 @@ function Hero() {
           <span 
             aria-hidden="true" 
             style={{ 
-              fontSize: '2rem',
+              fontSize: '2.2rem',
               fontFamily: "'Courier New', Courier, monospace",
               marginRight: '10px', 
               marginLeft: '10px',
-              color: 'white', 
-              textShadow: '0 0 5px blue, 0 0 10px blue'
+              color: 'var(--light-text)', 
+              fontWeight: 'bold'
             }}
-            className="fade-in"
+            className="fade-in code-symbols"
           >
             &lt;/&gt; 
           </span>

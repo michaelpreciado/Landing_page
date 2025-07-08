@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import useTypewriter from '../hooks/useTypewriter'; // Import the hook
 import MatrixRainBackground from './MatrixRainBackground';
 import { blogPosts } from '../data/blogData.js';
-import ReturnButton from './ReturnButton.jsx';
+import PageHeader from './PageHeader.jsx';
 import PageTransition from './PageTransition.jsx';
+import { autoApplyLiquidGlass } from '../utils/liquidGlass.js';
 
 const formatDate = (dateString) => {
   return new Date(dateString).toLocaleDateString('en-US', {
@@ -34,7 +36,9 @@ const BlogPostCard = ({ post, index }) => {
       animate="visible"
       whileHover={{ y: -5, transition: { duration: 0.2 } }}
     >
-      <img src={post.heroImage} alt={post.title} className="thumbnail" />
+      <div className="project-image-container">
+        <img src={post.heroImage} alt={post.title} className="thumbnail" />
+      </div>
       <div className="blog-post-card-content">
         <span className="category-pill">{post.categories[0]}</span>
         <h3>{post.title}</h3>
@@ -49,10 +53,18 @@ const BlogPostCard = ({ post, index }) => {
 };
 
 function Blog() {
+  const typedTitle = useTypewriter("🗒️ Blogs", { speed: 30, scrambleOnMount: true, scrambleDuration: 1500 });
+  const typedSubtitle = useTypewriter("Insights, tutorials, and stories — fresh out of the oven.", { speed: 20, scrambleOnMount: true, scrambleDuration: 2000 });
+
+  // Apply liquid glass effects after DOM is ready
+  useEffect(() => {
+    autoApplyLiquidGlass();
+  }, []);
+
   return (
     <PageTransition>
       <MatrixRainBackground />
-      <ReturnButton />
+      <PageHeader navTo="/projects" navText="Projects" />
       <main style={{ position: 'relative', zIndex: 1 }}>
         <section id="blogs">
           <motion.h2
@@ -60,14 +72,14 @@ function Blog() {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5 }}
           >
-            🗒️ Blogs
+            {typedTitle}
           </motion.h2>
           <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5, delay: 0.1 }}
           >
-            Insights, tutorials, and stories &mdash; fresh out of the oven.
+            {typedSubtitle}
           </motion.p>
           
           <div className="blogs-grid">

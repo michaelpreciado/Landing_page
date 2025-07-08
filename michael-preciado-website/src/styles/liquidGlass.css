@@ -9,27 +9,27 @@
    ============================================================================= */
 
 :root {
-  /* Core blur & filter values */
-  --lg-blur: 30px;
-  --lg-brightness: 1.2;
-  --lg-saturation: 1.1;
-  --lg-edge-h: 210;          /* Starting hue for edge glow */
+  /* Core blur & filter values - Much more subtle */
+  --lg-blur: 12px;                    /* Reduced from 30px */
+  --lg-brightness: 1.02;              /* Reduced from 1.2 */
+  --lg-saturation: 1.0;               /* Reduced from 1.1 */
+  --lg-edge-h: 210;                   /* Starting hue for edge glow */
   
-  /* Interactive states */
-  --lg-hover-blur: 38px;
-  --lg-hover-brightness-mult: 1.05;
-  --lg-hover-saturation-mult: 1.05;
+  /* Interactive states - Gentle enhancements */
+  --lg-hover-blur: 16px;              /* Reduced from 38px */
+  --lg-hover-brightness-mult: 1.01;   /* Reduced from 1.05 */
+  --lg-hover-saturation-mult: 1.02;   /* Reduced from 1.05 */
   --lg-hover-lift: -2px;
   
-  /* Glass surface tints */
-  --lg-surface-tint: rgba(255, 255, 255, 0.06);
-  --lg-surface-tint-dark: rgba(255, 255, 255, 0.04);
-  --lg-surface-tint-bright: rgba(0, 0, 0, 0.03);
+  /* Glass surface tints - Much more transparent */
+  --lg-surface-tint: rgba(255, 255, 255, 0.015);      /* Reduced from 0.06 */
+  --lg-surface-tint-dark: rgba(255, 255, 255, 0.01);  /* Reduced from 0.04 */
+  --lg-surface-tint-bright: rgba(0, 0, 0, 0.01);      /* Reduced from 0.03 */
   
-  /* Strokes & shadows */
-  --lg-inner-stroke: rgba(255, 255, 255, 0.35);
-  --lg-outer-glow: hsla(var(--lg-edge-h) 100% 75% / 0.22);
-  --lg-depth-shadow: rgba(0, 0, 0, 0.18);
+  /* Strokes & shadows - Very subtle */
+  --lg-inner-stroke: rgba(255, 255, 255, 0.08);       /* Reduced from 0.35 */
+  --lg-outer-glow: hsla(var(--lg-edge-h) 100% 75% / 0.05);  /* Reduced from 0.22 */
+  --lg-depth-shadow: rgba(0, 0, 0, 0.06);             /* Reduced from 0.18 */
   
   /* Animation timing */
   --lg-transition-fast: 0.25s;
@@ -44,10 +44,10 @@
 /* Light mode adaptations - reduce brightness & saturation for better contrast */
 @media (prefers-color-scheme: light) {
   :root {
-    --lg-brightness: 1.08;
+    --lg-brightness: 1.01;
     --lg-saturation: 1.0;
     --lg-surface-tint: var(--lg-surface-tint-bright);
-    --lg-inner-stroke: rgba(255, 255, 255, 0.6);
+    --lg-inner-stroke: rgba(255, 255, 255, 0.05);
   }
 }
 
@@ -80,14 +80,14 @@
     saturate(var(--lg-saturation))
     brightness(var(--lg-brightness));
   
-  /* Multi-layered shadow system */
+  /* Multi-layered shadow system - Very subtle */
   box-shadow:
     /* Inner stroke - subtle white rim */
-    inset 0 0 0 0.8px var(--lg-inner-stroke),
+    inset 0 0 0 0.5px var(--lg-inner-stroke),
     /* Depth shadow - gives dimensionality */
-    0 4px 12px var(--lg-depth-shadow),
+    0 2px 6px var(--lg-depth-shadow),
     /* Colored outer glow - picks up content hues */
-    0 0 0 2px var(--lg-outer-glow);
+    0 0 0 1px var(--lg-outer-glow);
   
   /* Smooth transitions for all interactive properties */
   transition: 
@@ -122,21 +122,21 @@
     saturate(calc(var(--lg-saturation) * var(--lg-hover-saturation-mult)))
     brightness(calc(var(--lg-brightness) * var(--lg-hover-brightness-mult)));
   
-  /* Intensified glow */
+  /* Intensified glow - Very subtle */
   box-shadow:
-    inset 0 0 0 0.8px var(--lg-inner-stroke),
-    0 8px 24px rgba(0, 0, 0, 0.25),
-    0 0 0 2px hsla(var(--lg-edge-h) 100% 75% / 0.4);
+    inset 0 0 0 0.5px var(--lg-inner-stroke),
+    0 4px 12px rgba(0, 0, 0, 0.08),
+    0 0 0 1px hsla(var(--lg-edge-h) 100% 75% / 0.08);
 }
 
 /* Focus states for accessibility */
 .liquid-glass:focus-visible {
   outline: none;
   box-shadow:
-    inset 0 0 0 0.8px var(--lg-inner-stroke),
-    0 8px 24px rgba(0, 0, 0, 0.25),
-    0 0 0 2px hsla(var(--lg-edge-h) 100% 75% / 0.4),
-    0 0 0 4px hsla(var(--lg-edge-h) 100% 60% / 0.3);
+    inset 0 0 0 0.5px var(--lg-inner-stroke),
+    0 4px 12px rgba(0, 0, 0, 0.08),
+    0 0 0 1px hsla(var(--lg-edge-h) 100% 75% / 0.08),
+    0 0 0 3px hsla(var(--lg-edge-h) 100% 60% / 0.06);
   outline-offset: 4px;
 }
 
@@ -151,11 +151,11 @@
   pointer-events: none;
   border-radius: inherit;
   
-  /* Gradient sheen running along top edge */
+  /* Gradient sheen running along top edge - Very subtle */
   background: linear-gradient(
     to bottom,
-    hsla(0, 0%, 100%, 0.20) 0%,
-    hsla(0, 0%, 100%, 0.10) 20%,
+    hsla(0, 0%, 100%, 0.03) 0%,
+    hsla(0, 0%, 100%, 0.01) 20%,
     transparent 35%
   );
   
@@ -169,15 +169,15 @@
 
 /* Input fields - reduced blur for legibility */
 .liquid-glass--input {
-  --lg-blur: 18px;
-  --lg-hover-blur: 24px;
-  background: rgba(255, 255, 255, 0.08);
+  --lg-blur: 8px;
+  --lg-hover-blur: 12px;
+  background: rgba(255, 255, 255, 0.02);
   
   /* Darker inner stroke for better definition */
   box-shadow:
-    inset 0 0 0 1px rgba(255, 255, 255, 0.2),
-    0 2px 8px rgba(0, 0, 0, 0.15),
-    0 0 0 1px var(--lg-outer-glow);
+    inset 0 0 0 0.5px rgba(255, 255, 255, 0.05),
+    0 1px 4px rgba(0, 0, 0, 0.04),
+    0 0 0 0.5px var(--lg-outer-glow);
 }
 
 /* Pill-shaped controls (like Control Center) */
@@ -193,7 +193,7 @@
 /* Small buttons */
 .liquid-glass--button {
   border-radius: 16px;
-  --lg-blur: 25px;
+  --lg-blur: 10px;
 }
 
 /* =============================================================================
@@ -267,8 +267,42 @@
 .liquid-glass.connect-button,
 .liquid-glass.project-card,
 .liquid-glass.form-input,
-.liquid-glass.form-textarea {
+.liquid-glass.form-textarea,
+.liquid-glass.skill-button,
+.liquid-glass.return-button,
+.liquid-glass.page-nav-button,
+.liquid-glass.blog-intro-card,
+.liquid-glass.blog-post-card,
+.liquid-glass.blog-link,
+.liquid-glass.blog-article-content,
+.liquid-glass.category-pill,
+.liquid-glass.tech-tag,
+.liquid-glass.project-button,
+.liquid-glass.submit-button {
   /* Inherit all existing styles, just add glass effect */
+  /* Override any existing background colors to let glass effect show through */
+  background-color: transparent !important;
+  background-image: none !important;
+}
+
+/* Special handling for elements that need to maintain some background tint */
+.liquid-glass.blog-intro-card,
+.liquid-glass.blog-post-card,
+.liquid-glass.blog-article-content {
+  /* Add very subtle background tint for better text readability */
+  background: rgba(255, 255, 255, 0.008) !important;
+}
+
+.liquid-glass.form-input,
+.liquid-glass.form-textarea {
+  /* Form inputs need slightly more background for legibility */
+  background: rgba(255, 255, 255, 0.015) !important;
+}
+
+.liquid-glass.category-pill,
+.liquid-glass.tech-tag {
+  /* Pills need subtle background for contrast */
+  background: rgba(255, 255, 255, 0.01) !important;
 }
 
 /* Ensure glass surfaces stack properly above background */
@@ -301,4 +335,151 @@
 
 .liquid-glass[data-reactive]:hover::after {
   opacity: 1;
+} 
+
+/* =============================================================================
+   HEADING GLOW INTERACTIONS WITH LIQUID GLASS
+   ============================================================================= */
+
+/* Enhanced glow for headings within liquid glass containers */
+.liquid-glass h1,
+.liquid-glass h2,
+.liquid-glass h3,
+.liquid-glass h4,
+.liquid-glass h5,
+.liquid-glass h6 {
+  /* Intensify glow when inside glass containers */
+  text-shadow: 
+    0 0 20px rgba(30, 144, 255, 0.25),
+    0 0 35px rgba(30, 144, 255, 0.15),
+    0 0 50px rgba(30, 144, 255, 0.1),
+    0 0 0 var(--lg-text-on-glass-dark); /* Preserve text readability */
+  
+  /* Add subtle backdrop for better contrast */
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Hover state for glass containers enhances heading glow */
+.liquid-glass:hover h1,
+.liquid-glass:hover h2,
+.liquid-glass:hover h3,
+.liquid-glass:hover h4,
+.liquid-glass:hover h5,
+.liquid-glass:hover h6 {
+  text-shadow: 
+    0 0 25px rgba(30, 144, 255, 0.35),
+    0 0 40px rgba(30, 144, 255, 0.2),
+    0 0 60px rgba(30, 144, 255, 0.12),
+    0 0 80px rgba(30, 144, 255, 0.08);
+  
+  transform: translateY(-1px);
+}
+
+/* Responsive glow based on glass container size */
+.liquid-glass.liquid-glass--card h1,
+.liquid-glass.liquid-glass--card h2 {
+  /* Larger cards get more prominent glow */
+  text-shadow: 
+    0 0 30px rgba(30, 144, 255, 0.3),
+    0 0 45px rgba(30, 144, 255, 0.18),
+    0 0 65px rgba(30, 144, 255, 0.12);
+}
+
+.liquid-glass.liquid-glass--pill h3,
+.liquid-glass.liquid-glass--pill h4,
+.liquid-glass.liquid-glass--pill h5,
+.liquid-glass.liquid-glass--pill h6 {
+  /* Smaller pill containers get subtle glow */
+  text-shadow: 
+    0 0 8px rgba(30, 144, 255, 0.2),
+    0 0 16px rgba(30, 144, 255, 0.12),
+    0 0 24px rgba(30, 144, 255, 0.08);
+}
+
+/* Special glow effect for headings in reactive glass containers */
+.liquid-glass[data-reactive] h1,
+.liquid-glass[data-reactive] h2,
+.liquid-glass[data-reactive] h3,
+.liquid-glass[data-reactive] h4,
+.liquid-glass[data-reactive] h5,
+.liquid-glass[data-reactive] h6 {
+  /* Dynamic glow that responds to pointer position */
+  text-shadow: 
+    0 0 15px hsla(var(--lg-edge-h, 210) 100% 60% / 0.25),
+    0 0 30px hsla(var(--lg-edge-h, 210) 100% 65% / 0.15),
+    0 0 45px hsla(var(--lg-edge-h, 210) 100% 70% / 0.1);
+  
+  /* Color shifts with the glass hue animation */
+  transition: 
+    text-shadow 0.3s ease-out,
+    color 0.3s ease-out;
+}
+
+/* Pulsing effect for main headings in glass containers */
+@keyframes heading-glow-pulse {
+  0%, 100% { 
+    text-shadow: 
+      0 0 20px rgba(30, 144, 255, 0.2),
+      0 0 35px rgba(30, 144, 255, 0.12),
+      0 0 50px rgba(30, 144, 255, 0.08);
+  }
+  50% { 
+    text-shadow: 
+      0 0 25px rgba(30, 144, 255, 0.3),
+      0 0 40px rgba(30, 144, 255, 0.18),
+      0 0 60px rgba(30, 144, 255, 0.12);
+  }
+}
+
+.liquid-glass h1 {
+  animation: heading-glow-pulse 4s ease-in-out infinite;
+}
+
+/* Dynamic glow effects controlled by JavaScript */
+.has-dynamic-glow {
+  text-shadow: 
+    0 0 calc(15px + (var(--dynamic-glow-intensity, 0) * 10px)) var(--dynamic-glow-color, rgba(30, 144, 255, 0.1)),
+    0 0 calc(25px + (var(--dynamic-glow-intensity, 0) * 15px)) var(--dynamic-glow-color, rgba(30, 144, 255, 0.08)),
+    0 0 calc(35px + (var(--dynamic-glow-intensity, 0) * 20px)) var(--dynamic-glow-color, rgba(30, 144, 255, 0.05)),
+    0 0 calc(50px + (var(--dynamic-glow-intensity, 0) * 30px)) var(--dynamic-glow-color, rgba(30, 144, 255, 0.03)) !important;
+}
+
+/* Enhanced glow when any glass element is being hovered */
+.glass-hover-active h1,
+.glass-hover-active h2,
+.glass-hover-active h3 {
+  text-shadow: 
+    0 0 20px rgba(30, 144, 255, 0.3),
+    0 0 35px rgba(30, 144, 255, 0.18),
+    0 0 50px rgba(30, 144, 255, 0.12),
+    0 0 70px rgba(30, 144, 255, 0.08);
+}
+
+/* Smooth transitions for dynamic glow changes */
+h1, h2, h3, h4, h5, h6 {
+  transition: 
+    text-shadow 0.4s ease-out,
+    transform 0.3s ease-out;
+}
+
+/* Disable animations for users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .liquid-glass h1 {
+    animation: none;
+  }
+  
+  .liquid-glass:hover h1,
+  .liquid-glass:hover h2,
+  .liquid-glass:hover h3,
+  .liquid-glass:hover h4,
+  .liquid-glass:hover h5,
+  .liquid-glass:hover h6 {
+    transform: none;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    transition: none;
+  }
 } 

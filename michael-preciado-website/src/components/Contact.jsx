@@ -6,7 +6,7 @@ function Contact() {
     <section id="contact" className="fade-in-section">
       <div className="text-center" style={{ position: 'relative', zIndex: 1 }}>
         {/* Wrap motion.span with an anchor tag */}
-        <a href="https://buymeacoffee.com/mpreciado" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none', color: 'inherit' }}>
+        <a href="https://buymeacoffee.com/mpreciado" style={{ textDecoration: 'none', color: 'inherit' }}>
           <motion.span
             style={{ fontSize: '4em', display: 'block', cursor: 'pointer' }}
             animate={{ y: [0, -8, 0] }} // Simple bobbing animation
@@ -46,9 +46,14 @@ function Contact() {
             <textarea id="message" name="message" placeholder="Type your message here..." required rows="5" className="form-textarea"></textarea>
           </div>
 
-          <button type="submit" className="submit-button">
-            <span style={{ marginRight: '10px' }}>&#x27A4;</span> Send Message
-          </button>
+          <motion.button 
+            type="submit" 
+            className="submit-button"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.98 }}
+          >
+            <span>&#x27A4;</span> Send Message
+          </motion.button>
         </form>
       </div>
     </section>
