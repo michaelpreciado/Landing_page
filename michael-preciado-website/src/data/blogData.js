@@ -47,7 +47,7 @@ Helping someone streamline a workflow or bring an ideas to life makes every late
 I am doubling down on AI and hunting for ways to democratize tech for anyone who thinks it is out of reach. My inbox is always open if you have an idea.`,
     icon: 'code',
     categories: ['Technology'],
-    heroImage: '/images/outsidelaptop.jpeg'
+    heroImage: '/images/blog1.jpeg'
   }
 ];
 

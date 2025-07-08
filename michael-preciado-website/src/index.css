@@ -999,6 +999,8 @@ img[src^="placeholder-"].project-image-placeholder {
 }
 
 .contact-form-container {
+  /* Match border style with connect buttons */
+  border: 1px solid var(--border-color);
   max-width: 350px; /* Slightly wider for better proportions */
   margin: 0 auto 2rem auto;
   padding: 2rem 1.5rem;
@@ -1033,8 +1035,8 @@ img[src^="placeholder-"].project-image-placeholder {
 #contact .form-textarea {
   width: 100%; /* Full width */
   padding: 10px; /* Slimmer padding inside inputs */
-  /* background: rgba(15, 30, 55, 0.8); */ /* Removed - liquid glass handles background */
-  border: 1px solid var(--primary-accent); /* Match original */
+  /* Keep background transparent so liquid glass shows */
+  border: 1px solid var(--border-color); /* Align border color with connect buttons */
   border-radius: 12px; /* Increased rounding */
   color: var(--light-text);
   font-size: 0.9rem; /* Slightly smaller font */
@@ -1045,8 +1047,8 @@ img[src^="placeholder-"].project-image-placeholder {
 .form-input:focus,
 .form-textarea:focus {
   outline: none;
-  border-color: var(--primary-accent);
-  box-shadow: 0 0 0 3px var(--glow-color); /* Focus ring using main glow */
+  border-color: var(--secondary-accent); /* Match hover border of connect buttons */
+  box-shadow: 0 0 0 2px rgba(70, 163, 255, 0.4); /* Subtle glow similar to connect button focus */
 }
 
 #contact .form-textarea {
@@ -1073,10 +1075,9 @@ img[src^="placeholder-"].project-image-placeholder {
   
   /* Enhanced glow effect for maximum visibility */
   box-shadow: 
-    0 0 20px rgba(70, 163, 255, 0.5),
-    0 4px 15px rgba(70, 163, 255, 0.3),
-    0 8px 25px rgba(70, 163, 255, 0.15),
-    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    0 0 10px rgba(70, 163, 255, 0.4),
+    0 2px 10px rgba(70, 163, 255, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15);
   
   /* Text shadow for crisp text */
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
@@ -1088,39 +1089,36 @@ img[src^="placeholder-"].project-image-placeholder {
     box-shadow var(--transition-fast);
   
   /* Subtle breathing animation */
-  animation: submit-button-breathe 6s ease-in-out infinite;
+  animation: submit-button-breathe 8s ease-in-out infinite; /* slower & softer */
 }
 
 @keyframes submit-button-breathe {
   0%, 100% { 
     transform: scale(1);
     box-shadow: 
-      0 0 20px rgba(30, 144, 255, 0.6),
-      0 4px 15px rgba(30, 144, 255, 0.4),
-      0 8px 25px rgba(30, 144, 255, 0.2),
-      inset 0 1px 0 rgba(255, 255, 255, 0.3);
+      0 0 10px rgba(30, 144, 255, 0.4),
+      0 2px 10px rgba(30, 144, 255, 0.25),
+      inset 0 1px 0 rgba(255, 255, 255, 0.2);
   }
   50% { 
-    transform: scale(1.02);
+    transform: scale(1.01);
     box-shadow: 
-      0 0 25px rgba(30, 144, 255, 0.8),
-      0 6px 20px rgba(30, 144, 255, 0.5),
-      0 12px 35px rgba(30, 144, 255, 0.3),
-      inset 0 1px 0 rgba(255, 255, 255, 0.4);
+      0 0 15px rgba(30, 144, 255, 0.5),
+      0 3px 15px rgba(30, 144, 255, 0.3),
+      inset 0 1px 0 rgba(255, 255, 255, 0.25);
   }
 }
 
 .submit-button:hover {
   background: linear-gradient(135deg, #ffffff, var(--secondary-accent));
   color: var(--dark-bg);
-  transform: translateY(-3px) scale(1.05); /* Enhanced lift and scale */
+  transform: translateY(-2px) scale(1.03);
   
   /* Intensified glow on hover */
   box-shadow: 
-    0 0 35px rgba(255, 255, 255, 0.4),
-    0 8px 25px rgba(70, 163, 255, 0.6),
-    0 15px 40px rgba(70, 163, 255, 0.4),
-    inset 0 1px 0 rgba(255, 255, 255, 0.5);
+    0 0 20px rgba(255, 255, 255, 0.3),
+    0 5px 15px rgba(70, 163, 255, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4);
 }
 
 .submit-button:active {
@@ -1329,6 +1327,7 @@ img[src^="placeholder-"].project-image-placeholder {
 .site-footer p {
   font-size: 0.9rem;
   margin: 0;
+  font-family: 'Inter', Arial, sans-serif; /* Ensure copyright symbol (©) displays with proper glyph */
 }
 
 .tagline {
@@ -2091,6 +2090,8 @@ h3:hover {
   display: grid;
   grid-template-columns: 1fr;
   gap: 2rem;
+  /* Ensure single-column layout centers its card */
+  justify-items: center;
 }
 
 @media (min-width: 768px) {
@@ -2098,7 +2099,8 @@ h3:hover {
     font-size: 2.5rem;
   }
   .blogs-grid {
-    grid-template-columns: repeat(2, 1fr);
+    /* Restore normal stretching when two columns present */
+    justify-items: stretch;
   }
 }
 
@@ -2448,4 +2450,9 @@ h3:hover {
 .blog-hero-image,
 .blog-article-image {
   contain: unset !important; /* Ensure container expands with content */
+}
+
+/* Reduce paragraph margin inside blog article lists to tighten spacing */
+.blog-article-content li p {
+  margin: 0 0 0.5rem 0;
 }

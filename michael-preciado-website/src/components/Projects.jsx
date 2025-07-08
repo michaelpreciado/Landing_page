@@ -28,7 +28,7 @@ const IntroCard = () => (
 );
 
 // --- Updated ProjectCard Component ---
-const ProjectCard = ({ imageSrc, title, description, tech, codeLink, demoLink, index }) => {
+const ProjectCard = ({ imageSrc, title, description, tech, codeLink, demoLink, index, fullImage = false }) => {
   const [isMounted, setIsMounted] = useState(false);
 
   // Fallback animation trigger to ensure cards always show
@@ -77,7 +77,8 @@ const ProjectCard = ({ imageSrc, title, description, tech, codeLink, demoLink, i
             alt={`${title} project screenshot`} 
             className="thumbnail"
             quality="medium"
-            maxWidth="600px"
+            maxWidth={fullImage ? "100%" : "600px"}
+            style={ fullImage ? { width: '100%', height: '100%', objectFit: 'contain' } : {} }
             placeholder={<div style={{ width: '100%', height: '200px', background: 'var(--medium-bg)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '2rem' }}>🚀</div>}
           />
         </div>
@@ -95,7 +96,7 @@ const ProjectCard = ({ imageSrc, title, description, tech, codeLink, demoLink, i
         <div className="project-links">
           {demoLink && (
             <a href={demoLink}>
-              <button className="project-button project-button-primary">Live Demo</button>
+              <button className="project-button project-button-primary">View Project</button>
             </a>
           )}
           {codeLink && (
@@ -125,6 +126,14 @@ function Projects() {
   }, []);
 
   const projectsData = [
+    {
+      imageSrc: "/images/cornebuild.jpeg",
+      title: "Corne Keyboard Build",
+      description: "Custom split ergonomic mechanical keyboard build featuring the Corne layout and ZMK firmware.",
+      tech: ["Hardware", "ZMK", "3D Printing"],
+      demoLink: "/projects/corne-keyboard",
+      fullImage: true
+    },
     {
       imageSrc: "/images/photography.png",
       title: "Photography Portfolio",

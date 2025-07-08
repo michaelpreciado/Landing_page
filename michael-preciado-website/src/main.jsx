@@ -11,6 +11,7 @@ import { initLiquidGlass, autoApplyLiquidGlass } from './utils/liquidGlass.js'
 const Blog = lazy(() => import('./components/Blog.jsx'))
 const BlogArticle = lazy(() => import('./components/BlogArticle.jsx'))
 const ProjectsPage = lazy(() => import('./components/ProjectsPage.jsx'))
+const CorneKeyboard = lazy(() => import('./components/CorneKeyboard.jsx'))
 
 // Initialize only the core liquid glass system (pointer tracking, etc.)
 initLiquidGlass();
@@ -44,6 +45,7 @@ function AnimatedRoutes() {
           <Route path="/blog" element={<Blog />} />
           <Route path="/blog/:slug" element={<BlogArticle />} />
           <Route path="/projects" element={<ProjectsPage />} />
+          <Route path="/projects/corne-keyboard" element={<CorneKeyboard />} />
         </Routes>
       </Suspense>
     </AnimatePresence>
