@@ -2443,3 +2443,9 @@ h3:hover {
 }
 
 /* End Blog Performance Optimizations */
+
+/* Fix sizing for blog hero and article images */
+.blog-hero-image,
+.blog-article-image {
+  contain: unset !important; /* Ensure container expands with content */
+}

@@ -171,6 +171,7 @@ function BlogArticle() {
                 <LazyImage 
                   src={post.heroImage} 
                   alt={`${post.title} blog article hero image`}
+                  priority={true}
                   quality="medium"
                   maxWidth="800px"
                   placeholder={<div style={{ width: '100%', height: '300px', background: 'var(--medium-bg)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '2rem' }}>📖</div>}
