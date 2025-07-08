@@ -1,7 +1,19 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useMemo } from 'react';
 
 const MatrixRainBackground = () => {
   const canvasRef = useRef(null);
+
+  // Memoize device-specific settings to avoid re-calculation
+  const settings = useMemo(() => {
+    const isMobile = window.innerWidth <= 768;
+    return {
+      isMobile,
+      // Reduce density and speed on mobile devices
+      columnsDivider: isMobile ? 40 : 20, // Fewer columns on mobile
+      animationInterval: isMobile ? 100 : 50, // Slower animation on mobile
+      fadeFactor: isMobile ? '0.1' : '0.08', // Slower fade on mobile for performance
+    };
+  }, []);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -10,72 +22,58 @@ const MatrixRainBackground = () => {
     let width = canvas.width = window.innerWidth;
     let height = canvas.height = window.innerHeight;
 
-    let columns = Math.floor(width / 20); // Number of columns based on width
-    const drops = []; // y-coordinate for each column
-    const binary = '01'; // Characters to use
+    let columns = Math.floor(width / settings.columnsDivider);
+    const drops = [];
+    const binary = '01';
 
-    // Initialize drops array with random starting positions (negative values)
     for (let x = 0; x < columns; x++) {
-      drops[x] = Math.floor(Math.random() * -height / 20); // Start off-screen at random heights
+      drops[x] = Math.floor(Math.random() * -height / 20);
     }
 
     let timeoutId;
 
     const draw = () => {
-      // Semi-transparent black background for fading effect
-      ctx.fillStyle = 'rgba(0, 0, 0, 0.08)'; // Increased opacity for faster fade
+      ctx.fillStyle = `rgba(0, 0, 0, ${settings.fadeFactor})`;
       ctx.fillRect(0, 0, width, height);
 
-      ctx.fillStyle = '#1E90FF'; // Dodger Blue text
-      // ctx.font = '15px monospace'; // Remove fixed font size setting here
+      ctx.fillStyle = '#1E90FF';
 
-      // Loop through columns
       for (let i = 0; i < drops.length; i++) {
-        // Random binary character
         const text = binary.charAt(Math.floor(Math.random() * binary.length));
-        // Random font size for depth effect
-        const fontSize = Math.floor(Math.random() * 12 + 8); // Size between 8px and 20px
-        ctx.font = `${fontSize}px monospace`; // Set dynamic font size
-
-        // x, y coordinate
+        const fontSize = Math.floor(Math.random() * 12 + 8);
+        ctx.font = `${fontSize}px monospace`;
         ctx.fillText(text, i * 20, drops[i] * 20);
 
-        // Reset drop to top randomly after it goes off screen
         if (drops[i] * 20 > height && Math.random() > 0.975) {
           drops[i] = 0;
         }
-
-        // Increment y coordinate
         drops[i]++;
       }
 
-      // Use setTimeout for animation speed control (~20fps)
-      timeoutId = setTimeout(draw, 50); // Decreased delay to 50
+      timeoutId = setTimeout(draw, settings.animationInterval);
     };
 
     draw();
 
-    // Handle window resize
     const handleResize = () => {
-      clearTimeout(timeoutId); // Use clearTimeout
+      clearTimeout(timeoutId);
       width = canvas.width = window.innerWidth;
       height = canvas.height = window.innerHeight;
-      columns = Math.floor(width / 20);
-      drops.length = 0; // Clear existing drops
+      columns = Math.floor(width / settings.columnsDivider);
+      drops.length = 0;
       for (let x = 0; x < columns; x++) {
-        drops[x] = Math.floor(Math.random() * -height / 20); // Re-initialize with random heights on resize
+        drops[x] = Math.floor(Math.random() * -height / 20);
       }
-      draw(); // Restart drawing
+      draw();
     };
 
     window.addEventListener('resize', handleResize);
 
-    // Cleanup function
     return () => {
-      clearTimeout(timeoutId); // Use clearTimeout
+      clearTimeout(timeoutId);
       window.removeEventListener('resize', handleResize);
     };
-  }, []);
+  }, [settings]);
 
   return (
     <canvas
@@ -87,8 +85,8 @@ const MatrixRainBackground = () => {
         zIndex: -1,
         width: '100vw',
         height: '100vh',
-        display: 'block', // Ensure it takes up the block
-        background: '#000' // Set a black background for the canvas itself
+        display: 'block',
+        background: '#000'
       }}
     />
   );
