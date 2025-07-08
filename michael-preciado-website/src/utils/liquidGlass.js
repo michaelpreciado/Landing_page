@@ -20,11 +20,11 @@ export function initLiquidGlass() {
   setupPointerTracking();
   
   // Initialize heading glow interactions
-  initHeadingGlowInteractions();
+  // initHeadingGlowInteractions(); // DISABLED: Performance bottleneck
   
   // Start global hue rotation animation (unless reduced motion)
   if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    startGlobalHueAnimation();
+    // startGlobalHueAnimation(); // DISABLED: Performance bottleneck
   }
 }
 

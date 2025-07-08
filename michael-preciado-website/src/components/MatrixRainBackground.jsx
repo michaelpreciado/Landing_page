@@ -14,6 +14,9 @@ const MatrixRainBackground = () => {
   }, []);
 
   useEffect(() => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      return; // Respect user preference and save resources
+    }
     const canvas = canvasRef.current;
     const ctx = canvas.getContext('2d');
     let animationFrameId;
@@ -80,6 +83,9 @@ const MatrixRainBackground = () => {
     window.addEventListener('resize', handleResize);
 
     return () => {
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        return; // No cleanup needed if animation never started
+      }
       cancelAnimationFrame(animationFrameId);
       window.removeEventListener('resize', handleResize);
       clearTimeout(resizeTimeout);
