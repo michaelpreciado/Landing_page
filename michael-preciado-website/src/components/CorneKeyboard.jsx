@@ -30,11 +30,10 @@ function CorneKeyboard() {
                 alt="Corne keyboard build hero"
                 priority={true}
                 quality="medium"
-                style={{ width: '100%', height: 'auto', objectFit: 'contain' }}
                 maxWidth="100%"
+                objectFit="contain"
                 placeholder={<div style={{ width: '100%', height: '400px', background: 'var(--medium-bg)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '2rem' }}>⌨️</div>}
               />
-              <figcaption className="blog-hero-caption">Image coming soon</figcaption>
             </figure>
 
             {/* --- Article Content --- */}
@@ -101,8 +100,8 @@ function CorneKeyboard() {
                     src={src}
                     alt={caption}
                     quality="medium"
-                    style={{ width: '100%', height: 'auto', objectFit: 'contain' }}
                     maxWidth="100%"
+                    objectFit="contain"
                     placeholder={<div style={{ width: '100%', height: '300px', background: 'var(--medium-bg)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '2rem' }}>⌨️</div>}
                   />
                   <figcaption className="blog-hero-caption" style={{ textAlign: 'center', marginTop: '0.5rem' }}>{caption}</figcaption>
@@ -118,18 +117,17 @@ function CorneKeyboard() {
 
             {/* --- Build Progress Gallery --- */}
             <h2 style={{ fontFamily: 'var(--font-pixel)', margin: '2rem 0 1rem' }}>Build Progress</h2>
-            <div className="blogs-grid" style={{ marginBottom: '2rem' }}>
-              {['corne1', 'corne2', 'corne3', 'corne4'].map((name, idx) => (
+            <div className="blogs-grid" style={{ marginBottom: '2rem', gap: '1rem' }}>
+              {['corne1', 'corne2', 'corne3', 'corne4'].map((name) => (
                 <figure key={name} className="blog-hero-image" style={{ margin: 0 }}>
                   <LazyImage
                     src={`/images/${name}.jpeg`}
-                    alt={`Corne keyboard build step ${idx + 1}`}
+                    alt="Corne keyboard build step"
                     quality="medium"
-                    style={{ width: '100%', height: 'auto', objectFit: 'contain' }}
                     maxWidth="100%"
+                    objectFit="contain"
                     placeholder={<div style={{ width: '100%', height: '300px', background: 'var(--medium-bg)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '2rem' }}>🔧</div>}
                   />
-                  <figcaption className="blog-hero-caption">Step {idx + 1}</figcaption>
                 </figure>
               ))}
             </div>

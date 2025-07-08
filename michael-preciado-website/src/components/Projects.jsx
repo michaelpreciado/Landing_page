@@ -78,7 +78,7 @@ const ProjectCard = ({ imageSrc, title, description, tech, codeLink, demoLink, i
             className="thumbnail"
             quality="medium"
             maxWidth={fullImage ? "100%" : "600px"}
-            style={ fullImage ? { width: '100%', height: '100%', objectFit: 'contain' } : {} }
+            objectFit={fullImage ? "contain" : "cover"}
             placeholder={<div style={{ width: '100%', height: '200px', background: 'var(--medium-bg)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '2rem' }}>🚀</div>}
           />
         </div>

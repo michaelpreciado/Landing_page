@@ -11,6 +11,7 @@ const LazyImage = ({
   priority = false, // For above-the-fold images
   quality = 'auto', // 'high', 'medium', 'low', 'auto'
   maxWidth = null, // Cap image width for performance
+  objectFit = 'cover', // Control how the image should fit inside its container
   ...props 
 }) => {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -123,7 +124,8 @@ const LazyImage = ({
             transition: 'opacity 0.3s ease-in-out',
             width: '100%',
             height: '100%',
-            objectFit: 'cover',
+            objectFit: objectFit,
+            aspectRatio: objectFit === 'contain' ? 'auto' : undefined,
             willChange: 'opacity',
             // Performance optimizations for 1080p
             imageRendering: optimizedQuality === 'low' ? 'optimizeSpeed' : 
