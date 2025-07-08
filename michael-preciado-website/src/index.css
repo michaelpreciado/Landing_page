@@ -2456,3 +2456,43 @@ h3:hover {
 .blog-article-content li p {
   margin: 0 0 0.5rem 0;
 }
+
+@media (max-width: 767.98px) {
+  /* Override pixel-esque font with cleaner system stack for small screens */
+  :root {
+    --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  }
+  /* Use more reliable fonts on mobile for better rendering */
+  body {
+    font-family: var(--font-sans);
+    -webkit-text-size-adjust: 100%; /* Prevent iOS font scaling */
+    text-rendering: optimizeLegibility;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-sans);
+    font-weight: 700;
+  }
+  
+  p, span, div {
+    font-family: var(--font-sans);
+  }
+  
+  /* Ensure blog content is readable on mobile */
+  .blog-article-content {
+    font-family: var(--font-sans);
+    padding: 1.5rem 1rem;
+    line-height: 1.6;
+  }
+  
+  /* Fix mobile text selection and rendering */
+  * {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  .blog-intro-card {
+    /* flex-direction: column; */ /* No longer needed */
+    text-align: center;
+  }
+}
