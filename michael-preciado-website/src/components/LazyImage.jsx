@@ -20,18 +20,26 @@ const LazyImage = ({
   useEffect(() => {
     if (priority) return; // Skip intersection observer for priority images
 
+    // Fallback timer to ensure images load even if intersection observer fails
+    const fallbackTimer = setTimeout(() => {
+      if (!isInView) {
+        setIsInView(true);
+      }
+    }, 2000); // 2 second fallback
+
     observerRef.current = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             setIsInView(true);
+            clearTimeout(fallbackTimer); // Clear fallback if observer works
             observerRef.current?.unobserve(entry.target);
           }
         });
       },
       {
-        rootMargin: '50px', // Start loading 50px before image enters viewport
-        threshold: 0.1
+        rootMargin: '100px', // Increased margin for better detection
+        threshold: 0.01 // Lower threshold for more reliable detection
       }
     );
 
@@ -41,11 +49,12 @@ const LazyImage = ({
     }
 
     return () => {
+      clearTimeout(fallbackTimer);
       if (currentImg && observerRef.current) {
         observerRef.current.unobserve(currentImg);
       }
     };
-  }, [priority]);
+  }, [priority, isInView]);
 
   const handleLoad = () => {
     setIsLoaded(true);

@@ -427,6 +427,14 @@ img[src^="placeholder-"].project-image-placeholder {
   object-fit: cover;
   object-position: center;
   display: block;
+  opacity: 0.75; /* Added transparency to match container */
+  filter: saturate(0.8) brightness(0.9) contrast(1.1); /* Subtle filter for tech aesthetic */
+  transition: opacity 0.3s ease, filter 0.3s ease; /* Smooth transitions */
+}
+
+.lazy-image-container.about-image:hover img {
+  opacity: 0.9; /* Slightly more opaque on hover for better visibility */
+  filter: saturate(1) brightness(1) contrast(1.2); /* Enhanced clarity on hover */
 }
 
 /* Disable matrix overlay on about image container */
@@ -442,6 +450,15 @@ img[src^="placeholder-"].project-image-placeholder {
 
 .lazy-image-container.thumbnail img {
   border-radius: 8px;
+  opacity: 0.8; /* Add transparency for consistency */
+  filter: saturate(0.85) brightness(0.95) contrast(1.1); /* Match project image filters */
+  transition: opacity 0.3s ease, filter 0.3s ease; /* Smooth transitions */
+}
+
+.lazy-image-container.thumbnail:hover img,
+.project-card:hover .lazy-image-container.thumbnail img {
+  opacity: 0.95; /* Increase opacity on hover */
+  filter: saturate(1) brightness(1) contrast(1.2); /* Enhanced clarity on hover */
 }
 
 #hero h1 {
@@ -692,7 +709,20 @@ img[src^="placeholder-"].project-image-placeholder {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: var(--medium-bg);
+  background: linear-gradient(135deg, var(--medium-bg), rgba(10, 25, 47, 0.8)); /* Subtle gradient background */
+  position: relative;
+}
+
+.project-image-container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(10, 25, 47, 0.02); /* Very subtle overlay */
+  pointer-events: none;
+  z-index: 1;
 }
 
 .project-image {
@@ -701,6 +731,14 @@ img[src^="placeholder-"].project-image-placeholder {
   object-fit: cover; /* Maintain aspect ratio while filling container */
   object-position: center; /* Center the image */
   display: block;
+  opacity: 0.8; /* Add transparency for modern look */
+  filter: saturate(0.85) brightness(0.95) contrast(1.1); /* Subtle tech aesthetic */
+  transition: opacity 0.3s ease, filter 0.3s ease; /* Smooth transitions */
+}
+
+.project-card:hover .project-image {
+  opacity: 0.95; /* Increase opacity on hover */
+  filter: saturate(1) brightness(1) contrast(1.2); /* Enhanced clarity on hover */
 }
 
 /* New styles for the icon placeholder */
@@ -875,6 +913,8 @@ img[src^="placeholder-"].project-image-placeholder {
   overflow: hidden; /* Clip overlay strictly to image */
   border-radius: 12px; /* Match image rounding */
   margin: 0 auto 40px auto; /* center & space below */
+  background: rgba(10, 25, 47, 0.05); /* Subtle background to complement transparency */
+  backdrop-filter: blur(1px); /* Very subtle blur for depth */
 }
 
 .about-image {
@@ -885,7 +925,7 @@ img[src^="placeholder-"].project-image-placeholder {
   margin: 0; /* margin handled by wrapper */
   border-radius: 12px;
   border: 1px solid var(--border-color);
-  opacity: 1; /* Full opacity for crisp image */
+  opacity: 0.75; /* Added transparency for better background blending */
 }
 
 #about p {
@@ -1484,6 +1524,14 @@ main {
   width: 100%;
   aspect-ratio: 1 / 1; /* Ensures square */
   object-fit: cover; /* Crop to fill */
+  opacity: 0.8; /* Add transparency for consistency */
+  filter: saturate(0.85) brightness(0.95) contrast(1.1); /* Match other image filters */
+  transition: opacity 0.3s ease, filter 0.3s ease; /* Smooth transitions */
+}
+
+.blog-article-image:hover img {
+  opacity: 0.95; /* Increase opacity on hover */
+  filter: saturate(1) brightness(1) contrast(1.2); /* Enhanced clarity on hover */
 }
 
 .about-image-wrapper {
@@ -2132,6 +2180,14 @@ h3:hover {
   width: 100%;
   aspect-ratio: 16 / 9;
   object-fit: cover;
+  opacity: 0.8; /* Add transparency for consistency */
+  filter: saturate(0.85) brightness(0.95) contrast(1.1); /* Match other image filters */
+  transition: opacity 0.3s ease, filter 0.3s ease; /* Smooth transitions */
+}
+
+.blog-post-card:hover .thumbnail {
+  opacity: 0.95; /* Increase opacity on hover */
+  filter: saturate(1) brightness(1) contrast(1.2); /* Enhanced clarity on hover */
 }
 
 .blog-post-card-content {

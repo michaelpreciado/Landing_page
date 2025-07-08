@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import useTypewriter from '../hooks/useTypewriter'; // Import the hook
 import LazyImage from './LazyImage';
@@ -29,6 +29,17 @@ const IntroCard = () => (
 
 // --- Updated ProjectCard Component ---
 const ProjectCard = ({ imageSrc, title, description, tech, codeLink, demoLink, index }) => {
+  const [isMounted, setIsMounted] = useState(false);
+
+  // Fallback animation trigger to ensure cards always show
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsMounted(true);
+    }, 100 + (index * 100)); // Staggered delay
+
+    return () => clearTimeout(timer);
+  }, [index]);
+
   const cardVariants = {
     hidden: { opacity: 0, y: 20 },
     visible: {
@@ -39,6 +50,14 @@ const ProjectCard = ({ imageSrc, title, description, tech, codeLink, demoLink, i
         delay: index * 0.1, // Stagger animation
       },
     },
+    fallback: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.6,
+        ease: "easeOut"
+      },
+    },
   };
 
   return (
@@ -46,8 +65,9 @@ const ProjectCard = ({ imageSrc, title, description, tech, codeLink, demoLink, i
       className="blog-post-card" // Using the new, more generic card style
       variants={cardVariants}
       initial="hidden"
+      animate={isMounted ? "fallback" : "hidden"} // Fallback animation
       whileInView="visible"
-      viewport={{ once: false, amount: 0.1 }} // Allow re-triggering and lower threshold
+      viewport={{ once: false, amount: 0.1, margin: "0px 0px -50px 0px" }} // Allow re-triggering and better detection
       whileHover={{ y: -5, transition: { duration: 0.2 } }}
     >
       {imageSrc && (
@@ -89,8 +109,18 @@ const ProjectCard = ({ imageSrc, title, description, tech, codeLink, demoLink, i
 
 // --- Main Projects Component ---
 function Projects() {
+  const [isComponentReady, setIsComponentReady] = useState(false);
   const typedTitle = useTypewriter("My Projects", { speed: 30, scrambleOnMount: true, scrambleDuration: 1500 });
   const typedSubtitle = useTypewriter("A collection of my recent work", { speed: 20, scrambleOnMount: true, scrambleDuration: 2000 });
+
+  // Ensure component is ready to render
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsComponentReady(true);
+    }, 50);
+
+    return () => clearTimeout(timer);
+  }, []);
 
   const projectsData = [
     {
@@ -163,11 +193,13 @@ function Projects() {
 
       <IntroCard />
 
-      <div className="blogs-grid"> {/* Reusing the responsive grid from the blog page */}
-        {projectsData.map((project, index) => (
-          <ProjectCard key={index} {...project} index={index} />
-        ))}
-      </div>
+      {isComponentReady && (
+        <div className="blogs-grid"> {/* Reusing the responsive grid from the blog page */}
+          {projectsData.map((project, index) => (
+            <ProjectCard key={index} {...project} index={index} />
+          ))}
+        </div>
+      )}
     </section>
   );
 }
