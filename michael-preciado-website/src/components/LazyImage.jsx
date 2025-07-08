@@ -9,6 +9,8 @@ const LazyImage = ({
   onLoad = () => {},
   onError = () => {},
   priority = false, // For above-the-fold images
+  quality = 'auto', // 'high', 'medium', 'low', 'auto'
+  maxWidth = null, // Cap image width for performance
   ...props 
 }) => {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -16,6 +18,22 @@ const LazyImage = ({
   const [hasError, setHasError] = useState(false);
   const imgRef = useRef(null);
   const observerRef = useRef(null);
+
+  // Determine optimal image quality based on device and connection
+  const getOptimizedQuality = () => {
+    const isMobile = window.innerWidth <= 768;
+    const isSlowConnection = navigator.connection && 
+      (navigator.connection.effectiveType === 'slow-2g' || 
+       navigator.connection.effectiveType === '2g');
+    
+    if (quality === 'auto') {
+      if (isSlowConnection || isMobile) return 'medium';
+      return 'high';
+    }
+    return quality;
+  };
+
+  const optimizedQuality = getOptimizedQuality();
 
   useEffect(() => {
     if (priority) return; // Skip intersection observer for priority images
@@ -106,7 +124,15 @@ const LazyImage = ({
             width: '100%',
             height: '100%',
             objectFit: 'cover',
-            willChange: 'opacity'
+            willChange: 'opacity',
+            // Performance optimizations for 1080p
+            imageRendering: optimizedQuality === 'low' ? 'optimizeSpeed' : 
+                          optimizedQuality === 'medium' ? '-webkit-optimize-contrast' : 
+                          'auto',
+            maxWidth: maxWidth || '1920px', // Cap at 1080p width for performance
+            // Hardware acceleration
+            transform: 'translateZ(0)',
+            backfaceVisibility: 'hidden'
           }}
           {...props}
         />

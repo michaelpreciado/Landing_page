@@ -215,6 +215,9 @@ canvas {
     image-rendering: optimizeSpeed;
     image-rendering: -webkit-optimize-contrast;
     image-rendering: optimize-contrast;
+    /* Force hardware acceleration for better performance */
+    transform: translateZ(0);
+    will-change: auto;
   }
   
   /* Reduce complexity of matrix overlays on mobile */
@@ -264,6 +267,31 @@ canvas {
     transform: translateZ(0);
     will-change: transform;
   }
+  
+  /* Force lower quality images on very small screens */
+  img {
+    image-rendering: optimizeSpeed !important;
+  }
+}
+
+/* --- Image Optimization for 1080p Displays --- */
+@media (min-width: 1920px) {
+  /* Optimize for 1080p+ displays */
+  img {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: optimize-contrast;
+    /* Cap effective resolution for performance */
+    max-width: 1920px;
+    height: auto;
+  }
+  
+  /* Blog images specifically optimized for 1080p */
+  .blog-article-image img,
+  .blog-hero-image img,
+  .blog-post-card .thumbnail {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: optimize-contrast;
+  }
 }
 
 /* --- Utility Classes --- */
@@ -276,6 +304,31 @@ canvas {
   overflow: hidden;
   background-color: var(--medium-bg);
   border-radius: 8px;
+  /* Performance optimizations for all images */
+  contain: layout style paint;
+  transform: translateZ(0);
+}
+
+/* Responsive image sizing for performance */
+@media (max-width: 768px) {
+  .lazy-image-container img {
+    max-width: 768px !important;
+    image-rendering: optimizeSpeed;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1440px) {
+  .lazy-image-container img {
+    max-width: 1440px !important;
+    image-rendering: -webkit-optimize-contrast;
+  }
+}
+
+@media (min-width: 1441px) {
+  .lazy-image-container img {
+    max-width: 1920px !important; /* Cap at 1080p for performance */
+    image-rendering: -webkit-optimize-contrast;
+  }
 }
 
 .lazy-image-placeholder {
@@ -1524,14 +1577,16 @@ main {
   width: 100%;
   aspect-ratio: 1 / 1; /* Ensures square */
   object-fit: cover; /* Crop to fill */
-  opacity: 0.8; /* Add transparency for consistency */
-  filter: saturate(0.85) brightness(0.95) contrast(1.1); /* Match other image filters */
-  transition: opacity 0.3s ease, filter 0.3s ease; /* Smooth transitions */
+  opacity: 1; /* Remove transparency for better performance */
+  /* Removed HDR-like filters for better blog page performance */
+  transition: opacity 0.2s ease; /* Simplified transitions */
+  /* Optimize for 1080p display */
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: optimize-contrast;
 }
 
 .blog-article-image:hover img {
-  opacity: 0.95; /* Increase opacity on hover */
-  filter: saturate(1) brightness(1) contrast(1.2); /* Enhanced clarity on hover */
+  opacity: 0.9; /* Subtle hover effect only */
 }
 
 .about-image-wrapper {
@@ -1604,6 +1659,13 @@ main {
 }
 /* Disable matrix overlay on profile image to prevent artifacts */
 .lazy-image-container.profile-image::after {
+  display: none !important;
+}
+
+/* Disable matrix overlay on blog images for better performance */
+.blog-hero-image::after,
+.blog-article-image::after,
+.blog-post-card .thumbnail::after {
   display: none !important;
 }
 
@@ -1726,6 +1788,10 @@ main {
   width: 100%;
   aspect-ratio: 1 / 1; /* Ensures square */
   object-fit: cover; /* Crop to fill */
+  /* Optimize for 1080p display and blog performance */
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: optimize-contrast;
+  opacity: 1; /* No transparency for better performance */
 }
 
 /* Soft edge fade overlay for hero image - positioned above matrix overlay */
@@ -2180,14 +2246,16 @@ h3:hover {
   width: 100%;
   aspect-ratio: 16 / 9;
   object-fit: cover;
-  opacity: 0.8; /* Add transparency for consistency */
-  filter: saturate(0.85) brightness(0.95) contrast(1.1); /* Match other image filters */
-  transition: opacity 0.3s ease, filter 0.3s ease; /* Smooth transitions */
+  opacity: 1; /* Remove transparency for better blog performance */
+  /* Removed HDR-like filters for better blog page performance */
+  transition: opacity 0.2s ease; /* Simplified transitions */
+  /* Optimize for 1080p display */
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: optimize-contrast;
 }
 
 .blog-post-card:hover .thumbnail {
-  opacity: 0.95; /* Increase opacity on hover */
-  filter: saturate(1) brightness(1) contrast(1.2); /* Enhanced clarity on hover */
+  opacity: 0.9; /* Subtle hover effect only */
 }
 
 .blog-post-card-content {
@@ -2328,3 +2396,50 @@ h3:hover {
   font-size: 0.95rem;
   transition: background-color var(--transition-fast), border-color var(--transition-fast), transform var(--transition-fast);
 }
+
+/* --- Blog Performance Optimizations --- */
+/* Specific optimizations for blog page images to achieve 1080p performance */
+.blog-post-card,
+.blog-article-content,
+.blog-hero-image {
+  /* Optimize rendering performance */
+  contain: layout style paint;
+  will-change: auto;
+}
+
+/* Optimize blog image containers */
+.blog-post-card .project-image-container,
+.blog-hero-image,
+.blog-article-image {
+  /* Prevent layout thrashing */
+  contain: size layout style paint;
+  /* Hardware acceleration */
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* Blog images specifically optimized for fast loading */
+.blog-post-card img,
+.blog-hero-image img,
+.blog-article-image img {
+  /* Optimize decoding */
+  decoding: async;
+  /* Improve loading performance */
+  loading: lazy;
+  /* Better image quality control */
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: optimize-contrast;
+}
+
+/* Performance-first blog image loading */
+@media (max-width: 768px) {
+  .blog-post-card img,
+  .blog-hero-image img {
+    /* Use optimizeSpeed on mobile for faster loading */
+    image-rendering: optimizeSpeed !important;
+    /* Cap resolution for mobile performance */
+    max-width: 480px !important;
+  }
+}
+
+/* End Blog Performance Optimizations */

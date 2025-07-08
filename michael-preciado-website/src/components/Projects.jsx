@@ -76,6 +76,8 @@ const ProjectCard = ({ imageSrc, title, description, tech, codeLink, demoLink, i
             src={imageSrc} 
             alt={`${title} project screenshot`} 
             className="thumbnail"
+            quality="medium"
+            maxWidth="600px"
             placeholder={<div style={{ width: '100%', height: '200px', background: 'var(--medium-bg)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '2rem' }}>🚀</div>}
           />
         </div>

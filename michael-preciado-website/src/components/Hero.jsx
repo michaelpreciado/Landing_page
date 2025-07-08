@@ -26,6 +26,8 @@ function Hero() {
         alt="Michael Preciado - Software Developer" 
         className="profile-image"
         priority={true}
+        quality="high"
+        maxWidth="300px"
         placeholder={<div style={{ width: '150px', height: '150px', borderRadius: '50%', background: 'var(--medium-bg)' }}></div>}
       />
       <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'center', minHeight: '3rem' }}>

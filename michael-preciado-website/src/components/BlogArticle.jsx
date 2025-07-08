@@ -167,10 +167,12 @@ function BlogArticle() {
 
             {/* Hero Image */}
             {post.heroImage && (
-              <figure className="blog-hero-image matrix-overlay">
+              <figure className="blog-hero-image">
                 <LazyImage 
                   src={post.heroImage} 
                   alt={`${post.title} blog article hero image`}
+                  quality="medium"
+                  maxWidth="800px"
                   placeholder={<div style={{ width: '100%', height: '300px', background: 'var(--medium-bg)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '2rem' }}>📖</div>}
                 />
                 {post.excerpt && (

@@ -9,6 +9,8 @@ function About() {
           src="/images/seattle.jpeg"
           alt="Seattle skyline with modern architecture"
           className="about-image"
+          quality="medium"
+          maxWidth="800px"
           placeholder={<div style={{ width: '100%', height: '300px', background: 'var(--medium-bg)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>🏙️ Loading Seattle skyline...</div>}
         />
       </div>

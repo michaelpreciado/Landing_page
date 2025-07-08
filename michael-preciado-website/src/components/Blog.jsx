@@ -42,6 +42,8 @@ const BlogPostCard = ({ post, index }) => {
           src={post.heroImage} 
           alt={`${post.title} blog post cover`} 
           className="thumbnail"
+          quality="medium"
+          maxWidth="800px"
           placeholder={<div style={{ width: '100%', height: '200px', background: 'var(--medium-bg)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '2rem' }}>📝</div>}
         />
       </div>
