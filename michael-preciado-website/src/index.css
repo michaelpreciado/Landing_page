@@ -1035,7 +1035,7 @@ img[src^="placeholder-"].project-image-placeholder {
     box-shadow var(--transition-fast);
   
   /* Subtle breathing animation */
-  animation: submit-button-breathe 3s ease-in-out infinite;
+  animation: submit-button-breathe 6s ease-in-out infinite;
 }
 
 @keyframes submit-button-breathe {
