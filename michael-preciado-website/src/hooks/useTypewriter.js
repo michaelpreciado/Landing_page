@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 
 // A mapping of characters to their "typo" equivalents
 const typoMap = {
@@ -42,66 +42,65 @@ const getRandomChar = (char) => {
 
 function useTypewriter(text, {
   speed = 50,
-  scrambleOnMount = true, // Enable scrambling by default
-  scrambleChance = 0.4,   // Chance to scramble each character
-  scrambleDuration = 1000 // Total time for the scramble effect
+  scrambleOnMount = true,
+  scrambleDuration = 1000
 } = {}) {
   const [displayText, setDisplayText] = useState('');
+  const requestRef = useRef();
+  const lastTimeRef = useRef();
+  const startTimeRef = useRef();
 
-  const scrambleText = useCallback((targetText) => {
-    let scrambled = Array.from(targetText).map(() => getRandomChar(' ')).join('');
-    setDisplayText(scrambled);
+  const animate = useCallback((time) => {
+    if (lastTimeRef.current === undefined) {
+      lastTimeRef.current = time;
+    }
 
-    const startTime = Date.now();
-    let intervalId;
+    if (startTimeRef.current === undefined) {
+      startTimeRef.current = time;
+    }
 
-    const updateScramble = () => {
-      const elapsed = Date.now() - startTime;
-      const progress = elapsed / scrambleDuration;
+    const elapsedFromStart = time - startTimeRef.current;
+    const elapsedFromLast = time - lastTimeRef.current;
 
-      if (progress >= 1) {
-        setDisplayText(targetText);
-        clearInterval(intervalId);
-        return;
-      }
+    if (elapsedFromLast > speed) {
+      lastTimeRef.current = time;
 
-      const nextText = Array.from(targetText).map((char, index) => {
-        if (progress * targetText.length > index) {
-          return char;
+      if (scrambleOnMount) {
+        const progress = Math.min(elapsedFromStart / scrambleDuration, 1);
+        const nextText = Array.from(text).map((char, index) => {
+          if (progress * text.length > index) {
+            return char;
+          }
+          return getRandomChar(char);
+        }).join('');
+        setDisplayText(nextText);
+
+        if (progress >= 1) {
+          return; // Stop animation
         }
-        return getRandomChar(char);
-      }).join('');
+      } else {
+        const currentIndex = Math.floor(elapsedFromStart / speed);
+        if (currentIndex < text.length) {
+          setDisplayText(text.substring(0, currentIndex + 1));
+        } else {
+          setDisplayText(text);
+          return; // Stop animation
+        }
+      }
+    }
 
-      setDisplayText(nextText);
-    };
-
-    intervalId = setInterval(updateScramble, speed);
-    return () => clearInterval(intervalId);
-  }, [scrambleDuration, speed]);
+    requestRef.current = requestAnimationFrame(animate);
+  }, [text, speed, scrambleOnMount, scrambleDuration]);
 
   useEffect(() => {
-    if (!text) {
+    if (text) {
+      startTimeRef.current = undefined;
+      lastTimeRef.current = undefined;
       setDisplayText('');
-      return;
+      requestRef.current = requestAnimationFrame(animate);
     }
-
-    if (scrambleOnMount) {
-      const clearScramble = scrambleText(text);
-      return clearScramble;
-    } else {
-      let currentIndex = 0;
-      const intervalId = setInterval(() => {
-        if (currentIndex < text.length) {
-          setDisplayText((prev) => prev + text[currentIndex]);
-          currentIndex++;
-        } else {
-          clearInterval(intervalId);
-        }
-      }, speed);
-
-      return () => clearInterval(intervalId);
-    }
-  }, [text, speed, scrambleOnMount, scrambleText]);
+    return () => cancelAnimationFrame(requestRef.current);
+  }, [text, animate]);
 
   return displayText;
 }
