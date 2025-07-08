@@ -65,7 +65,7 @@ function CorneKeyboard() {
                     ['PCBs', 'Official Corne MX v3', 'Readily available & supports per-key RGB'],
                     ['Switches', 'Kailh Choc Red (low-profile)', 'Quiet travel, smooth actuation – ideal for late-night coding without waking Taz (my Shih Tzu)'],
                     ['Keycaps', 'MBK POM blanks in black', 'Uniform profile keeps finger travel consistent; the stealth look matches my site’s dark theme'],
-                    ['Microcontrollers', 'Nice!Nano v2 (BLE + QMK)', 'Wireless flexibility + on-board battery charging'],
+                    ['Microcontrollers', 'Nice!Nano v2 (BLE + ZMK)', 'Wireless flexibility + on-board battery charging'],
                     ['Display', 'Typeractive Nice!View (128×64)', 'Larger, crisper screen for layers, logo & battery stats'],
                     ['Case', '3D-printed PETG (Midnight Blue)', 'Printed on my Flashforge 3; PETG survives travel better than PLA'],
                     ['Batteries', 'Typeractive “Corne Battery” (120 mAh Li-Po)', '~3 days of wireless use per charge'],
