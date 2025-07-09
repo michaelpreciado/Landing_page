@@ -585,6 +585,29 @@ img[src^="placeholder-"].project-image-placeholder {
 .skill-button span { /* Icon */
   margin-right: 8px;
   opacity: 0.8; /* Slightly dim icon */
+  display: inline-flex;
+  align-items: center;
+  font-size: 1em; /* Ensure emoji scales with button text */
+}
+
+/* Mobile-specific skill button improvements */
+@media (max-width: 767.98px) {
+  .skills-container {
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); /* Slightly smaller minimum for mobile */
+    gap: 8px; /* Tighter spacing on mobile */
+    padding: 0 5px; /* Minimal side padding */
+  }
+  
+  .skill-button {
+    padding: 6px 12px; /* More compact on very small screens */
+    font-size: 0.85rem; /* Slightly smaller text */
+    min-height: 36px; /* Ensure consistent button height */
+  }
+  
+  .skill-button span {
+    margin-right: 6px; /* Slightly less margin on mobile */
+    font-size: 0.9em; /* Slightly smaller emoji on mobile */
+  }
 }
 
 
