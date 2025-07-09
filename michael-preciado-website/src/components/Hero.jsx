@@ -45,7 +45,7 @@ function Hero() {
             }}
             className="fade-in code-symbols"
           >
-            &lt;/&gt; 
+            💻
           </span>
         )}
         <h1 style={{ marginBottom: '0.2rem' }}>{typedLastName}</h1>
