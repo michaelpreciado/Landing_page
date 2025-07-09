@@ -43,7 +43,7 @@ function CorneKeyboard() {
             {/* Why I Wanted a Split */}
             <h3 style={{ marginTop: '1.5rem' }}>Why I Wanted a Split</h3>
             <p>
-              One night during a manic cleaning session I hurt my hand badly enough that I couldn’t use my right pinky for a while. Typing became painful, limiting both work and hobbies, so I started looking for an alternative that could help during recovery.
+              One night I hurt my hand badly enough that I couldn't use my right pinky for a while. Typing became painful, limiting both work and hobbies, so I started looking for an alternative that could help during recovery.
             </p>
             <p>
               After much research, the <strong>Corne</strong> promised a more natural angle, <em>column-stagger</em> ergonomics, and the freedom to map every key exactly where I want it. Plus, it looked like a perfect weekend challenge so I got to work.
