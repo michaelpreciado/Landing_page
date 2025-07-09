@@ -1898,6 +1898,36 @@ section:has(.liquid-glass:hover) h3 {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Enhanced glow for the glowing-code class */
+.glowing-code {
+  text-shadow: 
+    0 0 20px rgba(30, 144, 255, 0.4),
+    0 0 35px rgba(30, 144, 255, 0.25),
+    0 0 50px rgba(30, 144, 255, 0.15),
+    0 0 75px rgba(30, 144, 255, 0.1);
+  
+  animation: intense-glow-pulse 4s ease-in-out infinite;
+}
+
+@keyframes intense-glow-pulse {
+  0%, 100% { 
+    text-shadow: 
+      0 0 20px rgba(30, 144, 255, 0.4),
+      0 0 35px rgba(30, 144, 255, 0.25),
+      0 0 50px rgba(30, 144, 255, 0.15),
+      0 0 75px rgba(30, 144, 255, 0.1);
+    transform: scale(1);
+  }
+  50% { 
+    text-shadow: 
+      0 0 30px rgba(30, 144, 255, 0.6),
+      0 0 50px rgba(30, 144, 255, 0.4),
+      0 0 70px rgba(30, 144, 255, 0.25),
+      0 0 100px rgba(30, 144, 255, 0.15);
+    transform: scale(1.03);
+  }
+}
+
 @keyframes code-symbols-pulse {
   0%, 100% { 
     transform: scale(1);
@@ -1923,6 +1953,17 @@ section:has(.liquid-glass:hover) h3 {
     0 0 50px rgba(30, 144, 255, 0.12);
   transform: scale(1.05);
   cursor: default;
+}
+
+/* Extra intense hover effect for glowing code */
+.glowing-code:hover {
+  text-shadow: 
+    0 0 40px rgba(30, 144, 255, 0.8),
+    0 0 60px rgba(30, 144, 255, 0.6),
+    0 0 80px rgba(30, 144, 255, 0.4),
+    0 0 120px rgba(30, 144, 255, 0.2);
+  transform: scale(1.08);
+  animation-duration: 2s; /* Speed up animation on hover */
 }
 
 @keyframes hero-glow-breathe {
@@ -1984,6 +2025,15 @@ h3:hover {
     transform: none;
   }
   
+  .glowing-code {
+    animation: none;
+  }
+  
+  .glowing-code:hover {
+    transform: none;
+    animation: none;
+  }
+  
   h1:hover,
   h2:hover,
   h3:hover,
@@ -2035,6 +2085,13 @@ h3:hover {
   * {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Preserve monospace font for code symbols on mobile */
+  .code-symbols,
+  .glowing-code {
+    font-family: 'Courier New', Courier, monospace !important;
+    font-weight: bold !important;
   }
 
   .blog-intro-card {

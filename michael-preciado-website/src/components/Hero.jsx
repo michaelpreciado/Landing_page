@@ -40,12 +40,12 @@ function Hero() {
               fontFamily: "'Courier New', Courier, monospace",
               marginRight: '10px', 
               marginLeft: '10px',
-              color: 'var(--light-text)', 
+              color: 'var(--primary-accent)', 
               fontWeight: 'bold'
             }}
-            className="fade-in code-symbols"
+            className="fade-in code-symbols glowing-code"
           >
-            💻
+            &lt;/&gt; 
           </span>
         )}
         <h1 style={{ marginBottom: '0.2rem' }}>{typedLastName}</h1>
