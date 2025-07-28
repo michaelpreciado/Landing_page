@@ -11,7 +11,7 @@ const LANGUAGES = [
   { code: 'hi', label: 'हिंदी' },
 ];
 
-function TranslateButton() {
+function TranslateButton({ visible = true }) {
   const [open, setOpen] = useState(false);
   const [widgetReady, setWidgetReady] = useState(false);
 
@@ -38,10 +38,8 @@ function TranslateButton() {
     script.async = true;
     document.body.appendChild(script);
 
-    // Cleanup: optional – remove script on unmount
-    return () => {
-      document.body.removeChild(script);
-    };
+    // Do not remove script on unmount so translation persists across routes
+    return undefined;
   }, []);
 
   // Detect when the hidden select is available
@@ -73,6 +71,7 @@ function TranslateButton() {
       const event = new Event('change');
       combo.dispatchEvent(event);
       setLangCookie(code);
+      hideTranslateBanner();
     } else {
       // Fallback: set cookie then reload
       setLangCookie(code);
@@ -82,8 +81,30 @@ function TranslateButton() {
     setOpen(false);
   }, []);
 
+  const hideTranslateBanner = () => {
+    const bannerIframe = document.querySelector('iframe.goog-te-banner-frame');
+    if (bannerIframe) bannerIframe.style.display = 'none';
+    const banner = document.querySelector('.goog-te-banner-frame'); // fallback div (rare)
+    if (banner) banner.style.display = 'none';
+    document.body.style.top = '0px';
+  };
+
+  // Hide banner periodically for first few seconds after mount (covers auto-insert)
+  useEffect(() => {
+    const interval = setInterval(hideTranslateBanner, 500);
+    setTimeout(() => clearInterval(interval), 5000); // stop after 5s
+    return () => clearInterval(interval);
+  }, []);
+
+  // Observe DOM changes to catch banner insertion at any time
+  useEffect(() => {
+    const observer = new MutationObserver(() => hideTranslateBanner());
+    observer.observe(document.body, { childList: true, subtree: true });
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <div className="translate-button-container" style={{ position: 'fixed', bottom: '20px', left: '20px', zIndex: 9999 }}>
+    <div className="translate-button-container" style={{ position: 'fixed', bottom: '20px', right: '20px', zIndex: 9999, display: visible ? 'block' : 'none' }}>
       {/* Hidden div for Google Translate (kept off-screen but still rendered) */}
       <div
         id="google_translate_element"
@@ -98,8 +119,9 @@ function TranslateButton() {
         className="translate-button liquid-glass"
         onClick={() => setOpen(prev => !prev)}
         aria-label="Translate website"
+        style={{ fontSize: '0.8rem', padding: '6px 10px' }}
       >
-        🌐 Translate
+        🌐
       </button>
 
       {open && (

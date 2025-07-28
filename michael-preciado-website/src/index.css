@@ -51,7 +51,7 @@ body {
   /* Viewport meta tag assumed in HTML */
   -webkit-text-size-adjust: 100%; /* Prevent iOS font scaling */
   text-rendering: optimizeLegibility;
-  top: 0 !important;
+  top: 0px !important;
 }
 
 h1, h2, h3, h4, h5, h6,
@@ -2571,7 +2571,7 @@ h3:hover {
 
 /* --- Google Translate overrides --- */
 .goog-te-banner-frame.skiptranslate { display: none !important; }
-body { top: 0 !important; }
+body { top: 0px !important; }
 .goog-te-gadget-icon { display: none !important; }
 
 /* --- Translate Button --- */
@@ -2614,3 +2614,8 @@ body { top: 0 !important; }
   background: var(--primary-accent);
   color: #fff;
 }
+
+/* Hide Google Translate top banner */
+iframe.goog-te-banner-frame { display: none !important; }
+.goog-te-banner-frame { display: none !important; }
+body { top: 0px !important; }
