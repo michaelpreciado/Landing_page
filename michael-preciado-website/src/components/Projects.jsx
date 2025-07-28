@@ -147,7 +147,7 @@ function Projects() {
       description: "An interactive 3D model of the solar system built with JavaScript.",
       tech: ['JavaScript', 'HTML', 'CSS'],
       codeLink: "https://github.com/michaelpreciado/Interactive_Solar_System",
-      demoLink: "https://michaelpreciado.github.io/Interactive_Solar_System/"
+      demoLink: "https://interactive-solar-system-bay.vercel.app/"
     },
     {
       imageSrc: "/images/flattenhund.png",
@@ -180,6 +180,14 @@ function Projects() {
       tech: ['React', 'TypeScript', 'Three.js', 'Tailwind CSS', 'Framer Motion'],
       codeLink: "https://github.com/michaelpreciado/CRTinteractiveAlbum",
       demoLink: "https://crtarchve.netlify.app"
+    },
+    {
+      imageSrc: "/images/pupcam.png", // Ensure this image exists in public/images
+      title: "PupCam Mood Reader",
+      description: "AI-powered PWA that analyzes your dog's mood in real-time using TensorFlow.js dog detection and GPT-4o vision analysis.",
+      tech: ['JavaScript', 'TailwindCSS', 'TensorFlow.js', 'OpenAI', 'PWA'],
+      codeLink: "https://github.com/michaelpreciado/PupCam",
+      demoLink: "https://pup-cam.vercel.app"
     }
   ];
 

@@ -6,6 +6,7 @@ import './index.css'
 import './styles/liquidGlass.css'
 import App from './App.jsx'
 import { initLiquidGlass, autoApplyLiquidGlass } from './utils/liquidGlass.js'
+import TranslateButton from './components/TranslateButton.jsx';
 
 // Lazy load route components for better performance
 const Blog = lazy(() => import('./components/Blog.jsx'))
@@ -55,6 +56,7 @@ function AnimatedRoutes() {
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <BrowserRouter>
+      <TranslateButton />
       <AnimatedRoutes />
     </BrowserRouter>
   </StrictMode>,
