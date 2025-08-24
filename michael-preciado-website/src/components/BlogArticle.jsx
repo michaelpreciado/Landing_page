@@ -140,6 +140,18 @@ function BlogArticle() {
         return <hr key={idx} style={{ margin: '2rem 0', border: '1px solid var(--border-color)' }} />;
       }
       
+      // Handle blockquotes (lines starting with '> ')
+      if (block.trim().startsWith('> ')) {
+        const quoteText = block.replace(/^>\s*/, '').trim();
+        return (
+          <div key={idx} className="blog-quote-container">
+            <div className="blog-quote-content">
+              <BlogTextBlock text={quoteText} delay={idx * 300} />
+            </div>
+          </div>
+        );
+      }
+      
       // Pass raw text to the block component; scrambling handles the visual effect
       return <BlogTextBlock key={idx} text={block} delay={idx * 300} />;
     });

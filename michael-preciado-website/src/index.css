@@ -1585,6 +1585,66 @@ main {
   list-style-type: decimal;
 }
 
+/* Quote block styling - code block style container */
+.blog-quote-container {
+  margin: 2rem 0;
+  border-radius: 8px;
+  background: rgba(10, 25, 47, 0.6);
+  border: 1px solid rgba(30, 144, 255, 0.3);
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(5px);
+}
+
+.blog-quote-container:hover {
+  border-color: rgba(30, 144, 255, 0.5);
+  box-shadow: 0 4px 20px rgba(30, 144, 255, 0.1);
+  transform: translateY(-2px);
+}
+
+.blog-quote-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--primary-accent), var(--secondary-accent));
+  border-radius: 8px 8px 0 0;
+}
+
+.blog-quote-content {
+  padding: 1.5rem 2rem;
+  font-style: italic;
+  color: var(--light-text);
+  font-size: 1.1rem;
+  line-height: 1.6;
+  position: relative;
+}
+
+.blog-quote-content::before {
+  content: '"';
+  position: absolute;
+  top: 0.5rem;
+  left: 0.5rem;
+  font-size: 2rem;
+  color: var(--primary-accent);
+  opacity: 0.7;
+  font-family: Georgia, serif;
+}
+
+.blog-quote-content::after {
+  content: '"';
+  position: absolute;
+  bottom: 0.5rem;
+  right: 0.5rem;
+  font-size: 2rem;
+  color: var(--primary-accent);
+  opacity: 0.7;
+  font-family: Georgia, serif;
+}
+
 /* --- Blog Article Image Styling --- */
 .blog-article-image {
   margin: 1rem 0 2rem 0;
@@ -2552,6 +2612,17 @@ h3:hover {
     font-family: var(--font-sans) !important;
     padding: 1.5rem 1rem;
     line-height: 1.6;
+  }
+  
+  /* Mobile responsive quote blocks */
+  .blog-quote-content {
+    padding: 1rem 1.5rem;
+    font-size: 1rem;
+  }
+  
+  .blog-quote-content::before,
+  .blog-quote-content::after {
+    font-size: 1.5rem;
   }
 
   .blog-intro-card {
