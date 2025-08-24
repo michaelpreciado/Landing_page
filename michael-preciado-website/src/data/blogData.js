@@ -3,7 +3,7 @@ const blogPostsData = [
     slug: 'tech-spirituality',
     title: 'Tech & Spirituality',
     excerpt: 'The Overlap - Technology and spirituality feel like they live on opposite sides, but maybe they\'re not that far apart.',
-    date: '2025-01-15',
+    date: '2025-08-15',
     content: `## The Overlap
 
 Technology and spirituality feel like they live on opposite sides. One is all code, and the other is full of silence and intention. But maybe they're not that far apart. Maybe AI, in its own strange way, is opening more doors into the world of spirituality that we haven't yet thought of through "Spirit Tech"
