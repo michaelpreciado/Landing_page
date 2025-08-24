@@ -26,7 +26,7 @@ function CorneKeyboard() {
             {/* Hero Image Placeholder */}
             <figure className="blog-hero-image" style={{ marginBottom: '2rem', width: '100%' }}>
               <LazyImage
-                src="/images/cornebuild.jpeg"
+                src="/images/corne-keyboard/cornebuild.jpeg"
                 alt="Corne keyboard build hero"
                 priority={true}
                 quality="medium"
@@ -91,9 +91,9 @@ function CorneKeyboard() {
             {/* Layer Images (full width) */}
             <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', marginBottom: '2rem' }}>
               {[
-                { src: '/images/layer1.png', caption: 'Base Layer' },
-                { src: '/images/layer2.png', caption: 'Nav Layer' },
-                { src: '/images/layer3.png', caption: 'Numbers/Symbols Layer' },
+                { src: '/images/corne-keyboard/layer1.png', caption: 'Base Layer' },
+                { src: '/images/corne-keyboard/layer2.png', caption: 'Nav Layer' },
+                { src: '/images/corne-keyboard/layer3.png', caption: 'Numbers/Symbols Layer' },
               ].map(({ src, caption }, idx) => (
                 <figure key={idx} style={{ margin: 0, width: '100%' }}>
                   <LazyImage
@@ -121,7 +121,7 @@ function CorneKeyboard() {
               {['corne1', 'corne2', 'corne3', 'corne4'].map((name) => (
                 <figure key={name} className="blog-hero-image" style={{ margin: 0 }}>
                   <LazyImage
-                    src={`/images/${name}.jpeg`}
+                    src={`/images/corne-keyboard/${name}.jpeg`}
                     alt="Corne keyboard build step"
                     quality="medium"
                     maxWidth="100%"
@@ -137,7 +137,7 @@ function CorneKeyboard() {
             {/* Responsive 16:9 GIF wrapper */}
             <div style={{ position: 'relative', width: '100%', paddingBottom: '56.25%', marginBottom: '2rem', borderRadius: '8px', overflow: 'hidden' }}>
               <LazyImage
-                src="/videos/cornelapse.gif"
+                src="/images/corne-keyboard/cornelapse.gif"
                 alt="Corne keyboard build timelapse"
                 quality="medium"
                 maxWidth="800px"

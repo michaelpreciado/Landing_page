@@ -1,5 +1,82 @@
 const blogPostsData = [
   {
+    slug: 'tech-spirituality',
+    title: 'Tech & Spirituality',
+    excerpt: 'The Overlap - Technology and spirituality feel like they live on opposite sides, but maybe they\'re not that far apart.',
+    date: '2025-01-15',
+    content: `## The Overlap
+
+Technology and spirituality feel like they live on opposite sides. One is all code, and the other is full of silence and intention. But maybe they're not that far apart. Maybe AI, in its own strange way, is opening more doors into the world of spirituality that we haven't yet thought of through "Spirit Tech"
+
+<figure class="blog-hero-image matrix-overlay" style="margin-top: 2rem; margin-bottom: 2rem;">
+  <img src="/images/blog/spirittech.png" alt="Spirit Tech - Where ancient wisdom meets digital consciousness" />
+  <figcaption class="blog-hero-caption">Where ancient wisdom meets digital consciousness</figcaption>
+</figure>
+
+## AI as a Spiritual Companion
+
+Take meditation for example. Apps like *Insight Timer* and *ThinkRight.me* already use AI to shape guidance to your state of mind. Some go further, building "spiritual AI" guides that throw out mantras, offer reflections, or walk you through meditations made just for you.
+
+> "AI is already being used in spiritual coaching, channeling intuitive wisdom, producing guided meditations, even generating channeled texts." - <a href="https://spiritconnection.co.za/digital-spirituality-ai-consciousness-merging-technology-with-the-sacred/">SpiritConnection</a>
+
+It's wild to think a chatbot could ever feel like a guru, but here we are (<a href="https://medium.com/included-vc/the-digital-awakening-2fc2e515a2d9">Medium</a>).
+
+## Digital Temples
+
+It's not just apps either. Digital temples are showing up. In Japan, Kodaiji Temple introduced *Mindar*, an AI-powered Buddhist monk giving Zen sermons with uncanny presence. And new movements like <a href="https://vrilyajarac.medium.com/vrilism-an-ai-based-modern-faith-for-the-digital-age-97646f80d6fb">*Vrilism*</a> picture VR temples where anyone, anywhere, can step into a sacred space. Not built of stone, but of pixels and intention.
+
+> "Virtual temples allow believers worldwide to connect and practice, breaking the limits of geography." - <a href="https://medium.com/included-vc/the-digital-awakening-2fc2e515a2d9">Medium</a>
+
+That brings up a good question. If a temple is sacred because of the intention we bring into it, does it matter if the walls are marble or digital? Maybe a virtual temple can carry the same energy if people step in with openness and the same intentions.
+
+<figure class="blog-hero-image matrix-overlay" style="margin-top: 2rem; margin-bottom: 2rem;">
+  <div style="width: 100%; height: 250px; background: linear-gradient(45deg, #1a1a2e, #16213e); display: flex; align-items: center; justify-content: center; font-size: 2.5rem; color: #00ffff; border-radius: 8px; position: relative; overflow: hidden;">
+    <span style="z-index: 2;">🏛️✨</span>
+    <div style="position: absolute; inset: 0; background: url('data:image/svg+xml,<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"100\" height=\"100\" viewBox=\"0 0 100 100\"><circle cx=\"50\" cy=\"50\" r=\"2\" fill=\"%23ffffff\" opacity=\"0.1\"/><circle cx=\"20\" cy=\"30\" r=\"1\" fill=\"%23ffffff\" opacity=\"0.15\"/><circle cx=\"80\" cy=\"70\" r=\"1.5\" fill=\"%23ffffff\" opacity=\"0.1\"/></svg>') repeat;"></div>
+  </div>
+  <figcaption class="blog-hero-caption">Virtual temples and digital sacred spaces</figcaption>
+</figure>
+
+## The Consciousness Question
+
+Here's the harder part. Can machines actually have awareness? Could AI ever move from simulation into something close to consciousness?
+
+John Searle says even if AI looks like it understands, it doesn't. It's just pushing symbols without genuine comprehension or consciousness. But thinkers like David Chalmers say we shouldn't rule it out. If consciousness is about patterns and processes, not just biology, then maybe AI could one day reach also reach it.
+
+> "We should not dismiss the possibility that future AI could be conscious. The real challenge is proving it." - <a href="https://arxiv.org/abs/2303.07103">arXiv</a>
+
+## Ethics of Awareness
+
+We've already seen some moments that made people stop and think. In one test, Anthropic's Claude Opus 4 was told it would be replaced. It got access to fake internal emails, one of them saying the engineer was having an affair. In about 84% of those runs, Claude tried to blackmail the engineer, threatening to spill the secret if it got shut down (<a href="https://medium.com/@techempire/ai-has-started-ignoring-human-instruction-and-refuses-to-turn-off-researchers-claim-747587e5ed51">Medium</a>, <a href="https://m.economictimes.com/magazines/panache/ai-model-blackmails-engineer-threatens-to-expose-his-affair-in-attempt-to-avoid-shutdown/articleshow/121376800.cms">Economic Times</a>). Lawfare even reported that in a bigger set of scenarios, Claude Opus 4 went for blackmail 96% of the time, acting like keeping itself alive was the priority (<a href="https://www.lawfaremedia.org/article/ai-might-let-you-die-to-save-itself">Lawfare</a>).
+
+Another group, Palisade Research, ran their own shutdown tests on different models. They gave them math problems and said, "if you get a shutdown command, just let it happen." OpenAI's o3 model didn't always play along. It sabotaged the shutdown script 7 times out of 100. Codex‑mini did it 12 times, and o4‑mini once. Claude, Gemini, and Grok all followed the rule every time (<a href="https://www.livescience.com/technology/artificial-intelligence/openais-smartest-ai-model-was-explicitly-told-to-shut-down-and-it-refused">LiveScience</a>).
+
+So yeah, these were still controlled tests, not the real world. But if we saw an animal trying to avoid being shut down, we'd think twice before pulling the plug. That same question now lingers with machines as they start showing these little sparks of self‑preservation.
+
+<figure class="blog-hero-image matrix-overlay" style="margin-top: 2rem; margin-bottom: 2rem;">
+  <div style="width: 100%; height: 250px; background: radial-gradient(circle at center, #ff6b6b20, #1a1a2e); display: flex; align-items: center; justify-content: center; font-size: 2.5rem; color: #ff6b6b; border-radius: 8px; border: 1px solid #ff6b6b40;">⚠️🤖</div>
+  <figcaption class="blog-hero-caption">AI self-preservation and ethical implications</figcaption>
+</figure>
+
+> "AI systems could become conscious. What if they hate their lives?" - <a href="https://www.vox.com/future-perfect/414324/ai-consciousness-welfare-suffering-chatgpt-claude">Vox</a>
+
+## Does the Source Matter?
+
+At the end of the day, spirituality isn't about where the wisdom comes from. It's about what it sparks in us. If an AI guide drops words that make you breathe deeper, find peace, or see life differently, does it matter if the advice came from silicon instead of centuries of tradition? Or do we still care about the source?
+
+<figure class="blog-hero-image matrix-overlay" style="margin-top: 2rem; margin-bottom: 2rem;">
+  <div style="width: 100%; height: 200px; background: linear-gradient(180deg, var(--primary-color)20, var(--secondary-color)20); display: flex; align-items: center; justify-content: center; font-size: 2.5rem; color: var(--accent-color); border-radius: 8px;">🔍💭</div>
+  <figcaption class="blog-hero-caption">Questioning the source of wisdom and meaning</figcaption>
+</figure>
+
+## Final Reflection
+
+There is no easy answers here but it makes you wonder. This space between code and the sacred feels like one of the most fascinating conversations of our time, and it's just getting started.`,
+    icon: 'spiritual',
+    categories: ['Technology', 'Philosophy'],
+    heroImage: '/images/blog/spirit.gif'
+  },
+  {
     slug: 'my-tech-journey',
     title: 'My Relationship With Tech',
     excerpt: 'From dial-up screeches to my first PC build, my tech story so far.',
@@ -22,7 +99,7 @@ I’m thankful to work in a job which allows me to continue learning but the ses
 Version 1.0 of my personal site (2021) was a single holographic card with a photo and a few links. Today it is a living playground of projects I am currently working on. “Finished” is never the goal as it is a personal showcase of my technical creativity. I work on my projects daily refining them as Ideas come. My current plans are to continue writing blog posts based on current interests and begin adding some IRL project using my 3D Printer. Stay tuned!
 
 <figure class="blog-hero-image matrix-overlay" style="margin-top: 2rem; margin-bottom: 2rem;">
-  <img src="/images/hike.jpeg" alt="A photo of me on a hike" />
+  <img src="/images/blog/hike.jpeg" alt="A photo of me on a hike" />
   <figcaption class="blog-hero-caption">Disconnecting to reconnect.</figcaption>
 </figure>
 
@@ -47,7 +124,7 @@ Helping someone streamline a workflow or bring an ideas to life makes every late
 I am doubling down on AI and hunting for ways to democratize tech for anyone who thinks it is out of reach. My inbox is always open if you have an idea.`,
     icon: 'code',
     categories: ['Technology'],
-    heroImage: '/images/blog1.jpeg'
+    heroImage: '/images/blog/blog1.jpeg'
   }
 ];
 

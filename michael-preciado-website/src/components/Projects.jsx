@@ -127,7 +127,7 @@ function Projects() {
 
   const projectsData = [
     {
-      imageSrc: "/images/cornebuild.jpeg",
+      imageSrc: "/images/corne-keyboard/cornebuild.jpeg",
       title: "Corne Keyboard Build",
       description: "Custom split ergonomic mechanical keyboard build featuring the Corne layout and ZMK firmware.",
       tech: ["Hardware", "ZMK", "3D Printing"],
@@ -135,14 +135,14 @@ function Projects() {
       fullImage: true
     },
     {
-      imageSrc: "/images/photography.png",
+      imageSrc: "/images/projects/photography.png",
       title: "Photography Portfolio",
       description: "Minimalist photography showcase with responsive image gallery and smooth transitions.",
       codeLink: "https://github.com/michaelpreciado/mario.preciado.photography",
       demoLink: "https://mariopreciado-photography.netlify.app"
     },
     {
-      imageSrc: "/images/Solar.png",
+      imageSrc: "/images/projects/Solar.png",
       title: "Interactive Solar System",
       description: "An interactive 3D model of the solar system built with JavaScript.",
       tech: ['JavaScript', 'HTML', 'CSS'],
@@ -150,7 +150,7 @@ function Projects() {
       demoLink: "https://interactive-solar-system-bay.vercel.app/"
     },
     {
-      imageSrc: "/images/flattenhund.png",
+      imageSrc: "/images/projects/flattenhund.png",
       title: "Flappy Dog Game",
       description: "A playful Flappy-Bird-style game starring my dogs Taz & Chloe, featuring an online leaderboard powered by Supabase.",
       tech: ['JavaScript', 'HTML', 'CSS'],
@@ -158,7 +158,7 @@ function Projects() {
       demoLink: "https://flatterhund.netlify.app/"
     },
     {
-      imageSrc: "/images/friday.png",
+      imageSrc: "/images/projects/friday.png",
       title: "Friday",
       description: "A personal AI assistant application leveraging OpenAI.",
       tech: ['Python', 'Flask', 'TypeScript'],
@@ -166,7 +166,7 @@ function Projects() {
       demoLink: "https://michaelpreciado.github.io/F.R.I.D.A.Y/"
     },
     {
-      imageSrc: "/images/planttracker.png",
+      imageSrc: "/images/projects/planttracker.png",
       title: "Plant Tracker",
       description: "Offline-first Next.js PWA that tracks plant care, sends smart watering reminders, stores photos, and syncs via Supabase.",
       tech: ['Next.js', 'TypeScript', 'Tailwind', 'Supabase'],
@@ -174,7 +174,7 @@ function Projects() {
       demoLink: "https://planttracker.netlify.app/"
     },
     {
-      imageSrc: "/images/pcbuild.jpeg",
+      imageSrc: "/images/projects/pcbuild.jpeg",
       title: "CRT Interactive Album",
       description: "A visually stunning 3D scene showcasing a 90s era CRT computer with dynamic slideshow, atmospheric effects, and glass-morphism cards. Built with React Three Fiber.",
       tech: ['React', 'TypeScript', 'Three.js', 'Tailwind CSS', 'Framer Motion'],
@@ -182,7 +182,7 @@ function Projects() {
       demoLink: "https://crtarchve.netlify.app"
     },
     {
-      imageSrc: "/images/pupcam.png", // Ensure this image exists in public/images
+      imageSrc: "/images/projects/pupcam.png",
       title: "PupCam Mood Reader",
       description: "AI-powered PWA that analyzes your dog's mood in real-time using TensorFlow.js dog detection and GPT-4o vision analysis.",
       tech: ['JavaScript', 'TailwindCSS', 'TensorFlow.js', 'OpenAI', 'PWA'],

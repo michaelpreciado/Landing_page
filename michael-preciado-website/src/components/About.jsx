@@ -6,7 +6,7 @@ function About() {
     <section id="about">
       <div className="about-image-wrapper">
         <LazyImage 
-          src="/images/seattle.jpeg"
+          src="/images/about/seattle.jpeg"
           alt="Seattle skyline with modern architecture"
           className="about-image"
           quality="medium"

@@ -46,6 +46,17 @@ const BlogPostCard = ({ post, index }) => {
           maxWidth="800px"
           placeholder={<div style={{ width: '100%', height: '200px', background: 'var(--medium-bg)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '2rem' }}>📝</div>}
         />
+        {post.slug === 'tech-spirituality' && (
+          <div className="image-watermark">
+            <a 
+              href="https://www.instagram.com/mariopreciado.art" 
+              className="image-watermark-link"
+              aria-label="Visit Mario Preciado's art on Instagram"
+            >
+              Mario Preciado
+            </a>
+          </div>
+        )}
       </div>
       <div className="blog-post-card-content">
         <span className="category-pill">{post.categories[0]}</span>

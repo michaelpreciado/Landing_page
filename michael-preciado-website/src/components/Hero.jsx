@@ -9,7 +9,7 @@ function Hero() {
   return (
     <section id="hero">
       <LazyImage 
-        src="/images/mp.jpeg" 
+        src="/images/hero/mp.jpeg" 
         alt="Michael Preciado - Software Developer" 
         className="profile-image"
         priority={true}
