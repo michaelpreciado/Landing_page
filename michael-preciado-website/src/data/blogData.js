@@ -73,7 +73,7 @@ At the end of the day, spirituality isn't about where the wisdom comes from. It'
 
 There is no easy answers here but it makes you wonder. This space between code and the sacred feels like one of the most fascinating conversations of our time, and it's just getting started.`,
     icon: 'spiritual',
-    categories: ['Technology', 'Philosophy'],
+    categories: ['Spirituality', 'Philosophy'],
     heroImage: '/images/blog/spirit.gif'
   },
   {
