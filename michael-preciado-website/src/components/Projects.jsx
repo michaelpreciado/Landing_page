@@ -188,6 +188,14 @@ function Projects() {
       tech: ['JavaScript', 'TailwindCSS', 'TensorFlow.js', 'OpenAI', 'PWA'],
       codeLink: "https://github.com/michaelpreciado/PupCam",
       demoLink: "https://pup-cam.vercel.app"
+    },
+    {
+      imageSrc: "/images/projects/ai-server-placeholder.svg",
+      title: "Local AI & Storage Server",
+      description: "Self-hosted AI inference server with integrated storage solution. Features local LLM deployment, file management, and API endpoints for seamless integration with personal projects.",
+      tech: ['Python', 'FastAPI', 'Docker', 'LLM', 'PostgreSQL', 'Redis'],
+      codeLink: "https://github.com/placeholder/ai-storage-server",
+      demoLink: "/projects/ai-server"
     }
   ];
 

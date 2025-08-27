@@ -1,0 +1,88 @@
+<svg width="600" height="400" viewBox="0 0 600 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a1a2e;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#16213e;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="serverGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#2d3748;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1a202c;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="glowGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#00d4ff;stop-opacity:0.8" />
+      <stop offset="100%" style="stop-color:#0066cc;stop-opacity:0.4" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="600" height="400" fill="url(#bgGradient)"/>
+  
+  <!-- Grid pattern -->
+  <defs>
+    <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">
+      <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#334155" stroke-width="0.5" opacity="0.3"/>
+    </pattern>
+  </defs>
+  <rect width="600" height="400" fill="url(#grid)"/>
+  
+  <!-- Server rack -->
+  <rect x="200" y="80" width="200" height="240" rx="8" fill="url(#serverGradient)" stroke="#4a5568" stroke-width="2"/>
+  
+  <!-- Server units -->
+  <rect x="220" y="100" width="160" height="30" rx="4" fill="#2d3748" stroke="#4a5568" stroke-width="1"/>
+  <rect x="220" y="140" width="160" height="30" rx="4" fill="#2d3748" stroke="#4a5568" stroke-width="1"/>
+  <rect x="220" y="180" width="160" height="30" rx="4" fill="#2d3748" stroke="#4a5568" stroke-width="1"/>
+  <rect x="220" y="220" width="160" height="30" rx="4" fill="#2d3748" stroke="#4a5568" stroke-width="1"/>
+  <rect x="220" y="260" width="160" height="30" rx="4" fill="#2d3748" stroke="#4a5568" stroke-width="1"/>
+  
+  <!-- Status LEDs -->
+  <circle cx="235" cy="115" r="3" fill="#00ff88"/>
+  <circle cx="245" cy="115" r="3" fill="#00d4ff"/>
+  <circle cx="235" cy="155" r="3" fill="#00ff88"/>
+  <circle cx="245" cy="155" r="3" fill="#00d4ff"/>
+  <circle cx="235" cy="195" r="3" fill="#00ff88"/>
+  <circle cx="245" cy="195" r="3" fill="#00d4ff"/>
+  <circle cx="235" cy="235" r="3" fill="#00ff88"/>
+  <circle cx="245" cy="235" r="3" fill="#00d4ff"/>
+  <circle cx="235" cy="275" r="3" fill="#00ff88"/>
+  <circle cx="245" cy="275" r="3" fill="#00d4ff"/>
+  
+  <!-- AI Brain icon -->
+  <circle cx="450" cy="150" r="40" fill="none" stroke="url(#glowGradient)" stroke-width="3"/>
+  <circle cx="450" cy="150" r="25" fill="none" stroke="url(#glowGradient)" stroke-width="2"/>
+  <circle cx="450" cy="150" r="10" fill="url(#glowGradient)"/>
+  
+  <!-- Neural network lines -->
+  <path d="M 430 130 Q 450 150 470 170" stroke="url(#glowGradient)" stroke-width="2" fill="none" opacity="0.6"/>
+  <path d="M 470 130 Q 450 150 430 170" stroke="url(#glowGradient)" stroke-width="2" fill="none" opacity="0.6"/>
+  <path d="M 430 150 Q 450 130 470 150" stroke="url(#glowGradient)" stroke-width="2" fill="none" opacity="0.6"/>
+  <path d="M 430 150 Q 450 170 470 150" stroke="url(#glowGradient)" stroke-width="2" fill="none" opacity="0.6"/>
+  
+  <!-- Storage icon -->
+  <rect x="120" y="220" width="60" height="80" rx="8" fill="url(#serverGradient)" stroke="#4a5568" stroke-width="2"/>
+  <rect x="130" y="230" width="40" height="8" rx="2" fill="#4a5568"/>
+  <rect x="130" y="245" width="40" height="8" rx="2" fill="#4a5568"/>
+  <rect x="130" y="260" width="40" height="8" rx="2" fill="#4a5568"/>
+  <rect x="130" y="275" width="40" height="8" rx="2" fill="#4a5568"/>
+  
+  <!-- Connection lines -->
+  <path d="M 180 250 Q 190 240 200 235" stroke="url(#glowGradient)" stroke-width="2" fill="none" opacity="0.7"/>
+  <path d="M 400 200 Q 420 180 430 160" stroke="url(#glowGradient)" stroke-width="2" fill="none" opacity="0.7"/>
+  
+  <!-- Title -->
+  <text x="300" y="50" text-anchor="middle" fill="#00d4ff" font-family="monospace" font-size="24" font-weight="bold">LOCAL AI SERVER</text>
+  
+  <!-- Floating particles -->
+  <circle cx="100" cy="100" r="2" fill="#00d4ff" opacity="0.6">
+    <animate attributeName="cy" values="100;120;100" dur="3s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="500" cy="80" r="1.5" fill="#00ff88" opacity="0.8">
+    <animate attributeName="cy" values="80;100;80" dur="2.5s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="150" cy="350" r="2" fill="#00d4ff" opacity="0.5">
+    <animate attributeName="cy" values="350;330;350" dur="4s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="550" cy="300" r="1.5" fill="#00ff88" opacity="0.7">
+    <animate attributeName="cy" values="300;280;300" dur="3.5s" repeatCount="indefinite"/>
+  </circle>
+</svg>
