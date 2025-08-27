@@ -184,105 +184,97 @@ sudo reboot`}</pre>
           </section>
           
           <section className="journey-section">
-             <h2>🤖 Step 3 & 4: AI Runtime & WebUI</h2>
-            <div className="journey-grid">
-              <div>
-                <h3>Option A: Ollama</h3>
-                <p>Ollama is a smooth, command-line focused option that's easy to set up.</p>
-                <div className="code-block">
-                  <pre>{`curl -fsSL https://ollama.com/install.sh | sh`}</pre>
-                </div>
-                <h3>Option B: LM Studio</h3>
-                <p>LM Studio provides a nice GUI but requires enabling the Local Server on port 1234 for WebUI integration.</p>
-                <h3>Open WebUI Setup</h3>
-                <p>I installed WebUI via pipx and created a systemd service to run it on boot.</p>
-                 <div className="issue-box">
-                  <strong>Issue:</strong> The service stopped on logout because I forgot to enable lingering for the user session.
-                </div>
-              </div>
-              <div className="hologram-container">
-                <LazyImage src="/images/Server/video-127_singular_display.gif" alt="AI Dashboard" />
-              </div>
+            <h2>🤖 Step 3: AI Runtime</h2>
+            <p>I experimented with two popular options for running local AI models.</p>
+            <h3>Option A: Ollama</h3>
+            <p>Ollama is a smooth, command-line focused option that's easy to set up.</p>
+            <div className="code-block">
+              <pre>{`curl -fsSL https://ollama.com/install.sh | sh`}</pre>
+            </div>
+            <h3>Option B: LM Studio</h3>
+            <p>LM Studio provides a nice GUI but requires enabling the Local Server on port 1234 for WebUI integration.</p>
+          </section>
+
+          <section className="journey-section">
+            <h2>🌐 Step 4: Open WebUI</h2>
+            <p>I installed WebUI via pipx and created a systemd service to run it on boot.</p>
+            <div className="issue-box">
+              <strong>Issue:</strong> The service stopped on logout because I forgot to enable lingering for the user session.
+            </div>
+            <div className="hologram-container" style={{ maxWidth: '350px', margin: '2rem auto 0' }}>
+              <LazyImage src="/images/Server/video-127_singular_display.gif" alt="AI Dashboard" />
             </div>
           </section>
 
           <section className="journey-section">
-            <h2>☁️ Step 5 & 6: Cloudflare & Storage</h2>
-            <div className="journey-grid">
-                <div>
-                    <h3>Cloudflare Tunnel</h3>
-                    <p>I wanted external access without opening ports, so I installed <code>cloudflared</code> and created a simple config.</p>
-                    <div className="code-block">
-                        <pre>{`ingress:
+            <h2>☁️ Step 5: Cloudflare Tunnel</h2>
+            <p>I wanted external access without opening ports, so I installed <code>cloudflared</code> and created a simple config.</p>
+            <div className="code-block">
+                <pre>{`ingress:
 - hostname: mydomain.com
   service: http://localhost:8080
 - service: http_status:404`}</pre>
-                    </div>
-                    <div className="issue-box">
-                        <strong>Issue:</strong> The tunnel failed because I edited the wrong config file. Checking <code>systemctl status cloudflared</code> revealed the correct path.
-                    </div>
-                </div>
-                <div>
-                    <h3>Storage Setup</h3>
-                    <p>I formatted and mounted a spare 2TB HDD for general storage using <code>parted</code> and <code>mkfs</code>.</p>
-                    <div className="code-block">
-                        <pre>{`sudo parted /dev/sdb --script mklabel gpt mkpart ...
+            </div>
+            <div className="issue-box">
+                <strong>Issue:</strong> The tunnel failed because I edited the wrong config file. Checking <code>systemctl status cloudflared</code> revealed the correct path.
+            </div>
+          </section>
+          
+          <section className="journey-section">
+            <h2>💾 Step 6: Storage Setup</h2>
+            <p>I formatted and mounted a spare 2TB HDD for general storage using <code>parted</code> and <code>mkfs</code>.</p>
+            <div className="code-block">
+                <pre>{`sudo parted /dev/sdb --script mklabel gpt mkpart ...
 sudo mkfs.ext4 -F /dev/sdb1
 sudo mkdir -p /srv/storage
 echo "/dev/sdb1 ..." | sudo tee -a /etc/fstab
 sudo mount -a`}</pre>
-                    </div>
-                </div>
             </div>
           </section>
 
           <section className="journey-section">
-              <h2>📂 Step 7 & 8: File Sharing & AI Tools</h2>
-              <div className="journey-grid">
-                  <div className="hologram-container">
-                    <LazyImage src="/images/Server/video-89_singular_display.gif" alt="AI Inference in action" />
-                  </div>
-                  <div>
-                      <h3>Samba File Sharing</h3>
-                      <p>I set up Samba to access the storage from my laptop. A firewall rule was needed to allow SMB traffic.</p>
-                      <div className="issue-box">
-                        <strong>Issue:</strong> The share wasn't showing up. The firewall was blocking SMB. Fixed with: <code>sudo ufw allow 139,445/tcp</code>
-                      </div>
-                      <h3>Read/Write Tools</h3>
-                      <p>I added simple Python tools to allow the AI to read and write files directly to the server's storage.</p>
-                      <div className="code-block">
-                          <pre>{`def write_file(path, content):
+            <h2>📂 Step 7: Samba File Sharing</h2>
+            <p>I set up Samba to access the storage from my laptop. A firewall rule was needed to allow SMB traffic.</p>
+            <div className="issue-box">
+              <strong>Issue:</strong> The share wasn't showing up. The firewall was blocking SMB. Fixed with: <code>sudo ufw allow 139,445/tcp</code>
+            </div>
+          </section>
+          
+          <section className="journey-section">
+            <h2>📖 Step 8: Read/Write Tools</h2>
+            <p>I added simple Python tools to allow the AI to read and write files directly to the server's storage.</p>
+            <div className="code-block">
+                <pre>{`def write_file(path, content):
     with open(path, 'w') as f:
         f.write(content)`}</pre>
-                      </div>
-                  </div>
-              </div>
+            </div>
+            <div className="hologram-container" style={{ maxWidth: '350px', margin: '2rem auto 0' }}>
+              <LazyImage src="/images/Server/video-89_singular_display.gif" alt="AI Inference in action" />
+            </div>
           </section>
 
           <section className="journey-section">
-              <h2>🗂️ Step 9 & 10: Notion & Monitoring</h2>
-              <div className="journey-grid">
-                  <div>
-                      <h3>Notion Integration</h3>
-                      <p>To automatically log chats, I connected the server to a Notion database using their API.</p>
-                      <div className="code-block">
-                          <pre>{`export NOTION_API_KEY=secret_xxx
+            <h2>🗂️ Step 9: Notion Integration</h2>
+            <p>To automatically log chats, I connected the server to a Notion database using their API.</p>
+            <div className="code-block">
+                <pre>{`export NOTION_API_KEY=secret_xxx
 export NOTION_DATABASE_ID=xxx`}</pre>
-                      </div>
-                      <div className="issue-box">
-                          <strong>Issue:</strong> JSON errors occurred due to a mismatched Notion API version. Setting <code>"Notion-Version": "2022-06-28"</code> fixed it.
-                      </div>
-                      <h3>Monitoring</h3>
-                      <p>I use a few key commands to keep an eye on the system's performance.</p>
-                      <div className="code-block">
-                          <pre>{`watch -n 2 nvidia-smi
+            </div>
+            <div className="issue-box">
+                <strong>Issue:</strong> JSON errors occurred due to a mismatched Notion API version. Setting <code>"Notion-Version": "2022-06-28"</code> fixed it.
+            </div>
+          </section>
+
+          <section className="journey-section">
+            <h2>🔍 Step 10: Monitoring</h2>
+            <p>I use a few key commands to keep an eye on the system's performance.</p>
+            <div className="code-block">
+                <pre>{`watch -n 2 nvidia-smi
 journalctl -u open-webui --user -f`}</pre>
-                      </div>
-                  </div>
-                  <div className="hologram-container">
-                      <LazyImage src="/images/Server/video-93_singular_display.gif" alt="Server Monitoring" />
-                  </div>
-              </div>
+            </div>
+            <div className="hologram-container" style={{ maxWidth: '350px', margin: '2rem auto 0' }}>
+                <LazyImage src="/images/Server/video-93_singular_display.gif" alt="Server Monitoring" />
+            </div>
           </section>
 
           <section className="journey-section">
