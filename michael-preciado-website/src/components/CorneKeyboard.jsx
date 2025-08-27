@@ -9,55 +9,134 @@ import { autoApplyLiquidGlass } from '../utils/liquidGlass.js';
 function CorneKeyboard() {
   const typedTitle = useTypewriter("Corne Keyboard Build", { speed: 35, scrambleOnMount: true });
 
-  // Apply liquid glass effects when component mounts
   useEffect(() => {
     autoApplyLiquidGlass();
+    const style = document.createElement('style');
+    style.textContent = `
+      .corne-build-container {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 6rem 1rem 2rem;
+        color: var(--light-text);
+      }
+      .build-title {
+        font-size: 2.5rem;
+        text-align: center;
+        margin-bottom: 2rem;
+      }
+      .build-section {
+        margin-bottom: 3rem;
+        border-bottom: 1px solid var(--border-color);
+        padding-bottom: 2rem;
+      }
+      .build-section:last-child {
+        border-bottom: none;
+      }
+      .build-section h2 {
+        font-family: var(--font-pixel);
+        font-size: 1.8rem;
+        margin-bottom: 1rem;
+      }
+      .build-section h3 {
+        font-size: 1.2rem;
+        margin-top: 1.5rem;
+        margin-bottom: 0.5rem;
+      }
+      .build-section p, .build-section li {
+        line-height: 1.7;
+        margin-bottom: 1rem;
+      }
+      .hologram-container {
+        background: linear-gradient(135deg, rgba(0, 212, 255, 0.05), rgba(0, 255, 255, 0.02));
+        border: 1px solid rgba(0, 212, 255, 0.2);
+        box-shadow: 0 0 15px rgba(0, 212, 255, 0.1), inset 0 0 10px rgba(0, 255, 255, 0.05);
+        backdrop-filter: blur(5px);
+        border-radius: 12px;
+        padding: 0.75rem;
+        margin-bottom: 2rem;
+      }
+      .hologram-container img, .hologram-container .lazy-image, .hologram-container video {
+        border-radius: 8px;
+        display: block;
+        width: 100%;
+      }
+      .parts-table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 0.9rem;
+        margin-top: 1.5rem;
+      }
+      .parts-table th, .parts-table td {
+        border-bottom: 1px solid var(--border-color);
+        padding: 0.75rem;
+        text-align: left;
+      }
+      .parts-table th {
+        font-family: var(--font-pixel);
+      }
+      .layer-images {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+      }
+      .build-progress-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1rem;
+      }
+
+      @media (max-width: 768px) {
+        .corne-build-container {
+          padding-top: 5rem;
+        }
+        .build-title {
+          font-size: 1.8rem;
+        }
+        .build-section h2 {
+          font-size: 1.5rem;
+        }
+      }
+    `;
+    document.head.appendChild(style);
+    return () => document.head.removeChild(style);
   }, []);
 
   return (
     <PageTransition>
       <MatrixRainBackground />
       <ReturnButton to="/projects" />
-      <main style={{ position: 'relative', zIndex: 1 }}>
-        <section style={{ maxWidth: '800px', margin: '0 auto' }}>
-          <article className="blog-article-content">
-            <h1 className="blog-article-title" style={{ marginBottom: '1.5rem' }}>{typedTitle}</h1>
+      <main>
+        <div className="corne-build-container">
+          <h1 className="build-title">{typedTitle}</h1>
 
-            {/* Hero Image Placeholder */}
-            <figure className="blog-hero-image" style={{ marginBottom: '2rem', width: '100%' }}>
-              <LazyImage
-                src="/images/corne-keyboard/cornebuild.jpeg"
-                alt="Corne keyboard build hero"
-                priority={true}
-                quality="medium"
-                maxWidth="100%"
-                objectFit="contain"
-                placeholder={<div style={{ width: '100%', height: '400px', background: 'var(--medium-bg)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '2rem' }}>⌨️</div>}
-              />
-            </figure>
+          <div className="hologram-container">
+            <LazyImage
+              src="/images/corne-keyboard/cornebuild.jpeg"
+              alt="Corne keyboard build hero"
+              priority={true}
+            />
+          </div>
 
-            {/* --- Article Content --- */}
-
-            <h2 style={{ fontFamily: 'var(--font-pixel)', fontSize: '1.8rem', margin: '2rem 0 1rem' }}>Building My Custom Corne Split Keyboard</h2>
-
-            {/* Why I Wanted a Split */}
-            <h3 style={{ marginTop: '1.5rem' }}>Why I Wanted a Split</h3>
+          <section className="build-section">
+            <h2>Building My Custom Corne Split Keyboard</h2>
+            <h3>Why I Wanted a Split</h3>
             <p>
               One night I hurt my hand badly enough that I couldn't use my right pinky for a while. Typing became painful, limiting both work and hobbies, so I started looking for an alternative that could help during recovery.
             </p>
             <p>
               After much research, the <strong>Corne</strong> promised a more natural angle, <em>column-stagger</em> ergonomics, and the freedom to map every key exactly where I want it. Plus, it looked like a perfect weekend challenge so I got to work.
             </p>
+          </section>
 
-            {/* Parts & Materials */}
-            <h3 style={{ marginTop: '2rem' }}>Parts &amp; Materials</h3>
+          <section className="build-section">
+            <h2>Parts &amp; Materials</h2>
             <div style={{ overflowX: 'auto' }}>
-              <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '0.9rem' }}>
+              <table className="parts-table">
                 <thead>
                   <tr>
-                    <th style={{ borderBottom: '1px solid var(--border-color)', padding: '0.5rem', textAlign: 'left' }}>Component</th>
-                    <th style={{ borderBottom: '1px solid var(--border-color)', padding: '0.5rem', textAlign: 'left' }}>Choice</th>
-                    <th style={{ borderBottom: '1px solid var(--border-color)', padding: '0.5rem', textAlign: 'left' }}>Why I Picked It</th>
+                    <th>Component</th>
+                    <th>Choice</th>
+                    <th>Why I Picked It</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -71,82 +150,72 @@ function CorneKeyboard() {
                     ['Batteries', 'Typeractive “Corne Battery” (120 mAh Li-Po)', '~3 days of wireless use per charge'],
                   ].map(([component, choice, why]) => (
                     <tr key={component}>
-                      <td style={{ borderBottom: '1px solid var(--border-color)', padding: '0.5rem' }}><strong>{component}</strong></td>
-                      <td style={{ borderBottom: '1px solid var(--border-color)', padding: '0.5rem' }}>{choice}</td>
-                      <td style={{ borderBottom: '1px solid var(--border-color)', padding: '0.5rem' }}>{why}</td>
+                      <td><strong>{component}</strong></td>
+                      <td>{choice}</td>
+                      <td>{why}</td>
                     </tr>
                   ))}
                 </tbody>
               </table>
             </div>
+          </section>
 
-            {/* Layer Logic */}
-            <h3 style={{ marginTop: '2rem' }}>Layer Logic</h3>
-            <ul style={{ marginBottom: '2rem', paddingLeft: '1.2rem' }}>
+          <section className="build-section">
+            <h2>Layer Logic</h2>
+            <ul>
               <li><strong>Base</strong> – Standard letters, space on the big left thumb, enter on the right.</li>
               <li><strong>Nav</strong> (tap the left thumb) – HJKL arrows, page-up/down, media keys.</li>
               <li><strong>Numbers/Symbols</strong> (tap the right thumb) – Custom pseudo-numpad plus my favorite curly braces for React.</li>
             </ul>
-
-            {/* Layer Images (full width) */}
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', marginBottom: '2rem' }}>
+            <div className="layer-images">
               {[
                 { src: '/images/corne-keyboard/layer1.png', caption: 'Base Layer' },
                 { src: '/images/corne-keyboard/layer2.png', caption: 'Nav Layer' },
                 { src: '/images/corne-keyboard/layer3.png', caption: 'Numbers/Symbols Layer' },
-              ].map(({ src, caption }, idx) => (
-                <figure key={idx} style={{ margin: 0, width: '100%' }}>
-                  <LazyImage
-                    src={src}
-                    alt={caption}
-                    quality="medium"
-                    maxWidth="100%"
-                    objectFit="contain"
-                    placeholder={<div style={{ width: '100%', height: '300px', background: 'var(--medium-bg)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '2rem' }}>⌨️</div>}
-                  />
-                  <figcaption className="blog-hero-caption" style={{ textAlign: 'center', marginTop: '0.5rem' }}>{caption}</figcaption>
+              ].map(({ src, caption }) => (
+                <figure key={caption} style={{ margin: 0 }}>
+                  <div className="hologram-container">
+                    <LazyImage src={src} alt={caption} />
+                  </div>
+                  <figcaption style={{ textAlign: 'center', marginTop: '-1rem' }}>{caption}</figcaption>
                 </figure>
               ))}
             </div>
+          </section>
 
-            {/* Final Thoughts */}
-            <h3 style={{ marginTop: '2rem' }}>Final Thoughts</h3>
+          <section className="build-section">
+            <h2>Final Thoughts</h2>
             <p>
               This build blended everything I love: hardware hacking, 3D printing, and a dash of embedded firmware. The Corne now lives front-and-center on my desk.
             </p>
+          </section>
 
-            {/* --- Build Progress Gallery --- */}
-            <h2 style={{ fontFamily: 'var(--font-pixel)', margin: '2rem 0 1rem' }}>Build Progress</h2>
-            <div className="blogs-grid" style={{ marginBottom: '2rem', gap: '1rem' }}>
-              {['corne1', 'corne2', 'corne3', 'corne4'].map((name) => (
-                <figure key={name} className="blog-hero-image" style={{ margin: 0 }}>
-                  <LazyImage
-                    src={`/images/corne-keyboard/${name}.jpeg`}
-                    alt="Corne keyboard build step"
-                    quality="medium"
-                    maxWidth="100%"
-                    objectFit="contain"
-                    placeholder={<div style={{ width: '100%', height: '300px', background: 'var(--medium-bg)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '2rem' }}>🔧</div>}
-                  />
-                </figure>
+          <section className="build-section">
+            <h2>Build Progress</h2>
+            <div className="build-progress-grid">
+              {[
+                '/images/corne-keyboard/corne1.jpeg', 
+                '/images/corne-keyboard/corne2.jpeg', 
+                '/images/corne-keyboard/corne3.jpeg', 
+                '/images/corne-keyboard/corne4.jpeg'
+              ].map((src) => (
+                <div key={src} className="hologram-container">
+                  <LazyImage src={src} alt="Corne keyboard build step" />
+                </div>
               ))}
             </div>
+          </section>
 
-            {/* --- Timelapse GIF --- */}
-            <h2 style={{ fontFamily: 'var(--font-pixel)', margin: '2rem 0 1rem' }}>Build Timelapse</h2>
-            {/* Responsive 16:9 GIF wrapper */}
-            <div style={{ position: 'relative', width: '100%', paddingBottom: '56.25%', marginBottom: '2rem', borderRadius: '8px', overflow: 'hidden' }}>
-              <LazyImage
+          <section className="build-section">
+            <h2>Build Timelapse</h2>
+            <div className="hologram-container">
+               <LazyImage
                 src="/images/corne-keyboard/cornelapse.gif"
                 alt="Corne keyboard build timelapse"
-                quality="medium"
-                maxWidth="800px"
-                style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', objectFit: 'cover' }}
-                placeholder={<div style={{ width: '100%', height: '100%', background: 'var(--medium-bg)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '2rem' }}>🎞️</div>}
               />
             </div>
-          </article>
-        </section>
+          </section>
+        </div>
       </main>
     </PageTransition>
   );

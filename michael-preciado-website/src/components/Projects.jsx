@@ -6,7 +6,7 @@ import LazyImage from './LazyImage';
 import { FaCode, FaProjectDiagram, FaCamera, FaGlobeAmericas, FaTv } from 'react-icons/fa'; 
 
 // --- Reusable IntroCard Component ---
-const IntroCard = () => (
+const IntroCard = React.memo(() => (
   <motion.div
     className="blog-intro-card" // Reusing the same style from the blog page
     initial={{ opacity: 0, y: 20 }}
@@ -25,10 +25,10 @@ const IntroCard = () => (
       🛠️
     </div>
   </motion.div>
-);
+));
 
 // --- Updated ProjectCard Component ---
-const ProjectCard = ({ imageSrc, title, description, tech, codeLink, demoLink, index, fullImage = false }) => {
+const ProjectCard = React.memo(({ imageSrc, title, description, tech, codeLink, demoLink, index, fullImage = false }) => {
   const [isMounted, setIsMounted] = useState(false);
 
   // Fallback animation trigger to ensure cards always show
@@ -69,16 +69,20 @@ const ProjectCard = ({ imageSrc, title, description, tech, codeLink, demoLink, i
       whileInView="visible"
       viewport={{ once: false, amount: 0.1, margin: "0px 0px -50px 0px" }} // Allow re-triggering and better detection
       whileHover={{ y: -5, transition: { duration: 0.2 } }}
+      style={{ willChange: 'transform, opacity' }}
     >
       {imageSrc && (
-        <div className="project-image-container">
+        <div className="project-image-container" style={{ overflow: 'hidden', height: '220px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
           <LazyImage 
             src={imageSrc} 
             alt={`${title} project screenshot`} 
             className="thumbnail"
             quality="medium"
-            maxWidth={fullImage ? "100%" : "600px"}
-            objectFit={fullImage ? "contain" : "cover"}
+            style={{ 
+              width: '100%', 
+              height: fullImage ? '100%' : 'auto', 
+              objectFit: fullImage ? 'contain' : 'cover' 
+            }}
             placeholder={<div style={{ width: '100%', height: '200px', background: 'var(--medium-bg)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '2rem' }}>🚀</div>}
           />
         </div>
@@ -108,7 +112,7 @@ const ProjectCard = ({ imageSrc, title, description, tech, codeLink, demoLink, i
       </div>
     </motion.div>
   );
-};
+});
 
 // --- Main Projects Component ---
 function Projects() {
@@ -126,6 +130,13 @@ function Projects() {
   }, []);
 
   const projectsData = [
+    {
+      imageSrc: "/images/Server/IMG_1039.jpeg",
+      title: "Local AI & Storage Server (FRIDAY)",
+      description: "My personal journey building a self-hosted AI server from scratch. Complete with Ubuntu setup, GPU drivers, Ollama/LM Studio, storage management, and all the issues I solved along the way.",
+      tech: ['Ubuntu', 'Ollama', 'Open WebUI', 'Cloudflare Tunnel', 'Samba', 'Python'],
+      demoLink: "/projects/ai-server"
+    },
     {
       imageSrc: "/images/corne-keyboard/cornebuild.jpeg",
       title: "Corne Keyboard Build",
@@ -188,14 +199,6 @@ function Projects() {
       tech: ['JavaScript', 'TailwindCSS', 'TensorFlow.js', 'OpenAI', 'PWA'],
       codeLink: "https://github.com/michaelpreciado/PupCam",
       demoLink: "https://pup-cam.vercel.app"
-    },
-    {
-      imageSrc: "/images/projects/ai-server-placeholder.svg",
-      title: "Local AI & Storage Server",
-      description: "Self-hosted AI inference server with integrated storage solution. Features local LLM deployment, file management, and API endpoints for seamless integration with personal projects.",
-      tech: ['Python', 'FastAPI', 'Docker', 'LLM', 'PostgreSQL', 'Redis'],
-      codeLink: "https://github.com/placeholder/ai-storage-server",
-      demoLink: "/projects/ai-server"
     }
   ];
 

@@ -16,7 +16,7 @@ const formatDate = (dateString) => {
   });
 };
 
-const BlogPostCard = ({ post, index }) => {
+const BlogPostCard = React.memo(({ post, index }) => {
   const cardVariants = {
     hidden: { opacity: 0, y: 20 },
     visible: {
@@ -36,6 +36,7 @@ const BlogPostCard = ({ post, index }) => {
       initial="hidden"
       animate="visible"
       whileHover={{ y: -5, transition: { duration: 0.2 } }}
+      style={{ willChange: 'transform, opacity' }}
     >
       <div className="project-image-container">
         <LazyImage 
@@ -69,7 +70,7 @@ const BlogPostCard = ({ post, index }) => {
       </div>
     </motion.div>
   );
-};
+});
 
 function Blog() {
   const typedTitle = useTypewriter("🗒️ Blogs", { speed: 30, scrambleOnMount: true, scrambleDuration: 1500 });
