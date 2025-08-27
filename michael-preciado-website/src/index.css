@@ -481,7 +481,7 @@ img[src^="placeholder-"].project-image-placeholder {
   object-fit: cover;
   object-position: center;
   display: block;
-  opacity: 0.75; /* Added transparency to match container */
+  opacity: 0.65; /* Increased transparency for consistency */
   filter: saturate(0.8) brightness(0.9) contrast(1.1); /* Subtle filter for tech aesthetic */
   transition: opacity 0.3s ease, filter 0.3s ease; /* Smooth transitions */
 }
@@ -504,7 +504,7 @@ img[src^="placeholder-"].project-image-placeholder {
 
 .lazy-image-container.thumbnail img {
   border-radius: 8px;
-  opacity: 0.8; /* Add transparency for consistency */
+  opacity: 0.65; /* Increased transparency to match other images */
   filter: saturate(0.85) brightness(0.95) contrast(1.1); /* Match project image filters */
   transition: opacity 0.3s ease, filter 0.3s ease; /* Smooth transitions */
 }
@@ -808,7 +808,7 @@ img[src^="placeholder-"].project-image-placeholder {
   object-fit: cover; /* Maintain aspect ratio while filling container */
   object-position: center; /* Center the image */
   display: block;
-  opacity: 0.8; /* Add transparency for modern look */
+  opacity: 0.65; /* Increased transparency for consistency */
   filter: saturate(0.85) brightness(0.95) contrast(1.1); /* Subtle tech aesthetic */
   transition: opacity 0.3s ease, filter 0.3s ease; /* Smooth transitions */
 }
@@ -1002,7 +1002,7 @@ img[src^="placeholder-"].project-image-placeholder {
   margin: 0; /* margin handled by wrapper */
   border-radius: 12px;
   border: 1px solid var(--border-color);
-  opacity: 0.75; /* Added transparency for better background blending */
+  opacity: 0.65; /* Increased transparency to match other containers */
 }
 
 #about p {
@@ -2253,12 +2253,14 @@ h3:hover {
   transition: transform 0.2s ease, box-shadow 0.2s ease;
   display: flex;
   flex-direction: column;
+  opacity: 0.65; /* Add transparency to match images */
 }
 
 .blog-post-card:hover {
   transform: translateY(-5px);
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
   border-color: var(--secondary-accent);
+  opacity: 0.85; /* Slightly more opaque on hover */
 }
 
 .blog-post-card .thumbnail {

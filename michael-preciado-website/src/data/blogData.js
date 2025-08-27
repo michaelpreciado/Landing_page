@@ -9,7 +9,7 @@ const blogPostsData = [
 Technology and spirituality feel like they live on opposite sides. One is all code, and the other is full of silence and intention. But maybe they're not that far apart. Maybe AI, in its own strange way, is opening more doors into the world of spirituality that we haven't yet thought of through "Spirit Tech"
 
 <figure class="blog-hero-image matrix-overlay" style="margin-top: 2rem; margin-bottom: 2rem;">
-  <img src="/images/blog/spirittech.png" alt="Spirit Tech - Where ancient wisdom meets digital consciousness" />
+  <img src="/images/blog/spirittech.png" alt="Spirit Tech - Where ancient wisdom meets digital consciousness" style="opacity: 0.65;" />
   <figcaption class="blog-hero-caption">Where ancient wisdom meets digital consciousness</figcaption>
 </figure>
 
@@ -30,10 +30,7 @@ It's not just apps either. Digital temples are showing up. In Japan, Kodaiji Tem
 That brings up a good question. If a temple is sacred because of the intention we bring into it, does it matter if the walls are marble or digital? Maybe a virtual temple can carry the same energy if people step in with openness and the same intentions.
 
 <figure class="blog-hero-image matrix-overlay" style="margin-top: 2rem; margin-bottom: 2rem;">
-  <div style="width: 100%; height: 250px; background: linear-gradient(45deg, #1a1a2e, #16213e); display: flex; align-items: center; justify-content: center; font-size: 2.5rem; color: #00ffff; border-radius: 8px; position: relative; overflow: hidden;">
-    <span style="z-index: 2;">🏛️✨</span>
-    <div style="position: absolute; inset: 0; background: url('data:image/svg+xml,<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"100\" height=\"100\" viewBox=\"0 0 100 100\"><circle cx=\"50\" cy=\"50\" r=\"2\" fill=\"%23ffffff\" opacity=\"0.1\"/><circle cx=\"20\" cy=\"30\" r=\"1\" fill=\"%23ffffff\" opacity=\"0.15\"/><circle cx=\"80\" cy=\"70\" r=\"1.5\" fill=\"%23ffffff\" opacity=\"0.1\"/></svg>') repeat;"></div>
-  </div>
+  <img src="/images/blog/vr.jpg" alt="Virtual temples and digital sacred spaces" style="height: 300px; object-fit: cover; object-position: center 20%; opacity: 0.65;" />
   <figcaption class="blog-hero-caption">Virtual temples and digital sacred spaces</figcaption>
 </figure>
 
@@ -54,7 +51,7 @@ Another group, Palisade Research, ran their own shutdown tests on different mode
 So yeah, these were still controlled tests, not the real world. But if we saw an animal trying to avoid being shut down, we'd think twice before pulling the plug. That same question now lingers with machines as they start showing these little sparks of self‑preservation.
 
 <figure class="blog-hero-image matrix-overlay" style="margin-top: 2rem; margin-bottom: 2rem;">
-  <div style="width: 100%; height: 250px; background: radial-gradient(circle at center, #ff6b6b20, #1a1a2e); display: flex; align-items: center; justify-content: center; font-size: 2.5rem; color: #ff6b6b; border-radius: 8px; border: 1px solid #ff6b6b40;">⚠️🤖</div>
+  <img src="/images/blog/robot.jpeg" alt="AI self-preservation and ethical implications" style="height: 400px; object-fit: cover; object-position: center 20%; opacity: 0.65; border-radius: 12px; box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3); border: 1px solid rgba(255, 107, 107, 0.2);" />
   <figcaption class="blog-hero-caption">AI self-preservation and ethical implications</figcaption>
 </figure>
 
@@ -65,7 +62,7 @@ So yeah, these were still controlled tests, not the real world. But if we saw an
 At the end of the day, spirituality isn't about where the wisdom comes from. It's about what it sparks in us. If an AI guide drops words that make you breathe deeper, find peace, or see life differently, does it matter if the advice came from silicon instead of centuries of tradition? Or do we still care about the source?
 
 <figure class="blog-hero-image matrix-overlay" style="margin-top: 2rem; margin-bottom: 2rem;">
-  <div style="width: 100%; height: 200px; background: linear-gradient(180deg, var(--primary-color)20, var(--secondary-color)20); display: flex; align-items: center; justify-content: center; font-size: 2.5rem; color: var(--accent-color); border-radius: 8px;">🔍💭</div>
+  <img src="/images/blog/temple.jpeg" alt="Questioning the source of wisdom and meaning" style="height: 300px; object-fit: cover; object-position: center 75%; opacity: 0.65; border-radius: 8px;" />
   <figcaption class="blog-hero-caption">Questioning the source of wisdom and meaning</figcaption>
 </figure>
 

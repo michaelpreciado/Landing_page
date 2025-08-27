@@ -12,6 +12,7 @@ function Hero() {
         src="/images/hero/mp.jpeg" 
         alt="Michael Preciado - Software Developer" 
         className="profile-image"
+        style={{ opacity: 0.65 }}
         priority={true}
         quality="high"
         maxWidth="300px"
