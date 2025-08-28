@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom'
 import { AnimatePresence } from 'framer-motion'
 import './index.css'
 import './styles/liquidGlass.css'
+import './styles/cyberpunkTransitions.css'
 import App from './App.jsx'
 import { initLiquidGlass, autoApplyLiquidGlass } from './utils/liquidGlass.js'
 import TranslateButton from './components/TranslateButton.jsx';

@@ -175,7 +175,7 @@ section + section {
 }
 
 /* --- Canvas --- */
-/* Keep as is, but ensure it doesn't cause performance issues */
+/* Ensure matrix background covers full document height */
 canvas {
   display: block;
   position: fixed;
@@ -183,9 +183,66 @@ canvas {
   left: 0;
   z-index: -1;
   width: 100vw;
-  height: 100vh;
+  min-height: 100vh; /* Minimum viewport height */
+  height: 100%; /* Full height */
   opacity: 0.5; /* Make it more subtle */
   pointer-events: none; /* Ensure it doesn't intercept clicks */
+}
+
+/* Force canvas to cover entire document */
+canvas[data-matrix-background] {
+  position: absolute;
+  min-height: calc(100vh + 200px); /* Extra height buffer */
+  height: calc(100% + 200px); /* Extra height buffer */
+}
+
+/* Ensure body and html allow full height */
+html, body {
+  width: 100%;
+  overflow-x: hidden;
+}
+
+/* Ensure the background extends behind all content */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #000;
+  z-index: -2;
+}
+
+/* Additional background coverage - covers the entire document */
+body::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  min-height: 100vh;
+  height: 100%;
+  background: #000;
+  z-index: -3;
+  pointer-events: none;
+}
+
+/* Alternative background coverage for long pages */
+.full-height-background {
+  position: relative;
+}
+
+.full-height-background::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #000;
+  z-index: -1;
+  pointer-events: none;
 }
 
 
@@ -481,14 +538,14 @@ img[src^="placeholder-"].project-image-placeholder {
   object-fit: cover;
   object-position: center;
   display: block;
-  opacity: 0.65; /* Increased transparency for consistency */
-  filter: saturate(0.8) brightness(0.9) contrast(1.1); /* Subtle filter for tech aesthetic */
+  opacity: 0.4; /* Increased transparency for ethereal glass effect */
+  filter: saturate(0.7) brightness(0.9) contrast(1.1); /* Enhanced glass-like appearance */
   transition: opacity 0.3s ease, filter 0.3s ease; /* Smooth transitions */
 }
 
 .lazy-image-container.about-image:hover img {
-  opacity: 0.9; /* Slightly more opaque on hover for better visibility */
-  filter: saturate(1) brightness(1) contrast(1.2); /* Enhanced clarity on hover */
+  opacity: 0.75; /* More transparent even on hover for consistent glass effect */
+  filter: saturate(0.9) brightness(1) contrast(1.2); /* Enhanced clarity on hover */
 }
 
 /* Disable matrix overlay on about image container */
@@ -504,15 +561,15 @@ img[src^="placeholder-"].project-image-placeholder {
 
 .lazy-image-container.thumbnail img {
   border-radius: 8px;
-  opacity: 0.65; /* Increased transparency to match other images */
-  filter: saturate(0.85) brightness(0.95) contrast(1.1); /* Match project image filters */
+  opacity: 0.4; /* Increased transparency for more ethereal glass effect */
+  filter: saturate(0.7) brightness(0.9) contrast(1.1); /* Enhanced glass-like appearance */
   transition: opacity 0.3s ease, filter 0.3s ease; /* Smooth transitions */
 }
 
 .lazy-image-container.thumbnail:hover img,
 .project-card:hover .lazy-image-container.thumbnail img {
-  opacity: 0.95; /* Increase opacity on hover */
-  filter: saturate(1) brightness(1) contrast(1.2); /* Enhanced clarity on hover */
+  opacity: 0.75; /* More transparent even on hover for consistent glass effect */
+  filter: saturate(0.9) brightness(1) contrast(1.2); /* Enhanced clarity on hover */
 }
 
 #hero h1 {
@@ -808,14 +865,14 @@ img[src^="placeholder-"].project-image-placeholder {
   object-fit: cover; /* Maintain aspect ratio while filling container */
   object-position: center; /* Center the image */
   display: block;
-  opacity: 0.65; /* Increased transparency for consistency */
-  filter: saturate(0.85) brightness(0.95) contrast(1.1); /* Subtle tech aesthetic */
+  opacity: 0.4; /* Increased transparency for ethereal glass effect */
+  filter: saturate(0.7) brightness(0.9) contrast(1.1); /* Enhanced glass-like appearance */
   transition: opacity 0.3s ease, filter 0.3s ease; /* Smooth transitions */
 }
 
 .project-card:hover .project-image {
-  opacity: 0.95; /* Increase opacity on hover */
-  filter: saturate(1) brightness(1) contrast(1.2); /* Enhanced clarity on hover */
+  opacity: 0.75; /* More transparent even on hover for consistent glass effect */
+  filter: saturate(0.9) brightness(1) contrast(1.2); /* Enhanced clarity on hover */
 }
 
 /* New styles for the icon placeholder */
@@ -1002,7 +1059,7 @@ img[src^="placeholder-"].project-image-placeholder {
   margin: 0; /* margin handled by wrapper */
   border-radius: 12px;
   border: 1px solid var(--border-color);
-  opacity: 0.65; /* Increased transparency to match other containers */
+  opacity: 0.4; /* Increased transparency for ethereal glass effect */
 }
 
 #about p {
@@ -1898,7 +1955,7 @@ main {
 #blogs .project-image {
   object-fit: cover; /* Fill the square container */
   object-position: center top; /* Show more top area of image */
-  opacity: 0.65; /* 35% transparency */
+  opacity: 0.4; /* Increased transparency for ethereal glass effect */
 }
 
 /* --- Enhanced Heading Glow Interactions --- */
@@ -1934,6 +1991,26 @@ section:has(.liquid-glass:hover) h3 {
   text-shadow: none;
   animation: none;
 }
+
+/* Enhanced hero name glow */
+.hero-name-glow {
+  text-shadow: 
+    0 0 15px rgba(255, 255, 255, 1),
+    0 0 25px rgba(30, 144, 255, 0.8),
+    0 0 35px rgba(30, 144, 255, 0.6),
+    0 0 45px rgba(30, 144, 255, 0.3);
+  filter: brightness(1.1);
+}
+
+.hero-code-glow {
+  text-shadow: 
+    0 0 12px rgba(255, 255, 255, 0.9),
+    0 0 20px rgba(30, 144, 255, 0.7),
+    0 0 28px rgba(30, 144, 255, 0.4);
+  filter: brightness(1.1);
+}
+
+
 
 /* Enhanced styling for code symbols in hero */
 .code-symbols {
@@ -2068,7 +2145,9 @@ h3:hover {
 
 /* Disable animations for users who prefer reduced motion */
 @media (prefers-reduced-motion: reduce) {
-  #hero h1 {
+  #hero h1,
+  .hero-name-glow,
+  .hero-code-glow {
     animation: none;
   }
   
@@ -2312,32 +2391,7 @@ h3:hover {
   color: var(--light-text);
 }
 
-.blog-footer {
-  text-align: center;
-  padding: 4rem 1rem 2rem 1rem;
-  color: var(--medium-text);
-}
 
-.blog-footer .social-icons {
-  display: flex;
-  justify-content: center;
-  gap: 1.5rem;
-  margin-bottom: 1rem;
-}
-
-.blog-footer .social-icons a {
-  color: var(--medium-text);
-  transition: color 0.2s ease;
-}
-
-.blog-footer .social-icons a:hover {
-  color: var(--primary-accent);
-}
-
-.blog-footer p {
-  font-size: 0.8rem;
-  margin: 0.25rem 0;
-}
 
 #projects .blog-intro-card {
   max-width: 600px;
@@ -2385,16 +2439,17 @@ h3:hover {
   width: 100%;
   aspect-ratio: 16 / 9;
   object-fit: cover;
-  opacity: 1; /* Remove transparency for better blog performance */
-  /* Removed HDR-like filters for better blog page performance */
-  transition: opacity 0.2s ease; /* Simplified transitions */
+  opacity: 0.4; /* Increased transparency for ethereal glass effect */
+  filter: saturate(0.7) brightness(0.9) contrast(1.1); /* Enhanced glass-like appearance */
+  transition: opacity 0.3s ease, filter 0.3s ease; /* Smooth transitions */
   /* Optimize for 1080p display */
   image-rendering: -webkit-optimize-contrast;
   image-rendering: optimize-contrast;
 }
 
 .blog-post-card:hover .thumbnail {
-  opacity: 0.9; /* Subtle hover effect only */
+  opacity: 0.75; /* More transparent even on hover for consistent glass effect */
+  filter: saturate(0.9) brightness(1) contrast(1.2); /* Enhanced clarity on hover */
 }
 
 .blog-post-card-content {
@@ -2440,32 +2495,7 @@ h3:hover {
   color: var(--light-text);
 }
 
-.blog-footer {
-  text-align: center;
-  padding: 4rem 1rem 2rem 1rem;
-  color: var(--medium-text);
-}
 
-.blog-footer .social-icons {
-  display: flex;
-  justify-content: center;
-  gap: 1.5rem;
-  margin-bottom: 1rem;
-}
-
-.blog-footer .social-icons a {
-  color: var(--medium-text);
-  transition: color 0.2s ease;
-}
-
-.blog-footer .social-icons a:hover {
-  color: var(--primary-accent);
-}
-
-.blog-footer p {
-  font-size: 0.8rem;
-  margin: 0.25rem 0;
-}
 
 @media (max-width: 480px) {
   #projects .blog-intro-card {
@@ -2489,7 +2519,7 @@ h3:hover {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  z-index: 1000;
+  z-index: 9999; /* Higher than cyberpunk overlays to ensure navigation stays on top */
   pointer-events: none; /* Allow clicks to pass through the container */
 }
 
@@ -2633,9 +2663,15 @@ h3:hover {
 }
 
 /* Scale down hero typography so names fit on small screens */
-#hero h1 {
-  font-size: 1.75rem; /* approx 28px */
+#hero h1,
+.hero-name-glow {
+  font-size: 2.2rem !important; /* Larger but still mobile-friendly */
 }
+
+.hero-code-glow {
+  font-size: 1.8rem !important; /* Scale down code symbols for mobile */
+}
+
 .code-symbols {
   font-size: 1.2rem;
   margin-left: 4px;

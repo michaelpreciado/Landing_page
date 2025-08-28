@@ -1,0 +1,694 @@
+/* === CYBERPUNK TRANSITIONS & ANIMATIONS === */
+
+/* Base performance optimizations */
+* {
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+/* === PAGE TRANSITIONS === */
+
+/* Main page transition wrapper */
+.page-transition-enter {
+  opacity: 0;
+  transform: translateY(20px) scale(0.98);
+  filter: blur(2px) brightness(0.8);
+}
+
+.page-transition-enter-active {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  filter: blur(0) brightness(1);
+  transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition-property: opacity, transform, filter;
+}
+
+.page-transition-exit {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  filter: blur(0) brightness(1);
+}
+
+.page-transition-exit-active {
+  opacity: 0;
+  transform: translateY(-20px) scale(1.02);
+  filter: blur(3px) brightness(1.2);
+  transition: all 0.4s cubic-bezier(0.55, 0.055, 0.675, 0.19);
+  transition-property: opacity, transform, filter;
+}
+
+/* Neon glow overlay for page transitions */
+.page-glow-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at center, 
+    rgba(30, 144, 255, 0.1) 0%, 
+    rgba(70, 163, 255, 0.05) 50%, 
+    transparent 100%);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 9998;
+  transition: opacity 0.3s ease;
+}
+
+.page-glow-overlay.active {
+  opacity: 1;
+}
+
+/* === MENU HOVER EFFECTS === */
+
+/* Base menu item styling */
+.cyber-menu-item {
+  position: relative;
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  background: transparent;
+  border: 1px solid rgba(30, 144, 255, 0.3);
+  border-radius: 8px;
+  color: var(--light-text);
+  text-decoration: none;
+  font-family: var(--font-sans);
+  font-weight: 500;
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  overflow: hidden;
+  cursor: pointer;
+  will-change: transform, box-shadow, border-color;
+}
+
+/* Neon glow effect */
+.cyber-menu-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(45deg, 
+    transparent, 
+    rgba(30, 144, 255, 0.1), 
+    transparent);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: -1;
+}
+
+/* Pulse glow on hover */
+.cyber-menu-item:hover {
+  border-color: rgba(30, 144, 255, 0.8);
+  box-shadow: 
+    0 0 20px rgba(30, 144, 255, 0.4),
+    0 0 40px rgba(30, 144, 255, 0.2),
+    inset 0 0 20px rgba(30, 144, 255, 0.1);
+  transform: translateY(-2px);
+  color: var(--primary-accent);
+}
+
+.cyber-menu-item:hover::before {
+  opacity: 1;
+}
+
+/* Pulsing animation */
+.cyber-menu-item:hover {
+  animation: neon-pulse 2s ease-in-out infinite;
+}
+
+@keyframes neon-pulse {
+  0%, 100% {
+    box-shadow: 
+      0 0 20px rgba(30, 144, 255, 0.4),
+      0 0 40px rgba(30, 144, 255, 0.2),
+      inset 0 0 20px rgba(30, 144, 255, 0.1);
+  }
+  50% {
+    box-shadow: 
+      0 0 30px rgba(30, 144, 255, 0.6),
+      0 0 60px rgba(30, 144, 255, 0.3),
+      inset 0 0 30px rgba(30, 144, 255, 0.15);
+  }
+}
+
+/* === CLICK RIPPLE EFFECT === */
+
+.cyber-menu-item {
+  position: relative;
+  overflow: hidden;
+}
+
+.ripple {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle, 
+    rgba(30, 144, 255, 0.6) 0%, 
+    rgba(70, 163, 255, 0.4) 30%, 
+    transparent 70%);
+  transform: scale(0);
+  animation: ripple-effect 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  pointer-events: none;
+}
+
+@keyframes ripple-effect {
+  0% {
+    transform: scale(0);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+/* Glitch effect for clicks */
+.glitch-click {
+  animation: glitch-click-effect 0.3s ease-out;
+}
+
+@keyframes glitch-click-effect {
+  0% {
+    transform: translateX(0);
+    filter: hue-rotate(0deg);
+  }
+  20% {
+    transform: translateX(-2px);
+    filter: hue-rotate(90deg);
+  }
+  40% {
+    transform: translateX(2px);
+    filter: hue-rotate(180deg);
+  }
+  60% {
+    transform: translateX(-1px);
+    filter: hue-rotate(270deg);
+  }
+  80% {
+    transform: translateX(1px);
+    filter: hue-rotate(360deg);
+  }
+  100% {
+    transform: translateX(0);
+    filter: hue-rotate(0deg);
+  }
+}
+
+/* === SCROLL REVEAL ANIMATIONS === */
+
+/* Base reveal animation */
+.cyber-reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  filter: blur(2px);
+  transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  will-change: opacity, transform, filter;
+}
+
+.cyber-reveal.revealed {
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0);
+}
+
+/* Staggered reveals */
+.cyber-reveal-stagger {
+  opacity: 0;
+  transform: translateY(30px) translateX(-20px);
+  filter: blur(1px);
+  transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  will-change: opacity, transform, filter;
+}
+
+.cyber-reveal-stagger.revealed {
+  opacity: 1;
+  transform: translateY(0) translateX(0);
+  filter: blur(0);
+}
+
+/* Delay variations for staggered animations */
+.cyber-reveal-stagger:nth-child(1) { transition-delay: 0.1s; }
+.cyber-reveal-stagger:nth-child(2) { transition-delay: 0.2s; }
+.cyber-reveal-stagger:nth-child(3) { transition-delay: 0.3s; }
+.cyber-reveal-stagger:nth-child(4) { transition-delay: 0.4s; }
+.cyber-reveal-stagger:nth-child(5) { transition-delay: 0.5s; }
+
+/* Neon reveal with glow */
+.cyber-reveal-glow {
+  opacity: 0;
+  transform: translateY(50px) scale(0.9);
+  filter: blur(3px) brightness(0.5);
+  transition: all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  will-change: opacity, transform, filter;
+}
+
+.cyber-reveal-glow.revealed {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  filter: blur(0) brightness(1);
+  box-shadow: 
+    0 0 20px rgba(30, 144, 255, 0.3),
+    0 0 40px rgba(30, 144, 255, 0.1);
+}
+
+/* === DATA STREAM ANIMATION === */
+
+.data-stream {
+  position: relative;
+  overflow: hidden;
+}
+
+.data-stream::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    rgba(30, 144, 255, 0.6) 50%, 
+    transparent 100%);
+  transition: left 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  z-index: 1;
+}
+
+.data-stream.active::before {
+  left: 100%;
+}
+
+/* Binary rain effect */
+.binary-rain {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.binary-drop {
+  position: absolute;
+  color: rgba(30, 144, 255, 0.6);
+  font-family: 'Courier New', monospace;
+  font-size: 0.8rem;
+  animation: binary-fall linear infinite;
+  will-change: transform;
+}
+
+@keyframes binary-fall {
+  0% {
+    transform: translateY(-100vh);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh);
+    opacity: 0;
+  }
+}
+
+/* === LOADING STATES === */
+
+.cyber-loading {
+  position: relative;
+  color: transparent;
+  background: linear-gradient(90deg, 
+    transparent, 
+    rgba(30, 144, 255, 0.8), 
+    transparent);
+  background-size: 200% 100%;
+  animation: cyber-loading-pulse 1.5s ease-in-out infinite;
+  border-radius: 4px;
+}
+
+@keyframes cyber-loading-pulse {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* === MOBILE OPTIMIZATIONS === */
+
+@media (max-width: 768px) {
+  /* Reduce animation complexity on mobile */
+  .cyber-menu-item:hover {
+    animation: none;
+  }
+  
+  .cyber-reveal,
+  .cyber-reveal-stagger,
+  .cyber-reveal-glow {
+    transition-duration: 0.4s;
+  }
+  
+  .page-transition-enter-active,
+  .page-transition-exit-active {
+    transition-duration: 0.3s;
+  }
+  
+  /* Disable complex filters on mobile for performance */
+  .cyber-reveal,
+  .cyber-reveal-stagger,
+  .cyber-reveal-glow {
+    filter: none;
+  }
+  
+  .page-transition-enter,
+  .page-transition-enter-active,
+  .page-transition-exit,
+  .page-transition-exit-active {
+    filter: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  /* Respect user's motion preferences */
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  
+  .cyber-menu-item:hover {
+    animation: none;
+  }
+  
+  .binary-drop {
+    animation: none;
+  }
+}
+
+/* === UTILITY CLASSES === */
+
+/* Quick utility classes for applying effects */
+.glow-hover:hover {
+  box-shadow: 0 0 20px rgba(30, 144, 255, 0.6);
+  transition: box-shadow 0.3s ease;
+}
+
+.cyber-border {
+  border: 1px solid rgba(30, 144, 255, 0.3);
+  border-radius: 8px;
+  transition: border-color 0.3s ease;
+}
+
+.cyber-border:hover {
+  border-color: rgba(30, 144, 255, 0.8);
+}
+
+.neon-text {
+  color: var(--primary-accent);
+  text-shadow: 
+    0 0 10px rgba(30, 144, 255, 0.8),
+    0 0 20px rgba(30, 144, 255, 0.4),
+    0 0 30px rgba(30, 144, 255, 0.2);
+}
+
+.cyber-glass {
+  background: rgba(10, 25, 47, 0.8);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(30, 144, 255, 0.2);
+  border-radius: 12px;
+}
+
+/* Performance optimization for animations */
+.will-change-transform {
+  will-change: transform;
+}
+
+.will-change-opacity {
+  will-change: opacity;
+}
+
+.gpu-accelerated {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+/* === ADDITIONAL KEYFRAME ANIMATIONS === */
+
+/* Cyberpunk glitch effect */
+@keyframes cyber-glitch {
+  0% {
+    transform: translateX(0);
+    filter: hue-rotate(0deg) contrast(1);
+  }
+  20% {
+    transform: translateX(-2px);
+    filter: hue-rotate(90deg) contrast(1.2);
+  }
+  40% {
+    transform: translateX(2px);
+    filter: hue-rotate(180deg) contrast(0.8);
+  }
+  60% {
+    transform: translateX(-1px);
+    filter: hue-rotate(270deg) contrast(1.5);
+  }
+  80% {
+    transform: translateX(1px);
+    filter: hue-rotate(360deg) contrast(1);
+  }
+  100% {
+    transform: translateX(0);
+    filter: hue-rotate(0deg) contrast(1);
+  }
+}
+
+/* Binary rain fall animation */
+@keyframes cyber-binary-fall {
+  0% {
+    transform: translateY(-100vh);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh);
+    opacity: 0;
+  }
+}
+
+/* Ripple effect animation */
+@keyframes cyber-ripple-effect {
+  0% {
+    transform: scale(0);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+/* Neon text glow */
+@keyframes neon-text-glow {
+  0%, 100% {
+    text-shadow: 
+      0 0 10px rgba(30, 144, 255, 0.8),
+      0 0 20px rgba(30, 144, 255, 0.4),
+      0 0 30px rgba(30, 144, 255, 0.2);
+  }
+  50% {
+    text-shadow: 
+      0 0 15px rgba(30, 144, 255, 1),
+      0 0 30px rgba(30, 144, 255, 0.6),
+      0 0 45px rgba(30, 144, 255, 0.3);
+  }
+}
+
+/* Cyber loading bars */
+@keyframes cyber-loading-bars {
+  0% {
+    transform: scaleX(0);
+  }
+  50% {
+    transform: scaleX(1);
+  }
+  100% {
+    transform: scaleX(0);
+  }
+}
+
+/* Matrix scan line */
+@keyframes matrix-scan {
+  0% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh);
+    opacity: 0;
+  }
+}
+
+/* Hologram flicker */
+@keyframes hologram-flicker {
+  0%, 100% {
+    opacity: 1;
+    filter: brightness(1);
+  }
+  98% {
+    opacity: 1;
+    filter: brightness(1);
+  }
+  99% {
+    opacity: 0.8;
+    filter: brightness(1.2) contrast(1.3);
+  }
+}
+
+/* Terminal cursor blink */
+@keyframes terminal-cursor {
+  0%, 50% {
+    opacity: 1;
+  }
+  51%, 100% {
+    opacity: 0;
+  }
+}
+
+/* === ENHANCED UTILITY CLASSES === */
+
+/* Hologram effect */
+.cyber-hologram {
+  position: relative;
+  animation: hologram-flicker 3s infinite;
+}
+
+.cyber-hologram::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(30, 144, 255, 0.8), transparent);
+  animation: matrix-scan 2s linear infinite;
+}
+
+/* Terminal text effect */
+.cyber-terminal-text {
+  font-family: 'Courier New', monospace;
+  color: var(--primary-accent);
+  text-shadow: 0 0 10px rgba(30, 144, 255, 0.6);
+}
+
+.cyber-terminal-text::after {
+  content: '_';
+  animation: terminal-cursor 1s infinite;
+  color: var(--primary-accent);
+}
+
+/* Data transfer effect */
+.cyber-data-transfer {
+  position: relative;
+  overflow: hidden;
+}
+
+.cyber-data-transfer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    var(--primary-accent) 50%, 
+    transparent 100%);
+  animation: cyber-loading-bars 1.5s ease-in-out infinite;
+}
+
+/* Matrix code rain */
+.cyber-matrix-bg {
+  position: relative;
+  overflow: hidden;
+}
+
+.cyber-matrix-bg::before {
+  content: '01001001 01101110 01101110 01101111 01110110 01100001 01110100 01101001 01101111 01101110';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  font-family: 'Courier New', monospace;
+  font-size: 0.6rem;
+  color: rgba(30, 144, 255, 0.1);
+  white-space: pre-wrap;
+  overflow: hidden;
+  animation: matrix-scan 10s linear infinite;
+  z-index: -1;
+}
+
+/* Circuit board pattern */
+.cyber-circuit {
+  background-image: 
+    linear-gradient(90deg, rgba(30, 144, 255, 0.1) 1px, transparent 1px),
+    linear-gradient(rgba(30, 144, 255, 0.1) 1px, transparent 1px);
+  background-size: 20px 20px;
+  position: relative;
+}
+
+.cyber-circuit::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at 25% 25%, rgba(30, 144, 255, 0.2) 2px, transparent 2px),
+              radial-gradient(circle at 75% 75%, rgba(30, 144, 255, 0.2) 2px, transparent 2px);
+  background-size: 20px 20px;
+}
+
+/* Neon border */
+.cyber-neon-border {
+  border: 2px solid var(--primary-accent);
+  border-radius: 8px;
+  box-shadow: 
+    0 0 10px rgba(30, 144, 255, 0.5),
+    inset 0 0 10px rgba(30, 144, 255, 0.2);
+  animation: neon-pulse 2s ease-in-out infinite;
+}
+
+/* Scan line overlay */
+.cyber-scanlines {
+  position: relative;
+}
+
+.cyber-scanlines::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: repeating-linear-gradient(
+    transparent,
+    transparent 2px,
+    rgba(30, 144, 255, 0.03) 2px,
+    rgba(30, 144, 255, 0.03) 4px
+  );
+  pointer-events: none;
+}

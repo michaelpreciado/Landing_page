@@ -63,6 +63,27 @@ function Contact() {
             </motion.button>
           </form>
         </div>
+        
+        {/* Footer */}
+        <footer className="site-footer" style={{ marginTop: '4rem', padding: '3rem 1rem 2rem', textAlign: 'center', borderTop: '1px solid var(--border-color)' }}>
+          <div className="social-icons" style={{ display: 'flex', justifyContent: 'center', gap: '1.5rem', marginBottom: '1rem' }}>
+            <a href="https://github.com/mpreciado3" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--medium-text)', textDecoration: 'none' }}>
+              GitHub
+            </a>
+            <a href="https://linkedin.com/in/michael-preciado-dev" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--medium-text)', textDecoration: 'none' }}>
+              LinkedIn
+            </a>
+            <a href="mailto:contact@michaelpreciado.dev" style={{ color: 'var(--medium-text)', textDecoration: 'none' }}>
+              Email
+            </a>
+          </div>
+          <p style={{ fontSize: '0.9rem', margin: '0', color: 'var(--medium-text)' }}>
+            © 2025 Michael Preciado
+          </p>
+          <p style={{ fontSize: '0.8rem', fontStyle: 'italic', opacity: 0.8, margin: '0.5rem 0 0 0', color: 'var(--medium-text)' }}>
+            Built with caffeine & curiosity.
+          </p>
+        </footer>
       </div>
     </section>
   );
