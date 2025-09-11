@@ -248,11 +248,11 @@ body::after {
 
 /* --- Mobile Performance Optimizations --- */
 @media (max-width: 768px) {
-  /* Reduce animations on mobile for better performance */
+  /* Optimize for 120fps on mobile */
   * {
-    animation-duration: 0.3s !important;
+    animation-duration: 0.1s !important; /* Ultra-fast animations for mobile */
     animation-delay: 0s !important;
-    transition-duration: 0.2s !important;
+    transition-duration: 0.08s !important; /* Snappy transitions */
   }
   
   /* Optimize scrolling performance */
@@ -288,6 +288,99 @@ body::after {
   body {
     text-rendering: optimizeSpeed;
     -webkit-font-smoothing: subpixel-antialiased;
+  }
+}
+
+/* === 120FPS PERFORMANCE OPTIMIZATIONS === */
+
+/* Force 120fps rendering for all elements */
+* {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  will-change: auto; /* Reset will-change to auto by default */
+}
+
+/* GPU acceleration for performance-critical elements */
+.project-card, .social-card, .skill-button, .project-button, 
+.lazy-image-container, .matrix-overlay, .about-image-wrapper {
+  transform: translate3d(0, 0, 0);
+  will-change: transform, opacity;
+  contain: layout paint size;
+}
+
+/* Optimize text rendering for 120fps */
+h1, h2, h3, h4, h5, h6, p, span, div {
+  text-rendering: optimizeSpeed;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Optimize image rendering */
+img {
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: optimize-contrast;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* 120fps scroll optimization */
+html {
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Optimize canvas and matrix background for 120fps */
+canvas {
+  transform: translateZ(0);
+  will-change: transform;
+  contain: layout paint size;
+}
+
+/* Optimize matrix overlay animations */
+.matrix-overlay::after {
+  transform: translate3d(0, 0, 0);
+  will-change: transform;
+  contain: layout paint size;
+}
+
+/* 120fps performance monitoring */
+.performance-monitor {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  background: rgba(0, 0, 0, 0.8);
+  color: #00ff00;
+  font-family: 'Courier New', monospace;
+  font-size: 12px;
+  padding: 8px;
+  border-radius: 4px;
+  z-index: 10000;
+  pointer-events: none;
+  transform: translateZ(0);
+  will-change: auto;
+}
+
+/* Optimize animations for 120fps - shorter durations, better easing */
+@media (prefers-reduced-motion: no-preference) {
+  /* Reduce all animation durations for 120fps */
+  * {
+    animation-duration: 0.15s !important; /* Reduced from longer durations */
+    transition-duration: 0.12s !important; /* Reduced for snappier feel */
+  }
+  
+  /* Specific optimizations for common elements */
+  a, button, .skill-button, .project-button {
+    transition-duration: 0.08s !important; /* Ultra-fast hover states */
+  }
+  
+  .project-card, .social-card {
+    transition-duration: 0.1s !important; /* Fast card interactions */
+  }
+  
+  /* Optimize matrix overlay for 120fps */
+  .matrix-overlay::after {
+    animation-duration: 3s !important; /* Faster matrix animation */
   }
 }
 
@@ -362,9 +455,11 @@ body::after {
   overflow: hidden;
   background-color: var(--medium-bg);
   border-radius: 8px;
-  /* Performance optimizations for all images */
-  contain: layout style paint;
-  transform: translateZ(0);
+  /* 120fps performance optimizations for all images */
+  contain: layout style paint size;
+  transform: translate3d(0, 0, 0);
+  will-change: transform, opacity;
+  backface-visibility: hidden;
 }
 
 /* Responsive image sizing for performance */
@@ -493,6 +588,11 @@ img[src^="placeholder-"].project-image-placeholder {
   border-radius: 50%;
   margin: 0 auto 30px auto; /* Center horizontally */
   display: block;
+  box-shadow: 
+    0 0 20px rgba(30, 144, 255, 0.3),
+    0 0 40px rgba(30, 144, 255, 0.2),
+    0 0 60px rgba(30, 144, 255, 0.1);
+  transition: box-shadow 0.3s ease;
 }
 
 /* Ensure LazyImage containers inherit proper sizing */
@@ -505,6 +605,19 @@ img[src^="placeholder-"].project-image-placeholder {
   overflow: hidden;
   position: relative;
   isolation: isolate; /* Create a new stacking context */
+  box-shadow: 
+    0 0 20px rgba(30, 144, 255, 0.3),
+    0 0 40px rgba(30, 144, 255, 0.2),
+    0 0 60px rgba(30, 144, 255, 0.1);
+  transition: box-shadow 0.3s ease;
+}
+
+.profile-image:hover,
+.lazy-image-container.profile-image:hover {
+  box-shadow: 
+    0 0 30px rgba(30, 144, 255, 0.4),
+    0 0 50px rgba(30, 144, 255, 0.3),
+    0 0 80px rgba(30, 144, 255, 0.2);
 }
 
 .lazy-image-container.profile-image img {
@@ -671,103 +784,145 @@ img[src^="placeholder-"].project-image-placeholder {
 
 /* --- Connect Section Styles --- */
 #connect {
-  max-width: 800px; /* Increased width from 700px */
+  max-width: 1200px;
+  width: 100%;
+  padding: 0 1rem;
 }
 
-#connect h2 {
-  margin-bottom: 40px;
+.connect-header {
+  text-align: center;
+  margin-bottom: 3rem;
 }
 
-.connect-buttons-container {
-  display: grid; /* Use grid for better alignment */
-  grid-template-columns: 1fr; /* Single column on mobile */
-  gap: 15px;
-  justify-content: center; /* Center the grid within parent */
-  width: 100%; /* Take full width so columns are equal */
+.connect-header h2 {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+  background: linear-gradient(135deg, var(--light-text), var(--primary-accent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
-.connect-button {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%; /* Make button fill column width for symmetry */
-  /* background: var(--medium-bg); */ /* Use medium background */
-  /* background: rgba(10, 25, 47, 0.9); */ /* Removed - liquid glass handles background */
-  border: 1px solid var(--border-color); /* Subtle border */
-  color: var(--light-text);
-  padding: 12px 18px; /* Reduced padding for smaller size */
-  border-radius: 12px; /* Apple-like rounded corners */
-  text-decoration: none;
-  font-family: var(--font-sans);
-  font-size: 0.95rem; /* Slightly smaller text */
-  /* transition: background-color var(--transition-fast), border-color var(--transition-fast), transform var(--transition-fast); */
-  transition: background-color var(--transition-fast), border-color var(--transition-fast), transform var(--transition-fast); /* Keep transform */
-  /* box-shadow: 0 0 10px rgba(10, 132, 255, 0.1); Remove shadow */
+.connect-subtitle {
+  color: var(--medium-text);
+  font-size: 1.1rem;
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
 }
 
-.connect-button:hover, .connect-button:focus-visible {
-  /* background-color: #3a3a3c; */ /* Slightly lighter gray */
-  /* background-color: rgba(30, 144, 255, 0.1); */ /* Removed - liquid glass handles background */
-  /* border-color: rgba(255, 255, 255, 0.3); */ /* Slightly more visible border */
-  border-color: var(--secondary-accent); /* Original hover border */
-  outline: none;
-  /* transform: scale(1.02); */ /* Subtle scale effect */
-  transform: translateY(-2px); /* Original lift effect */
-}
-
-.connect-button-content {
-  display: flex;
-  align-items: center;
-  gap: 15px; /* Keep gap between icon and text */
-  font-weight: 500; /* Medium weight text */
-  flex-grow: 1; /* Allow content to fill space */
-  justify-content: center; /* Center icon and text within this container */
-}
-
-.connect-button-icon {
-  font-size: 1.4rem; /* Adjust icon size */
-  line-height: 1;
-  color: var(--medium-text); /* Use secondary text for icon */
-  /* width: 28px; */ /* Removed fixed width */
-  /* text-align: center; */ /* Removed text-align */
-  transition: color var(--transition-fast);
-  /* Added display flex to ensure vertical alignment if needed */
-  display: inline-flex; 
-  align-items: center; 
-}
-/* Remove placeholder styles if using real icons */
-.icon-placeholder { /* Keep similar style if using text */
-  display: inline-flex;
-  align-items: center;
+.social-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 220px));
+  gap: 1.5rem;
+  margin-top: 2rem;
   justify-content: center;
-  width: 28px;
-  height: 28px;
-  font-size: 1rem;
-  font-weight: 500;
-  color: var(--medium-text);
-  border: 1px solid var(--border-color);
-  border-radius: 50%;
-  background-color: transparent;
-  flex-shrink: 0;
-  transition: border-color var(--transition-fast), color var(--transition-fast);
 }
-.connect-button:hover .icon-placeholder,
-.connect-button:focus-visible .icon-placeholder {
-  border-color: rgba(255, 255, 255, 0.3);
+
+.social-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 2rem 1.5rem;
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  text-decoration: none;
+  color: var(--light-text);
+  background: rgba(10, 25, 47, 0.3);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: all var(--transition-medium);
+  position: relative;
+  overflow: hidden;
+  min-height: 180px;
+  justify-content: center;
+}
+
+.social-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(30, 144, 255, 0.1), rgba(70, 163, 255, 0.05));
+  opacity: 0;
+  transition: opacity var(--transition-medium);
+  z-index: 1;
+}
+
+.social-card:hover::before {
+  opacity: 1;
+}
+
+.social-card:hover {
+  transform: translateY(-8px);
+  border-color: var(--primary-accent);
+  box-shadow: 
+    0 10px 30px rgba(30, 144, 255, 0.2),
+    0 0 20px rgba(30, 144, 255, 0.1);
+}
+
+.social-card-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  color: var(--primary-accent);
+  position: relative;
+  z-index: 2;
+  transition: all var(--transition-medium);
+}
+
+.social-card:hover .social-card-icon {
+  transform: scale(1.1);
+  color: var(--secondary-accent);
+}
+
+.social-card-content {
+  position: relative;
+  z-index: 2;
+}
+
+.social-card-platform {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
   color: var(--light-text);
 }
 
-
-.connect-button-arrow {
-  font-size: 1.2rem; /* Adjust arrow size */
+.social-card-handle {
+  font-size: 0.9rem;
   color: var(--medium-text);
-  transition: transform var(--transition-fast), color var(--transition-fast);
+  margin: 0;
+  font-weight: 400;
 }
 
-.connect-button:hover .connect-button-arrow,
-.connect-button:focus-visible .connect-button-arrow {
-  color: var(--light-text); /* Brighter arrow */
-  transform: translateX(4px); /* Move arrow */
+.social-card-description {
+  font-size: 0.85rem;
+  color: var(--medium-text);
+  margin-top: 0.5rem;
+  opacity: 0.8;
+}
+
+/* Mobile responsive styles for social cards */
+@media (max-width: 768px) {
+  .social-grid {
+    grid-template-columns: repeat(auto-fit, minmax(180px, 200px));
+    gap: 1rem;
+  }
+  
+  .social-card {
+    padding: 1.5rem 1rem;
+    min-height: 160px;
+  }
+  
+  .social-card-icon {
+    font-size: 2.5rem;
+  }
+  
+  .connect-header h2 {
+    font-size: 2rem;
+  }
 }
 
 /* --- Projects Section Styles --- */
@@ -935,6 +1090,27 @@ img[src^="placeholder-"].project-image-placeholder {
   display: flex;
   flex-wrap: wrap; /* Allow buttons to wrap on smaller screens */
   gap: 15px; /* Space between buttons */
+  justify-content: flex-start; /* Align buttons to the left */
+  align-items: center; /* Vertically center buttons */
+  width: 100%; /* Ensure full width */
+  margin-top: 1rem; /* Add some top margin */
+  min-height: 50px; /* Ensure enough height for buttons */
+}
+
+/* Ensure button links don't constrain button width */
+.project-links a {
+  display: inline-block;
+  flex-shrink: 0; /* Prevent buttons from shrinking */
+  min-width: fit-content; /* Ensure link width fits content */
+}
+
+/* Additional button text protection */
+.project-button,
+.project-button-primary,
+.project-button-secondary {
+  text-overflow: visible !important;
+  overflow: visible !important;
+  max-width: none !important;
 }
 
 /* Removed margin rules from individual links */
@@ -950,13 +1126,19 @@ img[src^="placeholder-"].project-image-placeholder {
   background: transparent;
   border: 1px solid var(--primary-accent);
   color: var(--primary-accent);
-  padding: 10px 18px; /* Increased padding for better visibility */
+  padding: 12px 28px; /* Increased horizontal padding for better text fit */
   border-radius: 20px; /* Pill shape */
   cursor: pointer;
   font-size: 0.9rem; /* Slightly larger font */
   font-weight: 500;
   text-decoration: none; /* Ensure no underline from <a> */
   display: inline-block; /* Ensure padding is applied correctly */
+  min-width: 160px; /* Increased minimum width for text */
+  width: auto; /* Allow width to expand as needed */
+  white-space: nowrap; /* Prevent text wrapping */
+  text-align: center; /* Center the text */
+  box-sizing: border-box; /* Include padding in width calculation */
+  overflow: visible; /* Ensure text is not clipped */
   
   /* Enhanced transitions and effects */
   transition: 
@@ -974,6 +1156,9 @@ img[src^="placeholder-"].project-image-placeholder {
 /* Secondary button style (explicitly defined, same as base for clarity) */
 .project-button-secondary {
   /* Inherits from .project-button */
+  background: transparent;
+  border: 1px solid var(--primary-accent);
+  color: var(--primary-accent);
 }
 
 /* Primary button style (Live Demo) - Enhanced visibility */
@@ -983,7 +1168,13 @@ img[src^="placeholder-"].project-image-placeholder {
   color: #ffffff; /* Pure white for maximum contrast */
   font-weight: 600; /* Slightly bolder text */
   font-size: 0.95rem; /* Slightly larger than secondary buttons */
-  padding: 12px 22px; /* More prominent padding */
+  padding: 12px 32px; /* Increased horizontal padding for better text fit */
+  min-width: 180px; /* Significantly wider for primary button */
+  width: auto; /* Allow width to expand as needed */
+  white-space: nowrap; /* Prevent text wrapping */
+  text-align: center; /* Center the text */
+  box-sizing: border-box; /* Include padding in width calculation */
+  overflow: visible; /* Ensure text is not clipped */
   
   /* Enhanced glow effect for visibility */
   box-shadow: 
@@ -1063,11 +1254,13 @@ img[src^="placeholder-"].project-image-placeholder {
 }
 
 #about p {
-  max-width: 700px; /* Wider text block */
-  margin-bottom: 1.5em;
+  max-width: 750px; /* Slightly wider text block for better reading experience */
+  margin-bottom: 2em; /* Increased spacing between paragraphs */
   text-align: center; /* Center align longer text for symmetry */
   margin-left: auto; 
   margin-right: auto;
+  font-size: 1.15rem; /* Increased font size for better readability */
+  line-height: 1.7; /* Improved line spacing for readability */
 }
 
 /* --- Contact Section Styles --- */
@@ -1240,8 +1433,6 @@ img[src^="placeholder-"].project-image-placeholder {
   a { transition: color var(--transition-fast); }
   /* .skill-button { transition: background-color var(--transition-fast), transform var(--transition-fast); } */
   .skill-button { transition: background-color var(--transition-fast), border-color var(--transition-fast); } /* Corrected transition */
-  .connect-button { transition: background-color var(--transition-fast), border-color var(--transition-fast), transform var(--transition-medium); }
-  .connect-button-arrow { transition: transform var(--transition-fast), color var(--transition-fast); }
   .project-card { transition: transform var(--transition-medium), box-shadow var(--transition-medium); }
   .project-button { transition: background-color var(--transition-fast), color var(--transition-fast); }
   .form-input, .form-textarea { transition: border-color var(--transition-fast), box-shadow var(--transition-fast); }
@@ -1285,6 +1476,14 @@ img[src^="placeholder-"].project-image-placeholder {
   h2 { font-size: 2rem; } /* 34px */
   h3 { font-size: 1.5rem; } /* 25.5px */
   p { font-size: 1.05rem; } /* ~18px */
+  
+  /* Enhanced About section text for tablets and larger screens */
+  #about p { 
+    font-size: 1.25rem; /* Larger text for better readability on bigger screens */
+    line-height: 1.8; /* Enhanced line spacing */
+    max-width: 800px; /* Wider text block on larger screens */
+    margin-bottom: 2.25em; /* More generous spacing on larger screens */
+  }
 
   /* Increase section padding */
   section { padding: 100px 40px; }
@@ -1303,10 +1502,10 @@ img[src^="placeholder-"].project-image-placeholder {
     padding-top: 40px; /* Reduced from default section padding */
   }
 
-  /* Connect adjustments - maybe 2 columns */
-  .connect-buttons-container {
-    grid-template-columns: repeat(2, 1fr); /* Two columns */
-    gap: 20px;
+  /* Connect adjustments - responsive grid */
+  .social-grid {
+    grid-template-columns: repeat(3, 200px);
+    gap: 1.5rem;
   }
 
   /* Projects Adjustments - 2 columns */
@@ -1743,8 +1942,8 @@ main {
 }
 
 @keyframes matrixScroll {
-  0% { transform: translateY(-100%); }
-  100% { transform: translateY(100%); }
+  0% { transform: translate3d(0, -100%, 0); }
+  100% { transform: translate3d(0, 100%, 0); }
 }
 
 /* -------------------- Matrix Overlay Reusable -------------------- */
@@ -1766,7 +1965,7 @@ main {
     transparent 4px
   );
   mix-blend-mode: screen;
-  animation: matrixScroll 6s linear infinite;
+  animation: matrixScroll 4s linear infinite;
   mask-image: linear-gradient(to bottom,
     rgba(0,0,0,0) 0%,
     rgba(0,0,0,1) 15%,
@@ -1849,7 +2048,7 @@ main {
     transparent 4px
   );
   mix-blend-mode: screen;
-  animation: matrixScroll 6s linear infinite;
+  animation: matrixScroll 4s linear infinite;
   mask-image: linear-gradient(to bottom,
     rgba(0,0,0,0) 0%,
     rgba(0,0,0,1) 15%,
@@ -2003,11 +2202,7 @@ section:has(.liquid-glass:hover) h3 {
 }
 
 .hero-code-glow {
-  text-shadow: 
-    0 0 12px rgba(255, 255, 255, 0.9),
-    0 0 20px rgba(30, 144, 255, 0.7),
-    0 0 28px rgba(30, 144, 255, 0.4);
-  filter: brightness(1.1);
+  /* Glow effects removed for cleaner appearance */
 }
 
 
@@ -2353,6 +2548,8 @@ h3:hover {
   display: flex;
   flex-direction: column;
   flex-grow: 1;
+  min-width: 0; /* Allow content to shrink if needed */
+  overflow: visible; /* Ensure content is not clipped */
 }
 
 .blog-post-card .category-pill {
@@ -2457,6 +2654,8 @@ h3:hover {
   display: flex;
   flex-direction: column;
   flex-grow: 1;
+  min-width: 0; /* Allow content to shrink if needed */
+  overflow: visible; /* Ensure content is not clipped */
 }
 
 .blog-post-card .category-pill {
@@ -2506,6 +2705,31 @@ h3:hover {
     max-width: 90%;
     margin-left: auto;
     margin-right: auto;
+  }
+  
+  /* Adjust button sizing for mobile */
+  .project-button {
+    min-width: 140px !important;
+    padding: 10px 24px !important;
+    font-size: 0.85rem !important;
+  }
+  
+  .project-button-primary {
+    min-width: 160px !important;
+    padding: 10px 28px !important;
+    font-size: 0.9rem !important;
+  }
+  
+  .project-links {
+    gap: 10px;
+    justify-content: center; /* Center buttons on mobile */
+    flex-direction: column; /* Stack buttons vertically on very small screens */
+    align-items: center;
+  }
+  
+  .project-links a {
+    width: 100%;
+    max-width: 200px;
   }
 }
 

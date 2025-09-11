@@ -19,15 +19,15 @@ function Hero() {
         placeholder={<div style={{ width: '150px', height: '150px', borderRadius: '50%', background: 'var(--medium-bg)' }}></div>}
       />
       <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'center', minHeight: '4rem' }}>
-        <h1 className="hero-name-glow" style={{ marginRight: '15px', marginBottom: '0.2rem', color: 'white', fontSize: '3.5rem', fontWeight: '700' }}>{firstName}</h1> 
+        <h1 className="hero-name-glow" style={{ marginBottom: '0.2rem', color: 'white', fontSize: '3.5rem', fontWeight: '700' }}>{firstName}</h1> 
         <span 
           aria-hidden="true" 
           className="hero-code-glow"
           style={{ 
             fontSize: '3rem',
             fontFamily: "'Courier New', Courier, monospace",
-            marginRight: '15px', 
-            marginLeft: '15px',
+            marginLeft: '8px',
+            marginRight: '8px',
             color: 'white', 
             fontWeight: 'bold'
           }}

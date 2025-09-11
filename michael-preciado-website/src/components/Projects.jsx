@@ -133,70 +133,71 @@ function Projects() {
     {
       imageSrc: "/images/Server/IMG_1039.jpeg",
       title: "Local AI & Storage Server (FRIDAY)",
-      description: "My personal journey building a self-hosted AI server from scratch. Complete with Ubuntu setup, GPU drivers, Ollama/LM Studio, storage management, and all the issues I solved along the way.",
-      tech: ['Ubuntu', 'Ollama', 'Open WebUI', 'Cloudflare Tunnel', 'Samba', 'Python'],
+      description: "A complete self-hosted AI infrastructure built from the ground up. Features Ubuntu server setup, GPU acceleration, Ollama/LM Studio integration, Open WebUI interface, Cloudflare tunneling, and Samba file sharing. Includes detailed troubleshooting documentation and performance monitoring.",
+      tech: ['Ubuntu', 'Ollama', 'Open WebUI', 'Cloudflare Tunnel', 'Samba', 'Python', 'GPU Acceleration', 'Systemd'],
       demoLink: "/projects/ai-server"
     },
     {
       imageSrc: "/images/corne-keyboard/cornebuild.jpeg",
       title: "Corne Keyboard Build",
-      description: "Custom split ergonomic mechanical keyboard build featuring the Corne layout and ZMK firmware.",
-      tech: ["Hardware", "ZMK", "3D Printing"],
+      description: "Custom split ergonomic mechanical keyboard featuring the Corne layout with ZMK firmware. Built from scratch with 3D printed case, hand-wired switches, and fully programmable layers. Designed for ergonomic typing and complete customization.",
+      tech: ["Hardware", "ZMK", "3D Printing", "Soldering", "Ergonomics", "QMK"],
       demoLink: "/projects/corne-keyboard",
       fullImage: true
     },
     {
       imageSrc: "/images/projects/photography.png",
       title: "Photography Portfolio",
-      description: "Minimalist photography showcase with responsive image gallery and smooth transitions.",
+      description: "A minimalist photography showcase featuring responsive image galleries, smooth transitions, and optimized loading. Built with modern web technologies for fast, beautiful presentation of visual work.",
+      tech: ['React', 'JavaScript', 'CSS3', 'Responsive Design', 'Image Optimization'],
       codeLink: "https://github.com/michaelpreciado/mario.preciado.photography",
       demoLink: "https://mariopreciado-photography.netlify.app"
     },
     {
       imageSrc: "/images/projects/Solar.png",
       title: "Interactive Solar System",
-      description: "An interactive 3D model of the solar system built with JavaScript.",
-      tech: ['JavaScript', 'HTML', 'CSS'],
+      description: "An immersive 3D solar system simulation with realistic planetary orbits, interactive controls, and educational content. Built with vanilla JavaScript and WebGL for smooth performance across devices.",
+      tech: ['JavaScript', 'WebGL', 'HTML5 Canvas', 'CSS3', '3D Graphics'],
       codeLink: "https://github.com/michaelpreciado/Interactive_Solar_System",
       demoLink: "https://interactive-solar-system-bay.vercel.app/"
     },
     {
       imageSrc: "/images/projects/flattenhund.png",
       title: "Flappy Dog Game",
-      description: "A playful Flappy-Bird-style game starring my dogs Taz & Chloe, featuring an online leaderboard powered by Supabase.",
-      tech: ['JavaScript', 'HTML', 'CSS'],
+      description: "A charming Flappy Bird-inspired game featuring my dogs Taz & Chloe as the main characters. Includes online leaderboard powered by Supabase, progressive difficulty, and adorable pixel art animations.",
+      tech: ['JavaScript', 'Supabase', 'HTML5 Canvas', 'CSS3', 'Game Development'],
       codeLink: "https://github.com/michaelpreciado/Flattenhund",
       demoLink: "https://flatterhund.netlify.app/"
     },
     {
       imageSrc: "/images/projects/friday.png",
-      title: "Friday",
-      description: "A personal AI assistant application leveraging OpenAI.",
-      tech: ['Python', 'Flask', 'TypeScript'],
+      title: "Friday AI Assistant",
+      description: "A personal AI assistant web application leveraging OpenAI's GPT models. Features conversational interface, context awareness, and seamless integration with modern web technologies for natural AI interactions.",
+      tech: ['Python', 'Flask', 'TypeScript', 'OpenAI API', 'REST API'],
       codeLink: "https://github.com/michaelpreciado/F.R.I.D.A.Y",
       demoLink: "https://michaelpreciado.github.io/F.R.I.D.A.Y/"
     },
     {
       imageSrc: "/images/projects/planttracker.png",
-      title: "Plant Tracker",
-      description: "Offline-first Next.js PWA that tracks plant care, sends smart watering reminders, stores photos, and syncs via Supabase.",
-      tech: ['Next.js', 'TypeScript', 'Tailwind', 'Supabase'],
+      title: "Plant Tracker PWA",
+      description: "An offline-first Progressive Web App for plant care management. Features smart watering reminders, photo storage, growth tracking, and seamless sync via Supabase. Works completely offline with background sync.",
+      tech: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Supabase', 'PWA', 'Offline-First'],
       codeLink: "https://github.com/michaelpreciado/Planter",
       demoLink: "https://planttracker.netlify.app/"
     },
     {
       imageSrc: "/images/projects/pcbuild.jpeg",
       title: "CRT Interactive Album",
-      description: "A visually stunning 3D scene showcasing a 90s era CRT computer with dynamic slideshow, atmospheric effects, and glass-morphism cards. Built with React Three Fiber.",
-      tech: ['React', 'TypeScript', 'Three.js', 'Tailwind CSS', 'Framer Motion'],
+      description: "A nostalgic 3D experience showcasing a 90s-era CRT computer with dynamic slideshow capabilities. Features atmospheric lighting, glass-morphism effects, and smooth animations built with React Three Fiber for immersive retro computing vibes.",
+      tech: ['React', 'TypeScript', 'Three.js', 'React Three Fiber', 'Tailwind CSS', 'Framer Motion'],
       codeLink: "https://github.com/michaelpreciado/CRTinteractiveAlbum",
       demoLink: "https://crtarchve.netlify.app"
     },
     {
       imageSrc: "/images/projects/pupcam.png",
       title: "PupCam Mood Reader",
-      description: "AI-powered PWA that analyzes your dog's mood in real-time using TensorFlow.js dog detection and GPT-4o vision analysis.",
-      tech: ['JavaScript', 'TailwindCSS', 'TensorFlow.js', 'OpenAI', 'PWA'],
+      description: "An AI-powered Progressive Web App that analyzes your dog's mood in real-time using computer vision. Combines TensorFlow.js for dog detection with GPT-4o vision analysis to provide insights into your pet's emotional state.",
+      tech: ['JavaScript', 'TensorFlow.js', 'OpenAI GPT-4o', 'PWA', 'Computer Vision', 'Machine Learning'],
       codeLink: "https://github.com/michaelpreciado/PupCam",
       demoLink: "https://pup-cam.vercel.app"
     }

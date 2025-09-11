@@ -1,5 +1,5 @@
 // === VANILLA JS PERFORMANCE UTILITIES ===
-// Lightweight fallback system for 120 FPS transitions
+// Optimized for 120 FPS performance across all devices
 
 /**
  * Intersection Observer-based scroll reveal utility

@@ -1,30 +1,69 @@
 import React from 'react';
-import { FaLinkedin, FaInstagram, FaBook, FaProjectDiagram } from 'react-icons/fa';
+import { FaLinkedin, FaInstagram, FaBook, FaProjectDiagram, FaGithub } from 'react-icons/fa';
 import { FaXTwitter } from 'react-icons/fa6';
 
-const ConnectButton = ({ icon, text, link }) => (
+const SocialCard = ({ icon, platform, handle, link, description }) => (
   <a 
     href={link} 
-    className="connect-button"
+    className="social-card"
+    target={link.startsWith('http') ? "_blank" : "_self"}
+    rel={link.startsWith('http') ? "noopener noreferrer" : ""}
   >
-    <span className="connect-button-content">
-      {icon && <span className="connect-button-icon">{icon}</span>} 
-      {text}
-    </span>
-    <span className="connect-button-arrow">&gt;</span>
+    <div className="social-card-icon">
+      {icon}
+    </div>
+    <div className="social-card-content">
+      <h3 className="social-card-platform">{platform}</h3>
+      <p className="social-card-handle">{handle}</p>
+      {description && <p className="social-card-description">{description}</p>}
+    </div>
   </a>
 );
 
 function Connect() {
   return (
-    <section id="connect" style={{ maxWidth: '600px' }}>
-      <h2>Connect</h2>
-      <div className="connect-buttons-container">
-        <ConnectButton icon={<FaLinkedin />} text="LinkedIn" link="https://www.linkedin.com/in/michael-preciado-74959b227/" />
-        <ConnectButton icon={<FaXTwitter />} text="X (Twitter)" link="https://x.com/mpdollars" />
-        <ConnectButton icon={<FaInstagram />} text="Instagram" link="https://www.instagram.com/michael.preciado/" />
-        <ConnectButton icon={<FaProjectDiagram />} text="Projects" link="/projects" />
-        <ConnectButton icon={<FaBook />} text="Blogs" link="/blog" />
+    <section id="connect">
+      <div className="connect-header">
+        <h2>Let's Connect</h2>
+        <p className="connect-subtitle">Feel free to reach out and tell me anything on your mind</p>
+      </div>
+      <div className="social-grid">
+        <SocialCard 
+          icon={<FaXTwitter />} 
+          platform="X (Twitter)" 
+          handle="@mpdollars" 
+          link="https://x.com/mpdollars" 
+        />
+        <SocialCard 
+          icon={<FaInstagram />} 
+          platform="Instagram" 
+          handle="@michael.preciado" 
+          link="https://www.instagram.com/michael.preciado/" 
+        />
+        <SocialCard 
+          icon={<FaGithub />} 
+          platform="GitHub" 
+          handle="@michaelpreciado" 
+          link="https://github.com/michaelpreciado" 
+        />
+        <SocialCard 
+          icon={<FaLinkedin />} 
+          platform="LinkedIn" 
+          handle="@michael-preciado" 
+          link="https://www.linkedin.com/in/michael-preciado-74959b227/" 
+        />
+        <SocialCard 
+          icon={<FaBook />} 
+          platform="Blogs" 
+          handle="Personal Blog" 
+          link="/blog"
+        />
+        <SocialCard 
+          icon={<FaProjectDiagram />} 
+          platform="Projects" 
+          handle="My Portfolio" 
+          link="/projects"
+        />
       </div>
     </section>
   );
