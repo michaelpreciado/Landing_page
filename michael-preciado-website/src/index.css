@@ -571,217 +571,6 @@ img[src^="placeholder-"].project-image-placeholder {
 /* @keyframes logo-spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } } */
 
 
-/* --- Hero Section Styles --- */
-#hero {
-  padding-top: 120px; /* More top padding */
-  padding-bottom: 60px;
-  min-height: 60vh; /* Give hero more vertical space */
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.profile-image {
-  width: 150px;
-  height: 150px;
-  border-radius: 50%;
-  margin: 0 auto 30px auto; /* Center horizontally */
-  display: block;
-  box-shadow: 
-    0 0 20px rgba(30, 144, 255, 0.3),
-    0 0 40px rgba(30, 144, 255, 0.2),
-    0 0 60px rgba(30, 144, 255, 0.1);
-  transition: box-shadow 0.3s ease;
-}
-
-/* Ensure LazyImage containers inherit proper sizing */
-.lazy-image-container.profile-image {
-  width: 150px;
-  height: 150px;
-  border-radius: 50%;
-  margin: 0 auto 30px auto;
-  display: block;
-  overflow: hidden;
-  position: relative;
-  isolation: isolate; /* Create a new stacking context */
-  box-shadow: 
-    0 0 20px rgba(30, 144, 255, 0.3),
-    0 0 40px rgba(30, 144, 255, 0.2),
-    0 0 60px rgba(30, 144, 255, 0.1);
-  transition: box-shadow 0.3s ease;
-}
-
-.profile-image:hover,
-.lazy-image-container.profile-image:hover {
-  box-shadow: 
-    0 0 30px rgba(30, 144, 255, 0.4),
-    0 0 50px rgba(30, 144, 255, 0.3),
-    0 0 80px rgba(30, 144, 255, 0.2);
-}
-
-.lazy-image-container.profile-image img {
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  object-fit: cover;
-  object-position: center;
-  display: block;
-  transform: none !important; /* Prevent any transforms that might cause overflow */
-  will-change: auto; /* Reset will-change */
-  backface-visibility: hidden; /* Prevent rendering artifacts */
-}
-
-.lazy-image-container.about-image {
-  max-width: 500px;
-  width: 100%;
-  height: auto;
-  border-radius: 12px;
-  margin: 0 auto 40px auto;
-  display: block;
-  overflow: hidden;
-  position: relative;
-  isolation: isolate; /* Create new stacking context */
-}
-
-.lazy-image-container.about-image img {
-  width: 100%;
-  height: 100%;
-  border-radius: 12px;
-  object-fit: cover;
-  object-position: center;
-  display: block;
-  opacity: 0.4; /* Increased transparency for ethereal glass effect */
-  filter: saturate(0.7) brightness(0.9) contrast(1.1); /* Enhanced glass-like appearance */
-  transition: opacity 0.3s ease, filter 0.3s ease; /* Smooth transitions */
-}
-
-.lazy-image-container.about-image:hover img {
-  opacity: 0.75; /* More transparent even on hover for consistent glass effect */
-  filter: saturate(0.9) brightness(1) contrast(1.2); /* Enhanced clarity on hover */
-}
-
-/* Disable matrix overlay on about image container */
-.lazy-image-container.about-image::after {
-  display: none !important;
-}
-
-.lazy-image-container.thumbnail {
-  width: 100%;
-  height: 100%;
-  border-radius: 8px;
-}
-
-.lazy-image-container.thumbnail img {
-  border-radius: 8px;
-  opacity: 0.4; /* Increased transparency for more ethereal glass effect */
-  filter: saturate(0.7) brightness(0.9) contrast(1.1); /* Enhanced glass-like appearance */
-  transition: opacity 0.3s ease, filter 0.3s ease; /* Smooth transitions */
-}
-
-.lazy-image-container.thumbnail:hover img,
-.project-card:hover .lazy-image-container.thumbnail img {
-  opacity: 0.75; /* More transparent even on hover for consistent glass effect */
-  filter: saturate(0.9) brightness(1) contrast(1.2); /* Enhanced clarity on hover */
-}
-
-#hero h1 {
-  margin-bottom: 0.5em;
-}
-
-.hero-subtitle {
-  color: var(--medium-text); /* Use secondary text color */
-  font-size: 1.25rem; /* Adjust size */
-  margin-bottom: 40px;
-  font-weight: 400;
-  /* text-shadow: 0 0 5px var(--glow-color-subtle); Remove glow */
-  max-width: 500px; /* Limit width */
-}
-
-/* --- Skills Section Styles --- */
-#skills h2 { /* Optional: Add styling for a potential skills title */
-  /* margin-bottom: 30px; */
-}
-
-.skills-container {
-  display: grid;
-  /* grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); */ /* Responsive columns */
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Adjusted minmax for smaller buttons */
-  gap: 10px; /* Spacing between buttons */
-  justify-content: center; /* Center the grid items */
-  flex-wrap: wrap; /* Allow wrapping */
-  margin-top: 15px; /* Reduced margin-top */
-  padding: 0 10px; /* Add some horizontal padding if needed */
-}
-
-.skill-button {
-  /* background: var(--medium-bg); */ /* Use medium background */
-  /* border: 1px solid transparent; */ /* No border initially */
-  background: transparent;
-  border: 1px solid var(--border-color);
-  color: var(--light-text);
-  /* padding: 10px 20px; */ /* Standard padding */
-  padding: 8px 15px; /* Reduced padding for mobile */
-  border-radius: 20px; /* Pill shape */
-  cursor: pointer;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center; /* Center content */
-  text-align: center;
-  /* font-family: var(--font-mono); */ /* Keep consistent sans-serif */
-  font-family: var(--font-sans); /* Use main sans font */
-  /* font-size: 1rem; */ /* Standard size */
-  font-size: 0.9rem; /* Reduced font size for mobile */
-  font-weight: 500; /* Medium weight */
-  /* text-shadow: 0 0 8px var(--glow-color-subtle); Remove glow */
-  /* transition: background-color var(--transition-fast), transform var(--transition-fast); */
-  transition: background-color var(--transition-fast), border-color var(--transition-fast); /* Corrected transition */
-  white-space: nowrap; /* Prevent text wrapping */
-}
-
-.skill-button:hover {
-  /* background-color: #3a3a3c; */ /* Slightly lighter gray on hover */
-  /* background-color: rgba(30, 144, 255, 0.1); */ /* Removed - liquid glass handles background */
-  border-color: var(--primary-accent);
-  /* transform: translateY(-2px); */ /* Subtle lift */
-}
-
-.skill-button:focus-visible {
-  outline: 2px solid var(--primary-accent);
-  outline-offset: 2px;
-  /* background-color: #3a3a3c; */
-  /* background-color: rgba(30, 144, 255, 0.1); */ /* Removed - liquid glass handles background */
-}
-
-.skill-button span { /* Icon */
-  margin-right: 8px;
-  opacity: 0.8; /* Slightly dim icon */
-  display: inline-flex;
-  align-items: center;
-  font-size: 1em; /* Ensure emoji scales with button text */
-}
-
-/* Mobile-specific skill button improvements */
-@media (max-width: 767.98px) {
-  .skills-container {
-    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); /* Slightly smaller minimum for mobile */
-    gap: 8px; /* Tighter spacing on mobile */
-    padding: 0 5px; /* Minimal side padding */
-  }
-  
-  .skill-button {
-    padding: 6px 12px; /* More compact on very small screens */
-    font-size: 0.85rem; /* Slightly smaller text */
-    min-height: 36px; /* Ensure consistent button height */
-  }
-  
-  .skill-button span {
-    margin-right: 6px; /* Slightly less margin on mobile */
-    font-size: 0.9em; /* Slightly smaller emoji on mobile */
-  }
-}
-
-
 /* --- Connect Section Styles --- */
 #connect {
   max-width: 1200px;
@@ -925,620 +714,221 @@ img[src^="placeholder-"].project-image-placeholder {
   }
 }
 
-/* --- Projects Section Styles --- */
-#projects h2 {
-  margin-bottom: 15px;
-}
-#projects > p { /* Style the intro paragraph */
-  margin-bottom: 2rem; /* Add some space below the intro paragraph */
-}
-
-/* Add styles for the projects container itself */
-#projects {
-  /* display: flex; REMOVE */
-  /* flex-wrap: wrap; REMOVE */
-  /* gap: 2rem; REMOVE */
-  /* justify-content: center; REMOVE */
-}
-
-/* Base style - single column, cards centered */
-.projects-container {
-  display: grid;
-  grid-template-columns: 1fr; /* Single column by default */
-  gap: 30px; /* Keep gap */
-  justify-items: center; /* Center card in the single column */
-}
-
-/* Center items only on smaller screens (single column view) */
-@media (max-width: 767.98px) { 
-  .projects-container {
-    /* justify-items: center; */ /* Rule moved to base style */
-    padding: 0 8px; /* Narrow side padding */
-  }
-
-  /* Smaller cards on mobile */
-  .project-card {
-    max-width: 260px;
-    width: 60%;
-  }
-}
-
-.project-card {
-  /* background: var(--medium-bg); */
-  /* background-color: rgba(26, 46, 79, 0.8); */ /* Removed - liquid glass handles background */
-  border-radius: 12px;
-  overflow: hidden;
-  border: 1px solid var(--border-color);
-  text-align: left; /* Left align text inside cards */
-  transition: transform var(--transition-medium), box-shadow var(--transition-medium), border-color var(--transition-fast), background-color var(--transition-fast);
-  /* box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); */ /* Reduced shadow */
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3); /* Subtle shadow */
-  width: 100%; /* Ensure card tries to fill column before max-width applies */
-  max-width: 400px; /* Increased max-width */
-}
-
-/* Hover / focus styles mimic connect-button animation */
-.project-card:hover,
-.project-card:focus-visible {
-  transform: translateY(-2px);
-  border-color: var(--secondary-accent);
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
-}
-
-/* Project image container and image styles */
-.project-image-container {
-  width: 100%; /* Fill the card width */
-  /* Maintain a perfect square regardless of width */
-  aspect-ratio: 3 / 2;
-  /* Provide a fallback height for very old browsers */
-  height: auto;
-  /* Previously centered via margin; no longer needed */
-  overflow: hidden;
-  border-bottom: 1px solid var(--border-color);
+/* --- Hero Section Styles --- */
+#hero {
+  padding-top: 120px; /* More top padding */
+  padding-bottom: 60px;
+  min-height: 60vh; /* Give hero more vertical space */
   display: flex;
-  align-items: center;
+  flex-direction: column;
   justify-content: center;
-  background: linear-gradient(135deg, var(--medium-bg), rgba(10, 25, 47, 0.8)); /* Subtle gradient background */
+  align-items: center;
+}
+
+.profile-image {
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  margin: 0 auto 30px auto; /* Center horizontally */
+  display: block;
+  box-shadow: 
+    0 0 25px rgba(30, 144, 255, 0.45),
+    0 0 55px rgba(30, 144, 255, 0.30),
+    0 0 80px rgba(30, 144, 255, 0.15);
+  transition: box-shadow 0.3s ease;
+}
+
+/* Ensure LazyImage containers inherit proper sizing */
+.lazy-image-container.profile-image {
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  margin: 0 auto 30px auto;
+  display: block;
+  overflow: hidden;
   position: relative;
+  isolation: isolate; /* Create a new stacking context */
+  box-shadow: 
+    0 0 25px rgba(30, 144, 255, 0.45),
+    0 0 55px rgba(30, 144, 255, 0.30),
+    0 0 80px rgba(30, 144, 255, 0.15);
+  transition: box-shadow 0.3s ease;
 }
 
-.project-image-container::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(10, 25, 47, 0.02); /* Very subtle overlay */
-  pointer-events: none;
-  z-index: 1;
+.profile-image:hover,
+.lazy-image-container.profile-image:hover {
+  box-shadow: 
+    0 0 30px rgba(30, 144, 255, 0.4),
+    0 0 50px rgba(30, 144, 255, 0.3),
+    0 0 80px rgba(30, 144, 255, 0.2);
 }
 
-.project-image {
+.lazy-image-container.profile-image img {
   width: 100%;
   height: 100%;
-  object-fit: cover; /* Maintain aspect ratio while filling container */
-  object-position: center; /* Center the image */
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  transform: none !important; /* Prevent any transforms that might cause overflow */
+  will-change: auto; /* Reset will-change */
+  backface-visibility: hidden; /* Prevent rendering artifacts */
+  filter: brightness(1.15) contrast(1.05) saturate(1.1);
+}
+
+.lazy-image-container.about-image {
+  max-width: 500px;
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  margin: 0 auto 40px auto;
+  display: block;
+  overflow: hidden;
+  position: relative;
+  isolation: isolate; /* Create new stacking context */
+}
+
+.lazy-image-container.about-image img {
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+  object-fit: cover;
+  object-position: center;
   display: block;
   opacity: 0.4; /* Increased transparency for ethereal glass effect */
   filter: saturate(0.7) brightness(0.9) contrast(1.1); /* Enhanced glass-like appearance */
   transition: opacity 0.3s ease, filter 0.3s ease; /* Smooth transitions */
 }
 
-.project-card:hover .project-image {
+.lazy-image-container.about-image:hover img {
   opacity: 0.75; /* More transparent even on hover for consistent glass effect */
   filter: saturate(0.9) brightness(1) contrast(1.2); /* Enhanced clarity on hover */
 }
 
-/* New styles for the icon placeholder */
-.project-icon-placeholder {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+/* Disable matrix overlay on about image container */
+.lazy-image-container.about-image::after {
+  display: none !important;
+}
+
+.lazy-image-container.thumbnail {
   width: 100%;
-  /* Match square aspect ratio of image container */
-  aspect-ratio: 1 / 1;
-  height: auto;
-  /* Centering no longer necessary */
-  background-color: var(--medium-bg); /* Use a background color */
-  border-bottom: 1px solid var(--border-color); /* Keep border */
+  height: 100%;
+  border-radius: 8px;
 }
 
-.project-icon-placeholder svg {
-  font-size: 5rem; /* Adjust icon size as needed */
-  color: var(--medium-text); /* Use a subtle color */
-  opacity: 0.7;
+.lazy-image-container.thumbnail img {
+  border-radius: 8px;
+  opacity: 1; /* Ensure full visibility in cards */
+  filter: none; /* Remove heavy filters that can wash out dark images */
+  transition: opacity 0.3s ease, filter 0.3s ease; /* Smooth transitions */
 }
 
-.project-card-content {
-  padding: 12px 30px; /* More padding */
+.lazy-image-container.thumbnail:hover img,
+.project-card:hover .lazy-image-container.thumbnail img {
+  opacity: 0.95; /* Subtle change on hover */
+  filter: none;
 }
 
-.project-card h3 {
+#hero h1 {
   margin-bottom: 0.5em;
-  font-size: 1.35rem; /* Slightly larger title */
+}
+
+.hero-subtitle {
+  color: var(--medium-text); /* Use secondary text color */
+  font-size: 1.25rem; /* Adjust size */
+  margin-bottom: 40px;
+  font-weight: 400;
+  /* text-shadow: 0 0 5px var(--glow-color-subtle); Remove glow */
+  max-width: 500px; /* Limit width */
+}
+
+/* --- Skills Section Styles --- */
+#skills h2 { /* Optional: Add styling for a potential skills title */
+  /* margin-bottom: 30px; */
+}
+
+.skills-container {
+  display: grid;
+  /* grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); */ /* Responsive columns */
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Adjusted minmax for smaller buttons */
+  gap: 10px; /* Spacing between buttons */
+  justify-content: center; /* Center the grid items */
+  flex-wrap: wrap; /* Allow wrapping */
+  margin-top: 15px; /* Reduced margin-top */
+  padding: 0 10px; /* Add some horizontal padding if needed */
+}
+
+.skill-button {
+  /* background: var(--medium-bg); */ /* Use medium background */
+  /* border: 1px solid transparent; */ /* No border initially */
+  background: transparent;
+  border: 1px solid var(--border-color);
   color: var(--light-text);
-}
-
-.project-card p {
-  margin-bottom: 1.5em;
-  font-size: 0.95rem; /* Slightly smaller desc text */
-  color: var(--medium-text);
-  max-width: none; /* Remove max-width constraint */
-}
-
-.project-tech-tags {
-  margin-bottom: 20px;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-
-.tech-tag {
-  /* background: #3a3a3c; */ /* Darker tags */
-  /* background: #0a192f; */ /* Removed - liquid glass handles background */ /* Original tag background */
-  /* color: var(--medium-text); */
-  color: var(--secondary-accent); /* Use lighter accent for tags */
-  padding: 4px 10px;
-  border-radius: 15px; /* Pill shape */
-  font-size: 0.75rem; /* Smaller font */
-  font-weight: 500;
-}
-
-/* Updated .project-links for flex layout */
-.project-links {
-  display: flex;
-  flex-wrap: wrap; /* Allow buttons to wrap on smaller screens */
-  gap: 15px; /* Space between buttons */
-  justify-content: flex-start; /* Align buttons to the left */
-  align-items: center; /* Vertically center buttons */
-  width: 100%; /* Ensure full width */
-  margin-top: 1rem; /* Add some top margin */
-  min-height: 50px; /* Ensure enough height for buttons */
-}
-
-/* Ensure button links don't constrain button width */
-.project-links a {
-  display: inline-block;
-  flex-shrink: 0; /* Prevent buttons from shrinking */
-  min-width: fit-content; /* Ensure link width fits content */
-}
-
-/* Additional button text protection */
-.project-button,
-.project-button-primary,
-.project-button-secondary {
-  text-overflow: visible !important;
-  overflow: visible !important;
-  max-width: none !important;
-}
-
-/* Removed margin rules from individual links */
-/* .project-links a {
-  margin-right: 15px;
-}
-.project-links a:last-child {
-  margin-right: 0;
-} */
-
-/* Base project button style (acts as secondary by default) */
-.project-button {
-  background: transparent;
-  border: 1px solid var(--primary-accent);
-  color: var(--primary-accent);
-  padding: 12px 28px; /* Increased horizontal padding for better text fit */
-  border-radius: 20px; /* Pill shape */
+  /* padding: 10px 20px; */ /* Standard padding */
+  padding: 12px 22px; /* Larger pill */
+  border-radius: 22px; /* Slightly rounder pill */
   cursor: pointer;
-  font-size: 0.9rem; /* Slightly larger font */
-  font-weight: 500;
-  text-decoration: none; /* Ensure no underline from <a> */
-  display: inline-block; /* Ensure padding is applied correctly */
-  min-width: 160px; /* Increased minimum width for text */
-  width: auto; /* Allow width to expand as needed */
-  white-space: nowrap; /* Prevent text wrapping */
-  text-align: center; /* Center the text */
-  box-sizing: border-box; /* Include padding in width calculation */
-  overflow: visible; /* Ensure text is not clipped */
-  
-  /* Enhanced transitions and effects */
-  transition: 
-    background-color var(--transition-fast), 
-    color var(--transition-fast),
-    box-shadow var(--transition-fast),
-    transform var(--transition-fast);
-  
-  /* Subtle border glow for better visibility */
-  box-shadow: 
-    0 0 0 1px var(--primary-accent),
-    0 0 8px rgba(30, 144, 255, 0.15);
-}
-
-/* Secondary button style (explicitly defined, same as base for clarity) */
-.project-button-secondary {
-  /* Inherits from .project-button */
-  background: transparent;
-  border: 1px solid var(--primary-accent);
-  color: var(--primary-accent);
-}
-
-/* Primary button style (Live Demo) - Enhanced visibility */
-.project-button-primary {
-  background: linear-gradient(135deg, var(--secondary-accent), var(--primary-accent));
-  border-color: var(--primary-accent);
-  color: #ffffff; /* Pure white for maximum contrast */
-  font-weight: 600; /* Slightly bolder text */
-  font-size: 0.95rem; /* Slightly larger than secondary buttons */
-  padding: 12px 32px; /* Increased horizontal padding for better text fit */
-  min-width: 180px; /* Significantly wider for primary button */
-  width: auto; /* Allow width to expand as needed */
-  white-space: nowrap; /* Prevent text wrapping */
-  text-align: center; /* Center the text */
-  box-sizing: border-box; /* Include padding in width calculation */
-  overflow: visible; /* Ensure text is not clipped */
-  
-  /* Enhanced glow effect for visibility */
-  box-shadow: 
-    0 0 15px rgba(70, 163, 255, 0.4),
-    0 2px 8px rgba(70, 163, 255, 0.3),
-    inset 0 1px 0 rgba(255, 255, 255, 0.2);
-  
-  /* Subtle text shadow for crisp text */
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
-  
-  /* Enhanced transform and transitions */
-  transform: translateY(0);
-  transition: 
-    background var(--transition-fast), 
-    color var(--transition-fast),
-    box-shadow var(--transition-fast),
-    transform var(--transition-fast);
-}
-
-/* Hover/Focus for Secondary Button */
-.project-button-secondary:hover,
-.project-button-secondary:focus-visible {
-  background: linear-gradient(135deg, var(--secondary-accent), var(--primary-accent));
-  color: #ffffff; /* White text for better contrast */
-  outline: none;
-  
-  /* Add subtle glow on hover */
-  box-shadow: 
-    0 0 12px rgba(70, 163, 255, 0.4),
-    0 2px 6px rgba(70, 163, 255, 0.3);
-}
-
-/* Hover/Focus for Primary Button - Enhanced visibility */
-.project-button-primary:hover,
-.project-button-primary:focus-visible {
-  background: linear-gradient(135deg, #ffffff, var(--secondary-accent));
-  border-color: var(--secondary-accent);
-  color: var(--dark-bg);
-  outline: none;
-  transform: translateY(-1px); /* Subtle lift effect */
-  
-  /* Intensified glow on hover */
-  box-shadow: 
-    0 0 25px rgba(255, 255, 255, 0.3),
-    0 4px 12px rgba(70, 163, 255, 0.4),
-    inset 0 1px 0 rgba(255, 255, 255, 0.4);
-}
-
-/* --- About Section Styles --- */
-#about {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center; /* Center content */
   text-align: center;
+  /* font-family: var(--font-mono); */ /* Keep consistent sans-serif */
+  font-family: var(--font-sans); /* Use main sans font */
+  /* font-size: 1rem; */ /* Standard size */
+  font-size: 1.1rem; /* Increase size for better readability */
+  font-weight: 500; /* Medium weight */
+  /* text-shadow: 0 0 8px var(--glow-color-subtle); Remove glow */
+  /* transition: background-color var(--transition-fast), transform var(--transition-fast); */
+  transition: background-color var(--transition-fast), border-color var(--transition-fast); /* Corrected transition */
+  white-space: nowrap; /* Prevent text wrapping */
 }
 
-#about h2 {
-  margin-bottom: 30px;
+.skill-button:hover {
+  /* background-color: #3a3a3c; */ /* Slightly lighter gray on hover */
+  /* background-color: rgba(30, 144, 255, 0.1); */ /* Removed - liquid glass handles background */
+  border-color: var(--primary-accent);
+  /* transform: translateY(-2px); */ /* Subtle lift */
 }
 
-.about-image-wrapper {
-  position: relative;
-  display: inline-block;
-  overflow: hidden; /* Clip overlay strictly to image */
-  border-radius: 12px; /* Match image rounding */
-  margin: 0 auto 40px auto; /* center & space below */
-  background: rgba(10, 25, 47, 0.05); /* Subtle background to complement transparency */
-  backdrop-filter: blur(1px); /* Very subtle blur for depth */
+.skill-button:focus-visible {
+  outline: 2px solid var(--primary-accent);
+  outline-offset: 2px;
+  /* background-color: #3a3a3c; */
+  /* background-color: rgba(30, 144, 255, 0.1); */ /* Removed - liquid glass handles background */
 }
 
-.about-image {
-  width: 100%;
-  max-width: 500px; /* Increased max width for better filling */
-  height: auto;
-  display: block;
-  margin: 0; /* margin handled by wrapper */
-  border-radius: 12px;
-  border: 1px solid var(--border-color);
-  opacity: 0.4; /* Increased transparency for ethereal glass effect */
+.skill-button span { /* Icon */
+  margin-right: 8px;
+  opacity: 0.8; /* Slightly dim icon */
+  font-size: 1.2em; /* Make the icon a touch larger */
+  display: inline-flex;
+  align-items: center;
 }
 
-#about p {
-  max-width: 750px; /* Slightly wider text block for better reading experience */
-  margin-bottom: 2em; /* Increased spacing between paragraphs */
-  text-align: center; /* Center align longer text for symmetry */
-  margin-left: auto; 
-  margin-right: auto;
-  font-size: 1.15rem; /* Increased font size for better readability */
-  line-height: 1.7; /* Improved line spacing for readability */
-}
-
-/* --- Contact Section Styles --- */
-#contact {
-  padding: 40px 20px; /* Reduce vertical padding for a more compact section */
-}
-
-#contact h2 {
-  margin-bottom: 20px; /* Reduced spacing under section title */
-}
-
-.contact-form-container {
-  /* Match border style with connect buttons */
-  border: 1px solid var(--border-color);
-  max-width: 350px; /* Slightly wider for better proportions */
-  margin: 0 auto 2rem auto;
-  padding: 2rem 1.5rem;
-  border-radius: 20px;
-  position: relative;
-  overflow: hidden;
-}
-
-.contact-form {
-  max-width: 100%; /* Fill the container */
-  margin: 0;
-  text-align: left;
-}
-
-.form-group {
-  margin-bottom: 10px; /* Further reduce spacing between fields */
-  /* display: flex; */ /* Remove flex for stacked layout */
-  /* align-items: center; */
-}
-
-.form-group label {
-  display: block; /* Stack label above input */
-  margin-bottom: 8px; /* Space between label and input */
-  color: var(--light-text); /* Changed to light text (white) */
-  font-size: 0.9rem;
-  font-weight: 500;
-  /* min-width: 80px; */
-  /* margin-right: 10px; */
-}
-
-#contact .form-input,
-#contact .form-textarea {
-  width: 100%; /* Full width */
-  padding: 10px; /* Slimmer padding inside inputs */
-  /* Keep background transparent so liquid glass shows */
-  border: 1px solid var(--border-color); /* Align border color with connect buttons */
-  border-radius: 12px; /* Increased rounding */
-  color: var(--light-text);
-  font-size: 0.9rem; /* Slightly smaller font */
-  font-family: var(--font-sans);
-  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
-}
-
-.form-input:focus,
-.form-textarea:focus {
-  outline: none;
-  border-color: var(--secondary-accent); /* Match hover border of connect buttons */
-  box-shadow: 0 0 0 2px rgba(70, 163, 255, 0.4); /* Subtle glow similar to connect button focus */
-}
-
-#contact .form-textarea {
-  resize: vertical; /* Allow vertical resize */
-  min-height: 100px; /* Slightly shorter textarea */
-}
-
-#contact .submit-button {
-  background: linear-gradient(135deg, var(--secondary-accent), var(--primary-accent));
-  color: #ffffff; /* Pure white for maximum contrast */
-  border: none;
-  padding: 16px 32px; /* Much larger button */
-  border-radius: 30px; /* More rounded */
-  cursor: pointer;
-  font-family: var(--font-sans); /* Consistent font */
-  font-size: 1.2rem; /* Larger font size */
-  font-weight: 600; /* Bolder text */
-  display: flex; /* Changed from inline-flex to flex for block-level behavior */
-  align-items: center; /* Vertically align icon and text */
-  justify-content: center; /* Center content within button */
-  width: auto; /* Allow button to size based on content */
-  min-width: 200px; /* Wider minimum width */
-  margin: 30px auto 0 auto; /* Even more top margin for better separation */
-  
-  /* Enhanced glow effect for maximum visibility */
-  box-shadow: 
-    0 0 10px rgba(70, 163, 255, 0.4),
-    0 2px 10px rgba(70, 163, 255, 0.25),
-    inset 0 1px 0 rgba(255, 255, 255, 0.15);
-  
-  /* Text shadow for crisp text */
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
-  
-  /* Enhanced transitions */
-  transition: 
-    background var(--transition-fast), 
-    transform var(--transition-fast),
-    box-shadow var(--transition-fast);
-  
-  /* Subtle breathing animation */
-  animation: submit-button-breathe 8s ease-in-out infinite; /* slower & softer */
-}
-
-@keyframes submit-button-breathe {
-  0%, 100% { 
-    transform: scale(1);
-    box-shadow: 
-      0 0 10px rgba(30, 144, 255, 0.4),
-      0 2px 10px rgba(30, 144, 255, 0.25),
-      inset 0 1px 0 rgba(255, 255, 255, 0.2);
-  }
-  50% { 
-    transform: scale(1.01);
-    box-shadow: 
-      0 0 15px rgba(30, 144, 255, 0.5),
-      0 3px 15px rgba(30, 144, 255, 0.3),
-      inset 0 1px 0 rgba(255, 255, 255, 0.25);
+/* Keep sizes reasonable on smaller screens */
+@media (max-width: 767.98px) {
+  .skill-button {
+    font-size: 1rem;
+    padding: 10px 18px;
   }
 }
 
-.submit-button:hover {
-  background: linear-gradient(135deg, #ffffff, var(--secondary-accent));
-  color: var(--dark-bg);
-  transform: translateY(-2px) scale(1.03);
-  
-  /* Intensified glow on hover */
-  box-shadow: 
-    0 0 20px rgba(255, 255, 255, 0.3),
-    0 5px 15px rgba(70, 163, 255, 0.45),
-    inset 0 1px 0 rgba(255, 255, 255, 0.4);
-}
-
-.submit-button:active {
-  transform: translateY(-1px) scale(1.02);
-}
-
-.submit-button span { /* Icon */
-  margin-right: 12px;
-  font-size: 1.4em; /* Larger icon */
-  line-height: 1;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3); /* Icon text shadow */
-}
-
-
-/* --- Animations --- */
-/* Keep fade-in, make it standard */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(20px); /* Optional: slight upward movement */
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* Simple fade-in animation class */
-.fade-in-section {
-  opacity: 0; /* Start hidden */
-  animation: fadeIn 0.8s ease-out forwards;
-  /* Delay can be added with animation-delay or via JS */
-}
-
-/* Apply animations only if motion is preferred */
-@media (prefers-reduced-motion: no-preference) {
-  /* Add transitions back for specific elements */
-  a { transition: color var(--transition-fast); }
-  /* .skill-button { transition: background-color var(--transition-fast), transform var(--transition-fast); } */
-  .skill-button { transition: background-color var(--transition-fast), border-color var(--transition-fast); } /* Corrected transition */
-  .project-card { transition: transform var(--transition-medium), box-shadow var(--transition-medium); }
-  .project-button { transition: background-color var(--transition-fast), color var(--transition-fast); }
-  .form-input, .form-textarea { transition: border-color var(--transition-fast), box-shadow var(--transition-fast); }
-  .submit-button { transition: background-color var(--transition-fast), transform var(--transition-fast), box-shadow var(--transition-fast); }
-
-  /* Apply fade-in animation using JS Intersection Observer is recommended */
-  /* Example: section { opacity: 0; transition: opacity 0.6s ease-out, transform 0.6s ease-out; transform: translateY(20px); } */
-  /* section.is-visible { opacity: 1; transform: translateY(0); } */
-}
-
-/* Respect Reduced Motion Preference */
-@media (prefers-reduced-motion: reduce) {
-  html {
-      scroll-behavior: auto; /* Disable smooth scrolling */
-  }
-  *,
-  *::before,
-  *::after {
-    /* Turn off all animations and transitions */
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    transition-delay: 0ms !important; /* Add this */
-  }
-  
-  /* Disable submit button breathing animation for reduced motion */
-  .submit-button {
-    animation: none !important;
-  }
-}
-
-
-/* --- Tablet and Larger Screen Adjustments --- */
-@media (min-width: 768px) {
-  html {
-    font-size: 17px; /* Slightly larger base font on tablets+ */
-  }
-
-  /* Restore/Increase heading sizes */
-  h1 { font-size: 3rem; } /* 51px */
-  h2 { font-size: 2rem; } /* 34px */
-  h3 { font-size: 1.5rem; } /* 25.5px */
-  p { font-size: 1.05rem; } /* ~18px */
-  
-  /* Enhanced About section text for tablets and larger screens */
-  #about p { 
-    font-size: 1.25rem; /* Larger text for better readability on bigger screens */
-    line-height: 1.8; /* Enhanced line spacing */
-    max-width: 800px; /* Wider text block on larger screens */
-    margin-bottom: 2.25em; /* More generous spacing on larger screens */
-  }
-
-  /* Increase section padding */
-  section { padding: 100px 40px; }
-
-  /* Hero adjustments */
-  #hero { padding-top: 150px; min-height: 70vh; }
+/* Mobile-specific skill button improvements */
+@media (max-width: 767.98px) {
   .profile-image,
-  .lazy-image-container.profile-image { width: 180px; height: 180px; margin-bottom: 40px; }
-  .hero-subtitle { font-size: 1.5rem; max-width: 600px; }
-
-  /* Skills adjustments */
-  .skills-container { gap: 15px; }
-
-  /* Reduce top padding specifically for the skills section on larger screens */
-  #skills {
-    padding-top: 40px; /* Reduced from default section padding */
-  }
-
-  /* Connect adjustments - responsive grid */
-  .social-grid {
-    grid-template-columns: repeat(3, 200px);
-    gap: 1.5rem;
-  }
-
-  /* Projects Adjustments - 2 columns */
-  .projects-container {
-    grid-template-columns: repeat(2, 1fr); /* 2 columns for tablets and up */
-    gap: 40px; /* Adjusted gap for larger screens */
-    justify-items: initial; /* Let cards fill column width */
-  }
-
-  /* Contact Form Adjustments */
-  .contact-form-container { max-width: 400px; } /* Larger container for desktop */
-  .contact-form { max-width: 100%; } /* Fill the container */
-  /* Keep stacked layout for labels/inputs - it's cleaner */
-
-  /* --- Single Blog Layout --- */
-  .projects-container.single-blog-layout {
-    grid-template-columns: 1fr; /* Force single column on larger screens */
-    justify-items: center; /* Center the card horizontally */
-  }
-
-  /* Increase card size when using single blog layout */
-  .projects-container.single-blog-layout .project-card {
-    max-width: 420px; /* Shrink overall card to ~30% smaller */
+  .lazy-image-container.profile-image {
+    width: 180px;
+    height: 180px;
   }
 }
 
 /* --- Larger Desktop Adjustments --- */
 @media (min-width: 1024px) {
-  html {
-    /* font-size: 18px; */ /* Optional further increase */
+  .profile-image,
+  .lazy-image-container.profile-image {
+    width: 260px;
+    height: 260px;
   }
-  h1 { font-size: 3.5rem; } /* ~60px */
-
   section { padding: 120px 50px; }
 
   /* Reduce top padding specifically for the skills section on largest screens */
@@ -1978,7 +1368,7 @@ main {
     rgba(0,0,0,0) 100%);
   pointer-events: none;
   z-index: 2;
-  opacity: 0.8; /* Make the overlay more visible */
+  opacity: 0.2; /* Subtle overlay so images remain visible */
 }
 
 /* Apply matrix overlay to common image containers */
@@ -1996,6 +1386,14 @@ main {
   object-fit: cover;
   aspect-ratio: inherit;
 }
+
+/* Force the actual img to cover as well (the class is on the container) */
+.project-image-container img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  display: block;
+}
 /* Disable matrix overlay on profile image to prevent artifacts */
 .lazy-image-container.profile-image::after {
   display: none !important;
@@ -2005,6 +1403,11 @@ main {
 .blog-hero-image::after,
 .blog-article-image::after,
 .blog-post-card .thumbnail::after {
+  display: none !important;
+}
+
+/* Also disable overlay on the project image container inside cards */
+.blog-post-card .project-image-container::after {
   display: none !important;
 }
 
@@ -2519,6 +1922,27 @@ h3:hover {
   }
 }
 
+/* Ensure uniform card sizing on smaller windows */
+@media (max-width: 1024px) {
+  /* Cap card height to keep consistent visual rhythm */
+  .blog-post-card {
+    max-height: 700px;
+  }
+  /* Clamp long descriptions to avoid overly tall cards */
+  .blog-post-card .teaser {
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    line-clamp: 4; /* Standard property for some linters/browsers */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  /* Limit the visible height of tech tags so cards align */
+  .project-tech-tags {
+    max-height: none; /* Show all tags */
+    overflow: visible; /* Do not clip tags */
+  }
+}
+
 .blog-post-card {
   background-color: var(--dark-bg);
   border: 1px solid var(--border-color);
@@ -2541,6 +1965,14 @@ h3:hover {
   width: 100%;
   aspect-ratio: 16 / 9;
   object-fit: cover;
+  opacity: 1; /* Ensure full visibility */
+  filter: none; /* Avoid washing out */
+}
+
+/* Ensure project cards maintain consistent media height with container ratio */
+.blog-post-card .project-image-container .thumbnail {
+  aspect-ratio: auto; /* Defer to container's aspect-ratio */
+  height: 100%;
 }
 
 .blog-post-card-content {
@@ -2550,6 +1982,9 @@ h3:hover {
   flex-grow: 1;
   min-width: 0; /* Allow content to shrink if needed */
   overflow: visible; /* Ensure content is not clipped */
+  position: relative; /* Ensure content can be layered above image overlays */
+  z-index: 3;
+  padding-bottom: 2rem; /* extra room for buttons near rounded border */
 }
 
 .blog-post-card .category-pill {
@@ -2575,6 +2010,82 @@ h3:hover {
   line-height: 1.5;
   flex-grow: 1;
   margin-bottom: 1.5rem;
+}
+
+/* Project action buttons */
+.project-links {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  margin-top: 0.75rem;
+}
+
+.project-links a {
+  text-decoration: none;
+  display: inline-block;
+}
+
+.project-button {
+  appearance: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--border-color);
+  border-radius: 9999px; /* pill */
+  min-height: 52px;
+  min-width: 180px;
+  padding: 14px 34px;
+  color: var(--light-text);
+  background: rgba(10, 25, 47, 0.6);
+  cursor: pointer;
+  font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+  font-size: 1.05rem;
+  font-weight: 600;
+  line-height: 1.3; /* prevent clipping with pixel fonts */
+  letter-spacing: 0.3px;
+  white-space: nowrap; /* keep label on one line */
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast), background-color var(--transition-fast), border-color var(--transition-fast);
+}
+
+.project-button:hover,
+.project-button:focus-visible {
+  transform: translateY(-2px);
+  border-color: var(--secondary-accent);
+  box-shadow: 0 8px 24px rgba(30, 144, 255, 0.2);
+}
+
+.project-button-primary {
+  background: linear-gradient(135deg, rgba(30,144,255,0.25), rgba(70,163,255,0.15));
+}
+
+.project-button-secondary {
+  background: rgba(10, 25, 47, 0.4);
+}
+
+/* Project tech tags */
+.project-tech-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0.75rem 0 1rem 0;
+  align-items: center;
+}
+
+.tech-tag {
+  display: inline-flex;
+  align-items: center;
+  height: 30px;
+  padding: 6px 12px;
+  border-radius: 9999px;
+  border: 1px solid var(--border-color);
+  background: rgba(30, 144, 255, 0.08);
+  color: var(--secondary-accent);
+  font-size: 0.85rem;
+  font-weight: 600;
+  line-height: 1;
+  white-space: nowrap;
 }
 
 .blog-post-card .read-more-link {
@@ -2952,6 +2463,86 @@ body { top: 0px !important; }
 iframe.goog-te-banner-frame { display: none !important; }
 .goog-te-banner-frame { display: none !important; }
 body { top: 0px !important; }
+
+/* --- Contact Form Card --- */
+#contact .contact-form-container {
+  max-width: 680px;
+  margin: 1rem auto 0 auto;
+  padding: 1.25rem 1.25rem 1.5rem 1.25rem;
+  border-radius: 20px;
+}
+
+#contact .contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem; /* tighten spacing */
+}
+
+#contact .form-group {
+  text-align: left;
+}
+
+#contact .form-group label {
+  display: block;
+  margin-bottom: 0.4rem;
+  color: var(--medium-text);
+  font-weight: 600;
+}
+
+#contact .form-input,
+#contact .form-textarea {
+  width: 100%;
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 0.8rem 0.9rem;
+  color: var(--light-text);
+  background: rgba(255, 255, 255, 0.02);
+}
+
+#contact .form-textarea {
+  min-height: 140px;
+  resize: vertical;
+}
+
+#contact .submit-button {
+  align-self: center; /* center under form */
+  margin-top: 0.6rem; /* reduce extra gap */
+  min-width: 220px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 14px 28px;
+  border: 1px solid var(--border-color);
+  border-radius: 9999px;
+  font-family: var(--font-sans);
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: var(--light-text) !important;
+  background: radial-gradient(120% 120% at 50% 120%, rgba(30,144,255,0.35) 0%, rgba(30,144,255,0.18) 30%, rgba(10,25,47,0.6) 60%, rgba(10,25,47,0.6) 100%);
+  box-shadow: 0 12px 40px rgba(30,144,255,0.25), inset 0 0 10px rgba(255,255,255,0.05);
+  cursor: pointer;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast), background-color var(--transition-fast), border-color var(--transition-fast);
+}
+
+#contact .submit-button:hover,
+#contact .submit-button:focus-visible {
+  transform: translateY(-2px);
+  border-color: var(--secondary-accent);
+  box-shadow: 0 14px 44px rgba(30,144,255,0.35), inset 0 0 12px rgba(255,255,255,0.08);
+}
+
+@media (max-width: 600px) {
+  #contact .contact-form-container {
+    max-width: 95%;
+    padding: 1rem;
+  }
+  #contact .submit-button {
+    width: 100%;
+    max-width: 360px;
+  }
+}
 
 /* --- Watermark --- */
 .watermark {

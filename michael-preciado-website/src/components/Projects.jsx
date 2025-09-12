@@ -67,21 +67,24 @@ const ProjectCard = React.memo(({ imageSrc, title, description, tech, codeLink, 
       initial="hidden"
       animate={isMounted ? "fallback" : "hidden"} // Fallback animation
       whileInView="visible"
-      viewport={{ once: false, amount: 0.1, margin: "0px 0px -50px 0px" }} // Allow re-triggering and better detection
+      viewport={{ once: true, amount: 0.1 }} // Trigger once to reduce work
       whileHover={{ y: -5, transition: { duration: 0.2 } }}
       style={{ willChange: 'transform, opacity' }}
     >
       {imageSrc && (
-        <div className="project-image-container" style={{ overflow: 'hidden', height: '220px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        <div className="project-image-container" style={{ overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
           <LazyImage 
             src={imageSrc} 
             alt={`${title} project screenshot`} 
             className="thumbnail"
             quality="medium"
+            priority={index < 2}
+            fetchPriority={index < 2 ? 'high' : 'auto'}
+            fill={true}
+            objectFit={fullImage ? 'contain' : 'cover'}
             style={{ 
               width: '100%', 
-              height: fullImage ? '100%' : 'auto', 
-              objectFit: fullImage ? 'contain' : 'cover' 
+              height: '100%'
             }}
             placeholder={<div style={{ width: '100%', height: '200px', background: 'var(--medium-bg)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '2rem' }}>🚀</div>}
           />
@@ -225,7 +228,10 @@ function Projects() {
       <IntroCard />
 
       {isComponentReady && (
-        <div className="blogs-grid"> {/* Reusing the responsive grid from the blog page */}
+        <div 
+          className="blogs-grid" 
+          style={{ contentVisibility: 'auto', containIntrinsicSize: '1200px 800px' }}
+        > {/* Reusing the responsive grid from the blog page */}
           {projectsData.map((project, index) => (
             <ProjectCard key={index} {...project} index={index} />
           ))}

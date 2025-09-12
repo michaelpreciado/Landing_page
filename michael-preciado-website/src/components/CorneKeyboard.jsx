@@ -113,6 +113,13 @@ function CorneKeyboard() {
           0 0 0 1px rgba(30, 144, 255, 0.2);
         transition: transform 0.3s ease, box-shadow 0.3s ease;
         max-width: 100%;
+        width: 100%;
+      }
+
+      .hero-image-frame img {
+        width: 100% !important;
+        height: auto !important;
+        display: block;
       }
 
       .hero-image-frame:hover {
@@ -404,6 +411,8 @@ function CorneKeyboard() {
                 src="/images/corne-keyboard/cornebuild.jpeg"
                 alt="Corne keyboard build hero"
                 priority={true}
+                fetchPriority="high"
+                intrinsic={true}
               />
             </div>
           </div>
@@ -466,7 +475,7 @@ function CorneKeyboard() {
               ].map(({ src, caption }) => (
                 <figure key={caption} style={{ margin: 0 }}>
                   <div className="hologram-container">
-                    <LazyImage src={src} alt={caption} />
+                    <LazyImage src={src} alt={caption} priority={true} fetchPriority="high" intrinsic={true} />
                   </div>
                   <figcaption style={{ textAlign: 'center', marginTop: '-1rem' }}>{caption}</figcaption>
                 </figure>
@@ -491,7 +500,7 @@ function CorneKeyboard() {
                 '/images/corne-keyboard/corne4.jpeg'
               ].map((src) => (
                 <div key={src} className="hologram-container">
-                  <LazyImage src={src} alt="Corne keyboard build step" />
+                  <LazyImage src={src} alt="Corne keyboard build step" priority={true} fetchPriority="low" intrinsic={true} />
                 </div>
               ))}
             </div>
@@ -503,6 +512,7 @@ function CorneKeyboard() {
                <LazyImage
                 src="/images/corne-keyboard/cornelapse.gif"
                 alt="Corne keyboard build timelapse"
+                intrinsic={true}
               />
             </div>
           </section>

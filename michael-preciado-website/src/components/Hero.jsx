@@ -12,10 +12,11 @@ function Hero() {
         src="/images/hero/mp.jpeg" 
         alt="Michael Preciado - Software Developer" 
         className="profile-image"
-        style={{ opacity: 0.65 }}
+        style={{}}
         priority={true}
+        fetchPriority="high"
         quality="high"
-        maxWidth="300px"
+        maxWidth="360px"
         placeholder={<div style={{ width: '150px', height: '150px', borderRadius: '50%', background: 'var(--medium-bg)' }}></div>}
       />
       <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'center', minHeight: '4rem' }}>

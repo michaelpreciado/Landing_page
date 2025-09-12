@@ -12,12 +12,17 @@ const LazyImage = ({
   quality = 'auto', // 'high', 'medium', 'low', 'auto'
   maxWidth = null, // Cap image width for performance
   objectFit = 'cover', // Control how the image should fit inside its container
+  fetchPriority = 'auto', // 'high' | 'low' | 'auto'
+  fill = false, // When true, image fills container height; otherwise natural height
+  intrinsic = false, // When true, container sizes to image's intrinsic height (disables size containment)
+  ratio = null, // e.g., '16 / 9' to reserve space before image loads
   ...props 
 }) => {
-  const [isLoaded, setIsLoaded] = useState(false);
+  const [isLoaded, setIsLoaded] = useState(priority); // For priority images, show immediately
   const [isInView, setIsInView] = useState(priority); // Load immediately if priority
   const [hasError, setHasError] = useState(false);
   const imgRef = useRef(null);
+  const imgElRef = useRef(null);
   const observerRef = useRef(null);
 
   // Determine optimal image quality based on device and connection
@@ -75,6 +80,15 @@ const LazyImage = ({
     };
   }, [priority, isInView]);
 
+  // If the image element has already finished loading from cache, mark it loaded
+  useEffect(() => {
+    if (!isInView && !priority) return;
+    const el = imgElRef.current;
+    if (el && el.complete && el.naturalWidth > 0) {
+      if (!isLoaded) setIsLoaded(true);
+    }
+  }, [isInView, priority, isLoaded]);
+
   const handleLoad = () => {
     setIsLoaded(true);
     onLoad();
@@ -93,6 +107,10 @@ const LazyImage = ({
         position: 'relative',
         overflow: 'hidden',
         background: hasError ? 'var(--medium-bg)' : 'transparent',
+        // Do not apply CSS contain when intrinsic is true so the container can size to the image
+        // Applying layout/style/paint containment isolates layout and collapses height
+        contain: intrinsic ? undefined : undefined,
+        aspectRatio: ratio || undefined,
         ...style
       }}
     >
@@ -113,17 +131,19 @@ const LazyImage = ({
       {/* Actual image */}
       {isInView && !hasError && (
         <img
+          ref={imgElRef}
           src={src}
           alt={alt}
           onLoad={handleLoad}
           onError={handleError}
           loading={priority ? 'eager' : 'lazy'}
           decoding="async"
+          fetchPriority={priority ? 'high' : fetchPriority}
           style={{
-            opacity: isLoaded ? 1 : 0,
+            opacity: (isLoaded || priority) ? 1 : 0,
             transition: 'opacity 0.3s ease-in-out',
             width: '100%',
-            height: '100%',
+            height: fill ? '100%' : 'auto',
             objectFit: objectFit,
             aspectRatio: objectFit === 'contain' ? 'auto' : undefined,
             willChange: 'opacity',
