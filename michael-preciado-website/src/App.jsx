@@ -1,4 +1,5 @@
 import React, { useEffect, Suspense, lazy } from 'react';
+import { Analytics } from '@vercel/analytics/react';
 import MatrixRainBackground from './components/MatrixRainBackground';
 import Hero from './components/Hero';
 import Skills from './components/Skills';
@@ -54,6 +55,7 @@ function App() {
           </Suspense>
         </ScrollRevealTerminal>
       </main>
+      <Analytics />
     </PageTransition>
   );
 }
