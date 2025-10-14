@@ -1,0 +1,11 @@
+{
+  "name": "landing-page",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "cd michael-preciado-website && npm install && npm run build",
+    "dev": "cd michael-preciado-website && npm run dev",
+    "preview": "cd michael-preciado-website && npm run preview"
+  }
+}
+
