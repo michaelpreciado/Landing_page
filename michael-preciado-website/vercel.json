@@ -1,4 +1,7 @@
 {
+  "buildCommand": "cd michael-preciado-website && npm run build",
+  "outputDirectory": "michael-preciado-website/dist",
+  "installCommand": "cd michael-preciado-website && npm install",
   "rewrites": [
     {
       "source": "/(.*)",
