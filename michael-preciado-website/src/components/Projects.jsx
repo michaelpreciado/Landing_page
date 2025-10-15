@@ -170,7 +170,7 @@ function Projects() {
       description: "A charming Flappy Bird-inspired game featuring my dogs Taz & Chloe as the main characters. Includes online leaderboard powered by Supabase, progressive difficulty, and adorable pixel art animations.",
       tech: ['JavaScript', 'Supabase', 'HTML5 Canvas', 'CSS3', 'Game Development'],
       codeLink: "https://github.com/michaelpreciado/Flattenhund",
-      demoLink: "https://flatterhund.netlify.app/"
+      demoLink: "https://theflappydoggame.netlify.app/"
     },
     {
       imageSrc: "/images/projects/friday.png",
