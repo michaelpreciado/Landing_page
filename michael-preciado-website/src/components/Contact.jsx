@@ -1,6 +1,98 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useId } from 'react';
 import { motion } from 'framer-motion'; // Import motion
 import { autoApplyLiquidGlass } from '../utils/liquidGlass.js';
+
+function ElectricCoffeeIcon({ size = 120 }) {
+  const rawId = useId().replace(/:/g, '');
+  const cupGradientId = `${rawId}-cup`;
+  const rimGradientId = `${rawId}-rim`;
+  const steamGradientId = `${rawId}-steam`;
+  const glowId = `${rawId}-glow`;
+
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 120 120"
+      role="img"
+      aria-labelledby={`${rawId}-title`}
+      style={{ filter: 'drop-shadow(0 0 18px rgba(0, 162, 255, 0.45))' }}
+    >
+      <title id={`${rawId}-title`}>Electric neon coffee cup</title>
+      <defs>
+        <linearGradient id={cupGradientId} x1="30" y1="52" x2="90" y2="92" gradientUnits="userSpaceOnUse">
+          <stop offset="0" stopColor="#0B2A52" />
+          <stop offset="0.5" stopColor="#0F4C81" />
+          <stop offset="1" stopColor="#1E90FF" />
+        </linearGradient>
+        <linearGradient id={rimGradientId} x1="28" y1="32" x2="92" y2="56" gradientUnits="userSpaceOnUse">
+          <stop offset="0" stopColor="#6EC6FF" />
+          <stop offset="1" stopColor="#C4F1FF" />
+        </linearGradient>
+        <linearGradient id={steamGradientId} x1="56" y1="8" x2="72" y2="56" gradientUnits="userSpaceOnUse">
+          <stop offset="0" stopColor="#7FDBFF" stopOpacity="0.9" />
+          <stop offset="1" stopColor="#7FDBFF" stopOpacity="0" />
+        </linearGradient>
+        <filter id={glowId} x="-40%" y="-40%" width="180%" height="200%" colorInterpolationFilters="sRGB">
+          <feGaussianBlur stdDeviation="6" result="coloredBlur" />
+          <feMerge>
+            <feMergeNode in="coloredBlur" />
+            <feMergeNode in="SourceGraphic" />
+          </feMerge>
+        </filter>
+      </defs>
+      <g filter={`url(#${glowId})`}>
+        {/* Saucer */}
+        <ellipse cx="60" cy="98" rx="42" ry="10" fill="rgba(0, 140, 255, 0.25)" />
+        <ellipse cx="60" cy="96" rx="34" ry="8" fill="rgba(0, 160, 255, 0.35)" />
+
+        {/* Cup body */}
+        <path
+          d="M20 52h70c8 0 15 7 15 15s-7 15-15 15h-6c-6 14-20 24-34 24S32 96 26 82h-6c-8 0-15-7-15-15s7-15 15-15z"
+          fill={`url(#${cupGradientId})`}
+          stroke="#63D2FF"
+          strokeWidth="2"
+        />
+
+        {/* Cup rim */}
+        <ellipse cx="45" cy="52" rx="30" ry="14" fill={`url(#${rimGradientId})`} stroke="#97F3FF" strokeWidth="2" />
+        <ellipse cx="45" cy="52" rx="24" ry="9" fill="rgba(5, 40, 80, 0.8)" />
+
+        {/* Handle */}
+        <path
+          d="M90 60c6 0 11 5 11 11s-5 11-11 11h-8"
+          fill="none"
+          stroke="#7FDBFF"
+          strokeWidth="4"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+
+        {/* Highlight */}
+        <path
+          d="M28 66c2 10 10 28 30 28 20 0 28-18 30-28"
+          stroke="rgba(200, 244, 255, 0.35)"
+          strokeWidth="3"
+          strokeLinecap="round"
+        />
+
+        {/* Steam */}
+        <path
+          d="M54 22c-4 6-1 10 2 14 3 4 5 8-1 12"
+          stroke={`url(#${steamGradientId})`}
+          strokeWidth="4"
+          strokeLinecap="round"
+        />
+        <path
+          d="M68 18c-5 8-2 12 1 16 3 4 5 8-1 12"
+          stroke={`url(#${steamGradientId})`}
+          strokeWidth="4"
+          strokeLinecap="round"
+        />
+      </g>
+    </svg>
+  );
+}
 
 function Contact() {
   // Apply liquid glass effects when component mounts
@@ -13,8 +105,8 @@ function Contact() {
       <div className="text-center" style={{ position: 'relative', zIndex: 1 }}>
         {/* Wrap motion.span with an anchor tag */}
         <a href="https://buymeacoffee.com/mpreciado" style={{ textDecoration: 'none', color: 'inherit' }}>
-          <motion.span
-            style={{ fontSize: '4em', display: 'block', cursor: 'pointer' }}
+          <motion.div
+            style={{ display: 'inline-flex', cursor: 'pointer' }}
             animate={{ y: [0, -8, 0] }} // Simple bobbing animation
             transition={{
               duration: 3,
@@ -23,8 +115,8 @@ function Contact() {
               ease: "easeInOut"
             }}
           >
-            ☕
-          </motion.span>
+            <ElectricCoffeeIcon size={120} />
+          </motion.div>
           
         </a>
         <h2>Contact Me</h2>
