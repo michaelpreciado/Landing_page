@@ -485,7 +485,7 @@ function AIServer() {
           <div className="hero-image-container">
             <div className="hero-image-frame">
               <LazyImage
-                src="/images/Server/IMG_1039.jpeg"
+                src="/images/server/IMG_1039.jpeg"
                 alt="Local AI Server infrastructure setup"
                 priority={true}
                 fetchPriority="high"
@@ -511,7 +511,7 @@ function AIServer() {
                 <p>The 8GB VRAM on the 3060 Ti is actually pretty solid for most models I want to run.</p>
               </div>
               <div className="hologram-container">
-                <LazyImage src="/images/Server/IMG_1081.jpeg" alt="Server hardware setup" intrinsic={true} priority={true} fetchPriority="low" ratio={'4 / 3'} />
+                <LazyImage src="/images/server/IMG_1081.jpeg" alt="Server hardware setup" intrinsic={true} priority={true} fetchPriority="low" ratio={'4 / 3'} />
               </div>
             </div>
           </section>
@@ -672,7 +672,7 @@ sudo loginctl enable-linger $USER`}</pre>
             </div>
 
             <div className="hologram-container" style={{ maxWidth: '450px', margin: '2rem auto 0' }}>
-              <LazyImage src="/images/Server/video-127_singular_display.gif" alt="Open WebUI Dashboard Interface" intrinsic={true} priority={true} fetchPriority="high" />
+              <LazyImage src="/images/server/video-127_singular_display.gif" alt="Open WebUI Dashboard Interface" intrinsic={true} priority={true} fetchPriority="high" />
             </div>
           </section>
 
@@ -842,7 +842,7 @@ def list_directory(path):
               </div>
               
               <div className="hologram-container">
-                <LazyImage src="/images/Server/video-89_singular_display.gif" alt="AI performing file operations through natural language commands" intrinsic={true} priority={true} fetchPriority="low" />
+                <LazyImage src="/images/server/video-89_singular_display.gif" alt="AI performing file operations through natural language commands" intrinsic={true} priority={true} fetchPriority="low" />
               </div>
             </div>
             
@@ -870,7 +870,7 @@ export NOTION_DATABASE_ID=xxx`}</pre>
 journalctl -u open-webui --user -f`}</pre>
             </div>
             <div className="hologram-container" style={{ maxWidth: '350px', margin: '2rem auto 0' }}>
-                <LazyImage src="/images/Server/video-93_singular_display.gif" alt="Server Monitoring" intrinsic={true} priority={true} fetchPriority="low" />
+                <LazyImage src="/images/server/video-93_singular_display.gif" alt="Server Monitoring" intrinsic={true} priority={true} fetchPriority="low" />
             </div>
           </section>
 
@@ -908,7 +908,7 @@ journalctl -u open-webui --user -f`}</pre>
             <p>Here's a video of the final server setup in action, demonstrating the interface and capabilities.</p>
             <div className="hologram-container">
               <video width="100%" controls autoPlay loop muted playsInline style={{ borderRadius: '12px', display: 'block' }}>
-                <source src="/images/Server/IMG_1285.mp4" type="video/mp4" />
+                <source src="/images/server/IMG_1285.mp4" type="video/mp4" />
                 Your browser does not support the video tag.
               </video>
             </div>

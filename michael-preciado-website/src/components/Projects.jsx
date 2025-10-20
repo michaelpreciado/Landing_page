@@ -104,7 +104,7 @@ function Projects() {
 
   const projectsData = [
     {
-      imageSrc: "/images/Server/IMG_1039.jpeg",
+      imageSrc: "/images/server/IMG_1039.jpeg",
       title: "Local AI & Storage Server (FRIDAY)",
       description: "A complete self-hosted AI infrastructure built from the ground up. Features Ubuntu server setup, GPU acceleration, Ollama/LM Studio integration, Open WebUI interface, Cloudflare tunneling, and Samba file sharing. Includes detailed troubleshooting documentation and performance monitoring.",
       tech: ['Ubuntu', 'Ollama', 'Open WebUI', 'Cloudflare Tunnel', 'Samba', 'Python', 'GPU Acceleration', 'Systemd'],
