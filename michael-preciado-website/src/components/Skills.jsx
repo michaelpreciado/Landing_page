@@ -1,23 +1,28 @@
 import React from 'react';
+import { FaCog, FaLaptopCode, FaChartBar, FaRobot } from 'react-icons/fa';
 
-const SkillButton = ({ icon, text }) => (
+const SkillButton = React.memo(({ icon, text }) => (
   <button className="skill-button">
-    {icon && <span>{icon}</span>} 
+    {icon && <span aria-hidden="true">{icon}</span>}
     {text}
   </button>
-);
+));
 
-function Skills() {
+SkillButton.displayName = 'SkillButton';
+
+const Skills = React.memo(() => {
   return (
     <section id="skills">
       <div className="skills-container">
-        <SkillButton icon="⚙️" text="Tech Enthusiast" />
-        <SkillButton icon="💻" text="Software Developer" />
-        <SkillButton icon="📊" text="Data Analyst" />
-        <SkillButton icon="🤖" text="AI Tools" />
+        <SkillButton icon={<FaCog />} text="Tech Enthusiast" />
+        <SkillButton icon={<FaLaptopCode />} text="Software Developer" />
+        <SkillButton icon={<FaChartBar />} text="Data Analyst" />
+        <SkillButton icon={<FaRobot />} text="AI Tools" />
       </div>
     </section>
   );
-}
+});
 
-export default Skills; 
+Skills.displayName = 'Skills';
+
+export default Skills;

@@ -4,10 +4,8 @@ import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom'
 import { AnimatePresence } from 'framer-motion'
 import './index.css'
 import './styles/liquidGlass.css'
-import './styles/cyberpunkTransitions.css'
 import App from './App.jsx'
-import { initLiquidGlass, autoApplyLiquidGlass } from './utils/liquidGlass.js'
-import TranslateButton from './components/TranslateButton.jsx';
+import { initLiquidGlass } from './utils/liquidGlass.js'
 
 // Lazy load route components for better performance
 const Blog = lazy(() => import('./components/Blog.jsx'))
@@ -41,7 +39,7 @@ function AnimatedRoutes() {
   const location = useLocation();
   
   return (
-    <AnimatePresence mode="wait">
+    <AnimatePresence mode="wait" initial={false}>
       <Suspense fallback={<LoadingFallback />}>
         <Routes location={location} key={location.pathname}>
           <Route path="/" element={<App />} />
@@ -59,7 +57,6 @@ function AnimatedRoutes() {
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <BrowserRouter>
-      <TranslateButton />
       <AnimatedRoutes />
     </BrowserRouter>
   </StrictMode>,

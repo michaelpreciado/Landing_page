@@ -1,6 +1,6 @@
 import React, { useRef, useState, useEffect } from 'react';
 
-const ScrollRevealTerminal = ({ children, threshold = 0.1 }) => {
+const ScrollRevealTerminal = React.memo(({ children, threshold = 0.1 }) => {
   const [isVisible, setIsVisible] = useState(false);
   const elementRef = useRef(null);
 
@@ -40,6 +40,8 @@ const ScrollRevealTerminal = ({ children, threshold = 0.1 }) => {
       {children}
     </div>
   );
-};
+});
+
+ScrollRevealTerminal.displayName = 'ScrollRevealTerminal';
 
 export default ScrollRevealTerminal; 

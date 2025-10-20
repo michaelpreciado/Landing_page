@@ -1,10 +1,9 @@
 /**
  * Liquid Glass Interactive Effects
- * Adds pointer tracking and global hue animations for WWDC24-style glass surfaces
+ * Adds pointer tracking for WWDC24-style glass surfaces
  */
 
 let rafId = null;
-let globalHueStartTime = Date.now();
 
 /**
  * Initialize liquid glass interactive effects
@@ -18,14 +17,6 @@ export function initLiquidGlass() {
 
   // Set up pointer tracking for reactive glass surfaces
   setupPointerTracking();
-  
-  // Initialize heading glow interactions
-  // initHeadingGlowInteractions(); // DISABLED: Performance bottleneck
-  
-  // Start global hue rotation animation (unless reduced motion)
-  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    // startGlobalHueAnimation(); // DISABLED: Performance bottleneck
-  }
 }
 
 /**
@@ -89,24 +80,6 @@ function handlePointerLeave(event) {
 }
 
 /**
- * Global hue rotation animation for "alive" glass feeling
- * Updates document root hue every frame for smooth 50s rotation cycle
- */
-function startGlobalHueAnimation() {
-  function updateGlobalHue() {
-    const elapsed = Date.now() - globalHueStartTime;
-    const progress = (elapsed % 50000) / 50000; // 50 second cycle
-    const hue = 210 + (progress * 360); // 0° to 360° rotation
-    
-    document.documentElement.style.setProperty('--lg-edge-h', hue);
-    
-    requestAnimationFrame(updateGlobalHue);
-  }
-  
-  updateGlobalHue();
-}
-
-/**
  * Apply liquid glass to existing elements by class name
  * Utility function for easy integration
  */
@@ -125,84 +98,8 @@ export function applyLiquidGlass(selector, variant = '') {
 }
 
 /**
- * Dynamic heading glow enhancement based on glass container proximity
- */
-function enhanceHeadingGlow() {
-  const headings = document.querySelectorAll('h1, h2, h3, h4, h5, h6');
-  const glassElements = document.querySelectorAll('.liquid-glass');
-  
-  headings.forEach(heading => {
-    let maxIntensity = 0;
-    
-    glassElements.forEach(glass => {
-      const headingRect = heading.getBoundingClientRect();
-      const glassRect = glass.getBoundingClientRect();
-      
-      // Calculate distance between heading and glass element
-      const distance = Math.sqrt(
-        Math.pow(headingRect.left + headingRect.width / 2 - (glassRect.left + glassRect.width / 2), 2) +
-        Math.pow(headingRect.top + headingRect.height / 2 - (glassRect.top + glassRect.height / 2), 2)
-      );
-      
-      // Calculate intensity based on distance (closer = more intense)
-      const maxDistance = 300; // Maximum distance for glow effect
-      const intensity = Math.max(0, 1 - (distance / maxDistance));
-      
-      maxIntensity = Math.max(maxIntensity, intensity);
-    });
-    
-    // Apply dynamic glow intensity
-    if (maxIntensity > 0) {
-      const glowIntensity = maxIntensity * 0.3; // Scale intensity
-      const glowColor = `rgba(30, 144, 255, ${glowIntensity})`;
-      
-      heading.style.setProperty('--dynamic-glow-intensity', glowIntensity);
-      heading.style.setProperty('--dynamic-glow-color', glowColor);
-      heading.classList.add('has-dynamic-glow');
-    } else {
-      heading.classList.remove('has-dynamic-glow');
-    }
-  });
-}
-
-/**
- * Initialize heading glow interactions
- */
-function initHeadingGlowInteractions() {
-  // Initial glow enhancement
-  enhanceHeadingGlow();
-  
-  // Update glow on scroll and resize
-  let ticking = false;
-  function updateGlow() {
-    if (!ticking) {
-      requestAnimationFrame(() => {
-        enhanceHeadingGlow();
-        ticking = false;
-      });
-      ticking = true;
-    }
-  }
-  
-  window.addEventListener('scroll', updateGlow, { passive: true });
-  window.addEventListener('resize', updateGlow, { passive: true });
-  
-  // Enhanced glow on glass element hover
-  document.addEventListener('mouseover', (e) => {
-    if (e.target.closest('.liquid-glass')) {
-      document.body.classList.add('glass-hover-active');
-    }
-  });
-  
-  document.addEventListener('mouseout', (e) => {
-    if (e.target.closest('.liquid-glass')) {
-      document.body.classList.remove('glass-hover-active');
-    }
-  });
-}
-
-/**
  * Enhanced integration helper - automatically apply to common UI patterns
+ * Cached selectors to avoid repeated DOM queries
  */
 export function autoApplyLiquidGlass() {
   // Connect buttons
@@ -243,11 +140,6 @@ export function autoApplyLiquidGlass() {
   applyLiquidGlass('.card', 'card');
   applyLiquidGlass('.btn', 'button'); 
   applyLiquidGlass('.panel', 'card');
-  
-  // Update heading glow effects after applying glass
-  setTimeout(() => {
-    enhanceHeadingGlow();
-  }, 100);
 }
 
 // Auto-initialize when DOM is ready

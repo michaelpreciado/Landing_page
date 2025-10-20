@@ -1,30 +1,37 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { FaLinkedin, FaInstagram, FaBook, FaProjectDiagram, FaGithub } from 'react-icons/fa';
 import { FaXTwitter } from 'react-icons/fa6';
 
-const SocialCard = ({ icon, platform, handle, link, description }) => (
-  <a 
-    href={link} 
-    className="social-card"
-    target={link.startsWith('http') ? "_blank" : "_self"}
-    rel={link.startsWith('http') ? "noopener noreferrer" : ""}
-  >
-    <div className="social-card-icon">
-      {icon}
-    </div>
-    <div className="social-card-content">
-      <h3 className="social-card-platform">{platform}</h3>
-      <p className="social-card-handle">{handle}</p>
-      {description && <p className="social-card-description">{description}</p>}
-    </div>
-  </a>
-);
+const SocialCard = ({ icon, platform, handle, link, description }) => {
+  const isExternal = link.startsWith('http');
+  const Component = isExternal ? 'a' : Link;
+  const linkProps = isExternal
+    ? { href: link, target: "_blank", rel: "noopener noreferrer" }
+    : { to: link };
+
+  return (
+    <Component 
+      {...linkProps}
+      className="social-card"
+    >
+      <div className="social-card-icon">
+        {icon}
+      </div>
+      <div className="social-card-content">
+        <h3 className="social-card-platform">{platform}</h3>
+        <p className="social-card-handle">{handle}</p>
+        {description && <p className="social-card-description">{description}</p>}
+      </div>
+    </Component>
+  );
+};
 
 function Connect() {
   return (
     <section id="connect">
       <div className="connect-header">
-        <h2>Let's Connect</h2>
+        <h2>&gt; Let's Connect</h2>
         <p className="connect-subtitle">Feel free to reach out and tell me anything on your mind</p>
       </div>
       <div className="social-grid">

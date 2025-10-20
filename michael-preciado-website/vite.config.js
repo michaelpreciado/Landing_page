@@ -8,29 +8,35 @@ export default defineConfig({
     // Enable gzip compression
     reportCompressedSize: true,
     // Chunk size optimization
-    chunkSizeWarningLimit: 1000,
+    chunkSizeWarningLimit: 500,
     rollupOptions: {
       output: {
-        // Code splitting strategy
-        manualChunks: {
-          // Vendor chunks for libraries
-          'react-vendor': ['react', 'react-dom'],
-          'router-vendor': ['react-router-dom'],
-          'animation-vendor': ['framer-motion'],
-          'three-vendor': ['three', '@react-three/fiber', '@react-three/drei'],
-          'icons-vendor': ['react-icons']
+        // Optimized code splitting strategy
+        manualChunks: (id) => {
+          // Core React libraries
+          if (id.includes('node_modules')) {
+            if (id.includes('react') || id.includes('react-dom')) {
+              return 'react-vendor';
+            }
+            if (id.includes('react-router-dom')) {
+              return 'router-vendor';
+            }
+            if (id.includes('framer-motion')) {
+              return 'animation-vendor';
+            }
+            if (id.includes('react-icons')) {
+              return 'icons-vendor';
+            }
+            // Other node_modules go into vendor chunk
+            return 'vendor';
+          }
         },
         // Optimize chunk names
-        chunkFileNames: (chunkInfo) => {
-          const facadeModuleId = chunkInfo.facadeModuleId
-            ? chunkInfo.facadeModuleId.split('/').pop().replace('.jsx', '').replace('.js', '')
-            : 'chunk';
-          return `js/${facadeModuleId}-[hash].js`;
-        },
+        chunkFileNames: 'js/[name]-[hash].js',
         entryFileNames: 'js/[name]-[hash].js',
         assetFileNames: (assetInfo) => {
           const extension = assetInfo.name.split('.').pop();
-          if (/png|jpe?g|svg|gif|tiff|bmp|ico/i.test(extension)) {
+          if (/png|jpe?g|svg|gif|tiff|bmp|ico|webp/i.test(extension)) {
             return 'images/[name]-[hash].[ext]';
           }
           if (/css/i.test(extension)) {
@@ -47,13 +53,17 @@ export default defineConfig({
     terserOptions: {
       compress: {
         drop_console: true, // Remove console.logs in production
-        drop_debugger: true
+        drop_debugger: true,
+        pure_funcs: ['console.log', 'console.info', 'console.debug']
       }
-    }
+    },
+    // Additional optimizations
+    cssCodeSplit: true,
+    assetsInlineLimit: 4096 // Inline assets smaller than 4kb
   },
   // Development optimizations
   optimizeDeps: {
-    include: ['react', 'react-dom', 'react-router-dom', 'framer-motion']
+    include: ['react', 'react-dom', 'react-router-dom', 'framer-motion', 'react-icons']
   },
   // Preload critical dependencies
   server: {

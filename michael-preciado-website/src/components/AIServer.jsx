@@ -12,28 +12,37 @@ function AIServer() {
   useEffect(() => {
     autoApplyLiquidGlass();
     
-    // Reading progress indicator
-    const updateReadingProgress = () => {
-      const article = document.querySelector('.server-journey-container');
-      const progressBar = document.querySelector('.reading-progress');
-      
-      if (article && progressBar) {
-        const articleHeight = article.offsetHeight;
-        const articleTop = article.offsetTop;
-        const scrollPosition = window.scrollY;
-        const windowHeight = window.innerHeight;
-        
-        const progress = Math.min(
-          Math.max((scrollPosition - articleTop + windowHeight) / articleHeight, 0),
-          1
-        );
-        
-        progressBar.style.transform = `scaleX(${progress})`;
-      }
+    // Reading progress indicator (throttled for 120Hz scroll smoothness)
+    const article = document.querySelector('.server-journey-container');
+    const progressBar = document.querySelector('.reading-progress');
+    let progressFrame = null;
+
+    const computeReadingProgress = () => {
+      if (!article || !progressBar) return;
+
+      const articleHeight = article.offsetHeight;
+      const articleTop = article.offsetTop;
+      const scrollPosition = window.scrollY;
+      const windowHeight = window.innerHeight;
+
+      const progress = Math.min(
+        Math.max((scrollPosition - articleTop + windowHeight) / articleHeight, 0),
+        1
+      );
+
+      progressBar.style.transform = `scaleX(${progress})`;
     };
 
-    window.addEventListener('scroll', updateReadingProgress);
-    updateReadingProgress(); // Initial call
+    const scheduleReadingProgress = () => {
+      if (progressFrame !== null) return;
+      progressFrame = requestAnimationFrame(() => {
+        computeReadingProgress();
+        progressFrame = null;
+      });
+    };
+
+    window.addEventListener('scroll', scheduleReadingProgress, { passive: true });
+    computeReadingProgress(); // Initial call
     
     const style = document.createElement('style');
     style.textContent = `
@@ -441,7 +450,10 @@ function AIServer() {
     document.head.appendChild(style);
     
     return () => {
-      window.removeEventListener('scroll', updateReadingProgress);
+      window.removeEventListener('scroll', scheduleReadingProgress);
+      if (progressFrame !== null) {
+        cancelAnimationFrame(progressFrame);
+      }
       document.head.removeChild(style);
     };
   }, []);

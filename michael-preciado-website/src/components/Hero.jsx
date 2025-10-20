@@ -1,7 +1,7 @@
 import React from 'react';
 import LazyImage from './LazyImage';
 
-function Hero() {
+const Hero = React.memo(() => {
   const firstName = "Michael";
   const lastName = "Preciado";
   const subtitle = "Software Developer & AI Automation";
@@ -41,6 +41,8 @@ function Hero() {
       {/* Skills buttons will be in the Skills component */}
     </section>
   );
-}
+});
+
+Hero.displayName = 'Hero';
 
 export default Hero; 

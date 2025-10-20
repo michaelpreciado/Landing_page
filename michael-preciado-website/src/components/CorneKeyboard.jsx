@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import MatrixRainBackground from './MatrixRainBackground';
 import PageTransition from './PageTransition.jsx';
 import ReturnButton from './ReturnButton.jsx';
-import LazyImage from './LazyImage';
 import useTypewriter from '../hooks/useTypewriter';
 import { autoApplyLiquidGlass } from '../utils/liquidGlass.js';
 
@@ -12,28 +11,37 @@ function CorneKeyboard() {
   useEffect(() => {
     autoApplyLiquidGlass();
     
-    // Reading progress indicator
-    const updateReadingProgress = () => {
-      const article = document.querySelector('.corne-build-container');
-      const progressBar = document.querySelector('.reading-progress');
-      
-      if (article && progressBar) {
-        const articleHeight = article.offsetHeight;
-        const articleTop = article.offsetTop;
-        const scrollPosition = window.scrollY;
-        const windowHeight = window.innerHeight;
-        
-        const progress = Math.min(
-          Math.max((scrollPosition - articleTop + windowHeight) / articleHeight, 0),
-          1
-        );
-        
-        progressBar.style.transform = `scaleX(${progress})`;
-      }
+    // Reading progress indicator (throttled for 120Hz scroll smoothness)
+    const article = document.querySelector('.corne-build-container');
+    const progressBar = document.querySelector('.reading-progress');
+    let progressFrame = null;
+
+    const computeReadingProgress = () => {
+      if (!article || !progressBar) return;
+
+      const articleHeight = article.offsetHeight;
+      const articleTop = article.offsetTop;
+      const scrollPosition = window.scrollY;
+      const windowHeight = window.innerHeight;
+
+      const progress = Math.min(
+        Math.max((scrollPosition - articleTop + windowHeight) / articleHeight, 0),
+        1
+      );
+
+      progressBar.style.transform = `scaleX(${progress})`;
     };
 
-    window.addEventListener('scroll', updateReadingProgress);
-    updateReadingProgress(); // Initial call
+    const scheduleReadingProgress = () => {
+      if (progressFrame !== null) return;
+      progressFrame = requestAnimationFrame(() => {
+        computeReadingProgress();
+        progressFrame = null;
+      });
+    };
+
+    window.addEventListener('scroll', scheduleReadingProgress, { passive: true });
+    computeReadingProgress(); // Initial call to avoid waiting for RAF
     
     const style = document.createElement('style');
     style.textContent = `
@@ -379,7 +387,10 @@ function CorneKeyboard() {
     document.head.appendChild(style);
     
     return () => {
-      window.removeEventListener('scroll', updateReadingProgress);
+      window.removeEventListener('scroll', scheduleReadingProgress);
+      if (progressFrame !== null) {
+        cancelAnimationFrame(progressFrame);
+      }
       document.head.removeChild(style);
     };
   }, []);
@@ -407,12 +418,12 @@ function CorneKeyboard() {
 
           <div className="hero-image-container">
             <div className="hero-image-frame">
-              <LazyImage
+              <img
                 src="/images/corne-keyboard/cornebuild.jpeg"
                 alt="Corne keyboard build hero"
-                priority={true}
+                loading="eager"
                 fetchPriority="high"
-                intrinsic={true}
+                style={{ width: '100%', height: 'auto', display: 'block' }}
               />
             </div>
           </div>
@@ -475,7 +486,7 @@ function CorneKeyboard() {
               ].map(({ src, caption }) => (
                 <figure key={caption} style={{ margin: 0 }}>
                   <div className="hologram-container">
-                    <LazyImage src={src} alt={caption} priority={true} fetchPriority="high" intrinsic={true} />
+                    <img src={src} alt={caption} loading="lazy" style={{ width: '100%', height: 'auto', display: 'block', borderRadius: '12px' }} />
                   </div>
                   <figcaption style={{ textAlign: 'center', marginTop: '-1rem' }}>{caption}</figcaption>
                 </figure>
@@ -500,7 +511,7 @@ function CorneKeyboard() {
                 '/images/corne-keyboard/corne4.jpeg'
               ].map((src) => (
                 <div key={src} className="hologram-container">
-                  <LazyImage src={src} alt="Corne keyboard build step" priority={true} fetchPriority="low" intrinsic={true} />
+                  <img src={src} alt="Corne keyboard build step" loading="lazy" style={{ width: '100%', height: 'auto', display: 'block', borderRadius: '12px' }} />
                 </div>
               ))}
             </div>
@@ -509,10 +520,11 @@ function CorneKeyboard() {
           <section className="build-section">
             <h2>Build Timelapse</h2>
             <div className="hologram-container">
-               <LazyImage
+              <img
                 src="/images/corne-keyboard/cornelapse.gif"
                 alt="Corne keyboard build timelapse"
-                intrinsic={true}
+                loading="lazy"
+                style={{ width: '100%', height: 'auto', display: 'block', borderRadius: '12px' }}
               />
             </div>
           </section>
