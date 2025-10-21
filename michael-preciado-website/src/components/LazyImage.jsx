@@ -115,7 +115,7 @@ const LazyImage = ({
       }}
     >
       {/* Placeholder */}
-      {!isLoaded && !hasError && placeholder && (
+      {!isLoaded && !hasError && !!placeholder && (
         <div className="lazy-image-placeholder">
           {placeholder}
         </div>
