@@ -104,21 +104,6 @@ function Projects() {
 
   const projectsData = [
     {
-      imageSrc: "/images/server/IMG_1039.jpeg",
-      title: "Local AI & Storage Server (FRIDAY)",
-      description: "A complete self-hosted AI infrastructure built from the ground up. Features Ubuntu server setup, GPU acceleration, Ollama/LM Studio integration, Open WebUI interface, Cloudflare tunneling, and Samba file sharing. Includes detailed troubleshooting documentation and performance monitoring.",
-      tech: ['Ubuntu', 'Ollama', 'Open WebUI', 'Cloudflare Tunnel', 'Samba', 'Python', 'GPU Acceleration', 'Systemd'],
-      demoLink: "/projects/ai-server"
-    },
-    {
-      imageSrc: "/images/corne-keyboard/cornebuild.jpeg",
-      title: "Corne Keyboard Build",
-      description: "Custom split ergonomic mechanical keyboard featuring the Corne layout with ZMK firmware. Built from scratch with 3D printed case, hand-wired switches, and fully programmable layers. Designed for ergonomic typing and complete customization.",
-      tech: ["Hardware", "ZMK", "3D Printing", "Soldering", "Ergonomics", "QMK"],
-      demoLink: "/projects/corne-keyboard",
-      fullImage: true
-    },
-    {
       imageSrc: "/images/projects/photography.png",
       title: "Photography Portfolio",
       description: "A minimalist photography showcase featuring responsive image galleries, smooth transitions, and optimized loading. Built with modern web technologies for fast, beautiful presentation of visual work.",
@@ -173,6 +158,21 @@ function Projects() {
       tech: ['JavaScript', 'TensorFlow.js', 'OpenAI GPT-4o', 'PWA', 'Computer Vision', 'Machine Learning'],
       codeLink: "https://github.com/michaelpreciado/PupCam",
       demoLink: "https://pup-cam.vercel.app"
+    },
+    {
+      imageSrc: "/images/server/IMG_1039.jpeg",
+      title: "Local AI & Storage Server (FRIDAY)",
+      description: "A complete self-hosted AI infrastructure built from the ground up. Features Ubuntu server setup, GPU acceleration, Ollama/LM Studio integration, Open WebUI interface, Cloudflare tunneling, and Samba file sharing. Includes detailed troubleshooting documentation and performance monitoring.",
+      tech: ['Ubuntu', 'Ollama', 'Open WebUI', 'Cloudflare Tunnel', 'Samba', 'Python', 'GPU Acceleration', 'Systemd'],
+      demoLink: "/projects/ai-server"
+    },
+    {
+      imageSrc: "/images/corne-keyboard/cornebuild.jpeg",
+      title: "Corne Keyboard Build",
+      description: "Custom split ergonomic mechanical keyboard featuring the Corne layout with ZMK firmware. Built from scratch with 3D printed case, hand-wired switches, and fully programmable layers. Designed for ergonomic typing and complete customization.",
+      tech: ["Hardware", "ZMK", "3D Printing", "Soldering", "Ergonomics", "QMK"],
+      demoLink: "/projects/corne-keyboard",
+      fullImage: true
     }
   ];
 
