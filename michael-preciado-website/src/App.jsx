@@ -40,13 +40,13 @@ function App() {
           <Skills />
         </ScrollRevealTerminal>
         <ScrollRevealTerminal>
-          <Suspense fallback={<SectionLoader height="200px" />}>
-            <Connect />
+          <Suspense fallback={<SectionLoader height="400px" />}>
+            <About />
           </Suspense>
         </ScrollRevealTerminal>
         <ScrollRevealTerminal>
-          <Suspense fallback={<SectionLoader height="400px" />}>
-            <About />
+          <Suspense fallback={<SectionLoader height="200px" />}>
+            <Connect />
           </Suspense>
         </ScrollRevealTerminal>
         <ScrollRevealTerminal>

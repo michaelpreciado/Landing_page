@@ -10,27 +10,32 @@ function About() {
   return (
     <section id="about" className="about-section">
       <div className="about-container">
-        <div className="about-image-wrapper">
-          <LazyImage
-            src="/images/about/mp.jpeg"
-            alt="Michael Preciado - Professional Portrait"
-            className="about-image"
-            quality="medium"
-            maxWidth="800px"
-            placeholder={
-              <div style={{ 
-                width: '100%', 
-                height: '100%', 
-                background: 'var(--medium-bg)', 
-                display: 'flex', 
-                alignItems: 'center', 
-                justifyContent: 'center',
-                borderRadius: '20px'
-              }}>
-                📸
-              </div>
-            }
-          />
+        <div className="about-image-column">
+          <div className="about-image-wrapper">
+            <LazyImage
+              src="/images/about/mp.jpeg"
+              alt="Michael Preciado - Professional Portrait"
+              className="about-image"
+              quality="medium"
+              maxWidth="800px"
+              placeholder={
+                <div style={{ 
+                  width: '100%', 
+                  height: '100%', 
+                  background: 'var(--medium-bg)', 
+                  display: 'flex', 
+                  alignItems: 'center', 
+                  justifyContent: 'center',
+                  borderRadius: '20px'
+                }}>
+                  📸
+                </div>
+              }
+            />
+          </div>
+          <a href="/projects" className="about-cta-button">
+            My Work
+          </a>
         </div>
 
         <div className="about-content">

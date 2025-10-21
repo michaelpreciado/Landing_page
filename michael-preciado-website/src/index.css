@@ -189,7 +189,7 @@ select:focus-visible {
 
 /* --- Sections --- */
 section {
-  padding: 80px 20px; /* Increased mobile padding */
+  padding: 60px 20px; /* Reduced padding */
   max-width: 1100px; /* Wider max-width for desktop */
   margin: 0 auto;
   position: relative;
@@ -202,7 +202,7 @@ section {
 /* Mobile section spacing */
 @media (max-width: 767.98px) {
   section {
-    padding: 60px 15px; /* Tighter padding on mobile */
+    padding: 40px 15px; /* Reduced padding on mobile */
   }
 }
 
@@ -213,7 +213,7 @@ section {
 
 /* Add more vertical space between sections */
 section + section {
-  margin-top: 40px;
+  margin-top: 20px;
 }
 
 /* --- Canvas --- */
@@ -631,7 +631,7 @@ img[src^="placeholder-"].project-image-placeholder {
 
 .connect-header {
   text-align: center;
-  margin-bottom: 3rem;
+  margin-bottom: 2rem;
   width: 100%;
   box-sizing: border-box;
   padding: 0 10px;
@@ -640,22 +640,30 @@ img[src^="placeholder-"].project-image-placeholder {
 .connect-header h2 {
   font-size: 2.5rem;
   margin-bottom: 0.5rem;
-  background: linear-gradient(135deg, var(--light-text), var(--primary-accent));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: var(--primary-accent);
   word-wrap: break-word;
   overflow-wrap: break-word;
+}
+
+/* Tablet connect header */
+@media (min-width: 768px) and (max-width: 1023.98px) {
+  .connect-header h2 {
+    font-size: 2rem;
+  }
+  
+  .connect-subtitle {
+    font-size: 1rem;
+  }
 }
 
 /* Mobile connect header */
 @media (max-width: 767.98px) {
   .connect-header h2 {
-    font-size: 1.75rem;
+    font-size: 1.5rem;
   }
   
   .connect-subtitle {
-    font-size: 1rem;
+    font-size: 0.9rem;
     padding: 0 10px;
   }
 }
@@ -792,11 +800,19 @@ img[src^="placeholder-"].project-image-placeholder {
   }
   
   .social-card-icon {
-    font-size: 2.2rem;
+    font-size: 2rem;
+  }
+  
+  .social-card-platform {
+    font-size: 1rem;
+  }
+  
+  .social-card-handle {
+    font-size: 0.8rem;
   }
   
   .connect-header h2 {
-    font-size: 2rem;
+    font-size: 1.75rem;
   }
 }
 
@@ -955,7 +971,7 @@ img[src^="placeholder-"].project-image-placeholder {
   justify-content: center; /* Center the grid items */
   flex-wrap: wrap; /* Allow wrapping */
   margin-top: 15px; /* Reduced margin-top */
-  padding: 0 10px; /* Add some horizontal padding if needed */
+  padding: 0 15px; /* Add some horizontal padding if needed */
 }
 
 .skill-button {
@@ -1011,14 +1027,19 @@ img[src^="placeholder-"].project-image-placeholder {
   .skills-container {
     grid-template-columns: repeat(2, 1fr);
     gap: 8px;
-    padding: 0 10px;
+    padding: 0 15px;
   }
   
   .skill-button {
-    font-size: 0.9rem;
-    padding: 12px 18px;
+    font-size: 0.8rem;
+    padding: 10px 12px;
     min-width: auto;
     width: 100%;
+  }
+  
+  .skill-button span {
+    font-size: 1.1em;
+    margin-right: 5px;
   }
 }
 
@@ -1028,6 +1049,11 @@ img[src^="placeholder-"].project-image-placeholder {
     grid-template-columns: 1fr;
     max-width: 280px;
     margin: 0 auto;
+  }
+  
+  .skill-button {
+    font-size: 0.75rem;
+    padding: 9px 12px;
   }
 }
 
@@ -1078,27 +1104,27 @@ img[src^="placeholder-"].project-image-placeholder {
 /* --- About Section - Enhanced UX Design --- */
 .about-section {
   position: relative;
-  padding: 80px 20px;
+  padding: 50px 20px;
   max-width: 1200px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 40px;
+  gap: 30px;
   width: 100%;
 }
 
 .about-container {
   display: grid;
   grid-template-columns: 420px 1fr;
-  gap: 80px;
+  gap: 35px;
   align-items: center;
   width: 100%;
   max-width: 1100px;
   margin: 0 auto;
-  padding: 60px 40px;
+  padding: 40px 30px;
   /* Subtle dark gradient background - contained to content */
-  background: linear-gradient(135deg, rgba(11, 12, 16, 0.8) 0%, rgba(31, 40, 51, 0.8) 100%);
+  background: linear-gradient(135deg, rgba(11, 12, 16, 0.5) 0%, rgba(31, 40, 51, 0.5) 100%);
   border-radius: 24px;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
 }
@@ -1110,9 +1136,36 @@ img[src^="placeholder-"].project-image-placeholder {
   align-items: center;
   width: 420px;
   height: 420px;
+  overflow: hidden;
+  border-radius: 20px;
   /* Removed gradient mask for cleaner presentation */
   -webkit-mask-image: none;
   mask-image: none;
+  isolation: isolate;
+}
+
+.about-image-wrapper::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
+  background: radial-gradient(
+    ellipse at center,
+    transparent 0%,
+    transparent 50%,
+    rgba(2, 12, 27, 0.2) 75%,
+    rgba(2, 12, 27, 0.5) 100%
+  );
+  pointer-events: none;
+  z-index: 10;
+  transition: opacity 0.3s ease;
+}
+
+.about-image-wrapper:hover::before {
+  opacity: 0.9;
 }
 
 .about-image,
@@ -1120,19 +1173,19 @@ img[src^="placeholder-"].project-image-placeholder {
 .lazy-image-container.about-image,
 .lazy-image-container.about-image img {
   border-radius: 20px;
-  /* Enhanced shadow for depth */
-  box-shadow:
-    0 25px 50px rgba(0, 0, 0, 0.5),
-    0 10px 30px rgba(30, 144, 255, 0.2),
-    0 0 40px rgba(30, 144, 255, 0.15);
+  /* Removed shadow to eliminate dark area underneath */
+  box-shadow: none;
   transition: all 0.3s ease;
   width: 420px;
   height: 420px;
   object-fit: cover;
   object-position: center;
+  display: block;
   /* Improved visibility for professional presentation */
   opacity: 0.9 !important;
   filter: saturate(1) brightness(1.05) contrast(1.1) !important;
+  position: relative;
+  z-index: 1;
 }
 
 .about-image-wrapper:hover img,
@@ -1140,10 +1193,43 @@ img[src^="placeholder-"].project-image-placeholder {
   /* Subtle enhancement on hover */
   opacity: 1 !important;
   filter: saturate(1.02) brightness(1.05) contrast(1.1) !important;
-  box-shadow:
-    0 25px 50px rgba(0, 0, 0, 0.5),
-    0 12px 35px rgba(30, 144, 255, 0.25),
-    0 0 45px rgba(30, 144, 255, 0.15);
+  box-shadow: none;
+}
+
+.about-image-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.about-cta-button {
+  appearance: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--border-color);
+  border-radius: 9999px;
+  min-height: 52px;
+  min-width: 180px;
+  padding: 14px 38px;
+  color: var(--light-text);
+  background: linear-gradient(135deg, rgba(30,144,255,0.25), rgba(70,163,255,0.15));
+  cursor: pointer;
+  font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+  font-size: 1.05rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 12px rgba(30, 144, 255, 0.15);
+}
+
+.about-cta-button:hover,
+.about-cta-button:focus-visible {
+  transform: translateY(-2px);
+  border-color: var(--secondary-accent);
+  box-shadow: 0 8px 24px rgba(30, 144, 255, 0.3);
+  background: linear-gradient(135deg, rgba(30,144,255,0.35), rgba(70,163,255,0.25));
 }
 
 .about-content {
@@ -1266,17 +1352,20 @@ img[src^="placeholder-"].project-image-placeholder {
 /* Responsive design for better mobile UX */
 @media (max-width: 1024px) {
   .about-section {
-    padding: 60px 20px;
+    padding: 40px 20px;
   }
 
   .about-container {
     grid-template-columns: 1fr;
-    gap: 50px;
-    padding: 50px 30px;
+    gap: 25px;
+    padding: 35px 25px;
+  }
+
+  .about-image-column {
+    order: -1; /* Image first on mobile for visual impact */
   }
 
   .about-image-wrapper {
-    order: -1; /* Image first on mobile for visual impact */
     width: 350px;
     height: 350px;
     margin: 0 auto;
@@ -1288,6 +1377,13 @@ img[src^="placeholder-"].project-image-placeholder {
   .lazy-image-container.about-image img {
     width: 350px;
     height: 350px;
+  }
+
+  .about-cta-button {
+    min-width: 160px;
+    min-height: 48px;
+    padding: 12px 32px;
+    font-size: 1rem;
   }
 
   .about-header {
@@ -1308,13 +1404,13 @@ img[src^="placeholder-"].project-image-placeholder {
 
 @media (max-width: 768px) {
   .about-section {
-    padding: 40px 15px;
+    padding: 30px 15px;
     width: 100%;
     box-sizing: border-box;
   }
 
   .about-container {
-    padding: 30px 20px;
+    padding: 25px 15px;
     width: 100%;
     box-sizing: border-box;
   }
@@ -1322,7 +1418,7 @@ img[src^="placeholder-"].project-image-placeholder {
   .about-image-wrapper {
     width: 280px;
     height: 280px;
-    margin: 0 auto 30px auto;
+    margin: 0 auto;
   }
 
   .about-image,
@@ -1331,6 +1427,13 @@ img[src^="placeholder-"].project-image-placeholder {
   .lazy-image-container.about-image img {
     width: 280px;
     height: 280px;
+  }
+
+  .about-cta-button {
+    min-width: 150px;
+    min-height: 46px;
+    padding: 11px 30px;
+    font-size: 0.95rem;
   }
 
   .about-header {
@@ -1369,6 +1472,7 @@ img[src^="placeholder-"].project-image-placeholder {
   .about-image-wrapper {
     width: 280px;
     height: 280px;
+    margin: 0 auto;
   }
 
   .about-image,
@@ -1377,6 +1481,13 @@ img[src^="placeholder-"].project-image-placeholder {
   .lazy-image-container.about-image img {
     width: 280px;
     height: 280px;
+  }
+
+  .about-cta-button {
+    min-width: 150px;
+    min-height: 46px;
+    padding: 11px 30px;
+    font-size: 0.95rem;
   }
 
   .about-header {
@@ -1398,10 +1509,10 @@ img[src^="placeholder-"].project-image-placeholder {
   flex-direction: column;
   align-items: center;
   gap: 0.5rem;
-  padding: 3rem 1rem 2rem;
+  padding: 2rem 1rem 1.5rem;
   color: var(--medium-text);
   border-top: 1px solid var(--border-color);
-  margin-top: 4rem;
+  margin-top: 2rem;
 }
 
 .social-icons {
@@ -2294,7 +2405,7 @@ h3:hover {
 #blogs > p {
   text-align: center;
   color: var(--medium-text);
-  margin-bottom: 3rem;
+  margin-bottom: 2rem;
   max-width: 45ch;
   margin-left: auto;
   margin-right: auto;
@@ -2306,9 +2417,9 @@ h3:hover {
   /* -webkit-backdrop-filter: blur(8px); */ /* Removed - liquid glass handles backdrop filter */
   border: 1px solid rgba(56, 189, 248, 0.2);
   border-radius: 24px;
-  padding: 2rem;
+  padding: 1.5rem;
   max-width: 800px;
-  margin: 0 auto 4rem auto;
+  margin: 0 auto 2rem auto;
   min-height: 200px; /* Ensure the container has adequate height */
   display: flex;
   flex-direction: column;
@@ -2845,21 +2956,21 @@ h3:hover {
 @media (max-width: 767.98px) {
   #hero h1,
   .hero-name-glow {
-    font-size: 2rem !important; /* Smaller for mobile */
+    font-size: 1.75rem !important; /* Smaller for mobile */
   }
 
   .hero-code-glow {
-    font-size: 1.6rem !important; /* Scale down code symbols for mobile */
+    font-size: 1.4rem !important; /* Scale down code symbols for mobile */
   }
 
   .code-symbols {
-    font-size: 1rem;
+    font-size: 0.9rem;
     margin-left: 3px;
     margin-right: 3px;
   }
   
   .hero-subtitle {
-    font-size: 0.95rem !important;
+    font-size: 0.85rem !important;
     padding: 0 10px;
   }
 }
@@ -2868,11 +2979,27 @@ h3:hover {
 @media (max-width: 400px) {
   #hero h1,
   .hero-name-glow {
-    font-size: 1.75rem !important;
+    font-size: 1.5rem !important;
   }
 
   .hero-code-glow {
-    font-size: 1.4rem !important;
+    font-size: 1.2rem !important;
+  }
+}
+
+/* Tablet hero adjustments */
+@media (min-width: 768px) and (max-width: 1023.98px) {
+  #hero h1,
+  .hero-name-glow {
+    font-size: 2.5rem !important;
+  }
+
+  .hero-code-glow {
+    font-size: 2rem !important;
+  }
+  
+  .hero-subtitle {
+    font-size: 1.1rem !important;
   }
 }
 
