@@ -3,7 +3,6 @@ import { createRoot } from 'react-dom/client'
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom'
 import { AnimatePresence } from 'framer-motion'
 import './index.css'
-import './styles/liquidGlass.css'
 import App from './App.jsx'
 import { initLiquidGlass } from './utils/liquidGlass.js'
 
@@ -13,6 +12,7 @@ const BlogArticle = lazy(() => import('./components/BlogArticle.jsx'))
 const ProjectsPage = lazy(() => import('./components/ProjectsPage.jsx'))
 const CorneKeyboard = lazy(() => import('./components/CorneKeyboard.jsx'))
 const AIServer = lazy(() => import('./components/AIServer.jsx'))
+const Resume = lazy(() => import('./components/Resume.jsx'))
 
 // Initialize only the core liquid glass system (pointer tracking, etc.)
 initLiquidGlass();
@@ -48,6 +48,7 @@ function AnimatedRoutes() {
           <Route path="/projects" element={<ProjectsPage />} />
           <Route path="/projects/corne-keyboard" element={<CorneKeyboard />} />
           <Route path="/projects/ai-server" element={<AIServer />} />
+          <Route path="/resume" element={<Resume />} />
         </Routes>
       </Suspense>
     </AnimatePresence>

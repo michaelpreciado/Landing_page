@@ -22,7 +22,12 @@ function ProjectsPage() {
   return (
     <PageTransition>
       {showBackground && <MatrixRainBackground />}
-      <PageHeader navTo="/blog" navText="Blogs" />
+      <PageHeader 
+        navTo="/blog" 
+        navText="Blogs"
+        title="My Projects"
+        subtitle="Things I've built and experimented with"
+      />
       <main style={{ 
         position: 'relative', 
         zIndex: 1, 

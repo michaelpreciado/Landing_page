@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
-import useTypewriter from '../hooks/useTypewriter'; // Import the hook
 import LazyImage from './LazyImage';
 // Import icons to use as placeholders
 import { FaCode, FaProjectDiagram, FaCamera, FaGlobeAmericas, FaTv } from 'react-icons/fa'; 
@@ -8,21 +7,25 @@ import { FaCode, FaProjectDiagram, FaCamera, FaGlobeAmericas, FaTv } from 'react
 // --- Reusable IntroCard Component ---
 const IntroCard = React.memo(() => (
   <motion.div
-    className="blog-intro-card" // Reusing the same style from the blog page
+    className="blog-intro-card terminal-card"
     initial={{ opacity: 0, y: 20 }}
     animate={{ opacity: 1, y: 0 }}
     transition={{ duration: 0.5, delay: 0.2 }}
   >
+    <div className="terminal-card-header">
+      <div className="terminal-card-buttons">
+        <span className="terminal-card-button red"></span>
+        <span className="terminal-card-button yellow"></span>
+        <span className="terminal-card-button green"></span>
+      </div>
+    </div>
     <div className="blog-intro-text">
       <p>
-        Welcome to my workshop. Here you'll find a collection of my favorite projects, from web apps to hardware experiments. Each one is a story of a problem solved and something new learned.
+        <span className="terminal-prompt">&gt;</span> Welcome to my workshop. Here you'll find a collection of my favorite projects, from web apps to hardware experiments. Each one is a story of a problem solved and something new learned.
       </p>
       <p>
-        Dive in and see what I've been building.
+        <span className="terminal-prompt">&gt;</span> Dive in and see what I've been building. 🛠️
       </p>
-    </div>
-    <div className="blog-image-placeholder">
-      🛠️
     </div>
   </motion.div>
 ));
@@ -44,13 +47,20 @@ const ProjectCard = React.memo(({ imageSrc, title, description, tech, codeLink, 
 
   return (
     <motion.div
-      className="blog-post-card" // Using the new, more generic card style
+      className="blog-post-card terminal-card"
       variants={cardVariants}
       initial="hidden"
       animate="visible"
       whileHover={{ y: -5, transition: { duration: 0.2 } }}
       style={{ willChange: 'transform, opacity' }}
     >
+      <div className="terminal-card-header">
+        <div className="terminal-card-buttons">
+          <span className="terminal-card-button red"></span>
+          <span className="terminal-card-button yellow"></span>
+          <span className="terminal-card-button green"></span>
+        </div>
+      </div>
       {imageSrc && (
         <div className="project-image-container" style={{ overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
           <LazyImage 
@@ -99,9 +109,6 @@ const ProjectCard = React.memo(({ imageSrc, title, description, tech, codeLink, 
 
 // --- Main Projects Component ---
 function Projects() {
-  const typedTitle = useTypewriter("My Projects", { speed: 30, scrambleOnMount: true, scrambleDuration: 800 });
-  const typedSubtitle = useTypewriter("A collection of my recent work", { speed: 20, scrambleOnMount: true, scrambleDuration: 1000 });
-
   const projectsData = [
     {
       imageSrc: "/images/projects/photography.png",
@@ -177,24 +184,7 @@ function Projects() {
   ];
 
   return (
-    <section id="projects" style={{ paddingTop: '8rem' }}>
-      <motion.h2
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.5 }}
-        style={{ fontFamily: 'var(--font-pixel)', fontSize: '2rem', textAlign: 'center', marginBottom: '0.5rem' }}
-      >
-        {typedTitle}
-      </motion.h2>
-      <motion.p
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.5, delay: 0.1 }}
-        style={{ textAlign: 'center', color: 'var(--medium-text)', marginBottom: '3rem' }}
-      >
-        {typedSubtitle}
-      </motion.p>
-
+    <section id="projects" style={{ paddingTop: '1rem' }}>
       <IntroCard />
 
       <div 

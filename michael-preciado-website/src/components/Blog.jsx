@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import useTypewriter from '../hooks/useTypewriter'; // Import the hook
 import MatrixRainBackground from './MatrixRainBackground';
 import LazyImage from './LazyImage';
 import { blogPosts } from '../data/blogData.js';
@@ -31,13 +30,20 @@ const BlogPostCard = React.memo(({ post, index }) => {
 
   return (
     <motion.div
-      className="blog-post-card"
+      className="blog-post-card terminal-card"
       variants={cardVariants}
       initial="hidden"
       animate="visible"
       whileHover={{ y: -5, transition: { duration: 0.2 } }}
       style={{ willChange: 'transform, opacity' }}
     >
+      <div className="terminal-card-header">
+        <div className="terminal-card-buttons">
+          <span className="terminal-card-button red"></span>
+          <span className="terminal-card-button yellow"></span>
+          <span className="terminal-card-button green"></span>
+        </div>
+      </div>
       <div className="project-image-container">
         <LazyImage 
           src={post.heroImage} 
@@ -73,9 +79,6 @@ const BlogPostCard = React.memo(({ post, index }) => {
 });
 
 function Blog() {
-  const typedTitle = useTypewriter("🗒️ Blogs", { speed: 30, scrambleOnMount: true, scrambleDuration: 1500 });
-  const typedSubtitle = useTypewriter("Insights, tutorials, and stories.", { speed: 20, scrambleOnMount: true, scrambleDuration: 2000 });
-
   // Apply liquid glass effects after DOM is ready
   useEffect(() => {
     autoApplyLiquidGlass();
@@ -84,24 +87,14 @@ function Blog() {
   return (
     <PageTransition>
       <MatrixRainBackground />
-      <PageHeader navTo="/projects" navText="Projects" />
-      <main style={{ position: 'relative', zIndex: 1, paddingTop: '2rem' }}>
+      <PageHeader 
+        navTo="/projects" 
+        navText="Projects"
+        title="My Blogs"
+        subtitle="Thoughts, tutorials, and insights"
+      />
+      <main style={{ position: 'relative', zIndex: 1, paddingTop: '1rem' }}>
         <section id="blogs">
-          <motion.h2
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.5 }}
-          >
-            {typedTitle}
-          </motion.h2>
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-          >
-            {typedSubtitle}
-          </motion.p>
-          
           <div className="blogs-grid">
             {blogPosts.map((post, index) => (
               <BlogPostCard key={post.slug} post={post} index={index} />
