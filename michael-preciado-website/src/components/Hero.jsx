@@ -144,7 +144,7 @@ const Hero = React.memo(() => {
                 <span className="bullet">●</span> <span className="terminal-emphasis">my links</span>
               </p>
               <p className="terminal-text terminal-indent-double">
-                <span className="link-bullet">○</span> <a href="https://www.instagram.com/michael.preciado/" className="terminal-link-inline"><Icon type="instagram" />instagram</a>
+                <span className="link-bullet">○</span> <a href="https://www.instagram.com/preciado.tech?igsh=MTh0aWo2dndianNmdw%3D%3D&utm_source=qr" className="terminal-link-inline"><Icon type="instagram" />instagram</a>
               </p>
               <p className="terminal-text terminal-indent-double">
                 <span className="link-bullet">○</span> <a href="https://github.com/michaelpreciado" className="terminal-link-inline"><Icon type="github" />github</a>
