@@ -2256,11 +2256,11 @@ main {
 }
 
 /* Apply matrix overlay to common image containers */
-.project-image-container { 
-  position: relative; 
-  overflow: hidden; 
+.project-image-container {
+  position: relative;
+  overflow: hidden;
   width: 100%;
-  aspect-ratio: 16 / 9;
+  aspect-ratio: 16 / 7;
   margin-top: 32px; /* Account for terminal header */
 }
 
