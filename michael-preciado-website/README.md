@@ -1,4 +1,4 @@
-# Michael Preciado – Portfolio / Blog
+# Michael Preciado – Portfolio / Articles
 
 Hey there 👋 I'm **Michael Preciado**, an end-to-end web engineer & perpetual tinkerer. This repo powers my personal site – a living playground where I mix code, design and the occasional dad-level Easter egg.
 
@@ -8,7 +8,7 @@ Hey there 👋 I'm **Michael Preciado**, an end-to-end web engineer & perpetual 
 
 ## Why this project exists
 
-1. Showcase projects, blogs and experiments in one place.
+1. Showcase projects, articles and experiments in one place.
 2. Play with new tech without the red-tape of a corporate codebase.
 3. Share lessons learned so other builders can skip a few potholes.
 
@@ -28,7 +28,7 @@ Hey there 👋 I'm **Michael Preciado**, an end-to-end web engineer & perpetual 
 
 ```
 src/
-  components/   Reusable React components (Hero, Projects, Blog etc.)
+  components/   Reusable React components (Hero, Projects, Articles etc.)
   data/         Plain-JS data sources (blogData.js – soon to be moved to CMS)
   hooks/        Custom hooks (typewriter, scroll animations...)
   styles/       Global CSS + experimental "liquid-glass" effect
@@ -55,7 +55,7 @@ npm run preview   # serve dist/ locally to sanity-check
 
 ## Roadmap / Ideas
 
-- Migrate blog posts to a headless CMS (likely MDX + Content Layer).
+- Migrate articles to a headless CMS (likely MDX + Content Layer).
 - Dark-mode toggle with system preference.
 - More 3D playgrounds built with R3F.
 - Automated Lighthouse CI to keep performance scores ��.

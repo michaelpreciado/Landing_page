@@ -73,7 +73,7 @@ function BlogArticle() {
           <div>
             <h2>Article Not Found</h2>
             <p>Sorry, the article you are looking for does not exist.</p>
-            <Link to="/blog" className="blog-link">← Back to Blogs</Link>
+            <Link to="/blog" className="blog-link">← Back to Articles</Link>
           </div>
         </main>
       </PageTransition>
@@ -199,7 +199,7 @@ function BlogArticle() {
             {renderContent(post.content)}
           </article>
           <div style={{ marginTop: '2rem', textAlign: 'center' }}>
-            <Link to="/blog" className="blog-link">← Back to Blogs</Link>
+            <Link to="/blog" className="blog-link">← Back to Articles</Link>
           </div>
         </section>
       </main>
