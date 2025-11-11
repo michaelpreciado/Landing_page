@@ -87,10 +87,10 @@ function Blog() {
   return (
     <PageTransition>
       <MatrixRainBackground />
-      <PageHeader 
-        navTo="/projects" 
+      <PageHeader
+        navTo="/projects"
         navText="Projects"
-        title="My Blogs"
+        title="My Articles"
         subtitle="Thoughts, tutorials, and insights"
       />
       <main style={{ position: 'relative', zIndex: 1, paddingTop: '1rem' }}>
