@@ -53,65 +53,7 @@ function Contact() {
             <SimpleCoffeeIcon size={80} />
           </motion.div>
         </a>
-        <h2 style={{ color: 'var(--primary-accent)', fontFamily: 'var(--font-mono)', marginTop: '1rem' }}>
-          &gt; Contact Me
-        </h2>
-        
-        {/* Terminal-style contact form */}
-        <div className="terminal-container" style={{ marginTop: '2rem' }}>
-          <div className="terminal-header">
-            <div className="terminal-buttons">
-              <span className="terminal-button red"></span>
-              <span className="terminal-button yellow"></span>
-              <span className="terminal-button green"></span>
-            </div>
-            <span className="terminal-title">contact@form:~</span>
-          </div>
-          
-          <div className="terminal-content">
-            <p className="terminal-text" style={{ marginBottom: '1.5rem', color: 'var(--medium-text)' }}>
-              <span className="terminal-prompt">&gt;</span> Send me a message
-            </p>
-            
-            <form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" className="contact-form terminal-form" action="/success">
-              <input type="hidden" name="form-name" value="contact" />
-              <p style={{ display: 'none' }}>
-                <label>Don't fill this out if you're human: <input name="bot-field" /></label>
-              </p>
 
-              <div className="form-group">
-                <label htmlFor="name" className="terminal-text">
-                  <span className="terminal-prompt">$</span> name
-                </label>
-                <input type="text" id="name" name="name" placeholder="your name" required className="form-input terminal-input" />
-              </div>
-
-              <div className="form-group">
-                <label htmlFor="email" className="terminal-text">
-                  <span className="terminal-prompt">$</span> email
-                </label>
-                <input type="email" id="email" name="email" placeholder="your@email.com" required className="form-input terminal-input" />
-              </div>
-
-              <div className="form-group">
-                <label htmlFor="message" className="terminal-text">
-                  <span className="terminal-prompt">$</span> message
-                </label>
-                <textarea id="message" name="message" placeholder="type your message here..." required rows="5" className="form-textarea terminal-input"></textarea>
-              </div>
-
-              <motion.button 
-                type="submit" 
-                className="submit-button terminal-submit"
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-              >
-                <span>→</span> send message
-              </motion.button>
-            </form>
-          </div>
-        </div>
-        
         {/* Footer */}
         <footer className="site-footer" style={{ marginTop: '4rem', padding: '3rem 1rem 2rem', textAlign: 'center', borderTop: '1px solid var(--border-color)' }}>
           <div className="social-icons" style={{ display: 'flex', justifyContent: 'center', gap: '1.5rem', marginBottom: '1rem' }}>
