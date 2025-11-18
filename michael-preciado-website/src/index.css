@@ -335,11 +335,11 @@ body::after {
     scroll-behavior: smooth;
   }
   
-  /* Reduce blur effects on mobile */
+  /* Apply same blur effects as desktop on mobile */
   .glass-morphism,
   .blur-bg {
-    backdrop-filter: blur(5px) !important;
-    -webkit-backdrop-filter: blur(5px) !important;
+    backdrop-filter: blur(10px) !important;
+    -webkit-backdrop-filter: blur(10px) !important;
   }
   
   /* Optimize image rendering on mobile */
@@ -749,7 +749,7 @@ img[src^="placeholder-"].project-image-placeholder {
   border-radius: 16px;
   text-decoration: none;
   color: var(--light-text);
-  background: rgba(10, 25, 47, 0.3);
+  background: rgba(10, 25, 47, 0.4);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   transition: all var(--transition-medium);
@@ -899,7 +899,7 @@ img[src^="placeholder-"].project-image-placeholder {
 .terminal-container {
   max-width: 900px;
   width: 90%;
-  background: rgba(0, 0, 0, 0.4);
+  background: rgba(0, 0, 0, 0.5);
   border: 2px solid var(--primary-accent);
   border-radius: 12px;
   box-shadow: 0 0 20px rgba(30, 144, 255, 0.25);
@@ -2124,7 +2124,8 @@ main {
   position: relative;
   overflow: hidden;
   transition: all 0.3s ease;
-  backdrop-filter: blur(5px);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 }
 
 .blog-quote-container:hover {
@@ -2890,7 +2891,7 @@ h3:hover {
 }
 
 .blog-post-card {
-  background: rgba(10, 25, 47, 0.4);
+  background: rgba(10, 25, 47, 0.5);
   border: 1px solid var(--primary-accent);
   border-radius: 12px;
   overflow: hidden;
@@ -2917,7 +2918,7 @@ h3:hover {
   transform: translateY(-5px);
   box-shadow: 0 0 20px rgba(30, 144, 255, 0.3);
   border-color: var(--primary-accent);
-  background: rgba(10, 25, 47, 0.6);
+  background: rgba(10, 25, 47, 0.7);
 }
 
 .blog-post-card .thumbnail {
