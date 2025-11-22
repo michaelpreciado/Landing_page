@@ -8,29 +8,29 @@ import { autoApplyLiquidGlass } from '../utils/liquidGlass.js';
 function ProjectsPage() {
   const [showBackground, setShowBackground] = useState(false);
   const [isReady, setIsReady] = useState(false);
-  
+
   // Apply liquid glass effects after DOM is ready
   useEffect(() => {
     // Set ready state immediately to prevent visual bugs
     setIsReady(true);
     autoApplyLiquidGlass();
-    
+
     // Show background immediately for smoother transition
     setShowBackground(true);
   }, []);
-  
+
   return (
     <PageTransition>
       {showBackground && <MatrixRainBackground />}
-      <PageHeader 
-        navTo="/blog" 
-        navText="Blogs"
+      <PageHeader
+        navTo="/blog"
+        navText="Articles"
         title="My Projects"
         subtitle="Things I've built and experimented with"
       />
-      <main style={{ 
-        position: 'relative', 
-        zIndex: 1, 
+      <main style={{
+        position: 'relative',
+        zIndex: 1,
         paddingTop: '2rem',
         opacity: isReady ? 1 : 0,
         transition: 'opacity 0.2s ease-in'

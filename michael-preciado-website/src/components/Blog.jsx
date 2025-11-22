@@ -45,9 +45,9 @@ const BlogPostCard = React.memo(({ post, index }) => {
         </div>
       </div>
       <div className="project-image-container">
-        <LazyImage 
-          src={post.heroImage} 
-          alt={`${post.title} blog post cover`} 
+        <LazyImage
+          src={post.heroImage}
+          alt={`${post.title} blog post cover`}
           className="thumbnail"
           quality="medium"
           maxWidth="800px"
@@ -55,8 +55,8 @@ const BlogPostCard = React.memo(({ post, index }) => {
         />
         {post.slug === 'tech-spirituality' && (
           <div className="image-watermark">
-            <a 
-              href="https://www.instagram.com/mariopreciado.art" 
+            <a
+              href="https://www.instagram.com/mariopreciado.art"
               className="image-watermark-link"
               aria-label="Visit Mario Preciado's art on Instagram"
             >

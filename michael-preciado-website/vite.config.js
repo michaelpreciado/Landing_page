@@ -68,6 +68,7 @@ export default defineConfig({
   // Preload critical dependencies
   server: {
     // Enable HTTP/2 for development
-    force: true
+    force: true,
+    port: 3000
   }
 })

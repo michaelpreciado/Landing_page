@@ -69,3 +69,5 @@ function applyToElements() {
   initScrollReveal();
 }
 
+
+

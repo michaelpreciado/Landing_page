@@ -134,7 +134,7 @@ const Hero = React.memo(() => {
                 <span className="bullet">●</span> <span className="terminal-emphasis">take a look at</span>
               </p>
               <p className="terminal-text terminal-indent-double">
-                <span className="link-bullet">○</span> <a href="/blog" className="terminal-link-inline"><Icon type="blog" />my blogs...</a>
+                <span className="link-bullet">○</span> <a href="/blog" className="terminal-link-inline"><Icon type="blog" />my articles...</a>
               </p>
               <p className="terminal-text terminal-indent-double">
                 <span className="link-bullet">○</span> <a href="/projects" className="terminal-link-inline"><Icon type="code" />my projects...</a>

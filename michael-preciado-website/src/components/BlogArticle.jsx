@@ -17,9 +17,9 @@ const BlogTextBlock = ({ text, delay = 0 }) => {
   useEffect(() => {
     // Prevent flash of un-animated content
     const loadingTimer = setTimeout(() => setIsLoading(false), 10);
-    
+
     if (delay === 0) return () => clearTimeout(loadingTimer);
-    
+
     const typingTimer = setTimeout(() => setStartTyping(true), delay);
     return () => {
       clearTimeout(loadingTimer);
@@ -41,10 +41,10 @@ const BlogTextBlock = ({ text, delay = 0 }) => {
       scrambleOnMount: true // Re-enable scramble for body text
     }
   );
-  
+
   // If typewriter is disabled, show full text immediately
   const displayText = shouldUseTypewriter ? typed : text;
-  
+
   // Apply a class to hide text while the typewriter is initializing
   const textStyle = {
     opacity: isLoading ? 0 : 1,
@@ -139,7 +139,7 @@ function BlogArticle() {
       if (block.trim() === '---') {
         return <hr key={idx} style={{ margin: '2rem 0', border: '1px solid var(--border-color)' }} />;
       }
-      
+
       // Handle blockquotes (lines starting with '> ')
       if (block.trim().startsWith('> ')) {
         const quoteText = block.replace(/^>\s*/, '').trim();
@@ -151,7 +151,7 @@ function BlogArticle() {
           </div>
         );
       }
-      
+
       // Pass raw text to the block component; scrambling handles the visual effect
       return <BlogTextBlock key={idx} text={block} delay={idx * 300} />;
     });
@@ -180,8 +180,8 @@ function BlogArticle() {
             {/* Hero Image */}
             {post.heroImage && (
               <figure className="blog-hero-image">
-                <LazyImage 
-                  src={post.heroImage} 
+                <LazyImage
+                  src={post.heroImage}
                   alt={`${post.title} blog article hero image`}
                   priority={true}
                   quality="medium"
