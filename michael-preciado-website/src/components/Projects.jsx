@@ -135,14 +135,6 @@ function Projects() {
       demoLink: "https://theflappydoggame.netlify.app/"
     },
     {
-      imageSrc: "/images/projects/friday.png",
-      title: "Friday AI Assistant",
-      description: "A personal AI assistant web application leveraging OpenAI's GPT models. Features conversational interface, context awareness, and seamless integration with modern web technologies for natural AI interactions.",
-      tech: ['Python', 'Flask', 'TypeScript', 'OpenAI API', 'REST API'],
-      codeLink: "https://github.com/michaelpreciado/F.R.I.D.A.Y",
-      demoLink: "https://michaelpreciado.github.io/F.R.I.D.A.Y/"
-    },
-    {
       imageSrc: "/images/projects/planttracker.png",
       title: "Plant Tracker PWA",
       description: "An offline-first Progressive Web App for plant care management. Features smart watering reminders, photo storage, growth tracking, and seamless sync via Supabase. Works completely offline with background sync.",
@@ -157,21 +149,6 @@ function Projects() {
       tech: ['React', 'TypeScript', 'Three.js', 'React Three Fiber', 'Tailwind CSS', 'Framer Motion'],
       codeLink: "https://github.com/michaelpreciado/CRTinteractiveAlbum",
       demoLink: "https://crtarchve.netlify.app"
-    },
-    {
-      imageSrc: "/images/projects/pupcam.png",
-      title: "PupCam Mood Reader",
-      description: "An AI-powered Progressive Web App that analyzes your dog's mood in real-time using computer vision. Combines TensorFlow.js for dog detection with GPT-4o vision analysis to provide insights into your pet's emotional state.",
-      tech: ['JavaScript', 'TensorFlow.js', 'OpenAI GPT-4o', 'PWA', 'Computer Vision', 'Machine Learning'],
-      codeLink: "https://github.com/michaelpreciado/PupCam",
-      demoLink: "https://pup-cam.vercel.app"
-    },
-    {
-      imageSrc: "/images/server/IMG_1039.jpeg",
-      title: "Local AI & Storage Server (FRIDAY)",
-      description: "A complete self-hosted AI infrastructure built from the ground up. Features Ubuntu server setup, GPU acceleration, Ollama/LM Studio integration, Open WebUI interface, Cloudflare tunneling, and Samba file sharing. Includes detailed troubleshooting documentation and performance monitoring.",
-      tech: ['Ubuntu', 'Ollama', 'Open WebUI', 'Cloudflare Tunnel', 'Samba', 'Python', 'GPU Acceleration', 'Systemd'],
-      demoLink: "/projects/ai-server"
     },
     {
       imageSrc: "/images/corne-keyboard/cornebuild.jpeg",
