@@ -899,7 +899,7 @@ img[src^="placeholder-"].project-image-placeholder {
 .terminal-container {
   max-width: 900px;
   width: 90%;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.3);
   border: 2px solid var(--primary-accent);
   border-radius: 12px;
   box-shadow: 0 0 20px rgba(30, 144, 255, 0.25);
