@@ -37,15 +37,18 @@ const Icon = ({ type, size = 14 }) => {
  * Terminal-style hero section with profile image and minimal animations for performance
  */
 const Hero = React.memo(() => {
-  const [showCursor, setShowCursor] = useState(true);
-  
-  // Blinking cursor effect
+  // Removed state-based blinking to prevent re-renders
+  // const [showCursor, setShowCursor] = useState(true);
+
+  // Blinking cursor effect moved to CSS
+  /*
   useEffect(() => {
     const interval = setInterval(() => {
       setShowCursor(prev => !prev);
     }, 530);
     return () => clearInterval(interval);
   }, []);
+  */
 
   return (
     <section id="hero" className="terminal-hero">
@@ -59,14 +62,14 @@ const Hero = React.memo(() => {
           </div>
           <span className="terminal-title">michael@terminal:~</span>
         </div>
-        
+
         {/* Terminal content */}
         <div className="terminal-content">
           {/* Profile Image */}
           <div className="terminal-image-wrapper">
-            <LazyImage 
-              src="/images/hero/mp.jpeg" 
-              alt="Michael Preciado - Software Developer" 
+            <LazyImage
+              src="/images/hero/mp.jpeg"
+              alt="Michael Preciado - Software Developer"
               className="profile-image terminal-profile-small"
               priority={true}
               fetchPriority="high"
@@ -75,22 +78,22 @@ const Hero = React.memo(() => {
               placeholder={<div style={{ width: '100px', height: '100px', borderRadius: '50%', background: 'var(--medium-bg)' }}></div>}
             />
           </div>
-          
+
           {/* ASCII Art Portrait */}
           <pre className="ascii-art" style={{ display: 'none' }}>
-{`    ⢀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⡀
+            {`    ⢀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⡀
     ⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
     ⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
     ⣿⣿⠿⠿⠿⠿⠿⠿⠿⠿⠿⠿⠿⠿⠿⠿⣿⣿
     ⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿
     ⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿`}
           </pre>
-          
+
           {/* Terminal prompt with name */}
           <div className="terminal-line">
             <h1 className="terminal-name">&gt; Michael Preciado</h1>
           </div>
-          
+
           {/* Bio section */}
           <div className="terminal-bio">
             <p className="terminal-text">
@@ -104,7 +107,7 @@ const Hero = React.memo(() => {
               <span className="terminal-prompt">&gt;</span> currently working on personal projects & AI automation
             </p>
             <p className="terminal-text blank-line"></p>
-            
+
             {/* Interests section */}
             <p className="terminal-text">
               <span className="terminal-label">interests :</span> tech, software engineering, AI/ML, automation,
@@ -116,18 +119,18 @@ const Hero = React.memo(() => {
               exploring new ideas and pushing creative boundaries
             </p>
             <p className="terminal-text blank-line"></p>
-            
+
             <p className="terminal-text">
               <a href="/resume" className="terminal-link-inline" style={{ color: '#1E90FF' }}>my work experience</a>
             </p>
             <p className="terminal-text blank-line"></p>
-            
+
             {/* Status update */}
             <p className="terminal-text terminal-indent">
               <span className="terminal-prompt">↳</span> will update soon
             </p>
             <p className="terminal-text blank-line"></p>
-            
+
             {/* Links section header */}
             <div className="terminal-links-section">
               <p className="terminal-text">
@@ -139,7 +142,7 @@ const Hero = React.memo(() => {
               <p className="terminal-text terminal-indent-double">
                 <span className="link-bullet">○</span> <a href="/projects" className="terminal-link-inline"><Icon type="code" />my projects...</a>
               </p>
-              
+
               <p className="terminal-text">
                 <span className="bullet">●</span> <span className="terminal-emphasis">my links</span>
               </p>
@@ -153,7 +156,7 @@ const Hero = React.memo(() => {
                 <span className="link-bullet">○</span> <a href="https://www.linkedin.com/in/michael-preciado-74959b227/" className="terminal-link-inline"><Icon type="linkedin" />linkedin</a>
               </p>
               <p className="terminal-text terminal-indent-double">
-                <span className="link-bullet">○</span> <a href="https://x.com/mpdollars" className="terminal-link-inline"><Icon type="twitter" />x social</a>
+                <span className="link-bullet">○</span> <a href="https://x.com/mpdollars" className="terminal-link-inline"><Icon type="twitter" />x-social</a>
               </p>
               <p className="terminal-text terminal-indent-double">
                 <span className="link-bullet">○</span> <a href="mailto:michael@preciadotech.com" className="terminal-link-inline"><Icon type="mail" />email me</a>
@@ -163,11 +166,11 @@ const Hero = React.memo(() => {
               </p>
             </div>
           </div>
-          
+
           {/* Blinking cursor */}
           <div className="terminal-cursor-line">
             <span className="terminal-prompt">$</span>
-            <span className={`terminal-cursor ${showCursor ? 'visible' : ''}`}>_</span>
+            <span className="terminal-cursor blinking-cursor">_</span>
           </div>
         </div>
       </div>

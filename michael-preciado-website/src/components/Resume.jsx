@@ -7,11 +7,11 @@ import PageHeader from './PageHeader';
 function Resume() {
   return (
     <div className="page-container">
-      <PageHeader 
-        title="Work Experience" 
+      <PageHeader
+        title="Work Experience"
         subtitle="Professional Background & Technical Skills"
       />
-      
+
       <section className="resume-section">
         <div className="terminal-container resume-terminal">
           <div className="terminal-header">
@@ -22,7 +22,7 @@ function Resume() {
             </div>
             <span className="terminal-title">resume@michael:~</span>
           </div>
-          
+
           <div className="terminal-content resume-content">
             {/* Professional Summary */}
             <div className="resume-block">
@@ -30,14 +30,12 @@ function Resume() {
                 <span className="terminal-prompt">&gt;</span> Professional Summary
               </h2>
               <p className="resume-text">
-                Self-taught software developer and IT specialist who keeps critical systems reliable and builds 
-                practical tools that remove friction. Experienced triaging application and device issues, 
-                stabilizing label-printer fleets (Zebra), and standardizing fixes to cut downtime. Comfortable 
-                across Python, JavaScript, Linux (Ubuntu/Arch), Docker, Git, Tableau/Splunk, and modern web 
-                fundamentals. Recently focused on integrating AI into everyday workflows (Ollama/OpenAI with 
-                Notion/HubSpot) to automate follow-ups, generate clear documentation, and surface actionable 
-                insights. Known for fast root-cause analysis, clear communication, and shipping small, 
-                dependable solutions that make teams measurably more effective.
+                Self-taught software developer and IT specialist who keeps systems fast, stable, and easy to use.
+                Strong in troubleshooting, device support (Zebra printers), and cutting downtime with repeatable fixes.
+                Comfortable across Python, JavaScript, Linux (Ubuntu/Arch), Docker, Git, and modern web tools.
+                Actively building AI-powered workflows using Ollama, OpenAI, Notion, and HubSpot to automate tasks
+                and surface insights. Known for quick problem-solving, clear communication, and delivering small,
+                reliable solutions that make teams more productive.
               </p>
             </div>
 
@@ -49,11 +47,7 @@ function Resume() {
               <div className="skills-grid">
                 <div className="skill-item">
                   <span className="skill-label">Programming & Scripting:</span>
-                  <span className="skill-value">Python, JavaScript, SQL, HTML, CSS, Bash</span>
-                </div>
-                <div className="skill-item">
-                  <span className="skill-label">Data Analysis & Visualization:</span>
-                  <span className="skill-value">Python data libraries (Pandas, NumPy, Matplotlib); Tableau for data tracking and visualization</span>
+                  <span className="skill-value">Python (Pandas, NumPy, Matplotlib), JavaScript, SQL, HTML, CSS, Bash</span>
                 </div>
                 <div className="skill-item">
                   <span className="skill-label">Web Development & Design:</span>
@@ -64,17 +58,10 @@ function Resume() {
                   <span className="skill-value">Working knowledge of AI tools and frameworks. Hands-on experience running local models with Ollama, LM Studio, and OpenWebUI. Skilled in prompt engineering and connecting AI workflows with Notion, HubSpot, and APIs for automation</span>
                 </div>
                 <div className="skill-item">
-                  <span className="skill-label">Automation & Systems:</span>
-                  <span className="skill-value">Experienced with Linux environments (Ubuntu, Arch), Docker containers, Cloudflare tunnels, and system automation using shell scripts and systemd. Familiar with NAS setups and local server management</span>
-                </div>
-                <div className="skill-item">
                   <span className="skill-label">Software & Tools:</span>
-                  <span className="skill-value">VS Code, Git, Notion, HubSpot, Tableau, Figma, Blender, Ultimaker Cura, Splunk dashboards. Experience with in-house factory systems and Zebra printer troubleshooting</span>
+                  <span className="skill-value">Linux (Ubuntu, Arch), Docker, Cloudflare tunnels, VS Code, Git, Notion, HubSpot, Tableau, Figma, Blender, 3D Printing Software (Orca Slicer, Ultimaker), Splunk queries and dashboards. Experience with in-house factory systems and Zebra printer troubleshooting</span>
                 </div>
-                <div className="skill-item">
-                  <span className="skill-label">Hardware & IT Systems:</span>
-                  <span className="skill-value">Technical support background with experience in database management, system monitoring, and preventive maintenance software. Skilled in process improvement and troubleshooting across production environments</span>
-                </div>
+
               </div>
             </div>
 
@@ -86,99 +73,99 @@ function Resume() {
 
               {/* Tesla - IT Application Support */}
               <div className="job-entry">
-                <div className="job-header">
-                  <span className="job-meta">May 2023 – Present</span>
+                <p className="terminal-text">
+                  <span className="job-meta">May 2021 – Present</span>
+                </p>
+                <p className="terminal-text terminal-indent">
                   <h3 className="job-title">IT Application Support Technician</h3>
+                </p>
+                <p className="terminal-text terminal-indent">
                   <span className="job-location">Tesla – Lathrop, CA</span>
-                </div>
-                <ul className="job-responsibilities">
-                  <li>
-                    <span className="bullet-point">▹</span>
-                    <strong>Industrial Engineering Support:</strong> Assisted in streamlining operations and 
-                    optimizing systems, leading to a 15% increase in production efficiency.
-                  </li>
-                  <li>
-                    <span className="bullet-point">▹</span>
-                    <strong>Controls Engineering Support:</strong> Troubleshot and maintained automated systems, 
-                    reducing downtime by 20%.
-                  </li>
-                  <li>
-                    <span className="bullet-point">▹</span>
-                    <strong>Quality Engineering Support:</strong> Ensured software and hardware solutions met 
-                    high-quality standards, contributing to a 25% decrease in defect rates.
-                  </li>
-                  <li>
-                    <span className="bullet-point">▹</span>
-                    <strong>Process Engineering Support:</strong> Facilitated seamless integration and effective 
-                    workflow management, enhancing cross-departmental collaboration.
-                  </li>
-                  <li>
-                    <span className="bullet-point">▹</span>
-                    <strong>IT Manufacturing Support:</strong> Provided dedicated IT support to manufacturing 
-                    operations, ensuring system reliability and efficiency.
-                  </li>
-                </ul>
-              </div>
+                </p>
+                <p className="terminal-text blank-line"></p>
+                <p className="terminal-text terminal-indent-double">
+                  <span className="bullet-point">▹</span> <strong>Industrial Engineering Support:</strong> Assisted in streamlining operations and optimizing systems, leading to a 15% increase in production efficiency.
+                </p>
+                <p className="terminal-text terminal-indent-double">
+                  <span className="bullet-point">▹</span> <strong>Controls Engineering Support:</strong> Troubleshot and maintained automated systems, reducing downtime by 20%.
+                </p>
+                <p className="terminal-text terminal-indent-double">
+                  <span className="bullet-point">▹</span> <strong>Quality Engineering Support:</strong> Ensured software and hardware solutions met high-quality standards, contributing to a 25% decrease in defect rates.
+                </p>
+                <p className="terminal-text terminal-indent-double">
+                  <span className="bullet-point">▹</span> <strong>Process Engineering Support:</strong> Facilitated seamless integration and effective workflow management, enhancing cross-departmental collaboration.
+                </p>
+                <p className="terminal-text terminal-indent-double">
+                  <span className="bullet-point">▹</span> <strong>IT Manufacturing Support:</strong> Provided dedicated IT support to manufacturing operations, ensuring system reliability and efficiency.
+                </p>
+                <p className="terminal-text blank-line"></p>
 
-              {/* Tesla - Data Operations Support */}
-              <div className="job-entry">
-                <div className="job-header">
-                  <span className="job-meta">August 2022 – May 2023</span>
-                  <h3 className="job-title">Data Operations Support (Tesla Service)</h3>
-                  <span className="job-location">Tesla – Lathrop, CA</span>
-                </div>
-                <ul className="job-responsibilities">
-                  <li>
-                    <span className="bullet-point">▹</span>
-                    Created data visualizations in Tableau to track key performance metrics.
-                  </li>
-                
-                  <li>
-                    <span className="bullet-point">▹</span>
-                    Streamlined data operations to support critical decision-making processes across teams.
-                  </li>
-                </ul>
-              </div>
-
-              {/* Tesla - Maintenance Support */}
-              <div className="job-entry">
-                <div className="job-header">
-                  <span className="job-meta">May 2021 – August 2022</span>
-                  <h3 className="job-title">Maintenance Support Technician</h3>
-                  <span className="job-location">Tesla – Fremont, CA</span>
-                </div>
-                <ul className="job-responsibilities">
-                  <li>
-                    <span className="bullet-point">▹</span>
-                    Supported continuous improvement initiatives by automating reporting processes and 
-                    enhancing system reliability.
-                  </li>
-                </ul>
-              </div>
-
-              {/* Air Force */}
-              <div className="job-entry">
-                <div className="job-header">
+                {/* Air Force */}
+                <p className="terminal-text">
                   <span className="job-meta">December 2017 – May 2021</span>
+                </p>
+                <p className="terminal-text terminal-indent">
                   <h3 className="job-title">Active Duty Air Force (Air Transportation Specialist)</h3>
+                </p>
+                <p className="terminal-text terminal-indent">
                   <span className="job-location">United States Air Force – Joint Base Pearl-Harbor Hickam / Joint Base Lewis-McChord</span>
-                </div>
-                <ul className="job-responsibilities">
-                  <li>
-                    <span className="bullet-point">▹</span>
-                    Managed and coordinated the safe and efficient transportation of personnel and cargo, 
-                    ensuring compliance with strict military regulations and safety standards.
-                  </li>
-                  <li>
-                    <span className="bullet-point">▹</span>
-                    Operated and maintained specialized equipment, demonstrating proficiency in logistics and 
-                    supply chain operations.
-                  </li>
-                  <li>
-                    <span className="bullet-point">▹</span>
-                    Trained and supervised junior personnel, fostering teamwork and enhancing operational readiness.
-                  </li>
-                </ul>
+                </p>
+                <p className="terminal-text blank-line"></p>
+                <p className="terminal-text terminal-indent-double">
+                  <span className="bullet-point">▹</span> Managed and coordinated the safe and efficient transportation of personnel and cargo, ensuring compliance with strict military regulations and safety standards.
+                </p>
+                <p className="terminal-text terminal-indent-double">
+                  <span className="bullet-point">▹</span> Operated and maintained specialized equipment, demonstrating proficiency in logistics and supply chain operations.
+                </p>
+                <p className="terminal-text terminal-indent-double">
+                  <span className="bullet-point">▹</span> Trained and supervised junior personnel, fostering teamwork and enhancing operational readiness.
+                </p>
+              </div>
+            </div>
+
+            {/* Certificates & Courses */}
+            <div className="resume-block">
+              <h2 className="resume-heading">
+                <span className="terminal-prompt">&gt;</span> Certificates & Courses
+              </h2>
+
+              {/* Certificate Entry 1 */}
+              <div className="job-entry">
+                <p className="terminal-text">
+                </p>
+                <p className="terminal-text terminal-indent">
+                  <h3 className="job-title">[Certificate/Course Name]</h3>
+                </p>
+                <p className="terminal-text terminal-indent">
+                  <span className="job-location">[Issuing Organization]</span>
+                </p>
+                <p className="terminal-text blank-line"></p>
+              </div>
+
+              {/* Certificate Entry 2 */}
+              <div className="job-entry">
+                <p className="terminal-text">
+                </p>
+                <p className="terminal-text terminal-indent">
+                  <h3 className="job-title">[Certificate/Course Name]</h3>
+                </p>
+                <p className="terminal-text terminal-indent">
+                  <span className="job-location">[Issuing Organization]</span>
+                </p>
+                <p className="terminal-text blank-line"></p>
+              </div>
+
+              {/* Certificate Entry 3 */}
+              <div className="job-entry">
+                <p className="terminal-text">
+                </p>
+                <p className="terminal-text terminal-indent">
+                  <h3 className="job-title">[Certificate/Course Name]</h3>
+                </p>
+                <p className="terminal-text terminal-indent">
+                  <span className="job-location">[Issuing Organization]</span>
+                </p>
+                <p className="terminal-text blank-line"></p>
               </div>
             </div>
 
