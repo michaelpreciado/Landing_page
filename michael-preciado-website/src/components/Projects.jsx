@@ -137,8 +137,8 @@ function Projects() {
     {
       imageSrc: "/images/projects/planttracker.png",
       title: "Plant Tracker PWA",
-      description: "An offline-first Progressive Web App for plant care management. Features smart watering reminders, photo storage, growth tracking, and seamless sync via Supabase. Works completely offline with background sync.",
-      tech: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Supabase', 'PWA', 'Offline-First'],
+      description: "A Progressive Web App for plant care management. Features smart watering reminders, photo storage, growth tracking, and seamless sync via Supabase.",
+      tech: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Supabase', 'PWA'],
       codeLink: "https://github.com/michaelpreciado/Planter",
       demoLink: "https://planttracker.netlify.app/"
     },
