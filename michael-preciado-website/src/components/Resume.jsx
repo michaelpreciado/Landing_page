@@ -132,12 +132,13 @@ function Resume() {
               {/* Certificate Entry 1 */}
               <div className="job-entry">
                 <p className="terminal-text">
+                  <span className="job-meta">Issued November 2025</span>
                 </p>
                 <p className="terminal-text terminal-indent">
-                  <h3 className="job-title">[Certificate/Course Name]</h3>
+                  <h3 className="job-title">Intro to AI Agents Course</h3>
                 </p>
                 <p className="terminal-text terminal-indent">
-                  <span className="job-location">[Issuing Organization]</span>
+                  <span className="job-location">Codecademy</span>
                 </p>
                 <p className="terminal-text blank-line"></p>
               </div>
@@ -145,12 +146,13 @@ function Resume() {
               {/* Certificate Entry 2 */}
               <div className="job-entry">
                 <p className="terminal-text">
+                  <span className="job-meta">Issued November 2025</span>
                 </p>
                 <p className="terminal-text terminal-indent">
-                  <h3 className="job-title">[Certificate/Course Name]</h3>
+                  <h3 className="job-title">Intro to Vibe Coding Course</h3>
                 </p>
                 <p className="terminal-text terminal-indent">
-                  <span className="job-location">[Issuing Organization]</span>
+                  <span className="job-location">Codecademy</span>
                 </p>
                 <p className="terminal-text blank-line"></p>
               </div>
@@ -158,12 +160,33 @@ function Resume() {
               {/* Certificate Entry 3 */}
               <div className="job-entry">
                 <p className="terminal-text">
+                  <span className="job-meta">Issued April 2025</span>
                 </p>
                 <p className="terminal-text terminal-indent">
-                  <h3 className="job-title">[Certificate/Course Name]</h3>
+                  <h3 className="job-title">AI Prompt Engineering</h3>
                 </p>
                 <p className="terminal-text terminal-indent">
-                  <span className="job-location">[Issuing Organization]</span>
+                  <span className="job-location">Chegg Inc.</span>
+                </p>
+                <p className="terminal-text terminal-indent-double">
+                  <span className="bullet-point">▹</span> Skills: AI for Project Management; Prompt Design.
+                </p>
+                <p className="terminal-text blank-line"></p>
+              </div>
+
+              {/* Certificate Entry 4 */}
+              <div className="job-entry">
+                <p className="terminal-text">
+                  <span className="job-meta">Issued March 2025</span>
+                </p>
+                <p className="terminal-text terminal-indent">
+                  <h3 className="job-title">Introduction to Artificial Intelligence (AI)</h3>
+                </p>
+                <p className="terminal-text terminal-indent">
+                  <span className="job-location">IBM</span>
+                </p>
+                <p className="terminal-text terminal-indent-double">
+                  <span className="bullet-point">▹</span> Credential ID: WXJ5EWMDBQR.
                 </p>
                 <p className="terminal-text blank-line"></p>
               </div>
