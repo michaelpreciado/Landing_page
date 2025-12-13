@@ -1,0 +1,22 @@
+<svg width="960" height="540" viewBox="0 0 960 540" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Placeholder for iPhone AI tutorial</title>
+  <desc id="desc">Neon style placeholder graphic with a phone outline and AI glyph.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0c1021" />
+      <stop offset="100%" stop-color="#0b1a2f" />
+    </linearGradient>
+    <linearGradient id="glow" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#5cf5ff" stop-opacity="0.9" />
+      <stop offset="100%" stop-color="#8a7bff" stop-opacity="0.9" />
+    </linearGradient>
+  </defs>
+  <rect width="960" height="540" fill="url(#bg)" />
+  <rect x="280" y="70" width="400" height="400" rx="36" fill="none" stroke="url(#glow)" stroke-width="10" opacity="0.9" />
+  <rect x="330" y="120" width="300" height="300" rx="28" fill="rgba(255,255,255,0.05)" stroke="#1b2b47" stroke-width="2" />
+  <circle cx="480" cy="270" r="96" fill="none" stroke="#4bd1c5" stroke-width="10" opacity="0.85" />
+  <circle cx="480" cy="270" r="64" fill="none" stroke="#5cf5ff" stroke-width="8" opacity="0.85" />
+  <text x="480" y="286" text-anchor="middle" font-family="'JetBrains Mono', 'Fira Code', monospace" font-size="56" fill="#e4f1ff" font-weight="700">AI</text>
+  <rect x="340" y="420" width="280" height="6" rx="3" fill="#182b46" />
+  <circle cx="480" cy="100" r="6" fill="#4bd1c5" />
+</svg>
