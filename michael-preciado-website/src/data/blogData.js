@@ -1,5 +1,72 @@
 const blogPostsData = [
   {
+    slug: 'ai-iphone-local',
+    title: 'How to run AI locally on your iPhone',
+    excerpt: 'A how-to guide for setting up on-device AI so your prompts stay private and snappy.',
+    date: '2025-09-01',
+    content: `## Why go local?
+
+Running AI locally keeps your prompts private, trims latency, and lets you experiment even when you are offline. This quick guide walks you through the essentials.
+
+### What you need
+
+- An iPhone with A17 or newer (Apple Intelligence level performance)
+- 10–15 GB of free storage for models and test files
+- A reliable charger and Wi‑Fi for the initial downloads
+
+### Step 1: Prep the device
+
+<figure class="blog-hero-image matrix-overlay" style="margin: 1.5rem 0;">
+  <img src="/images/blog/ai-iphone-placeholder.svg" alt="Placeholder icon for device prep" style="opacity: 0.85;" />
+  <figcaption class="blog-hero-caption">Placeholder where the setup screenshot will go</figcaption>
+</figure>
+
+- Update iOS to the latest version so you have the newest neural engine optimizations.
+- Toggle **Low Power Mode** off while you run long jobs.
+- Clear enough space by offloading unused apps or media.
+
+### Step 2: Install a local-runner app
+
+1. Pick a runner that supports on-device inference, like an open-source client from the App Store.
+2. Inside the app, enable the option that forces local inference and disables cloud fallbacks.
+3. Download one of the curated starter models (3–5 GB) to keep things smooth.
+
+<figure class="blog-hero-image matrix-overlay" style="margin: 1.5rem 0;">
+  <img src="/images/blog/ai-iphone-placeholder.svg" alt="Placeholder icon for model selection" style="opacity: 0.85;" />
+  <figcaption class="blog-hero-caption">Placeholder for the model picker UI</figcaption>
+</figure>
+
+### Step 3: Optimize settings for speed
+
+- Drop the **context length** to 2–4K tokens for quick replies.
+- Start with **int8 quantization** if the app offers it; move to int4 only if you see lag.
+- Cap **max tokens** around 200–400 for chats and 800 for code snippets.
+
+### Step 4: Test with a local-first workflow
+
+1. Start an offline session and ask for a short summary to confirm it runs locally.
+2. Try a coding snippet—Objective‑C or Swift—to make sure the model handles dev prompts.
+3. If you hit slowdowns, close background apps and rerun with the phone plugged in.
+
+<figure class="blog-hero-image matrix-overlay" style="margin: 1.5rem 0;">
+  <img src="/images/blog/ai-iphone-placeholder.svg" alt="Placeholder icon for local run results" style="opacity: 0.85;" />
+  <figcaption class="blog-hero-caption">Placeholder for the first offline response</figcaption>
+</figure>
+
+### Troubleshooting cheatsheet
+
+- **Model fails to load:** free another 2–3 GB or pick a smaller checkpoint.
+- **Overheating:** limit session length, keep the phone on a cool surface, and avoid wireless charging while running models.
+- **Hallucinations:** add concise system prompts and lower temperature to 0.3–0.5.
+
+### Wrap up
+
+With the right runner, a lightweight model, and tuned settings, your iPhone can handle quick on-device AI tasks without touching the cloud. Swap these placeholders with real screenshots once you capture them, and you will have a complete walkthrough ready to ship.`,
+    icon: 'code',
+    categories: ['Technology', 'How-To'],
+    heroImage: '/images/blog/ai-iphone-placeholder.svg'
+  },
+  {
     slug: 'tech-spirituality',
     title: 'Tech & Spirituality',
     excerpt: 'The Overlap - Technology and spirituality feel like they live on opposite sides, but maybe they\'re not that far apart.',
