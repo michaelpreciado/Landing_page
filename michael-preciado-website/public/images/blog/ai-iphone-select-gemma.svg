@@ -1,0 +1,9 @@
+<svg width="900" height="900" viewBox="0 0 900 900" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Select model menu showing Gemma 3 QAT 4B chosen">
+  <rect width="900" height="900" fill="#0c141d"/>
+  <rect x="200" y="200" width="500" height="450" rx="40" fill="#172331" stroke="#23313f" stroke-width="6"/>
+  <text x="250" y="260" fill="#e8f0ff" font-family="'Inter', 'SF Pro Display', Arial, sans-serif" font-size="36">Select model</text>
+  <text x="250" y="340" fill="#7c8a99" font-family="'Inter', 'SF Pro Display', Arial, sans-serif" font-size="32">Apple Foundation</text>
+  <text x="250" y="430" fill="#e8f0ff" font-family="'Inter', 'SF Pro Display', Arial, sans-serif" font-size="32">✔ Gemma 3 QAT (4B)</text>
+  <line x1="640" y1="430" x2="770" y2="400" stroke="#4aa8ff" stroke-width="10" stroke-linecap="round"/>
+  <polygon points="770,400 734,384 744,420" fill="#4aa8ff"/>
+</svg>
