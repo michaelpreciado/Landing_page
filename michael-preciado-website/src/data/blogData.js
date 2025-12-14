@@ -1,70 +1,82 @@
 const blogPostsData = [
   {
     slug: 'ai-iphone-local',
-    title: 'How to run AI locally on your iPhone',
-    excerpt: 'A how-to guide for setting up on-device AI so your prompts stay private and snappy.',
+    title: 'How to run a local AI on your iPhone',
+    excerpt: 'A step-by-step walkthrough for setting up Locally AI, downloading Gemma, and keeping every prompt on-device.',
     date: '2025-09-01',
     content: `## Why go local?
 
-Running AI locally keeps your prompts private, trims latency, and lets you experiment even when you are offline. This quick guide walks you through the essentials.
+Running AI directly on your phone keeps prompts private, shrinks latency, and still works when you lose signal. Here is the exact flow I used with the **Locally AI** app on iOS.
 
 ### What you need
 
-- An iPhone with A17 or newer (Apple Intelligence level performance)
-- 10–15 GB of free storage for models and test files
-- A reliable charger and Wi‑Fi for the initial downloads
-
-### Step 1: Prep the device
+- An iPhone on the latest iOS release (A17 or newer runs most smoothly)
+- 8–12 GB of free storage to hold a quantized model and cache
+- Wi‑Fi and a charger for the first downloads
 
 <figure class="blog-hero-image matrix-overlay" style="margin: 1.5rem 0;">
-  <img src="/images/blog/ai-iphone-placeholder.svg" alt="Placeholder icon for device prep" style="opacity: 0.85;" />
-  <figcaption class="blog-hero-caption">Placeholder where the setup screenshot will go</figcaption>
+  <img src="/images/blog/ai-iphone-hero-locally-ai.svg" alt="Locally AI app icon on iPhone home screen" />
+  <figcaption class="blog-hero-caption">Locally AI is the runner used for every step below.</figcaption>
 </figure>
 
-- Update iOS to the latest version so you have the newest neural engine optimizations.
-- Toggle **Low Power Mode** off while you run long jobs.
-- Clear enough space by offloading unused apps or media.
+### Step 1: Install Locally AI and prep the phone
 
-### Step 2: Install a local-runner app
+- Download **Locally AI** from the App Store and keep Low Power Mode off while models download.
+- Free up space (Photos > Settings > Optimize or offload unused apps) until you have at least 10 GB available.
+- Open Locally AI once so it can finish first-run setup.
 
-1. Pick a runner that supports on-device inference, like an open-source client from the App Store.
-2. Inside the app, enable the option that forces local inference and disables cloud fallbacks.
-3. Download one of the curated starter models (3–5 GB) to keep things smooth.
+### Step 2: Open the model picker
+
+Tap the model name in the chat header, then choose **Manage models**.
 
 <figure class="blog-hero-image matrix-overlay" style="margin: 1.5rem 0;">
-  <img src="/images/blog/ai-iphone-placeholder.svg" alt="Placeholder icon for model selection" style="opacity: 0.85;" />
-  <figcaption class="blog-hero-caption">Placeholder for the model picker UI</figcaption>
+  <img src="/images/blog/ai-iphone-manage-models.svg" alt="Manage models list with Gemma options highlighted" />
+  <figcaption class="blog-hero-caption">Scroll the curated on-device catalog and pick a Gemma variant.</figcaption>
 </figure>
 
-### Step 3: Optimize settings for speed
-
-- Drop the **context length** to 2–4K tokens for quick replies.
-- Start with **int8 quantization** if the app offers it; move to int4 only if you see lag.
-- Cap **max tokens** around 200–400 for chats and 800 for code snippets.
-
-### Step 4: Test with a local-first workflow
-
-1. Start an offline session and ask for a short summary to confirm it runs locally.
-2. Try a coding snippet—Objective‑C or Swift—to make sure the model handles dev prompts.
-3. If you hit slowdowns, close background apps and rerun with the phone plugged in.
+If you start from the quick menu, tap the current model and then **Manage models** again to reach the same list.
 
 <figure class="blog-hero-image matrix-overlay" style="margin: 1.5rem 0;">
-  <img src="/images/blog/ai-iphone-placeholder.svg" alt="Placeholder icon for local run results" style="opacity: 0.85;" />
-  <figcaption class="blog-hero-caption">Placeholder for the first offline response</figcaption>
+  <img src="/images/blog/ai-iphone-select-manage.svg" alt="Model switcher showing Manage models option" />
+  <figcaption class="blog-hero-caption">The shortcut menu still funnels into Manage models.</figcaption>
 </figure>
+
+### Step 3: Download Gemma 3 QAT (4B)
+
+- In **Manage models**, pick **Gemma 3 QAT (4B)**—a 4B quantized checkpoint tuned for on-device speed.
+- Confirm the download and stay on Wi‑Fi until it finishes.
+
+<figure class="blog-hero-image matrix-overlay" style="margin: 1.5rem 0;">
+  <img src="/images/blog/ai-iphone-select-gemma.svg" alt="Gemma 3 QAT (4B) selected as the active model" />
+  <figcaption class="blog-hero-caption">Select Gemma 3 QAT (4B) once the download completes.</figcaption>
+</figure>
+
+### Step 4: Start an on-device chat
+
+With Gemma active, send a short prompt to confirm everything is running locally.
+
+<figure class="blog-hero-image matrix-overlay" style="margin: 1.5rem 0;">
+  <img src="/images/blog/ai-iphone-chat-demo.svg" alt="Gemma 3 QAT 4B answering an on-device prompt" />
+  <figcaption class="blog-hero-caption">A quick capability check verifies the model is responding instantly.</figcaption>
+</figure>
+
+### Tune for speed and stability
+
+- **Context length:** keep to 2–4K tokens for snappy replies.
+- **Max tokens:** cap around 300–500 for chats and 800 for code so memory stays low.
+- **Temperature:** 0.4–0.6 for grounded answers, 0.7+ for creative writing.
+- **Power:** stay plugged in during long sessions to avoid throttling.
 
 ### Troubleshooting cheatsheet
 
-- **Model fails to load:** free another 2–3 GB or pick a smaller checkpoint.
-- **Overheating:** limit session length, keep the phone on a cool surface, and avoid wireless charging while running models.
-- **Hallucinations:** add concise system prompts and lower temperature to 0.3–0.5.
+- **Model won’t load:** free another 2–3 GB or drop to a smaller checkpoint like Gemma 2 Mini.
+- **Overheating:** close background apps, reduce max tokens, and pause wireless charging.
+- **Hallucinations:** add a one-line system prompt (“You are a concise assistant”) and lower temperature.
 
-### Wrap up
-
-With the right runner, a lightweight model, and tuned settings, your iPhone can handle quick on-device AI tasks without touching the cloud. Swap these placeholders with real screenshots once you capture them, and you will have a complete walkthrough ready to ship.`,
+With a lightweight quantized model and the right limits, your iPhone can handle private chat and coding tasks without touching the cloud.`,
     icon: 'code',
     categories: ['Technology', 'How-To'],
-    heroImage: '/images/blog/ai-iphone-placeholder.svg'
+    heroImage: '/images/blog/ai-iphone-hero-locally-ai.svg'
   },
   {
     slug: 'tech-spirituality',
