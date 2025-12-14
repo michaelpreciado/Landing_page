@@ -1,0 +1,12 @@
+<svg width="900" height="900" viewBox="0 0 900 900" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Locally AI app icon">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#23272f"/>
+      <stop offset="100%" stop-color="#161920"/>
+    </linearGradient>
+  </defs>
+  <rect width="900" height="900" fill="url(#bg)"/>
+  <rect x="150" y="150" width="600" height="600" rx="140" fill="#2f343c" stroke="#4a5663" stroke-width="6"/>
+  <polygon points="450,280 620,450 450,620 280,450" fill="#e6ebf2" stroke="#cfd6de" stroke-width="6"/>
+  <text x="450" y="780" fill="#ffffff" font-family="'Inter', 'SF Pro Display', Arial, sans-serif" font-size="36" text-anchor="middle">Locally AI</text>
+</svg>
