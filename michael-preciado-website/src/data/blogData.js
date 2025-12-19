@@ -5,69 +5,61 @@ const blogPostsData = [
     excerpt: 'A how-to guide for setting up on-device AI so your prompts stay private and snappy.',
     date: '2025-09-01',
     content: `## Why go local?
-
-Running AI locally keeps your prompts private, trims latency, and lets you experiment even when you are offline. This quick guide walks you through the essentials.
-
-### What you need
-
-- An iPhone with A17 or newer (Apple Intelligence level performance)
-- 10–15 GB of free storage for models and test files
-- A reliable charger and Wi‑Fi for the initial downloads
-
-### Step 1: Prep the device
+Ever wanted to run an AI model *directly* on your iPhone without sending anything to the cloud? This quick guide walks you through it using an app called **LocalAI** from the App Store. No technical experience needed — anyone can follow this.
 
 <figure class="blog-hero-image matrix-overlay" style="margin: 1.5rem 0;">
-  <img src="/images/blog/ai-iphone-select-apple.jpg" alt="Selecting model in the local runner app" style="opacity: 0.85;" />
-  <figcaption class="blog-hero-caption">Selecting the model to run locally</figcaption>
+  <img src="/images/blog/ai-iphone-select-apple.jpg" alt="Selecting model in the LocalAI app on iPhone" style="opacity: 0.9;" />
+  <figcaption class="blog-hero-caption">LocalAI ready to pick a model</figcaption>
 </figure>
 
-- Update iOS to the latest version so you have the newest neural engine optimizations.
-- Toggle **Low Power Mode** off while you run long jobs.
-- Clear enough space by offloading unused apps or media.
+## Step 1: Download the App
+Go to the App Store and download **LocalAI**. This is the app that lets your phone run AI models locally.
 
-### Step 2: Install a local-runner app
-
-1. Pick a runner that supports on-device inference; I recommend **[Locally AI](https://apps.apple.com/app/locally-ai-local-ai-chat/id6470007558)**, an open-source client for iPhone.
-2. Inside the app, enable the option that forces local inference and disables cloud fallbacks.
-3. Download one of the curated starter models (3–5 GB) to keep things smooth.
+## Step 2: Open the App and Manage Models
+Open the app and tap the model name at the top.  
+Select **Manage Models** to see the full list you can choose from.
 
 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1.5rem 0;">
   <figure class="blog-hero-image matrix-overlay" style="margin: 0;">
-    <img src="/images/blog/ai-iphone-manage-models.jpg" alt="Manage models list" style="opacity: 0.85;" />
-    <figcaption class="blog-hero-caption">Available models list</figcaption>
+    <img src="/images/blog/ai-iphone-manage-models.jpg" alt="Manage models list inside LocalAI" style="opacity: 0.9;" />
+    <figcaption class="blog-hero-caption">Browsing available models</figcaption>
   </figure>
   <figure class="blog-hero-image matrix-overlay" style="margin: 0;">
-    <img src="/images/blog/ai-iphone-select-model.jpg" alt="Picking a specific model" style="opacity: 0.85;" />
-    <figcaption class="blog-hero-caption">Picking a specific model</figcaption>
+    <img src="/images/blog/ai-iphone-select-model.jpg" alt="Selecting a specific model in LocalAI" style="opacity: 0.9;" />
+    <figcaption class="blog-hero-caption">Picking the model to download</figcaption>
   </figure>
 </div>
 
-### Step 3: Optimize settings for speed
+## Step 3: Choose a Model
+You’ll see a bunch of options.  
+For beginners, I recommend **Gemma 3n** as it has been optimized for mobile devices— it runs great on newer iPhones.  
+If you have an older device, choose a **quantized** version. Quantized just means “optimized to run faster on your phone.”
 
-- Drop the **context length** to 2–4K tokens for quick replies.
-- Start with **int8 quantization** if the app offers it; move to int4 only if you see lag.
-- Cap **max tokens** around 200–400 for chats and 800 for code snippets.
+## Step 4: Download the Model
+Tap the model to download it. It may take a minute depending on your connection.
 
-### Step 4: Test with a local-first workflow
+## Step 5: Load the Model and Ask a Question
+After it finishes downloading, tap it again to load it.  
+Once it’s loaded, try asking something simple like:
 
-1. Start an offline session and ask for a short summary to confirm it runs locally.
-2. Try a coding snippet—Objective‑C or Swift—to make sure the model handles dev prompts.
-3. If you hit slowdowns, close background apps and rerun with the phone plugged in.
+> “What are your capabilities as a local AI model?”
 
 <figure class="blog-hero-image matrix-overlay" style="margin: 1.5rem 0;">
-  <img src="/images/blog/ai-iphone-chat.jpg" alt="Offline chat response from Gemma 3" style="opacity: 0.85;" />
-  <figcaption class="blog-hero-caption">The first offline response from Gemma 3</figcaption>
+  <img src="/images/blog/ai-iphone-chat.jpg" alt="Offline chat response from Gemma 3 inside LocalAI" style="opacity: 0.9;" />
+  <figcaption class="blog-hero-caption">First offline response from the local model</figcaption>
 </figure>
 
-### Troubleshooting cheatsheet
+You’ll see it respond instantly — everything happening **on your device**, no internet required.
 
-- **Model fails to load:** free another 2–3 GB or pick a smaller checkpoint.
-- **Overheating:** limit session length, keep the phone on a cool surface, and avoid wireless charging while running models.
-- **Hallucinations:** add concise system prompts and lower temperature to 0.3–0.5.
+That’s it. You now have a fully offline AI model running on your iPhone.
 
-### Wrap up
+## Why run locally? 
+Running a model locally on your device is great for many safety reasons
 
-With the right runner, a lightweight model, and tuned settings, your iPhone can handle quick on-device AI tasks without touching the cloud. Swap these placeholders with real screenshots once you capture them, and you will have a complete walkthrough ready to ship.`,
+1. Your data is safe and it does not get sent to a data center. 
+2. No cost, run as many times as you want.
+3. No internet connection needed.
+4. More customization options, allowing you to personalize your AI with data you provide. `,
     icon: 'code',
     categories: ['Technology', 'How-To'],
     heroImage: '/images/blog/locally-ai-icon.jpg',
