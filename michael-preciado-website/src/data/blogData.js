@@ -13,11 +13,11 @@ Ever wanted to run an AI model *directly* on your iPhone without sending anythin
 </figure>
 
 ## Step 1: Download the App
-Go to the App Store and download **LocalAI**. This is the app that lets your phone run AI models locally.
+- Go to the App Store and download **LocalAI**. This is the app that lets your phone run AI models locally.
 
 ## Step 2: Open the App and Manage Models
-Open the app and tap the model name at the top.  
-Select **Manage Models** to see the full list you can choose from.
+- Open the app and tap the model name at the top.  
+- Select **Manage Models** to see the full list you can choose from.
 
 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1.5rem 0;">
   <figure class="blog-hero-image matrix-overlay" style="margin: 0;">
@@ -31,16 +31,16 @@ Select **Manage Models** to see the full list you can choose from.
 </div>
 
 ## Step 3: Choose a Model
-You’ll see a bunch of options.  
-For beginners, I recommend **Gemma 3n** as it has been optimized for mobile devices— it runs great on newer iPhones.  
-If you have an older device, choose a **quantized** version. Quantized just means “optimized to run faster on your phone.”
+- You’ll see a bunch of options.  
+- For beginners, choose **Gemma 3n** (optimized for newer iPhones).  
+- On older devices, pick a **quantized** version so it runs faster.
 
 ## Step 4: Download the Model
-Tap the model to download it. It may take a minute depending on your connection.
+- Tap the model to download it. It may take a minute depending on your connection.
 
 ## Step 5: Load the Model and Ask a Question
-After it finishes downloading, tap it again to load it.  
-Once it’s loaded, try asking something simple like:
+- After it finishes downloading, tap it again to load it.  
+- Once it’s loaded, try asking something simple like:
 
 > “What are your capabilities as a local AI model?”
 
