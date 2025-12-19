@@ -7,12 +7,28 @@ const blogPostsData = [
     content: `## Why go local?
 Ever wanted to run an AI model *directly* on your iPhone without sending anything to the cloud? This quick guide walks you through it using an app called **LocalAI** from the App Store. No technical experience needed — anyone can follow this.
 
+<figure class="blog-hero-image matrix-overlay" style="margin: 1.5rem 0;">
+  <img src="/images/blog/ai-iphone-select-apple.jpg" alt="Selecting model in the LocalAI app on iPhone" style="opacity: 0.9;" />
+  <figcaption class="blog-hero-caption">LocalAI ready to pick a model</figcaption>
+</figure>
+
 ## Step 1: Download the App
 Go to the App Store and download **LocalAI**. This is the app that lets your phone run AI models locally.
 
 ## Step 2: Open the App and Manage Models
 Open the app and tap the model name at the top.  
 Select **Manage Models** to see the full list you can choose from.
+
+<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1.5rem 0;">
+  <figure class="blog-hero-image matrix-overlay" style="margin: 0;">
+    <img src="/images/blog/ai-iphone-manage-models.jpg" alt="Manage models list inside LocalAI" style="opacity: 0.9;" />
+    <figcaption class="blog-hero-caption">Browsing available models</figcaption>
+  </figure>
+  <figure class="blog-hero-image matrix-overlay" style="margin: 0;">
+    <img src="/images/blog/ai-iphone-select-model.jpg" alt="Selecting a specific model in LocalAI" style="opacity: 0.9;" />
+    <figcaption class="blog-hero-caption">Picking the model to download</figcaption>
+  </figure>
+</div>
 
 ## Step 3: Choose a Model
 You’ll see a bunch of options.  
@@ -28,6 +44,10 @@ Once it’s loaded, try asking something simple like:
 
 > “What are your capabilities as a local AI model?”
 
+<figure class="blog-hero-image matrix-overlay" style="margin: 1.5rem 0;">
+  <img src="/images/blog/ai-iphone-chat.jpg" alt="Offline chat response from Gemma 3 inside LocalAI" style="opacity: 0.9;" />
+  <figcaption class="blog-hero-caption">First offline response from the local model</figcaption>
+</figure>
 
 You’ll see it respond instantly — everything happening **on your device**, no internet required.
 
@@ -39,7 +59,7 @@ Running a model locally on your device is great for many safety reasons
 1. Your data is safe and it does not get sent to a data center. 
 2. No cost, run as many times as you want.
 3. No internet connection needed.
-4. More customization options allowing you the personalize your AI with data you provide. `,
+4. More customization options, allowing you to personalize your AI with data you provide. `,
     icon: 'code',
     categories: ['Technology', 'How-To'],
     heroImage: '/images/blog/locally-ai-icon.jpg',
