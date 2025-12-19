@@ -5,7 +5,7 @@ import LazyImage from './LazyImage';
 import { blogPosts } from '../data/blogData.js';
 import ReturnButton from './ReturnButton.jsx';
 import PageTransition from './PageTransition.jsx';
-import useTypewriter from '../hooks/useTypewriter';
+import useTypewriter from '../utils/hooks/useTypewriter';
 import { autoApplyLiquidGlass } from '../utils/liquidGlass.js';
 
 // Reusable paragraph component with fast typewriter effect

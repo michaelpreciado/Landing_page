@@ -1425,10 +1425,7 @@ img[src^="placeholder-"].project-image-placeholder {
 }
 
 /* --- Skills Section Styles --- */
-#skills h2 {
-  /* Optional: Add styling for a potential skills title */
-  /* margin-bottom: 30px; */
-}
+
 
 .skills-container {
   display: grid;
@@ -2515,25 +2512,30 @@ main {
   position: relative;
   overflow: hidden;
   width: 100%;
-  aspect-ratio: 16 / 7;
+  aspect-ratio: 16 / 9;
+  /* Changed from 16/7 for a more standard fit */
   margin-top: 32px;
   /* Account for terminal header */
+  background: var(--medium-bg);
 }
 
 /* Ensure images inside project-image-container fill the container properly */
 .project-image-container .thumbnail {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
+  /* Changed from cover to prevent scaling issues */
   aspect-ratio: inherit;
 }
 
-/* Force the actual img to cover as well (the class is on the container) */
+/* Force the actual img to fit properly */
 .project-image-container img {
   width: 100% !important;
   height: 100% !important;
-  object-fit: cover !important;
+  object-fit: contain !important;
+  /* Changed from cover to prevent cropping */
   display: block;
+  background: var(--dark-bg);
 }
 
 /* Disable matrix overlay on profile image to prevent artifacts */
@@ -2691,8 +2693,8 @@ main {
   border: 1px solid var(--border-color);
   text-align: center;
   width: 100%;
-  max-width: 450px;
-  /* smaller square */
+  max-width: 600px;
+  /* Increased from 450px to better fit screenshots */
   position: relative;
   /* enable overlay */
 }
@@ -2700,10 +2702,8 @@ main {
 .blog-hero-image img {
   display: block;
   width: 100%;
-  aspect-ratio: 1 / 1;
-  /* Ensures square */
-  object-fit: cover;
-  /* Crop to fill */
+  height: auto;
+  object-fit: contain;
   /* Optimize for 1080p display and blog performance */
   image-rendering: -webkit-optimize-contrast;
   image-rendering: optimize-contrast;
@@ -2717,8 +2717,8 @@ main {
   position: absolute;
   inset: 0;
   pointer-events: none;
-  /* Fade transparent in middle to dark background at edges */
-  background: radial-gradient(circle at center, rgba(10, 25, 47, 0) 65%, rgba(10, 25, 47, 0.9) 100%);
+  /* More subtle fade to ensure content visibility */
+  background: radial-gradient(circle at center, rgba(10, 25, 47, 0) 80%, rgba(10, 25, 47, 0.4) 100%);
   z-index: 2;
   /* Above matrix overlay but below any interactive content */
 }
@@ -2783,9 +2783,7 @@ section:has(.liquid-glass:hover) h3 {
   filter: brightness(1.1);
 }
 
-.hero-code-glow {
-  /* Glow effects removed for cleaner appearance */
-}
+
 
 
 
@@ -3246,7 +3244,10 @@ h3:hover {
 .blog-post-card .thumbnail {
   width: 100%;
   aspect-ratio: 16 / 9;
-  object-fit: cover;
+  object-fit: contain;
+  /* Changed from cover to prevent cropping */
+  background: #000;
+  /* Dark background for letterboxing */
   opacity: 1;
   /* Ensure full visibility */
   filter: none;
@@ -3670,10 +3671,6 @@ h3:hover {
 .blog-post-card img,
 .blog-hero-image img,
 .blog-article-image img {
-  /* Optimize decoding */
-  decoding: async;
-  /* Improve loading performance */
-  loading: lazy;
   /* Better image quality control */
   image-rendering: -webkit-optimize-contrast;
   image-rendering: optimize-contrast;
@@ -3686,8 +3683,6 @@ h3:hover {
   .blog-hero-image img {
     /* Use optimizeSpeed on mobile for faster loading */
     image-rendering: optimizeSpeed !important;
-    /* Cap resolution for mobile performance */
-    max-width: 480px !important;
   }
 }
 

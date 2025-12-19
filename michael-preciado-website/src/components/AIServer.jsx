@@ -3,7 +3,7 @@ import MatrixRainBackground from './MatrixRainBackground';
 import PageTransition from './PageTransition.jsx';
 import ReturnButton from './ReturnButton.jsx';
 import LazyImage from './LazyImage';
-import useTypewriter from '../hooks/useTypewriter';
+import useTypewriter from '../utils/hooks/useTypewriter';
 import { autoApplyLiquidGlass } from '../utils/liquidGlass.js';
 
 function AIServer() {
@@ -11,7 +11,7 @@ function AIServer() {
 
   useEffect(() => {
     autoApplyLiquidGlass();
-    
+
     // Reading progress indicator (throttled for 120Hz scroll smoothness)
     const article = document.querySelector('.server-journey-container');
     const progressBar = document.querySelector('.reading-progress');
@@ -43,7 +43,7 @@ function AIServer() {
 
     window.addEventListener('scroll', scheduleReadingProgress, { passive: true });
     computeReadingProgress(); // Initial call
-    
+
     const style = document.createElement('style');
     style.textContent = `
       /* === ENHANCED BLOG ARTICLE STYLES === */
@@ -448,7 +448,7 @@ function AIServer() {
       }
     `;
     document.head.appendChild(style);
-    
+
     return () => {
       window.removeEventListener('scroll', scheduleReadingProgress);
       if (progressFrame !== null) {
@@ -519,7 +519,7 @@ function AIServer() {
           <section className="journey-section">
             <h2>🔧 Step 1: Prepping the Machine</h2>
             <p>I started with a clean Ubuntu install. First, I updated the system and installed the basics.</p>
-            
+
             <h3>Installing the essentials</h3>
             <div className="code-block">
               <pre>{`# Update system packages
@@ -531,7 +531,7 @@ sudo apt -y install build-essential curl wget git ufw python3-venv pipx jq
 # Enable pipx PATH integration
 pipx ensurepath`}</pre>
             </div>
-            
+
             <div className="issue-box">
               <strong>Issue I ran into:</strong> I forgot to enable <code>pipx</code> in my PATH, so <code>open-webui</code> wouldn't install. Fixed it with: <code>pipx ensurepath</code>
             </div>
@@ -548,7 +548,7 @@ sudo ufw --force enable
 # Verify configuration
 sudo ufw status`}</pre>
             </div>
-            
+
             <div className="issue-box">
               <strong>Issue:</strong> Forgot to open port 8080, so the WebUI wasn't reachable from other devices on my network. Double-check your firewall rules.
             </div>
@@ -557,7 +557,7 @@ sudo ufw status`}</pre>
           <section className="journey-section">
             <h2>🎮 Step 2: NVIDIA GPU Drivers</h2>
             <p>GPU acceleration is crucial for inference. The `ubuntu-drivers` tool simplifies this process.</p>
-            
+
             <div className="code-block">
               <pre>{`# Automatic driver installation (recommended)
 sudo ubuntu-drivers install
@@ -568,21 +568,21 @@ nvidia-smi
 # Optional: Install CUDA toolkit for development
 sudo apt install nvidia-cuda-toolkit`}</pre>
             </div>
-            
+
             <div className="issue-box">
               <strong>Issue:</strong> After reboot, <code>nvidia-smi</code> failed due to old conflicting drivers. Re-installing with the tool fixed it.
             </div>
           </section>
-          
+
           <section className="journey-section">
             <h2>🤖 Step 3: AI Runtime</h2>
             <p>I experimented with two popular options for running local AI models.</p>
-            
+
             <div className="journey-grid">
               <div className="grid-content">
                 <h3>Option A: Ollama</h3>
                 <p>Ollama is a smooth, command-line focused option that's easy to set up.</p>
-                
+
                 <div className="code-block">
                   <pre>{`# Install Ollama
 curl -fsSL https://ollama.com/install.sh | sh
@@ -594,15 +594,15 @@ ollama run llama2:7b
 # List installed models
 ollama list`}</pre>
                 </div>
-                
+
                 <p><strong>Pros:</strong> Simple, fast, great for CLI lovers</p>
                 <p><strong>Cons:</strong> No GUI, terminal-only</p>
               </div>
-              
+
               <div className="grid-content">
                 <h3>Option B: LM Studio</h3>
                 <p>LM Studio provides a nice GUI but requires enabling the Local Server on port 1234 for WebUI integration.</p>
-                
+
                 <div className="code-block">
                   <pre>{`# Download from lmstudio.ai
 # Install via AppImage or .deb package
@@ -612,12 +612,12 @@ ollama list`}</pre>
 # Port: 1234 (default)
 # API Compatible: OpenAI`}</pre>
                 </div>
-                
+
                 <p><strong>Pros:</strong> Easy to use, good for beginners</p>
                 <p><strong>Cons:</strong> Uses more resources</p>
               </div>
             </div>
-            
+
             <div className="issue-box">
               <strong>Tip:</strong> If using LM Studio with Open WebUI, make sure to enable the Local Server on port 1234.
             </div>
@@ -626,7 +626,7 @@ ollama list`}</pre>
           <section className="journey-section">
             <h2>🌐 Step 4: Open WebUI</h2>
             <p>I installed WebUI via pipx and created a systemd service to run it on boot.</p>
-            
+
             <h3>Installation</h3>
             <div className="code-block">
               <pre>{`# Install Open WebUI using pipx
@@ -666,7 +666,7 @@ sudo systemctl start open-webui
 # Enable user lingering (important!)
 sudo loginctl enable-linger $USER`}</pre>
             </div>
-            
+
             <div className="issue-box">
               <strong>Issue:</strong> The service stopped on logout because I forgot to enable lingering for the user session.
             </div>
@@ -679,7 +679,7 @@ sudo loginctl enable-linger $USER`}</pre>
           <section className="journey-section">
             <h2>☁️ Step 5: Cloudflare Tunnel</h2>
             <p>I wanted external access without opening ports, so I installed <code>cloudflared</code> and created a simple config.</p>
-            
+
             <h3>Setting up the tunnel</h3>
             <div className="code-block">
               <pre>{`# Install cloudflared
@@ -708,16 +708,16 @@ sudo cloudflared service install
 sudo systemctl enable cloudflared
 sudo systemctl start cloudflared`}</pre>
             </div>
-            
+
             <div className="issue-box">
               <strong>Issue:</strong> The tunnel failed because I edited the wrong config file. Checking <code>systemctl status cloudflared</code> revealed the correct path.
             </div>
           </section>
-          
+
           <section className="journey-section">
             <h2>💾 Step 6: Storage Setup</h2>
             <p>I formatted and mounted a spare 2TB HDD for general storage using <code>parted</code> and <code>mkfs</code>.</p>
-            
+
             <h3>Setting up the drive</h3>
             <div className="code-block">
               <pre>{`# Identify the target drive
@@ -760,7 +760,7 @@ tree /srv/ai-storage -L 2`}</pre>
           <section className="journey-section">
             <h2>📂 Step 7: Samba File Sharing</h2>
             <p>I set up Samba to access the storage from my laptop. A firewall rule was needed to allow SMB traffic.</p>
-            
+
             <div className="code-block">
               <pre>{`# Install Samba
 sudo apt install samba samba-common-bin
@@ -789,16 +789,16 @@ sudo systemctl restart nmbd
 sudo systemctl enable smbd
 sudo systemctl enable nmbd`}</pre>
             </div>
-            
+
             <div className="issue-box">
               <strong>Issue:</strong> The share wasn't showing up. The firewall was blocking SMB. Fixed with: <code>sudo ufw allow 139,445/tcp</code>
             </div>
           </section>
-          
+
           <section className="journey-section">
             <h2>📖 Step 8: Read/Write Tools</h2>
             <p>I added simple Python tools to allow the AI to read and write files directly to the server's storage.</p>
-            
+
             <div className="journey-grid">
               <div className="grid-content">
                 <h3>Basic file functions</h3>
@@ -840,12 +840,12 @@ def list_directory(path):
         return f"Error listing directory: {str(e)}"`}</pre>
                 </div>
               </div>
-              
+
               <div className="hologram-container">
                 <LazyImage src="/images/server/video-89_singular_display.gif" alt="AI performing file operations through natural language commands" intrinsic={true} priority={true} fetchPriority="low" />
               </div>
             </div>
-            
+
             <h3>How it works</h3>
             <p>These functions get exposed to the AI so I can just ask it to "read my config file" or "create a new folder" and it handles it.</p>
           </section>
@@ -854,11 +854,11 @@ def list_directory(path):
             <h2>🗂️ Step 9: Notion Integration</h2>
             <p>To automatically log chats, I connected the server to a Notion database using their API.</p>
             <div className="code-block">
-                <pre>{`export NOTION_API_KEY=secret_xxx
+              <pre>{`export NOTION_API_KEY=secret_xxx
 export NOTION_DATABASE_ID=xxx`}</pre>
             </div>
             <div className="issue-box">
-                <strong>Issue:</strong> JSON errors occurred due to a mismatched Notion API version. Setting <code>"Notion-Version": "2022-06-28"</code> fixed it.
+              <strong>Issue:</strong> JSON errors occurred due to a mismatched Notion API version. Setting <code>"Notion-Version": "2022-06-28"</code> fixed it.
             </div>
           </section>
 
@@ -866,41 +866,41 @@ export NOTION_DATABASE_ID=xxx`}</pre>
             <h2>🔍 Step 10: Monitoring</h2>
             <p>I use a few key commands to keep an eye on the system's performance.</p>
             <div className="code-block">
-                <pre>{`watch -n 2 nvidia-smi
+              <pre>{`watch -n 2 nvidia-smi
 journalctl -u open-webui --user -f`}</pre>
             </div>
             <div className="hologram-container" style={{ maxWidth: '350px', margin: '2rem auto 0' }}>
-                <LazyImage src="/images/server/video-93_singular_display.gif" alt="Server Monitoring" intrinsic={true} priority={true} fetchPriority="low" />
+              <LazyImage src="/images/server/video-93_singular_display.gif" alt="Server Monitoring" intrinsic={true} priority={true} fetchPriority="low" />
             </div>
           </section>
 
           <section className="journey-section">
-              <h2>🎯 End Goals Achieved</h2>
-              <p>Here's what I can do now that everything is set up:</p>
-              
-              <ul>
-                <li><strong>Natural Language Read/Write:</strong> I can talk to my AI and have it read or write directly to my file system.</li>
-                <li><strong>Media Storage:</strong> All 141GB of my Google Photos are backed up locally, accessible via my shared storage.</li>
-                <li><strong>Personalized AI:</strong> I run a local AI with memory of my life, allowing it to provide a more personal experience.</li>
-                <li><strong>Remote Access:</strong> The chat interface is locally hosted but available anywhere via my VPN tunnel.</li>
-                <li><strong>File Management:</strong> I can retrieve directory info, create folders, and save new files straight from the AI.</li>
-                <li><strong>Scalable Learning:</strong> The model can keep learning over time, and I can swap in any open-source model free of charge.</li>
-              </ul>
-              <div className="issue-box">
-                <strong>⚡ What's Next:</strong> I'm already planning upgrades — more storage, stronger GPUs, and new tools — to push this setup even further.
-              </div>
+            <h2>🎯 End Goals Achieved</h2>
+            <p>Here's what I can do now that everything is set up:</p>
+
+            <ul>
+              <li><strong>Natural Language Read/Write:</strong> I can talk to my AI and have it read or write directly to my file system.</li>
+              <li><strong>Media Storage:</strong> All 141GB of my Google Photos are backed up locally, accessible via my shared storage.</li>
+              <li><strong>Personalized AI:</strong> I run a local AI with memory of my life, allowing it to provide a more personal experience.</li>
+              <li><strong>Remote Access:</strong> The chat interface is locally hosted but available anywhere via my VPN tunnel.</li>
+              <li><strong>File Management:</strong> I can retrieve directory info, create folders, and save new files straight from the AI.</li>
+              <li><strong>Scalable Learning:</strong> The model can keep learning over time, and I can swap in any open-source model free of charge.</li>
+            </ul>
+            <div className="issue-box">
+              <strong>⚡ What's Next:</strong> I'm already planning upgrades — more storage, stronger GPUs, and new tools — to push this setup even further.
+            </div>
           </section>
 
           <section className="journey-section">
-              <h2>💭 Reflection</h2>
-              <p>The biggest issues I hit were related to networking and permissions:</p>
-              <ul>
-                <li>Forgetting firewall rules (blocked WebUI & Samba)</li>
-                <li>Wrong ports for LM Studio → WebUI integration</li>
-                <li>Wrong Cloudflare config path</li>
-                <li>Not enabling lingering for the systemd service</li>
-              </ul>
-              <p>After working through those, the server now runs smoothly and has become my personal AI + storage hub. 🚀</p>
+            <h2>💭 Reflection</h2>
+            <p>The biggest issues I hit were related to networking and permissions:</p>
+            <ul>
+              <li>Forgetting firewall rules (blocked WebUI & Samba)</li>
+              <li>Wrong ports for LM Studio → WebUI integration</li>
+              <li>Wrong Cloudflare config path</li>
+              <li>Not enabling lingering for the systemd service</li>
+            </ul>
+            <p>After working through those, the server now runs smoothly and has become my personal AI + storage hub. 🚀</p>
           </section>
 
           <section className="video-showcase">

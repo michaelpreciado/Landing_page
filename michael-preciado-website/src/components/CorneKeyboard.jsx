@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import MatrixRainBackground from './MatrixRainBackground';
 import PageTransition from './PageTransition.jsx';
 import ReturnButton from './ReturnButton.jsx';
-import useTypewriter from '../hooks/useTypewriter';
+import useTypewriter from '../utils/hooks/useTypewriter';
 import { autoApplyLiquidGlass } from '../utils/liquidGlass.js';
 
 function CorneKeyboard() {
@@ -10,7 +10,7 @@ function CorneKeyboard() {
 
   useEffect(() => {
     autoApplyLiquidGlass();
-    
+
     // Reading progress indicator (throttled for 120Hz scroll smoothness)
     const article = document.querySelector('.corne-build-container');
     const progressBar = document.querySelector('.reading-progress');
@@ -42,7 +42,7 @@ function CorneKeyboard() {
 
     window.addEventListener('scroll', scheduleReadingProgress, { passive: true });
     computeReadingProgress(); // Initial call to avoid waiting for RAF
-    
+
     const style = document.createElement('style');
     style.textContent = `
       /* === ENHANCED CORNE BUILD STYLES === */
@@ -385,7 +385,7 @@ function CorneKeyboard() {
       }
     `;
     document.head.appendChild(style);
-    
+
     return () => {
       window.removeEventListener('scroll', scheduleReadingProgress);
       if (progressFrame !== null) {
@@ -505,9 +505,9 @@ function CorneKeyboard() {
             <h2>Build Progress</h2>
             <div className="build-progress-grid">
               {[
-                '/images/corne-keyboard/corne1.jpeg', 
-                '/images/corne-keyboard/corne2.jpeg', 
-                '/images/corne-keyboard/corne3.jpeg', 
+                '/images/corne-keyboard/corne1.jpeg',
+                '/images/corne-keyboard/corne2.jpeg',
+                '/images/corne-keyboard/corne3.jpeg',
                 '/images/corne-keyboard/corne4.jpeg'
               ].map((src) => (
                 <div key={src} className="hologram-container">

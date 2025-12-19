@@ -17,8 +17,8 @@ Running AI locally keeps your prompts private, trims latency, and lets you exper
 ### Step 1: Prep the device
 
 <figure class="blog-hero-image matrix-overlay" style="margin: 1.5rem 0;">
-  <img src="/images/blog/ai-iphone-placeholder.svg" alt="Placeholder icon for device prep" style="opacity: 0.85;" />
-  <figcaption class="blog-hero-caption">Placeholder where the setup screenshot will go</figcaption>
+  <img src="/images/blog/ai-iphone-select-apple.jpg" alt="Selecting model in the local runner app" style="opacity: 0.85;" />
+  <figcaption class="blog-hero-caption">Selecting the model to run locally</figcaption>
 </figure>
 
 - Update iOS to the latest version so you have the newest neural engine optimizations.
@@ -27,14 +27,20 @@ Running AI locally keeps your prompts private, trims latency, and lets you exper
 
 ### Step 2: Install a local-runner app
 
-1. Pick a runner that supports on-device inference, like an open-source client from the App Store.
+1. Pick a runner that supports on-device inference; I recommend **[Locally AI](https://apps.apple.com/app/locally-ai-local-ai-chat/id6470007558)**, an open-source client for iPhone.
 2. Inside the app, enable the option that forces local inference and disables cloud fallbacks.
 3. Download one of the curated starter models (3–5 GB) to keep things smooth.
 
-<figure class="blog-hero-image matrix-overlay" style="margin: 1.5rem 0;">
-  <img src="/images/blog/ai-iphone-placeholder.svg" alt="Placeholder icon for model selection" style="opacity: 0.85;" />
-  <figcaption class="blog-hero-caption">Placeholder for the model picker UI</figcaption>
-</figure>
+<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1.5rem 0;">
+  <figure class="blog-hero-image matrix-overlay" style="margin: 0;">
+    <img src="/images/blog/ai-iphone-manage-models.jpg" alt="Manage models list" style="opacity: 0.85;" />
+    <figcaption class="blog-hero-caption">Available models list</figcaption>
+  </figure>
+  <figure class="blog-hero-image matrix-overlay" style="margin: 0;">
+    <img src="/images/blog/ai-iphone-select-model.jpg" alt="Picking a specific model" style="opacity: 0.85;" />
+    <figcaption class="blog-hero-caption">Picking a specific model</figcaption>
+  </figure>
+</div>
 
 ### Step 3: Optimize settings for speed
 
@@ -49,8 +55,8 @@ Running AI locally keeps your prompts private, trims latency, and lets you exper
 3. If you hit slowdowns, close background apps and rerun with the phone plugged in.
 
 <figure class="blog-hero-image matrix-overlay" style="margin: 1.5rem 0;">
-  <img src="/images/blog/ai-iphone-placeholder.svg" alt="Placeholder icon for local run results" style="opacity: 0.85;" />
-  <figcaption class="blog-hero-caption">Placeholder for the first offline response</figcaption>
+  <img src="/images/blog/ai-iphone-chat.jpg" alt="Offline chat response from Gemma 3" style="opacity: 0.85;" />
+  <figcaption class="blog-hero-caption">The first offline response from Gemma 3</figcaption>
 </figure>
 
 ### Troubleshooting cheatsheet
@@ -64,7 +70,8 @@ Running AI locally keeps your prompts private, trims latency, and lets you exper
 With the right runner, a lightweight model, and tuned settings, your iPhone can handle quick on-device AI tasks without touching the cloud. Swap these placeholders with real screenshots once you capture them, and you will have a complete walkthrough ready to ship.`,
     icon: 'code',
     categories: ['Technology', 'How-To'],
-    heroImage: '/images/blog/ai-iphone-placeholder.svg'
+    heroImage: '/images/blog/locally-ai-icon.jpg',
+    fullImage: true
   },
   {
     slug: 'tech-spirituality',

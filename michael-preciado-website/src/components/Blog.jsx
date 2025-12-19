@@ -51,6 +51,7 @@ const BlogPostCard = React.memo(({ post, index }) => {
           className="thumbnail"
           quality="medium"
           maxWidth="800px"
+          objectFit={post.fullImage ? "contain" : "cover"}
           placeholder={<div style={{ width: '100%', height: '200px', background: 'var(--medium-bg)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '2rem' }}>📝</div>}
         />
         {post.slug === 'tech-spirituality' && (
