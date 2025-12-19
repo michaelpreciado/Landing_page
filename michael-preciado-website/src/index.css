@@ -2314,7 +2314,7 @@ main {
   color: var(--light-text);
   margin-top: 2rem;
   margin-bottom: 1rem;
-  font-weight: 650;
+  font-weight: 600;
 }
 
 .blog-article-content h2 {
@@ -2337,9 +2337,9 @@ main {
 .blog-article-content li {
   max-width: 65ch;
   /* optimal line length */
-  font-size: clamp(0.95rem, 2vw, 1.08rem);
-  line-height: 1.7;
-  font-weight: 500;
+  font-size: clamp(0.9rem, 1.8vw, 1.02rem);
+  line-height: 1.65;
+  font-weight: 450;
 }
 
 /* List styling */
