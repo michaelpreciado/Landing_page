@@ -22,26 +22,25 @@ Go to the App Store and download **LocalAI**. This is the app that lets your pho
 Open the app and tap the model name at the top.  
 Select **Manage Models** to see the full list you can choose from.
 
-<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 3rem 0;">
-  <figure class="blog-hero-image matrix-overlay grid-image" style="margin: 0;">
-    <img src="/images/blog/ai-iphone-manage-models.jpg" alt="Manage models list inside LocalAI" />
-    <figcaption class="blog-hero-caption">Browsing available models</figcaption>
-  </figure>
-  <figure class="blog-hero-image matrix-overlay grid-image" style="margin: 0;">
-    <img src="/images/blog/ai-iphone-select-model.jpg" alt="Selecting a specific model in LocalAI" />
-    <figcaption class="blog-hero-caption">Picking the model to download</figcaption>
-  </figure>
-</div>
-
 ## Step 3: Choose a Model
 
 You’ll see a bunch of options.  
 For beginners, I recommend **Gemma 3n** as it has been optimized for mobile devices— it runs great on newer iPhones.  
 If you have an older device, choose a **quantized** version. Quantized just means “optimized to run faster on your phone.”
 
+<figure class="blog-hero-image matrix-overlay" style="margin: 2rem 0;">
+  <img src="/images/blog/ai-iphone-manage-models.jpg" alt="Manage models list inside LocalAI" />
+  <figcaption class="blog-hero-caption">Browsing available models</figcaption>
+</figure>
+
 ## Step 4: Download the Model
 
 Tap the model to download it. It may take a minute depending on your connection.
+
+<figure class="blog-hero-image matrix-overlay" style="margin: 2rem 0;">
+  <img src="/images/blog/ai-iphone-select-model.jpg" alt="Selecting a specific model in LocalAI" />
+  <figcaption class="blog-hero-caption">Picking the model to download</figcaption>
+</figure>
 
 ## Step 5: Load the Model and Ask a Question
 
