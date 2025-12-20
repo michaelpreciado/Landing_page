@@ -1,0 +1,283 @@
+/* Blog Article Professional Styling */
+
+/* Main Container with Glassmorphism to separate from busy background */
+.blog-article-content {
+    background: rgba(10, 25, 47, 0.75);
+    /* Slightly darker/more opaque for better contrast */
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(30, 144, 255, 0.15);
+    border-radius: 24px;
+    /* More rounded */
+    padding: 3.5rem 3rem;
+    /* More breathing room */
+    box-shadow: 0 12px 48px rgba(0, 0, 0, 0.5);
+    margin-top: 2rem;
+    margin-bottom: 4rem;
+    color: #dbe4ff;
+    position: relative;
+    overflow: hidden;
+    /* Ensure glowing effects don't spill badly */
+}
+
+/* Subtle gradient top border for premium feel */
+.blog-article-content::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--primary-accent), transparent);
+    opacity: 0.6;
+}
+
+/* Metadata Row */
+.blog-meta-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+    font-size: 0.95rem;
+    color: var(--secondary-accent);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.blog-categories {
+    background: rgba(30, 144, 255, 0.1);
+    padding: 6px 16px;
+    border-radius: 100px;
+    font-weight: 700;
+    font-size: 0.75rem;
+    border: 1px solid rgba(30, 144, 255, 0.3);
+    box-shadow: 0 0 10px rgba(30, 144, 255, 0.1);
+}
+
+.blog-date-inline {
+    opacity: 0.7;
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+}
+
+/* Article Title */
+.blog-article-title {
+    font-size: clamp(2.2rem, 5vw, 3.5rem);
+    text-align: center;
+    margin-bottom: 3rem;
+    line-height: 1.1;
+    background: linear-gradient(135deg, #ffffff 0%, #a5b4fc 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    /* Fixed lint error */
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 2px 20px rgba(165, 180, 252, 0.15);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    padding: 0 1rem;
+}
+
+/* Headings */
+/* h2 here corresponds to single # in markdown (unlikely used in mostly ## steps), but good to style */
+.blog-article-content h2 {
+    font-size: 2rem;
+    margin-top: 4rem;
+    margin-bottom: 2rem;
+    color: #fff;
+    border-bottom: 1px solid rgba(30, 144, 255, 0.2);
+    padding-bottom: 1rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+}
+
+/* h3 corresponds to ## in markdown, used for Steps */
+.blog-article-content h3 {
+    font-size: 1.6rem;
+    margin-top: 3.5rem;
+    margin-bottom: 1.5rem;
+    color: var(--secondary-accent);
+}
+
+
+
+/* Paragraphs */
+.blog-article-content p {
+    font-size: 1.15rem;
+    /* Larger text for readability */
+    line-height: 1.85;
+    color: #cbd5e1;
+    margin-bottom: 1.75rem;
+    font-weight: 400;
+}
+
+.blog-article-content p strong {
+    color: #fff;
+    font-weight: 600;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+}
+
+/* Lists */
+.blog-article-content ul,
+.blog-article-content ol {
+    margin-bottom: 2rem;
+    padding-left: 2rem;
+    color: #cbd5e1;
+}
+
+.blog-article-content li {
+    margin-bottom: 1rem;
+    line-height: 1.7;
+    font-size: 1.1rem;
+}
+
+.blog-article-content li::marker {
+    color: var(--primary-accent);
+    font-weight: bold;
+}
+
+/* Blockquotes */
+.blog-quote-container {
+    margin: 3rem 0;
+}
+
+.blog-quote-content {
+    background: linear-gradient(90deg, rgba(30, 144, 255, 0.05) 0%, transparent 100%);
+    border-left: 4px solid var(--primary-accent);
+    border-radius: 0 12px 12px 0;
+    padding: 2rem 2.5rem;
+    font-style: italic;
+    font-size: 1.3rem;
+    color: #fff;
+    position: relative;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.blog-quote-content::before {
+    content: '"';
+    position: absolute;
+    top: 0;
+    left: 1rem;
+    font-size: 4rem;
+    line-height: 1;
+    color: rgba(30, 144, 255, 0.2);
+    font-family: serif;
+}
+
+/* Images & Figures */
+.blog-hero-image {
+    margin: 3rem auto;
+    max-width: 75%;
+    /* Make images smaller as requested */
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+    /* Deep shadow for pop */
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: #000;
+    /* Fallback */
+}
+
+.blog-hero-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 16px;
+    transition: transform 0.6s cubic-bezier(0.215, 0.610, 0.355, 1.000), opacity 0.3s ease;
+    opacity: 1 !important;
+    /* Override inline opacity for better control, or let it be if user insists */
+}
+
+/* Only override if we want to force full visibility, user had 0.9. */
+/* Let's keep user's 0.9 but make it 1 on hover */
+.blog-hero-image:hover img {
+    transform: scale(1.03);
+    opacity: 1 !important;
+}
+
+.blog-hero-caption {
+    text-align: center;
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    color: var(--medium-text);
+    font-family: var(--font-mono);
+    letter-spacing: 0.5px;
+    opacity: 0.8;
+}
+
+/* Specific override for grid images to fill their gap */
+.blog-hero-image.grid-image {
+    max-width: 100%;
+    margin: 0;
+}
+
+/* Links within content */
+.blog-article-content a {
+    color: #60a5fa;
+    /* A nice blue */
+    text-decoration: none;
+    border-bottom: 1px dashed rgba(96, 165, 250, 0.5);
+    padding-bottom: 1px;
+    transition: all 0.2s ease;
+}
+
+.blog-article-content a:hover {
+    color: #93c5fd;
+    border-bottom: 1px solid #93c5fd;
+    text-shadow: 0 0 8px rgba(96, 165, 250, 0.4);
+}
+
+/* Horizontal Rule */
+hr {
+    border: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    margin: 4rem 0;
+}
+
+/* Grid layout for images (overriding inline styles where possible or enhancing children) */
+/* The inline grid in data uses gap: 1rem. */
+/* We can ensure images inside the grid look good */
+/* If the div has display: grid, we can target it by structure if needed, but generic figure styling works. */
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    .blog-article-content {
+        padding: 2rem 1.25rem;
+        border-radius: 16px;
+        margin-top: 1rem;
+        margin-bottom: 2rem;
+    }
+
+    .blog-article-title {
+        font-size: 2rem;
+        margin-bottom: 2rem;
+    }
+
+    .blog-article-content h2 {
+        font-size: 1.6rem;
+        margin-top: 3rem;
+    }
+
+    .blog-article-content h3 {
+        font-size: 1.35rem;
+        margin-top: 2.5rem;
+    }
+
+    .blog-article-content p {
+        font-size: 1rem;
+        line-height: 1.7;
+        margin-bottom: 1.25rem;
+    }
+
+    .blog-meta-row {
+        flex-wrap: wrap;
+        gap: 0.75rem;
+    }
+
+    .blog-hero-image {
+        max-width: 100%;
+        margin: 2rem 0;
+    }
+}

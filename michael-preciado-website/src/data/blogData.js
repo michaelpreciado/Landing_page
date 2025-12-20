@@ -3,49 +3,55 @@ const blogPostsData = [
     slug: 'ai-iphone-local',
     title: 'How to run AI locally on your iPhone',
     excerpt: 'A how-to guide for setting up on-device AI so your prompts stay private and snappy.',
-    date: '2025-09-01',
+    date: '2025-12-01',
     content: `## Why go local?
+
 Ever wanted to run an AI model *directly* on your iPhone without sending anything to the cloud? This quick guide walks you through it using an app called **LocalAI** from the App Store. No technical experience needed — anyone can follow this.
 
-<figure class="blog-hero-image matrix-overlay" style="margin: 1.5rem 0;">
-  <img src="/images/blog/ai-iphone-select-apple.jpg" alt="Selecting model in the LocalAI app on iPhone" style="opacity: 0.9;" />
+<figure class="blog-hero-image matrix-overlay">
+  <img src="/images/blog/ai-iphone-select-apple.jpg" alt="Selecting model in the LocalAI app on iPhone" />
   <figcaption class="blog-hero-caption">LocalAI ready to pick a model</figcaption>
 </figure>
 
 ## Step 1: Download the App
+
 Go to the App Store and download **LocalAI**. This is the app that lets your phone run AI models locally.
 
 ## Step 2: Open the App and Manage Models
+
 Open the app and tap the model name at the top.  
 Select **Manage Models** to see the full list you can choose from.
 
-<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1.5rem 0;">
-  <figure class="blog-hero-image matrix-overlay" style="margin: 0;">
-    <img src="/images/blog/ai-iphone-manage-models.jpg" alt="Manage models list inside LocalAI" style="opacity: 0.9;" />
+<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 3rem 0;">
+  <figure class="blog-hero-image matrix-overlay grid-image" style="margin: 0;">
+    <img src="/images/blog/ai-iphone-manage-models.jpg" alt="Manage models list inside LocalAI" />
     <figcaption class="blog-hero-caption">Browsing available models</figcaption>
   </figure>
-  <figure class="blog-hero-image matrix-overlay" style="margin: 0;">
-    <img src="/images/blog/ai-iphone-select-model.jpg" alt="Selecting a specific model in LocalAI" style="opacity: 0.9;" />
+  <figure class="blog-hero-image matrix-overlay grid-image" style="margin: 0;">
+    <img src="/images/blog/ai-iphone-select-model.jpg" alt="Selecting a specific model in LocalAI" />
     <figcaption class="blog-hero-caption">Picking the model to download</figcaption>
   </figure>
 </div>
 
 ## Step 3: Choose a Model
+
 You’ll see a bunch of options.  
 For beginners, I recommend **Gemma 3n** as it has been optimized for mobile devices— it runs great on newer iPhones.  
 If you have an older device, choose a **quantized** version. Quantized just means “optimized to run faster on your phone.”
 
 ## Step 4: Download the Model
+
 Tap the model to download it. It may take a minute depending on your connection.
 
 ## Step 5: Load the Model and Ask a Question
+
 After it finishes downloading, tap it again to load it.  
 Once it’s loaded, try asking something simple like:
 
 > “What are your capabilities as a local AI model?”
 
-<figure class="blog-hero-image matrix-overlay" style="margin: 1.5rem 0;">
-  <img src="/images/blog/ai-iphone-chat.jpg" alt="Offline chat response from Gemma 3 inside LocalAI" style="opacity: 0.9;" />
+<figure class="blog-hero-image matrix-overlay">
+  <img src="/images/blog/ai-iphone-chat.jpg" alt="Offline chat response from Gemma 3 inside LocalAI" />
   <figcaption class="blog-hero-caption">First offline response from the local model</figcaption>
 </figure>
 
@@ -53,7 +59,8 @@ You’ll see it respond instantly — everything happening **on your device**, n
 
 That’s it. You now have a fully offline AI model running on your iPhone.
 
-## Why run locally? 
+## Why run locally?
+
 Running a model locally on your device is great for many safety reasons
 
 1. Your data is safe and it does not get sent to a data center. 

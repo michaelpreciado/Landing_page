@@ -7,6 +7,7 @@ import ReturnButton from './ReturnButton.jsx';
 import PageTransition from './PageTransition.jsx';
 import useTypewriter from '../utils/hooks/useTypewriter';
 import { autoApplyLiquidGlass } from '../utils/liquidGlass.js';
+import './BlogArticle.css'; // Import professional styles
 
 // Reusable paragraph component with fast typewriter effect
 const BlogTextBlock = ({ text, delay = 0 }) => {
@@ -88,18 +89,45 @@ function BlogArticle() {
   };
 
   const renderContent = (content) => {
-    return content.split(/\n\n+/).map((block, idx) => {
+    return content.split(/\n\s*\n/).map((block, idx) => {
       const boldHeaderMatch = block.match(/^\*\*(.+)\*\*$/);
       if (boldHeaderMatch) {
         return <h3 key={idx}>{boldHeaderMatch[1]}</h3>;
       }
       if (block.startsWith('# ')) {
+        const parts = block.split('\n');
+        if (parts.length > 1) {
+          return (
+            <React.Fragment key={idx}>
+              <h2>{parts[0].replace('# ', '')}</h2>
+              {renderContent(parts.slice(1).join('\n'))}
+            </React.Fragment>
+          );
+        }
         return <h2 key={idx}>{block.replace('# ', '')}</h2>;
       }
       if (block.startsWith('## ')) {
+        const parts = block.split('\n');
+        if (parts.length > 1) {
+          return (
+            <React.Fragment key={idx}>
+              <h3>{parts[0].replace('## ', '')}</h3>
+              {renderContent(parts.slice(1).join('\n'))}
+            </React.Fragment>
+          );
+        }
         return <h3 key={idx}>{block.replace('## ', '')}</h3>;
       }
       if (block.startsWith('### ')) {
+        const parts = block.split('\n');
+        if (parts.length > 1) {
+          return (
+            <React.Fragment key={idx}>
+              <h4>{parts[0].replace('### ', '')}</h4>
+              {renderContent(parts.slice(1).join('\n'))}
+            </React.Fragment>
+          );
+        }
         return <h4 key={idx}>{block.replace('### ', '')}</h4>;
       }
       // Handle HTML div blocks (like images)
