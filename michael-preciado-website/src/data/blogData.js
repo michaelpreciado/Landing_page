@@ -6,16 +6,16 @@ const blogPostsData = [
     date: '2025-12-01',
     content: `## Why go local?
 
-Ever wanted to run an AI model *directly* on your iPhone without sending anything to the cloud? This quick guide walks you through it using an app called **LocalAI** from the App Store. No technical experience needed — anyone can follow this.
+Ever wanted to run an AI model *directly* on your iPhone without sending anything to the cloud? This quick guide walks you through it using an app called **Locally AI** from the App Store. No technical experience needed — anyone can follow this.
 
 <figure class="blog-hero-image matrix-overlay">
-  <img src="/images/blog/ai-iphone-select-apple.jpg" alt="Selecting model in the LocalAI app on iPhone" />
-  <figcaption class="blog-hero-caption">LocalAI ready to pick a model</figcaption>
+  <img src="/images/blog/ai-iphone-select-apple.jpg" alt="Selecting model in the Locally AI app on iPhone" />
+  <figcaption class="blog-hero-caption">Locally AI ready to pick a model</figcaption>
 </figure>
 
 ## Step 1: Download the App
 
-Go to the App Store and download **LocalAI**. This is the app that lets your phone run AI models locally.
+Go to the App Store and download **Locally AI**. This is the app that lets your phone run AI models locally.
 
 ## Step 2: Open the App and Manage Models
 
@@ -29,7 +29,7 @@ For beginners, I recommend **Gemma 3n** as it has been optimized for mobile devi
 If you have an older device, choose a **quantized** version. Quantized just means “optimized to run faster on your phone.”
 
 <figure class="blog-hero-image matrix-overlay" style="margin: 2rem 0;">
-  <img src="/images/blog/ai-iphone-manage-models.jpg" alt="Manage models list inside LocalAI" />
+  <img src="/images/blog/ai-iphone-manage-models.jpg" alt="Manage models list inside Locally AI" />
   <figcaption class="blog-hero-caption">Browsing available models</figcaption>
 </figure>
 
@@ -38,7 +38,7 @@ If you have an older device, choose a **quantized** version. Quantized just mean
 Tap the model to download it. It may take a minute depending on your connection.
 
 <figure class="blog-hero-image matrix-overlay" style="margin: 2rem 0;">
-  <img src="/images/blog/ai-iphone-select-model.jpg" alt="Selecting a specific model in LocalAI" />
+  <img src="/images/blog/ai-iphone-select-model.jpg" alt="Selecting a specific model in Locally AI" />
   <figcaption class="blog-hero-caption">Picking the model to download</figcaption>
 </figure>
 
@@ -50,7 +50,7 @@ Once it’s loaded, try asking something simple like:
 > “What are your capabilities as a local AI model?”
 
 <figure class="blog-hero-image matrix-overlay">
-  <img src="/images/blog/ai-iphone-chat.jpg" alt="Offline chat response from Gemma 3 inside LocalAI" />
+  <img src="/images/blog/ai-iphone-chat.jpg" alt="Offline chat response from Gemma 3 inside Locally AI" />
   <figcaption class="blog-hero-caption">First offline response from the local model</figcaption>
 </figure>
 
