@@ -8,11 +8,6 @@ const blogPostsData = [
 
 Ever wanted to run an AI model *directly* on your iPhone without sending anything to the cloud? This quick guide walks you through it using an app called **Locally AI** from the App Store. No technical experience needed — anyone can follow this.
 
-<figure class="blog-hero-image matrix-overlay">
-  <img src="/images/blog/ai-iphone-select-apple.jpg" alt="Selecting model in the Locally AI app on iPhone" />
-  <figcaption class="blog-hero-caption">Locally AI ready to pick a model</figcaption>
-</figure>
-
 ## Step 1: Download the App
 
 Go to the App Store and download **Locally AI**. This is the app that lets your phone run AI models locally.
@@ -21,6 +16,11 @@ Go to the App Store and download **Locally AI**. This is the app that lets your 
 
 Open the app and tap the model name at the top.  
 Select **Manage Models** to see the full list you can choose from.
+
+<figure class="blog-hero-image matrix-overlay">
+  <img src="/images/blog/ai-iphone-select-apple.jpg" alt="Selecting model in the Locally AI app on iPhone" />
+  <figcaption class="blog-hero-caption">Locally AI ready to pick a model</figcaption>
+</figure>
 
 ## Step 3: Choose a Model
 
@@ -63,9 +63,9 @@ That’s it. You now have a fully offline AI model running on your iPhone.
 Running a model locally on your device is great for many safety reasons
 
 1. Your data is safe and it does not get sent to a data center. 
-    2. No cost, run as many times as you want.
-    3. No internet connection needed.
-    4. More customization options, allowing you to personalize your AI with data you provide. `,
+2. No cost, run as many times as you want.
+3. No internet connection needed.
+4. More customization options, allowing you to personalize your AI with data you provide. `,
     icon: 'code',
     categories: ['Technology', 'How-To'],
     heroImage: '/images/blog/locally-ai-icon-wide.svg'
