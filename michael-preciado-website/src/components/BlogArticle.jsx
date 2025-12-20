@@ -190,7 +190,7 @@ function BlogArticle() {
     <PageTransition>
       <MatrixRainBackground />
       <ReturnButton to="/blog" />
-      <main style={{ position: 'relative', zIndex: 1 }}>
+      <main style={{ position: 'relative', zIndex: 1, paddingTop: '4.5rem' }}>
         <section style={{ maxWidth: '800px', margin: '0 auto' }}>
           <article className="blog-article-content">
             {/* --- Meta Row (Categories & Date) --- */}
