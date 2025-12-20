@@ -63,9 +63,9 @@ That’s it. You now have a fully offline AI model running on your iPhone.
 Running a model locally on your device is great for many safety reasons
 
 1. Your data is safe and it does not get sent to a data center. 
-    2. No cost, run as many times as you want.
-    3. No internet connection needed.
-    4. More customization options, allowing you to personalize your AI with data you provide. `,
+2. No cost, run as many times as you want.
+3. No internet connection needed.
+4. More customization options, allowing you to personalize your AI with data you provide. `,
     icon: 'code',
     categories: ['Technology', 'How-To'],
     heroImage: '/images/blog/locally-ai-icon-wide.svg'
