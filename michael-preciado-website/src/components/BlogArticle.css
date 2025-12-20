@@ -167,7 +167,7 @@
 /* Images & Figures */
 .blog-hero-image {
     margin: 3rem auto;
-    max-width: 75%;
+    max-width: min(70%, 640px);
     /* Make images smaller as requested */
     border-radius: 16px;
     overflow: hidden;
