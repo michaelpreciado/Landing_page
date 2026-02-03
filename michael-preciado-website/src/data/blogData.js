@@ -1,5 +1,23 @@
 const blogPostsData = [
   {
+    slug: 'five-habits-that-help-me',
+    title: 'Five Habits That Help Me',
+    excerpt: 'Between working in tech, keeping up with personal coding projects, and trying to stay active, life can get pretty loud sometimes.',
+    date: '2026-02-02',
+    content: `Between working in tech, keeping up with personal coding projects, and trying to stay active, life can get pretty loud sometimes. It’s easy to get caught up in the grind and burn out if you aren't careful.
+
+Over time, I’ve found that I don't need a complicated routine to stay on track, I just need a few reliable habits that help me hit the "reset" button. I wanted to share the five things that consistently help me clear my head and keep my energy up. Everyone is different, so these might not be a perfect fix for everyone, but they’ve made a huge difference for me. Here is what works in my daily life.
+
+1. **Running** - A run has so many benefits in my everyday life. A run can help you produce endorphins in your brain and prepare you for the day and decompress the right way.
+2. **Drinks lots of water** - Aim for one gallon a day and within a few days or weeks you will begin to notice a drastic change in your body weight and energy levels. We're 80% water so why not replenish your fluids through soda?
+3. **Meditation** - Our lives are filled with constant noise through social media and work and it overstimulates our brains. Humans were never meant to be so globally connected so constant news causes headaches and stress. Sitting down and doing nothing for a few minutes will wash away those negative thoughts and bring you back in tune with your own thoughts. You will be surprised how doing nothing is actually extremely difficult.
+4. **Read more** - Your attention span is probably fried like many people's. This is because social media has introduced new things that hook you within the first three minutes, keeping you engaged. Because of this our brains are constantly wanting new hits of dopamine every few seconds. Now it's time to start off with 10 minutes a day of staying focused. Just a few pages a day and your brain will begin to rewire itself providing better focus.
+5. **Engage in creative projects** - It's amazing how creativity fires off a lot of brain chemicals. Getting involved in projects you care about can stimulate the release of dopamine, serotonin, and endorphins, giving you a natural high and promoting a sense of satisfaction and well-being. It's also a powerful way to de-stress and find balance in your daily routine.`,
+    icon: 'code',
+    categories: ['Wellness', 'Productivity'],
+    heroImage: '/images/blog/ai-iphone-placeholder.svg'
+  },
+  {
     slug: 'cyber-security-at-scale',
     title: 'Cyber Security at Scale',
     excerpt: 'Why worldviews shape cybersecurity policy and why global cooperation needs cultural context.',
