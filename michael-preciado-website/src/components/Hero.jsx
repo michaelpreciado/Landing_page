@@ -104,19 +104,19 @@ const Hero = React.memo(() => {
             </p>
             <p className="terminal-text blank-line"></p>
             <p className="terminal-text">
-              <span className="terminal-prompt">&gt;</span> currently working on personal projects & AI automation
+              <span className="terminal-prompt">&gt;</span> currently studying artificial intelligence and working on personal projects.
             </p>
             <p className="terminal-text blank-line"></p>
 
             {/* Interests section */}
             <p className="terminal-text">
-              <span className="terminal-label">interests :</span> tech, software engineering, AI/ML, automation,
+              <span className="terminal-label">interests :</span> tech, software engineering, ai/ml, automation,
             </p>
             <p className="terminal-text terminal-indent">
-              web development, mechanical keyboards, photography, hiking,
+              web development, data science, photography, hiking,
             </p>
             <p className="terminal-text terminal-indent">
-              exploring new ideas and pushing creative boundaries
+              exploring new ideas
             </p>
             <p className="terminal-text blank-line"></p>
 
