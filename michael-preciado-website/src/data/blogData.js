@@ -1,5 +1,88 @@
 const blogPostsData = [
   {
+    slug: 'cyber-security-at-scale',
+    title: 'Cyber Security at Scale',
+    excerpt: 'Why worldviews shape cybersecurity policy and why global cooperation needs cultural context.',
+    date: '2026-01-30',
+    content: `### Michael Preciado
+Wilmington University · Ethics for Computer Science · Dr. Anthony Carcillo
+
+## Abstract
+Cybercrime is a global mess because everyone is running on a different framework when it comes to cyberspace. This paper breaks down how things like individualism in the US versus collectivism in China change the way we handle hackers and privacy. We also look at how religious frameworks, specifically Islamic and Christian ethics, add another layer to digital behavior. By comparing Western ideas like utilitarianism with Eastern concepts of justice and harmony, it becomes clear that we can't just fix cybersecurity with more laws. The main takeaway is that until we actually respect these cultural differences, international cooperation is going to keep hitting a wall.
+
+**Keywords:** Cybercrime, Worldviews, Ethics, Cybersecurity Policy, Cultural Values
+
+## Introduction
+A worldview is the lens through which people or entire countries decide what is right and wrong. As Kizza (2023) points out, moral systems do not just pop up out of nowhere because they are built on cultural and religious traditions. These beliefs end up shaping everything from how a person uses their computer to how a country writes its laws. Since the internet is now where we do everything, including work, banking, and social life, how these worldviews clash with cybercrime is a big deal. Different societies see things like privacy and security totally different. This paper looks at how things like individualism versus collectivism and different religious views change the way countries deal with cyber threats. If we do not understand these differences, we are never going to get actual global cooperation on cybersecurity.
+
+## Understanding Cybercrime in a Global Context
+Cybercrime is not just one thing. It includes everything from identity theft and financial fraud to hacking critical infrastructure (Kizza, 2023). The real problem is that the internet does not have borders. A hacker can be in one country, the server in another, and the victim in a third. This makes it a nightmare for law enforcement because every country has different rules based on their values. Cultural values dictate how we balance things like personal privacy versus national security. In the US, we are big on individual rights and personal responsibility. In other places, they might care more about the group or the state, which changes how they handle things like surveillance. Kizza (2023) also mentions that people sometimes feel like digital actions are not real, but how much a person believes that often depends on their cultural background.
+
+## Case Study and Comparative Analysis
+The best way to see this in action is by looking at the US and China. The United States is very individualistic. Our laws usually protect things like free speech and privacy first. The government expects the private sector to handle its own security, and we usually do not like the state sticking its nose into our digital business (Gorodnichenko and Roland, 2011).
+
+China is the opposite. They have a collectivist culture where cyber sovereignty is the main goal. They see the internet as part of their national territory. For them, keeping the peace and protecting the state is more important than an individual’s privacy (Swaine, 2013). This is why they are okay with heavy surveillance and content filtering because they see it as keeping the virtual territory safe. These two views are fundamentally different, which is why it is so hard for the US and China to agree on how the internet should be run.
+
+## Religion Perspectives on Digital Ethics
+Religion also plays a huge role in how people behave online. Islamic ethics, for example, have a lot to say about privacy and dignity. Scholars have pointed out that the Quran’s rules against spying or intruding on private spaces apply to the digital world too (Al A'ali, 2007). In this view, cybersecurity is not just a technical problem but a moral one. It is about being a virtuous person, not just following the law.
+
+Christian traditions also focus on personal responsibility and the idea that every human has inherent dignity. Interestingly, research shows that people with strong religious beliefs are often more careful with their data online (Baazeem and Qaffas, 2020). This suggests that worldview does not just change laws but changes how people actually use their devices.
+
+## Ethical Framework Based on Worldview
+In Western ethics, we normally talk about two main ways to look at this, which are Utilitarianism and Deontology. Utilitarianism is about the greatest good. This could be used to justify mass surveillance if it stops a major terrorist attack. The problem is that it is almost impossible to know the full consequences of a digital action before you take it (Loi and Christen, 2020).
+
+Deontology is about following rules. There are certain things that are just wrong, like hacking into a system you do not own, regardless of the reason (Kizza, 2023).
+
+Studies show that people use both. Most people use a consequences-based view for general privacy but a rules-based view when it comes to things like intellectual property and piracy (Alotaibi et al., 2020).
+
+## Justice and Accountability
+Finally, how we punish cybercriminals depends on our worldview. In the West, we focus on the law and making the individual pay for what they did. In more collectivist cultures, justice might be more about restoring harmony or using things like public shame to stop people from doing it again. Islamic law also looks at rehabilitation and forgiveness, not just punishment (Al A'ali, 2007). If we want to catch hackers across borders, we have to realize that not every country wants to punish them the same way.
+
+## Image Placeholder
+<figure class="blog-hero-image matrix-overlay" style="margin-top: 2rem; margin-bottom: 2rem;">
+  <img src="/images/blog/ai-iphone-placeholder.svg" alt="Placeholder for future cyber security visual" />
+  <figcaption class="blog-hero-caption">Reserved for a future infographic or diagram.</figcaption>
+</figure>
+
+## Conclusion
+At the end of the day, worldviews are not just an academic topic because they are what drive cybersecurity policy. You cannot just fix cybercrime with better code since you have to understand the people behind the keyboards. We need to move toward a culturally sensitive way of doing cybersecurity. This does not mean we have to agree on everything, but we should at least agree on the big stuff, like protecting hospitals and stopping bank fraud, while respecting that different cultures are going to have different rules for their own citizens.
+
+## References
+- Al A'ali, M. (2007). Computer crime and the law from an Islamic point of view. Journal of Applied Sciences, 7(10), 1558, 1565.
+- Alotaibi, M. J., Furnell, S., and Clarke, N. (2020). Predicting and explaining cyber ethics with ethical theories. International Journal of Cyber Warfare and Terrorism, 10(2), 36, 52.
+- Baazeem, R., and Qaffas, A. A. (2020). The relationship between religious beliefs and cybersecurity practices. Computers in Human Behavior, 111, 106429.
+- Gorodnichenko, Y., and Roland, G. (2011). Individualism, innovation, and long run growth. Proceedings of the National Academy of Sciences, 108(Supplement 4), 21316, 21319.
+- Kizza, J. M. (2023). Ethical and secure computing: A concise module (3rd ed.). Springer.
+- Loi, M., and Christen, M. (2020). Ethical frameworks for cybersecurity. In M. Christen, B. Gordijn, and M. Loi (Eds.), The ethics of cybersecurity (pp. 73, 96). Springer.
+- Swaine, M. D. (2013). Chinese views on cybersecurity in foreign relations. China Leadership Monitor, 42, 1, 27.`,
+    icon: 'code',
+    categories: ['Cybersecurity', 'Ethics'],
+    heroImage: '/images/blog/ai-iphone-placeholder.svg'
+  },
+  {
+    slug: 'guilt-and-conscience',
+    title: 'Interplay Between Guilt and Conscience',
+    excerpt: 'How conscience guides moral judgment and why guilt can sharpen accountability.',
+    date: '2026-02-10',
+    content: `## The Relationship
+The relationship between guilt and conscience plays a role when it comes to moral self regulation. Conscience functions as an internal judgment that allows individuals to evaluate their actions based on moral standards. It develops over time through social interactions, experience, and reflection. Conscience signals whether an action aligns with one’s values before and after an action is taken.
+
+## When Guilt Emerges
+Guilt emerges as a response when moral values have been violated. Guilt is a form of self judgment that happens when one individual recognizes they failed to align with their moral code. Conscience identifies the moral failure while guilt enforces that judgment through discomfort. The guilt one carries can improve accountability and ensure corrective actions are taken in the future.
+
+## Image Placeholder
+<figure class="blog-hero-image matrix-overlay" style="margin-top: 2rem; margin-bottom: 2rem;">
+  <img src="/images/blog/ai-iphone-placeholder.svg" alt="Placeholder for future psychology imagery" />
+  <figcaption class="blog-hero-caption">Reserved for a diagram or illustration.</figcaption>
+</figure>
+
+## References
+- Kizza, J. M. (2023). Ethical and secure computing (3rd ed.). Springer Nature.`,
+    icon: 'spiritual',
+    categories: ['Psychology', 'Ethics'],
+    heroImage: '/images/blog/ai-iphone-placeholder.svg'
+  },
+  {
     slug: 'ai-iphone-local',
     title: 'How to run AI locally on your iPhone',
     excerpt: 'A how-to guide for setting up on-device AI so your prompts stay private and snappy.',
