@@ -4131,6 +4131,47 @@ h3:hover {
   margin: 0 auto;
 }
 
+.page-header-nav {
+  transition: opacity 0.7s ease, transform 0.7s ease;
+  will-change: opacity, transform;
+}
+
+.page-header-nav.is-hidden {
+  opacity: 0;
+  transform: translateY(-14px);
+  pointer-events: none;
+}
+
+.page-header-nav.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+  animation: digital-fade-in 0.9s ease;
+}
+
+@keyframes digital-fade-in {
+  0% {
+    opacity: 0;
+    transform: translateY(-18px) scale(0.98);
+    filter: blur(6px) brightness(1.4);
+    text-shadow: 0 0 12px rgba(30, 144, 255, 0.8);
+  }
+  40% {
+    opacity: 0.6;
+    filter: blur(2px) brightness(1.2);
+    text-shadow: 0 0 18px rgba(30, 144, 255, 0.9);
+  }
+  70% {
+    opacity: 0.85;
+    transform: translateY(-4px) scale(1.01);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0) brightness(1);
+    text-shadow: none;
+  }
+}
+
 .terminal-nav-button {
   display: inline-flex;
   align-items: center;
