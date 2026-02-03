@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FaArrowLeft } from 'react-icons/fa';
 import { motion } from 'framer-motion';
@@ -10,6 +10,34 @@ const MotionLink = motion(Link);
  * Displays back to home link and optional navigation to another section.
  */
 function PageHeader({ navTo, navText, title, subtitle }) {
+  const [isAtTop, setIsAtTop] = useState(true);
+
+  useEffect(() => {
+    let frameId = null;
+
+    const updateScrollState = () => {
+      frameId = null;
+      setIsAtTop(window.scrollY < 40);
+    };
+
+    const onScroll = () => {
+      if (frameId) {
+        return;
+      }
+      frameId = window.requestAnimationFrame(updateScrollState);
+    };
+
+    updateScrollState();
+    window.addEventListener('scroll', onScroll, { passive: true });
+
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+      if (frameId) {
+        window.cancelAnimationFrame(frameId);
+      }
+    };
+  }, []);
+
   return (
     <div className="page-header terminal-page-header" style={{ 
       position: 'relative', 
@@ -19,7 +47,9 @@ function PageHeader({ navTo, navText, title, subtitle }) {
       flexDirection: 'column',
       gap: '3rem'
     }}>
-      <div style={{ 
+      <div
+        className={`page-header-nav ${isAtTop ? 'is-visible' : 'is-hidden'}`}
+        style={{ 
         display: 'flex', 
         flexDirection: 'row',
         justifyContent: 'space-between', 
@@ -32,7 +62,8 @@ function PageHeader({ navTo, navText, title, subtitle }) {
         padding: '0 1rem',
         gap: '0.5rem',
         minHeight: '44px'
-      }}>
+        }}
+      >
         <MotionLink
           to="/"
           className="return-button terminal-nav-button"
@@ -83,4 +114,3 @@ function PageHeader({ navTo, navText, title, subtitle }) {
 }
 
 export default PageHeader;
-
