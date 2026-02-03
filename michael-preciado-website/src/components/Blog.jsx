@@ -46,15 +46,21 @@ const BlogPostCard = React.memo(({ post, index }) => {
         </div>
       </div>
       <div className="project-image-container">
-        <LazyImage
-          src={post.heroImage}
-          alt={`${post.title} blog post cover`}
-          className="thumbnail"
-          quality="medium"
-          maxWidth="800px"
-          objectFit={post.fullImage ? "contain" : "cover"}
-          placeholder={<div style={{ width: '100%', height: '200px', background: 'var(--medium-bg)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '2rem' }}>📝</div>}
-        />
+        {post.heroImage ? (
+          <LazyImage
+            src={post.heroImage}
+            alt={`${post.title} blog post cover`}
+            className="thumbnail"
+            quality="medium"
+            maxWidth="800px"
+            objectFit={post.fullImage ? "contain" : "cover"}
+            placeholder={<div style={{ width: '100%', height: '200px', background: 'var(--medium-bg)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '2rem' }}>📝</div>}
+          />
+        ) : post.heroEmoji ? (
+          <div className="thumbnail" style={{ width: '100%', height: '200px', background: 'var(--medium-bg)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '4rem' }}>
+            {post.heroEmoji}
+          </div>
+        ) : null}
         {post.slug === 'tech-spirituality' && (
           <div className="image-watermark">
             <a

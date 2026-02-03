@@ -207,17 +207,23 @@ function BlogArticle() {
             <h1 className="blog-article-title">{typedTitle}</h1>
 
             {/* Hero Image */}
-            {post.heroImage && (
+            {(post.heroImage || post.heroEmoji) && (
               <figure className="blog-hero-image">
-                <LazyImage
-                  src={post.heroImage}
-                  alt={`${post.title} blog article hero image`}
-                  priority={true}
-                  quality="medium"
-                  maxWidth="800px"
-                  objectFit="contain"
-                  placeholder={<div style={{ width: '100%', height: '300px', background: 'var(--medium-bg)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '2rem' }}>📖</div>}
-                />
+                {post.heroImage ? (
+                  <LazyImage
+                    src={post.heroImage}
+                    alt={`${post.title} blog article hero image`}
+                    priority={true}
+                    quality="medium"
+                    maxWidth="800px"
+                    objectFit="contain"
+                    placeholder={<div style={{ width: '100%', height: '300px', background: 'var(--medium-bg)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '2rem' }}>📖</div>}
+                  />
+                ) : (
+                  <div style={{ width: '100%', height: '300px', background: 'var(--medium-bg)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '5rem', borderRadius: '12px' }}>
+                    {post.heroEmoji}
+                  </div>
+                )}
                 {post.excerpt && (
                   <figcaption className="blog-hero-caption">{post.excerpt}</figcaption>
                 )}

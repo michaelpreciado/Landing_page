@@ -15,7 +15,8 @@ Over time, I’ve found that I don't need a complicated routine to stay on track
 5. **Engage in creative projects** - It's amazing how creativity fires off a lot of brain chemicals. Getting involved in projects you care about can stimulate the release of dopamine, serotonin, and endorphins, giving you a natural high and promoting a sense of satisfaction and well-being. It's also a powerful way to de-stress and find balance in your daily routine.`,
     icon: 'code',
     categories: ['Wellness', 'Productivity'],
-    heroImage: '/images/blog/ai-iphone-placeholder.svg'
+    heroImage: null,
+    heroEmoji: '🌱'
   },
   {
     slug: 'cyber-security-at-scale',
@@ -56,10 +57,9 @@ Studies show that people use both. Most people use a consequences-based view for
 ## Justice and Accountability
 Finally, how we punish cybercriminals depends on our worldview. In the West, we focus on the law and making the individual pay for what they did. In more collectivist cultures, justice might be more about restoring harmony or using things like public shame to stop people from doing it again. Islamic law also looks at rehabilitation and forgiveness, not just punishment (Al A'ali, 2007). If we want to catch hackers across borders, we have to realize that not every country wants to punish them the same way.
 
-## Image Placeholder
 <figure class="blog-hero-image matrix-overlay" style="margin-top: 2rem; margin-bottom: 2rem;">
-  <img src="/images/blog/ai-iphone-placeholder.svg" alt="Placeholder for future cyber security visual" />
-  <figcaption class="blog-hero-caption">Reserved for a future infographic or diagram.</figcaption>
+  <div style="width: 100%; padding: 3rem 0; background: var(--medium-bg); display: flex; align-items: center; justify-content: center; font-size: 5rem; border-radius: 12px;">🛡️</div>
+  <figcaption class="blog-hero-caption">Cybersecurity across cultures and borders.</figcaption>
 </figure>
 
 ## Conclusion
@@ -75,7 +75,8 @@ At the end of the day, worldviews are not just an academic topic because they ar
 - Swaine, M. D. (2013). Chinese views on cybersecurity in foreign relations. China Leadership Monitor, 42, 1, 27.`,
     icon: 'code',
     categories: ['Cybersecurity', 'Ethics'],
-    heroImage: '/images/blog/ai-iphone-placeholder.svg'
+    heroImage: null,
+    heroEmoji: '🛡️'
   },
   {
     slug: 'guilt-and-conscience',
@@ -88,17 +89,17 @@ The relationship between guilt and conscience plays a role when it comes to mora
 ## When Guilt Emerges
 Guilt emerges as a response when moral values have been violated. Guilt is a form of self judgment that happens when one individual recognizes they failed to align with their moral code. Conscience identifies the moral failure while guilt enforces that judgment through discomfort. The guilt one carries can improve accountability and ensure corrective actions are taken in the future.
 
-## Image Placeholder
 <figure class="blog-hero-image matrix-overlay" style="margin-top: 2rem; margin-bottom: 2rem;">
-  <img src="/images/blog/ai-iphone-placeholder.svg" alt="Placeholder for future psychology imagery" />
-  <figcaption class="blog-hero-caption">Reserved for a diagram or illustration.</figcaption>
+  <div style="width: 100%; padding: 3rem 0; background: var(--medium-bg); display: flex; align-items: center; justify-content: center; font-size: 5rem; border-radius: 12px;">🧠</div>
+  <figcaption class="blog-hero-caption">The moral compass within.</figcaption>
 </figure>
 
 ## References
 - Kizza, J. M. (2023). Ethical and secure computing (3rd ed.). Springer Nature.`,
     icon: 'spiritual',
     categories: ['Psychology', 'Ethics'],
-    heroImage: '/images/blog/ai-iphone-placeholder.svg'
+    heroImage: null,
+    heroEmoji: '🧠'
   },
   {
     slug: 'ai-iphone-local',
