@@ -4194,6 +4194,10 @@ h3:hover {
 }
 
 .terminal-nav-button {
+  position: static;
+  top: auto;
+  right: auto;
+  left: auto;
   display: inline-flex;
   align-items: center;
   justify-content: center;
