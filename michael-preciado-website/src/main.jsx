@@ -12,6 +12,7 @@ const BlogArticle = lazy(() => import('./components/BlogArticle.jsx'))
 const ProjectsPage = lazy(() => import('./components/ProjectsPage.jsx'))
 const CorneKeyboard = lazy(() => import('./components/CorneKeyboard.jsx'))
 const AIServer = lazy(() => import('./components/AIServer.jsx'))
+const OpenClawWorkflow = lazy(() => import('./components/OpenClawWorkflow.jsx'))
 const Resume = lazy(() => import('./components/Resume.jsx'))
 
 // Initialize only the core liquid glass system (pointer tracking, etc.)
@@ -48,6 +49,7 @@ function AnimatedRoutes() {
           <Route path="/projects" element={<ProjectsPage />} />
           <Route path="/projects/corne-keyboard" element={<CorneKeyboard />} />
           <Route path="/projects/ai-server" element={<AIServer />} />
+          <Route path="/projects/openclaw-workflow" element={<OpenClawWorkflow />} />
           <Route path="/resume" element={<Resume />} />
         </Routes>
       </Suspense>
