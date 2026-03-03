@@ -1,9 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import LazyImage from './LazyImage';
-// Import icons to use as placeholders
-import { FaCode, FaProjectDiagram, FaCamera, FaGlobeAmericas, FaTv } from 'react-icons/fa'; 
-
 // --- Reusable IntroCard Component ---
 const IntroCard = React.memo(() => (
   <motion.div
@@ -27,8 +24,9 @@ const IntroCard = React.memo(() => (
         <span className="terminal-prompt">&gt;</span> Dive in and see what I've been building. 🛠️
       </p>
     </div>
-  </motion.div>
+ </motion.div>
 ));
+
 
 // --- Updated ProjectCard Component ---
 const ProjectCard = React.memo(({ imageSrc, title, description, tech, codeLink, demoLink, index, fullImage = false }) => {
@@ -149,6 +147,14 @@ function Projects() {
       tech: ['React', 'TypeScript', 'Three.js', 'React Three Fiber', 'Tailwind CSS', 'Framer Motion'],
       codeLink: "https://github.com/michaelpreciado/CRTinteractiveAlbum",
       demoLink: "https://crtarchve.netlify.app"
+    },
+    {
+      imageSrc: "/images/projects/ai-server-placeholder.svg",
+      title: "My OpenClaw Workflow",
+      description: "A structured OpenClaw project workflow page with placeholders for goals, architecture, implementation steps, and outcomes. Built to be expanded into a complete case-study article.",
+      tech: ['OpenClaw', 'Automation', 'Integrations', 'Observability', 'Documentation'],
+      demoLink: "/projects/openclaw-workflow",
+      fullImage: true
     },
     {
       imageSrc: "/images/corne-keyboard/cornebuild.jpeg",
