@@ -79,29 +79,6 @@ At the end of the day, worldviews are not just an academic topic because they ar
     heroEmoji: '🛡️'
   },
   {
-    slug: 'guilt-and-conscience',
-    title: 'Interplay Between Guilt and Conscience',
-    excerpt: 'How conscience guides moral judgment and why guilt can sharpen accountability.',
-    date: '2026-02-10',
-    content: `## The Relationship
-The relationship between guilt and conscience plays a role when it comes to moral self regulation. Conscience functions as an internal judgment that allows individuals to evaluate their actions based on moral standards. It develops over time through social interactions, experience, and reflection. Conscience signals whether an action aligns with one’s values before and after an action is taken.
-
-## When Guilt Emerges
-Guilt emerges as a response when moral values have been violated. Guilt is a form of self judgment that happens when one individual recognizes they failed to align with their moral code. Conscience identifies the moral failure while guilt enforces that judgment through discomfort. The guilt one carries can improve accountability and ensure corrective actions are taken in the future.
-
-<figure class="blog-hero-image matrix-overlay" style="margin-top: 2rem; margin-bottom: 2rem;">
-  <div style="width: 100%; padding: 3rem 0; background: var(--medium-bg); display: flex; align-items: center; justify-content: center; font-size: 5rem; border-radius: 12px;">🧠</div>
-  <figcaption class="blog-hero-caption">The moral compass within.</figcaption>
-</figure>
-
-## References
-- Kizza, J. M. (2023). Ethical and secure computing (3rd ed.). Springer Nature.`,
-    icon: 'spiritual',
-    categories: ['Psychology', 'Ethics'],
-    heroImage: null,
-    heroEmoji: '🧠'
-  },
-  {
     slug: 'ai-iphone-local',
     title: 'How to run AI locally on your iPhone',
     excerpt: 'A how-to guide for setting up on-device AI so your prompts stay private and snappy.',
