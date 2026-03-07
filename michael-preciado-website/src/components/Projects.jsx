@@ -29,7 +29,7 @@ const IntroCard = React.memo(() => (
 
 
 // --- Updated ProjectCard Component ---
-const ProjectCard = React.memo(({ imageSrc, title, description, tech, codeLink, demoLink, index, fullImage = false }) => {
+const ProjectCard = React.memo(({ imageSrc, emoji, title, description, tech, codeLink, demoLink, index, fullImage = false }) => {
   const cardVariants = {
     hidden: { opacity: 0, y: 20 },
     visible: {
@@ -59,23 +59,27 @@ const ProjectCard = React.memo(({ imageSrc, title, description, tech, codeLink, 
           <span className="terminal-card-button green"></span>
         </div>
       </div>
-      {imageSrc && (
+      {(imageSrc || emoji) && (
         <div className="project-image-container" style={{ overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-          <LazyImage 
-            src={imageSrc} 
-            alt={`${title} project screenshot`} 
-            className="thumbnail"
-            quality="medium"
-            priority={index < 2}
-            fetchPriority={index < 2 ? 'high' : 'auto'}
-            fill={true}
-            objectFit={fullImage ? 'contain' : 'cover'}
-            style={{ 
-              width: '100%', 
-              height: '100%'
-            }}
-            placeholder={<div style={{ width: '100%', height: '200px', background: 'var(--medium-bg)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '2rem' }}>🚀</div>}
-          />
+          {emoji ? (
+            <div style={{ width: '100%', height: '200px', background: 'var(--medium-bg)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '4rem' }}>{emoji}</div>
+          ) : (
+            <LazyImage 
+              src={imageSrc} 
+              alt={`${title} project screenshot`} 
+              className="thumbnail"
+              quality="medium"
+              priority={index < 2}
+              fetchPriority={index < 2 ? 'high' : 'auto'}
+              fill={true}
+              objectFit={fullImage ? 'contain' : 'cover'}
+              style={{ 
+                width: '100%', 
+                height: '100%'
+              }}
+              placeholder={<div style={{ width: '100%', height: '200px', background: 'var(--medium-bg)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '2rem' }}>🚀</div>}
+            />
+          )}
         </div>
       )}
       <div className="blog-post-card-content">
@@ -141,12 +145,12 @@ function Projects() {
       demoLink: "https://planttracker.netlify.app/"
     },
     {
-      imageSrc: "/images/projects/pcbuild.jpeg",
+      emoji: "📷",
       title: "CRT Interactive Album",
       description: "A nostalgic 3D experience showcasing a 90s-era CRT computer with dynamic slideshow capabilities. Features atmospheric lighting, glass-morphism effects, and smooth animations built with React Three Fiber for immersive retro computing vibes.",
       tech: ['React', 'TypeScript', 'Three.js', 'React Three Fiber', 'Tailwind CSS', 'Framer Motion'],
       codeLink: "https://github.com/michaelpreciado/CRTinteractiveAlbum",
-      demoLink: "https://crtarchve.netlify.app"
+      demoLink: "https://cr-tinteractive-album.vercel.app"
     },
     {
       imageSrc: "/images/projects/ai-server-placeholder.svg",
