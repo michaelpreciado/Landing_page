@@ -21,21 +21,21 @@ function OpenClawWorkflow() {
         color: #E8E4DC;
         font-family: 'Inter', sans-serif;
         font-weight: 300;
-        line-height: 1.8;
+        line-height: 1.7;
       }
 
       .openclaw-container {
-        max-width: 1000px;
+        max-width: 900px;
         margin: 0 auto;
-        padding: 4rem 2rem;
+        padding: 3rem 1.25rem;
         position: relative;
         z-index: 1;
       }
 
       .openclaw-header {
         text-align: center;
-        margin-bottom: 3rem;
-        padding-bottom: 2rem;
+        margin-bottom: 2rem;
+        padding-bottom: 1.5rem;
         border-bottom: 1px solid rgba(30, 144, 255, 0.3);
       }
 
@@ -43,317 +43,279 @@ function OpenClawWorkflow() {
         display: flex;
         justify-content: center;
         align-items: center;
-        gap: 2rem;
-        font-size: 0.75rem;
-        letter-spacing: 0.15em;
+        gap: 1.5rem;
+        font-size: 0.7rem;
+        letter-spacing: 0.12em;
         text-transform: uppercase;
         color: #8B8680;
-        margin-bottom: 2rem;
+        margin-bottom: 1.5rem;
       }
 
       .openclaw-title {
         font-family: 'Playfair Display', serif;
-        font-size: clamp(2rem, 8vw, 5rem);
+        font-size: clamp(1.8rem, 7vw, 3.5rem);
         font-weight: 500;
-        letter-spacing: -0.02em;
+        letter-spacing: -0.01em;
         margin: 0;
         color: #FFFFFF;
         line-height: 1.1;
-        text-shadow: 0 0 40px rgba(30, 144, 255, 0.3);
+        text-shadow: 0 0 30px rgba(30, 144, 255, 0.3);
       }
 
       .openclaw-intro-section {
-        margin: 3rem 0;
+        margin: 2rem 0;
       }
 
       .openclaw-two-col-text {
         column-count: 2;
-        column-gap: 2.5rem;
-        text-align: justify;
-        hyphens: auto;
+        column-gap: 1.5rem;
+        text-align: left;
         color: #B8B0A0;
-        font-size: 0.9rem;
-        line-height: 1.8;
+        font-size: 0.8rem;
+        line-height: 1.6;
       }
 
       .openclaw-two-col-text p {
-        margin: 0 0 1.2rem 0;
+        margin: 0 0 1rem 0;
         break-inside: avoid;
       }
 
       .openclaw-visual {
-        margin: 2.5rem 0;
-        padding: 1.5rem;
-        background: rgba(5, 12, 28, 0.6);
-        border: 1px solid rgba(30, 144, 255, 0.2);
-        border-radius: 12px;
+        margin: 2rem 0;
+        padding: 1.25rem;
+        background: rgba(5, 12, 28, 0.5);
+        border: 1px solid rgba(30, 144, 255, 0.15);
+        border-radius: 10px;
       }
 
       .openclaw-visual-title {
         font-family: 'Playfair Display', serif;
-        font-size: 1.1rem;
+        font-size: 1rem;
         color: #FFFFFF;
         text-align: center;
-        margin-bottom: 1.2rem;
-        letter-spacing: 0.05em;
+        margin-bottom: 1rem;
+        letter-spacing: 0.03em;
       }
 
       .routing-diagram {
         display: flex;
         flex-direction: column;
         align-items: center;
-        gap: 0.8rem;
+        gap: 0.6rem;
       }
 
       .router-box {
-        background: linear-gradient(135deg, rgba(30, 144, 255, 0.2), rgba(30, 144, 255, 0.1));
-        border: 2px solid rgba(30, 144, 255, 0.5);
-        border-radius: 8px;
-        padding: 0.8rem 1.5rem;
+        background: linear-gradient(135deg, rgba(30, 144, 255, 0.15), rgba(30, 144, 255, 0.08));
+        border: 1.5px solid rgba(30, 144, 255, 0.4);
+        border-radius: 6px;
+        padding: 0.6rem 1.2rem;
         text-align: center;
         font-weight: 500;
         color: #FFFFFF;
-        font-size: 0.9rem;
+        font-size: 0.85rem;
       }
 
       .model-tier {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
-        gap: 0.8rem;
+        gap: 0.6rem;
         width: 100%;
       }
 
       .model-box {
-        background: rgba(10, 25, 47, 0.8);
-        border: 1px solid rgba(30, 144, 255, 0.3);
-        border-radius: 6px;
-        padding: 0.7rem;
+        background: rgba(10, 25, 47, 0.6);
+        border: 1px solid rgba(30, 144, 255, 0.25);
+        border-radius: 5px;
+        padding: 0.6rem;
         text-align: center;
       }
 
       .model-box.primary {
-        border-color: rgba(30, 144, 255, 0.6);
-        background: rgba(30, 144, 255, 0.15);
-      }
-
-      .model-box.secondary {
-        border-color: rgba(100, 200, 255, 0.4);
+        border-color: rgba(30, 144, 255, 0.5);
+        background: rgba(30, 144, 255, 0.12);
       }
 
       .model-box.cloud {
-        border-color: rgba(255, 200, 100, 0.4);
-        background: rgba(255, 200, 100, 0.1);
+        border-color: rgba(255, 200, 100, 0.35);
+        background: rgba(255, 200, 100, 0.08);
       }
 
       .model-name {
-        font-size: 0.8rem;
+        font-size: 0.75rem;
         font-weight: 500;
         color: #FFFFFF;
-        margin-bottom: 0.2rem;
+        margin-bottom: 0.15rem;
       }
 
       .model-desc {
         font-size: 0.6rem;
         color: #8B8680;
-        line-height: 1.3;
       }
 
       .arrow-down {
         width: 0;
         height: 0;
-        border-left: 6px solid transparent;
-        border-right: 6px solid transparent;
-        border-top: 10px solid rgba(30, 144, 255, 0.5);
+        border-left: 5px solid transparent;
+        border-right: 5px solid transparent;
+        border-top: 8px solid rgba(30, 144, 255, 0.4);
       }
 
       .flow-chart {
         display: grid;
         grid-template-columns: repeat(4, 1fr);
-        gap: 0.3rem;
-        align-items: center;
+        gap: 0.25rem;
       }
 
       .flow-step {
-        background: rgba(10, 25, 47, 0.8);
-        border: 1px solid rgba(30, 144, 255, 0.3);
+        background: rgba(10, 25, 47, 0.6);
+        border: 1px solid rgba(30, 144, 255, 0.25);
         border-radius: 4px;
-        padding: 0.4rem 0.3rem;
-        font-size: 0.65rem;
+        padding: 0.35rem 0.2rem;
+        font-size: 0.6rem;
         color: #B8B0A0;
-        text-align: center;
-      }
-
-      .flow-arrow {
-        color: rgba(30, 144, 255, 0.6);
-        font-size: 0.8rem;
         text-align: center;
       }
 
       .agent-grid {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
-        gap: 0.8rem;
+        gap: 0.6rem;
       }
 
       .agent-card {
-        background: rgba(10, 25, 47, 0.8);
-        border: 1px solid rgba(30, 144, 255, 0.3);
-        border-radius: 8px;
-        padding: 0.8rem;
+        background: rgba(10, 25, 47, 0.6);
+        border: 1px solid rgba(30, 144, 255, 0.25);
+        border-radius: 6px;
+        padding: 0.7rem;
         text-align: center;
       }
 
       .agent-icon {
-        font-size: 1.3rem;
-        margin-bottom: 0.3rem;
+        font-size: 1.2rem;
+        margin-bottom: 0.25rem;
       }
 
       .agent-name {
-        font-size: 0.75rem;
+        font-size: 0.7rem;
         font-weight: 500;
         color: #FFFFFF;
-        margin-bottom: 0.2rem;
+        margin-bottom: 0.15rem;
       }
 
       .agent-role {
-        font-size: 0.6rem;
+        font-size: 0.55rem;
         color: #8B8680;
-        line-height: 1.3;
       }
 
       .stats-row {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
-        gap: 0.5rem;
+        gap: 0.4rem;
       }
 
       .stat-box {
         text-align: center;
-        padding: 0.8rem;
+        padding: 0.6rem;
       }
 
       .stat-number {
         font-family: 'Playfair Display', serif;
-        font-size: 2rem;
+        font-size: 1.8rem;
         color: #1E90FF;
         font-weight: 600;
       }
 
       .stat-label {
-        font-size: 0.65rem;
+        font-size: 0.6rem;
         color: #8B8680;
         text-transform: uppercase;
-        letter-spacing: 0.08em;
+        letter-spacing: 0.06em;
       }
 
       .openclaw-section {
-        margin: 3rem 0;
+        margin: 2.5rem 0;
       }
 
       .openclaw-section-header {
         font-family: 'Playfair Display', serif;
-        font-size: clamp(1.5rem, 5vw, 2.5rem);
+        font-size: clamp(1.3rem, 4vw, 2.2rem);
         font-weight: 500;
         letter-spacing: -0.01em;
-        margin: 0 0 1.2rem 0;
+        margin: 0 0 1rem 0;
         line-height: 1.2;
         color: #FFFFFF;
-        text-shadow: 0 0 30px rgba(30, 144, 255, 0.2);
+        text-shadow: 0 0 20px rgba(30, 144, 255, 0.2);
       }
 
       .openclaw-tags {
         display: flex;
         flex-wrap: wrap;
-        gap: 0.4rem;
-        margin: 1.2rem 0;
+        gap: 0.35rem;
+        margin: 1rem 0;
         justify-content: center;
       }
 
       .openclaw-tag {
-        font-size: 0.65rem;
-        letter-spacing: 0.08em;
+        font-size: 0.6rem;
+        letter-spacing: 0.06em;
         text-transform: uppercase;
-        padding: 0.3rem 0.6rem;
-        background: rgba(30, 144, 255, 0.1);
-        border: 1px solid rgba(30, 144, 255, 0.3);
+        padding: 0.25rem 0.5rem;
+        background: rgba(30, 144, 255, 0.08);
+        border: 1px solid rgba(30, 144, 255, 0.25);
         color: #5A8FC0;
         border-radius: 2px;
       }
 
       .openclaw-handle {
         text-align: center;
-        margin: 2.5rem 0;
+        margin: 2rem 0;
         font-family: 'Playfair Display', serif;
-        font-size: 1rem;
+        font-size: 0.95rem;
         color: #8B8680;
         font-style: italic;
       }
 
       .openclaw-hero {
         width: 100%;
-        margin-top: 2.5rem;
+        margin-top: 2rem;
       }
 
       .hero-image-placeholder {
         width: 100%;
         aspect-ratio: 16/9;
-        background: linear-gradient(135deg, rgba(5, 12, 28, 0.9) 0%, rgba(10, 25, 47, 0.95) 100%);
-        border: 1px solid rgba(30, 144, 255, 0.2);
-        border-radius: 8px;
+        background: linear-gradient(135deg, rgba(5, 12, 28, 0.8) 0%, rgba(10, 25, 47, 0.9) 100%);
+        border: 1px solid rgba(30, 144, 255, 0.15);
+        border-radius: 6px;
         display: flex;
         align-items: center;
         justify-content: center;
         color: #5A8FC0;
-        font-size: 0.75rem;
-        letter-spacing: 0.08em;
-        text-transform: uppercase;
-        position: relative;
-        overflow: hidden;
-      }
-
-      .hero-image-placeholder::before {
-        content: '';
-        position: absolute;
-        inset: 0;
-        background: 
-          linear-gradient(90deg, rgba(30, 144, 255, 0.03) 1px, transparent 1px),
-          linear-gradient(rgba(30, 144, 255, 0.03) 1px, transparent 1px);
-        background-size: 30px 30px;
-      }
-
-      .hero-image-placeholder span {
-        position: relative;
-        z-index: 1;
+        font-size: 0.7rem;
+        letter-spacing: 0.06em;
       }
 
       .openclaw-footer {
         text-align: center;
-        margin-top: 3rem;
-        padding-top: 1.5rem;
-        border-top: 1px solid rgba(30, 144, 255, 0.2);
-        font-size: 0.75rem;
+        margin-top: 2.5rem;
+        padding-top: 1.25rem;
+        border-top: 1px solid rgba(30, 144, 255, 0.15);
+        font-size: 0.7rem;
         color: #8B8680;
       }
 
-      /* Tablet and up - slightly larger */
       @media (min-width: 640px) {
+        .openclaw-container {
+          padding: 3rem 2rem;
+        }
+        
         .openclaw-two-col-text {
-          font-size: 0.95rem;
-          column-gap: 3rem;
+          font-size: 0.9rem;
+          column-gap: 2rem;
         }
         
-        .agent-grid {
-          grid-template-columns: repeat(4, 1fr);
-        }
-        
+        .agent-grid,
         .stats-row {
           grid-template-columns: repeat(4, 1fr);
-        }
-        
-        .flow-chart {
-          display: flex;
-          justify-content: center;
-          gap: 0.3rem;
         }
         
         .model-tier {
@@ -363,22 +325,7 @@ function OpenClawWorkflow() {
         }
         
         .model-box {
-          min-width: 140px;
-        }
-      }
-
-      /* Desktop */
-      @media (min-width: 1024px) {
-        .openclaw-container {
-          padding: 4rem 2rem;
-        }
-        
-        .openclaw-visual {
-          padding: 2rem;
-        }
-        
-        .openclaw-two-col-text {
-          font-size: 1rem;
+          min-width: 120px;
         }
       }
     `;
@@ -409,13 +356,12 @@ function OpenClawWorkflow() {
           <section className="openclaw-intro-section">
             <div className="openclaw-two-col-text">
               <p>
-                A unified AI operating system built on the OpenClaw framework, featuring a custom 
-                orchestration layer that manages multiple AI models, specialized sub-agents, and 
-                persistent memory through seamless integrations.
+                A unified AI operating system built on OpenClaw, orchestrating multiple models, 
+                specialized sub-agents, and persistent memory through seamless integrations.
               </p>
               <p>
-                The architecture prioritizes local inference for privacy and speed, while maintaining 
-                the flexibility to route complex tasks to cloud providers when necessary.
+                The architecture prioritizes local inference for privacy and speed, with cloud 
+                fallback for complex tasks requiring advanced reasoning.
               </p>
             </div>
           </section>
@@ -464,7 +410,7 @@ function OpenClawWorkflow() {
                     <div className="model-name">Qwen3.5-9B</div>
                     <div className="model-desc">Default · 90% tasks</div>
                   </div>
-                  <div className="model-box secondary">
+                  <div className="model-box">
                     <div className="model-name">Qwen3.5-4B/2B</div>
                     <div className="model-desc">Fallback · Thermal</div>
                   </div>
@@ -482,14 +428,12 @@ function OpenClawWorkflow() {
 
             <div className="openclaw-two-col-text">
               <p>
-                The routing layer automatically selects the optimal model based on task 
-                complexity, thermal constraints, and latency requirements. Local models 
-                handle 90% of routine interactions, ensuring sub-5-second response times 
-                and complete data privacy.
+                The router selects optimal models based on task complexity and thermal constraints. 
+                Local models handle 90% of interactions with sub-5-second response times.
               </p>
               <p>
-                When temperatures rise or tasks are lighter, the system falls back to smaller 
-                Qwen variants. High-stakes reasoning routes to Claude, while vision tasks use Gemini.
+                High-stakes reasoning routes to Claude, vision tasks to Gemini. Smaller Qwen 
+                variants activate during thermal throttling or lighter workloads.
               </p>
             </div>
           </section>
@@ -513,15 +457,12 @@ function OpenClawWorkflow() {
 
             <div className="openclaw-two-col-text">
               <p>
-                Every interaction flows through the same pipeline: Telegram message received 
-                by OpenClaw gateway, classified by FRIDAY for intent and priority, routed to 
-                the appropriate model or sub-agent, executed with safety tiering, and delivered 
-                back via Telegram with a copy archived to Obsidian.
+                Messages flow through Telegram → OpenClaw gateway → FRIDAY classification → 
+                model routing → execution → Telegram response + Obsidian archive.
               </p>
               <p>
-                Heartbeat automation handles periodic checks: system health, stock watchlists, 
-                calendar reviews, and memory maintenance. The system proactively surfaces 
-                relevant information without requiring explicit queries.
+                Heartbeat automation monitors system health, stocks, and memory. Proactive 
+                alerts surface without explicit queries.
               </p>
             </div>
             
@@ -532,13 +473,13 @@ function OpenClawWorkflow() {
               <span className="openclaw-tag">Ollama</span>
               <span className="openclaw-tag">LM Studio</span>
               <span className="openclaw-tag">Node.js</span>
-              <span className="openclaw-tag">Arch Linux</span>
+              <span className="openclaw-tag">Arch</span>
             </div>
           </section>
 
           {/* Results Stats Visual */}
           <section className="openclaw-section">
-            <h2 className="openclaw-section-header">RESULTS & ROADMAP</h2>
+            <h2 className="openclaw-section-header">RESULTS</h2>
             
             <div className="openclaw-visual">
               <div className="stats-row">
@@ -563,20 +504,19 @@ function OpenClawWorkflow() {
 
             <div className="openclaw-two-col-text">
               <p>
-                <strong>Current:</strong> Single interface for 10+ AI models, sub-agent spawning 
-                for parallel execution, 100% local inference for routine tasks, persistent memory 
-                across sessions, and sub-5-second response times.
+                Single interface for 10+ models with sub-agent spawning, 100% local inference 
+                for routine tasks, and persistent memory across sessions.
               </p>
               <p>
-                <strong>Roadmap:</strong> Voice integration, Friday Command Center UI, AutoResearch 
-                training swarms, calendar integration, and email automation with security tiering.
+                Roadmap: Voice integration, Command Center UI, AutoResearch swarms, calendar 
+                sync, and email automation with security tiering.
               </p>
             </div>
           </section>
 
           <div className="openclaw-hero">
             <div className="hero-image-placeholder">
-              <span>[Architecture Viz]</span>
+              <span>System Architecture</span>
             </div>
           </div>
 
