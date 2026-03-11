@@ -1,189 +1,192 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import LazyImage from './LazyImage';
-// --- Reusable IntroCard Component ---
-const IntroCard = React.memo(() => (
-  <motion.div
-    className="blog-intro-card terminal-card"
-    initial={{ opacity: 0, y: 20 }}
-    animate={{ opacity: 1, y: 0 }}
-    transition={{ duration: 0.5, delay: 0.2 }}
-  >
-    <div className="terminal-card-header">
-      <div className="terminal-card-buttons">
-        <span className="terminal-card-button red"></span>
-        <span className="terminal-card-button yellow"></span>
-        <span className="terminal-card-button green"></span>
-      </div>
-    </div>
-    <div className="blog-intro-text">
-      <p>
-        <span className="terminal-prompt">&gt;</span> Welcome to my workshop. Here you'll find a collection of my favorite projects, from web apps to hardware experiments. Each one is a story of a problem solved and something new learned.
-      </p>
-      <p>
-        <span className="terminal-prompt">&gt;</span> Dive in and see what I've been building. 🛠️
-      </p>
-    </div>
- </motion.div>
-));
+import React, { useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import MatrixRainBackground from './MatrixRainBackground';
+import PageTransition from './PageTransition.jsx';
+import ReturnButton from './ReturnButton.jsx';
+import { autoApplyLiquidGlass } from '../utils/liquidGlass.js';
 
-
-// --- Updated ProjectCard Component ---
-const ProjectCard = React.memo(({ imageSrc, emoji, title, description, tech, codeLink, demoLink, index, fullImage = false }) => {
-  const cardVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.4,
-        delay: index * 0.08, // Reduced stagger for faster appearance
-        ease: "easeOut"
-      },
-    },
-  };
-
-  return (
-    <motion.div
-      className="blog-post-card terminal-card"
-      variants={cardVariants}
-      initial="hidden"
-      animate="visible"
-      whileHover={{ y: -5, transition: { duration: 0.2 } }}
-      style={{ willChange: 'transform, opacity' }}
-    >
-      <div className="terminal-card-header">
-        <div className="terminal-card-buttons">
-          <span className="terminal-card-button red"></span>
-          <span className="terminal-card-button yellow"></span>
-          <span className="terminal-card-button green"></span>
-        </div>
-      </div>
-      {(imageSrc || emoji) && (
-        <div className="project-image-container" style={{ overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-          {emoji ? (
-            <div style={{ width: '100%', height: '200px', background: 'var(--medium-bg)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '4rem' }}>{emoji}</div>
-          ) : (
-            <LazyImage 
-              src={imageSrc} 
-              alt={`${title} project screenshot`} 
-              className="thumbnail"
-              quality="medium"
-              priority={index < 2}
-              fetchPriority={index < 2 ? 'high' : 'auto'}
-              fill={true}
-              objectFit={fullImage ? 'contain' : 'cover'}
-              style={{ 
-                width: '100%', 
-                height: '100%'
-              }}
-              placeholder={<div style={{ width: '100%', height: '200px', background: 'var(--medium-bg)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '2rem' }}>🚀</div>}
-            />
-          )}
-        </div>
-      )}
-      <div className="blog-post-card-content">
-        <h3>{title}</h3>
-        <p className="teaser">{description}</p>
-        
-        <div className="project-tech-tags" style={{ marginBottom: '1.5rem', flexGrow: 0 }}>
-          {tech && tech.map((t, i) => (
-            <span key={i} className="tech-tag">{t}</span>
-          ))}
-        </div>
-
-        <div className="project-links">
-          {demoLink && (
-            <a href={demoLink}>
-              <button className="project-button project-button-primary">View Project</button>
-            </a>
-          )}
-          {codeLink && (
-            <a href={codeLink}>
-              <button className="project-button project-button-secondary">View Code</button>
-            </a>
-          )}
-        </div>
-      </div>
-    </motion.div>
-  );
-});
-
-// --- Main Projects Component ---
 function Projects() {
-  const projectsData = [
-    {
-      imageSrc: "/images/projects/photography.png",
-      title: "Photography Portfolio",
-      description: "A minimalist photography showcase featuring responsive image galleries, smooth transitions, and optimized loading. Built with modern web technologies for fast, beautiful presentation of visual work.",
-      tech: ['React', 'JavaScript', 'CSS3', 'Responsive Design', 'Image Optimization'],
-      codeLink: "https://github.com/michaelpreciado/mario.preciado.photography",
-      demoLink: "https://mariopreciado-photography.netlify.app"
-    },
-    {
-      imageSrc: "/images/projects/Solar.png",
-      title: "Interactive Solar System",
-      description: "An immersive 3D solar system simulation with realistic planetary orbits, interactive controls, and educational content. Built with vanilla JavaScript and WebGL for smooth performance across devices.",
-      tech: ['JavaScript', 'WebGL', 'HTML5 Canvas', 'CSS3', '3D Graphics'],
-      codeLink: "https://github.com/michaelpreciado/Interactive_Solar_System",
-      demoLink: "https://interactive-solar-system-bay.vercel.app/"
-    },
-    {
-      imageSrc: "/images/projects/flattenhund.png",
-      title: "Flappy Dog Game",
-      description: "A charming Flappy Bird-inspired game featuring my dogs Taz & Chloe as the main characters. Includes online leaderboard powered by Supabase, progressive difficulty, and adorable pixel art animations.",
-      tech: ['JavaScript', 'Supabase', 'HTML5 Canvas', 'CSS3', 'Game Development'],
-      codeLink: "https://github.com/michaelpreciado/Flattenhund",
-      demoLink: "https://theflappydoggame.netlify.app/"
-    },
-    {
-      imageSrc: "/images/projects/planttracker.png",
-      title: "Plant Tracker PWA",
-      description: "A Progressive Web App for plant care management. Features smart watering reminders, photo storage, growth tracking, and seamless sync via Supabase.",
-      tech: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Supabase', 'PWA'],
-      codeLink: "https://github.com/michaelpreciado/Planter",
-      demoLink: "https://planttracker.netlify.app/"
-    },
-    {
-      emoji: "📷",
-      title: "CRT Interactive Album",
-      description: "A nostalgic 3D experience showcasing a 90s-era CRT computer with dynamic slideshow capabilities. Features atmospheric lighting, glass-morphism effects, and smooth animations built with React Three Fiber for immersive retro computing vibes.",
-      tech: ['React', 'TypeScript', 'Three.js', 'React Three Fiber', 'Tailwind CSS', 'Framer Motion'],
-      codeLink: "https://github.com/michaelpreciado/CRTinteractiveAlbum",
-      demoLink: "https://cr-tinteractive-album.vercel.app"
-    },
-    {
-      imageSrc: "/images/projects/ai-server-placeholder.svg",
-      title: "My OpenClaw Workflow",
-      description: "A structured OpenClaw project workflow page with placeholders for goals, architecture, implementation steps, and outcomes. Built to be expanded into a complete case-study article.",
-      tech: ['OpenClaw', 'Automation', 'Integrations', 'Observability', 'Documentation'],
-      demoLink: "/projects/openclaw-workflow",
-      fullImage: true
-    },
-    {
-      imageSrc: "/images/corne-keyboard/cornebuild.jpeg",
-      title: "Corne Keyboard Build",
-      description: "Custom split ergonomic mechanical keyboard featuring the Corne layout with ZMK firmware. Built from scratch with 3D printed case, hand-wired switches, and fully programmable layers. Designed for ergonomic typing and complete customization.",
-      tech: ["Hardware", "ZMK", "3D Printing", "Soldering", "Ergonomics", "QMK"],
-      demoLink: "/projects/corne-keyboard",
-      fullImage: true
-    }
+  useEffect(() => {
+    autoApplyLiquidGlass();
+
+    const style = document.createElement('style');
+    style.textContent = `
+      @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500&display=swap');
+      
+      .projects-editorial {
+        min-height: 100vh;
+        position: relative;
+        color: #E8E4DC;
+        font-family: 'Inter', sans-serif;
+        font-weight: 300;
+        line-height: 1.7;
+      }
+
+      .projects-container {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 3rem 1.25rem;
+        position: relative;
+        z-index: 1;
+      }
+
+      .projects-header {
+        text-align: center;
+        margin-bottom: 2rem;
+        padding-bottom: 1.5rem;
+        border-bottom: 1px solid rgba(30, 144, 255, 0.3);
+      }
+
+      .projects-meta {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 1.5rem;
+        font-size: 0.7rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: #8B8680;
+        margin-bottom: 1.5rem;
+      }
+
+      .projects-title {
+        font-family: 'Playfair Display', serif;
+        font-size: clamp(1.8rem, 7vw, 3.5rem);
+        font-weight: 500;
+        letter-spacing: -0.01em;
+        margin: 0;
+        color: #FFFFFF;
+        line-height: 1.1;
+        text-shadow: 0 0 30px rgba(30, 144, 255, 0.3);
+      }
+
+      .projects-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+        margin: 2rem 0;
+      }
+
+      .project-card {
+        background: rgba(10, 25, 47, 0.6);
+        border: 1px solid rgba(30, 144, 255, 0.2);
+        border-radius: 8px;
+        padding: 1rem;
+        text-decoration: none;
+        color: inherit;
+        transition: all 0.2s ease;
+      }
+
+      .project-card:hover {
+        border-color: rgba(30, 144, 255, 0.4);
+        background: rgba(10, 25, 47, 0.8);
+      }
+
+      .project-card-image {
+        aspect-ratio: 16/10;
+        background: rgba(5, 12, 28, 0.8);
+        border: 1px solid rgba(30, 144, 255, 0.15);
+        border-radius: 4px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.6rem;
+        color: #5A8FC0;
+        text-transform: uppercase;
+        margin-bottom: 0.8rem;
+      }
+
+      .project-card-title {
+        font-family: 'Playfair Display', serif;
+        font-size: 0.9rem;
+        color: #FFFFFF;
+        margin-bottom: 0.3rem;
+      }
+
+      .project-card-meta {
+        font-size: 0.6rem;
+        color: #8B8680;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+      }
+
+      .projects-handle {
+        text-align: center;
+        margin: 2rem 0;
+        font-family: 'Playfair Display', serif;
+        font-size: 0.95rem;
+        color: #8B8680;
+        font-style: italic;
+      }
+
+      .projects-footer {
+        text-align: center;
+        margin-top: 2.5rem;
+        padding-top: 1.25rem;
+        border-top: 1px solid rgba(30, 144, 255, 0.15);
+        font-size: 0.7rem;
+        color: #8B8680;
+      }
+
+      @media (min-width: 640px) {
+        .projects-container {
+          padding: 3rem 2rem;
+        }
+        
+        .projects-grid {
+          grid-template-columns: repeat(3, 1fr);
+        }
+      }
+    `;
+
+    document.head.appendChild(style);
+    return () => {
+      if (style.parentNode) {
+        document.head.removeChild(style);
+      }
+    };
+  }, []);
+
+  const projects = [
+    { id: 'openclaw', title: 'OpenClaw Workflow', category: 'AUTOMATION', image: '[IMG]' },
+    { id: 'server', title: 'AI Server', category: 'HARDWARE', image: '[IMG]' },
+    { id: 'keyboard', title: 'Corne Keyboard', category: 'HARDWARE', image: '[IMG]' },
   ];
 
   return (
-    <section id="projects" style={{ paddingTop: '1rem' }}>
-      <IntroCard />
+    <PageTransition>
+      <MatrixRainBackground />
+      <ReturnButton to="/" />
+      
+      <div className="projects-editorial">
+        <div className="projects-container">
+          <header className="projects-header">
+            <div className="projects-meta">
+              <span>WORK</span>
+              <span>SELECTED</span>
+            </div>
+            <h1 className="projects-title">PROJECTS</h1>
+          </header>
 
-      <div 
-        className="blogs-grid" 
-        style={{ contentVisibility: 'auto', containIntrinsicSize: '1200px 800px' }}
-      > {/* Reusing the responsive grid from the blog page */}
-        {projectsData.map((project, index) => (
-          <ProjectCard key={index} {...project} index={index} />
-        ))}
+          <div className="projects-grid">
+            {projects.map(project => (
+              <Link key={project.id} to={`/projects/${project.id}`} className="project-card">
+                <div className="project-card-image">{project.image}</div>
+                <div className="project-card-title">{project.title}</div>
+                <div className="project-card-meta">{project.category}</div>
+              </Link>
+            ))}
+          </div>
+
+          <div className="projects-handle">@preciado.tech</div>
+
+          <footer className="projects-footer">
+            <p>AI systems, hardware, and automation</p>
+          </footer>
+        </div>
       </div>
-    </section>
+    </PageTransition>
   );
 }
 
-export default Projects; 
+export default Projects;

@@ -94,6 +94,40 @@ function CorneKeyboard() {
         letter-spacing: 0.03em;
       }
 
+      .project-image-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.6rem;
+      }
+
+      .project-image-placeholder {
+        aspect-ratio: 16/10;
+        background: rgba(10, 25, 47, 0.6);
+        border: 1px solid rgba(30, 144, 255, 0.2);
+        border-radius: 6px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.6rem;
+        color: #5A8FC0;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        overflow: hidden;
+        position: relative;
+      }
+
+      .project-image-placeholder::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(135deg, rgba(30, 144, 255, 0.05) 0%, transparent 50%);
+      }
+
+      .project-image-placeholder span {
+        position: relative;
+        z-index: 1;
+      }
+
       .project-section {
         margin: 2.5rem 0;
       }
@@ -165,7 +199,8 @@ function CorneKeyboard() {
           column-gap: 2rem;
         }
         
-        .project-specs {
+        .project-specs,
+        .project-image-grid {
           grid-template-columns: repeat(4, 1fr);
         }
       }
@@ -208,7 +243,17 @@ function CorneKeyboard() {
           </section>
 
           <div className="project-visual">
-            <div className="project-visual-title">Build Specifications</div>
+            <div className="project-visual-title">Gallery</div>
+            <div className="project-image-grid">
+              <div className="project-image-placeholder"><span>[IMG: Top View]</span></div>
+              <div className="project-image-placeholder"><span>[IMG: Side Profile]</span></div>
+              <div className="project-image-placeholder"><span>[IMG: Switch Close-up]</span></div>
+              <div className="project-image-placeholder"><span>[IMG: Desk Setup]</span></div>
+            </div>
+          </div>
+
+          <div className="project-visual">
+            <div className="project-visual-title">Specifications</div>
             <div className="project-specs">
               <div className="spec-card">
                 <div className="spec-label">Layout</div>

@@ -1,245 +1,251 @@
-import React, { useState, useEffect } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import MatrixRainBackground from './MatrixRainBackground';
-import LazyImage from './LazyImage';
-import { blogPosts } from '../data/blogData.js';
-import ReturnButton from './ReturnButton.jsx';
 import PageTransition from './PageTransition.jsx';
+import ReturnButton from './ReturnButton.jsx';
 import useTypewriter from '../utils/hooks/useTypewriter';
 import { autoApplyLiquidGlass } from '../utils/liquidGlass.js';
-import './BlogArticle.css'; // Import professional styles
-
-// Reusable paragraph component with fast typewriter effect
-const BlogTextBlock = ({ text, delay = 0 }) => {
-  const [startTyping, setStartTyping] = useState(delay === 0);
-  const [shouldUseTypewriter, setShouldUseTypewriter] = useState(true);
-  const [isLoading, setIsLoading] = useState(true); // New loading state
-
-  useEffect(() => {
-    // Prevent flash of un-animated content
-    const loadingTimer = setTimeout(() => setIsLoading(false), 10);
-
-    if (delay === 0) return () => clearTimeout(loadingTimer);
-
-    const typingTimer = setTimeout(() => setStartTyping(true), delay);
-    return () => {
-      clearTimeout(loadingTimer);
-      clearTimeout(typingTimer);
-    };
-  }, [delay]);
-
-  // Disable typewriter on mobile to prevent rendering issues
-  useEffect(() => {
-    if (window.innerWidth <= 768) {
-      setShouldUseTypewriter(false);
-    }
-  }, []);
-
-  const typed = useTypewriter(
-    startTyping && shouldUseTypewriter ? text : '',
-    {
-      speed: 1,
-      scrambleOnMount: true // Re-enable scramble for body text
-    }
-  );
-
-  // If typewriter is disabled, show full text immediately
-  const displayText = shouldUseTypewriter ? typed : text;
-
-  // Apply a class to hide text while the typewriter is initializing
-  const textStyle = {
-    opacity: isLoading ? 0 : 1,
-    transition: 'opacity 0.2s ease-in-out',
-  };
-
-  return <p style={textStyle} dangerouslySetInnerHTML={{ __html: displayText }} />;
-};
 
 function BlogArticle() {
-  const { slug } = useParams();
-  const post = blogPosts.find((p) => p.slug === slug);
+  const { id } = useParams();
+  const typedTitle = useTypewriter('BUILDING FRIDAY', { speed: 40, scrambleOnMount: true });
 
-  const typedTitle = useTypewriter(post ? post.title : '', { speed: 35, scrambleOnMount: true });
-
-  // Apply liquid glass effects after DOM is ready
   useEffect(() => {
     autoApplyLiquidGlass();
+
+    const style = document.createElement('style');
+    style.textContent = `
+      @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500&display=swap');
+      
+      .article-editorial {
+        min-height: 100vh;
+        position: relative;
+        color: #E8E4DC;
+        font-family: 'Inter', sans-serif;
+        font-weight: 300;
+        line-height: 1.7;
+      }
+
+      .article-container {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 3rem 1.25rem;
+        position: relative;
+        z-index: 1;
+      }
+
+      .article-header {
+        text-align: center;
+        margin-bottom: 2rem;
+        padding-bottom: 1.5rem;
+        border-bottom: 1px solid rgba(30, 144, 255, 0.3);
+      }
+
+      .article-meta {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 1.5rem;
+        font-size: 0.7rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: #8B8680;
+        margin-bottom: 1.5rem;
+      }
+
+      .article-title {
+        font-family: 'Playfair Display', serif;
+        font-size: clamp(1.8rem, 7vw, 3.5rem);
+        font-weight: 500;
+        letter-spacing: -0.01em;
+        margin: 0;
+        color: #FFFFFF;
+        line-height: 1.1;
+        text-shadow: 0 0 30px rgba(30, 144, 255, 0.3);
+      }
+
+      .article-date {
+        text-align: center;
+        font-size: 0.7rem;
+        color: #8B8680;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        margin-bottom: 2rem;
+      }
+
+      .article-hero {
+        width: 100%;
+        aspect-ratio: 21/9;
+        background: rgba(5, 12, 28, 0.6);
+        border: 1px solid rgba(30, 144, 255, 0.2);
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.8rem;
+        color: #5A8FC0;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        margin-bottom: 2rem;
+      }
+
+      .article-two-col {
+        column-count: 2;
+        column-gap: 1.5rem;
+        text-align: left;
+        color: #B8B0A0;
+        font-size: 0.8rem;
+        line-height: 1.6;
+        margin: 2rem 0;
+      }
+
+      .article-two-col p {
+        margin: 0 0 1rem 0;
+        break-inside: avoid;
+      }
+
+      .article-section {
+        margin: 2.5rem 0;
+      }
+
+      .article-section-header {
+        font-family: 'Playfair Display', serif;
+        font-size: clamp(1.3rem, 4vw, 2.2rem);
+        font-weight: 500;
+        letter-spacing: -0.01em;
+        margin: 0 0 1rem 0;
+        line-height: 1.2;
+        color: #FFFFFF;
+        text-shadow: 0 0 20px rgba(30, 144, 255, 0.2);
+      }
+
+      .article-image {
+        width: 100%;
+        aspect-ratio: 16/9;
+        background: rgba(10, 25, 47, 0.6);
+        border: 1px solid rgba(30, 144, 255, 0.2);
+        border-radius: 6px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.7rem;
+        color: #5A8FC0;
+        text-transform: uppercase;
+        margin: 1.5rem 0;
+      }
+
+      .article-handle {
+        text-align: center;
+        margin: 2rem 0;
+        font-family: 'Playfair Display', serif;
+        font-size: 0.95rem;
+        color: #8B8680;
+        font-style: italic;
+      }
+
+      .article-footer {
+        text-align: center;
+        margin-top: 2.5rem;
+        padding-top: 1.25rem;
+        border-top: 1px solid rgba(30, 144, 255, 0.15);
+        font-size: 0.7rem;
+        color: #8B8680;
+      }
+
+      @media (min-width: 640px) {
+        .article-container {
+          padding: 3rem 2rem;
+        }
+        
+        .article-two-col {
+          font-size: 0.9rem;
+          column-gap: 2rem;
+        }
+      }
+    `;
+
+    document.head.appendChild(style);
+    return () => {
+      if (style.parentNode) {
+        document.head.removeChild(style);
+      }
+    };
   }, []);
-
-  if (!post) {
-    return (
-      <PageTransition>
-        <MatrixRainBackground />
-        <main style={{ position: 'relative', zIndex: 1, minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', textAlign: 'center' }}>
-          <div>
-            <h2>Article Not Found</h2>
-            <p>Sorry, the article you are looking for does not exist.</p>
-            <Link to="/blog" className="blog-link">← Back to Articles</Link>
-          </div>
-        </main>
-      </PageTransition>
-    );
-  }
-
-  const formatDate = (dateString) => {
-    return new Date(dateString).toLocaleDateString('en-US', {
-      year: 'numeric',
-      month: 'long',
-      timeZone: 'UTC'
-    });
-  };
-
-  const renderContent = (content) => {
-    return content.split(/\n\s*\n/).map((block, idx) => {
-      const boldHeaderMatch = block.match(/^\*\*(.+)\*\*$/);
-      if (boldHeaderMatch) {
-        return <h3 key={idx}>{boldHeaderMatch[1]}</h3>;
-      }
-      if (block.startsWith('# ')) {
-        const parts = block.split('\n');
-        if (parts.length > 1) {
-          return (
-            <React.Fragment key={idx}>
-              <h2>{parts[0].replace('# ', '')}</h2>
-              {renderContent(parts.slice(1).join('\n'))}
-            </React.Fragment>
-          );
-        }
-        return <h2 key={idx}>{block.replace('# ', '')}</h2>;
-      }
-      if (block.startsWith('## ')) {
-        const parts = block.split('\n');
-        if (parts.length > 1) {
-          return (
-            <React.Fragment key={idx}>
-              <h3>{parts[0].replace('## ', '')}</h3>
-              {renderContent(parts.slice(1).join('\n'))}
-            </React.Fragment>
-          );
-        }
-        return <h3 key={idx}>{block.replace('## ', '')}</h3>;
-      }
-      if (block.startsWith('### ')) {
-        const parts = block.split('\n');
-        if (parts.length > 1) {
-          return (
-            <React.Fragment key={idx}>
-              <h4>{parts[0].replace('### ', '')}</h4>
-              {renderContent(parts.slice(1).join('\n'))}
-            </React.Fragment>
-          );
-        }
-        return <h4 key={idx}>{block.replace('### ', '')}</h4>;
-      }
-      // Handle HTML div blocks (like images)
-      if (block.trim().startsWith('<div') && block.includes('</div>')) {
-        return <div key={idx} dangerouslySetInnerHTML={{ __html: block.trim() }} />;
-      }
-      // Handle standalone HTML elements
-      if (block.trim().startsWith('<') && block.trim().endsWith('>')) {
-        return <div key={idx} dangerouslySetInnerHTML={{ __html: block.trim() }} />;
-      }
-      // Detect markdown-style bullet list (lines starting with '- ')
-      if (/^- /.test(block.trim())) {
-        const items = block.split(/\n+/).map(l => l.replace(/^-\s*/, ''));
-        return (
-          <ul key={idx} style={{ marginBottom: '1.2rem', paddingLeft: '1.5rem' }}>
-            {items.map((item, liIdx) => (
-              <li key={liIdx}>
-                <BlogTextBlock text={item} delay={idx * 300} />
-              </li>
-            ))}
-          </ul>
-        );
-      }
-      if (/^\d+\. /.test(block.trim())) {
-        const items = block.split(/\n+/).map(l => l.replace(/^\d+\.\s*/, ''));
-        return (
-          <ol key={idx} style={{ marginBottom: '1.2rem', paddingLeft: '1.5rem' }}>
-            {items.map((item, liIdx) => (
-              <li key={liIdx}>
-                <BlogTextBlock text={item} delay={idx * 100} />
-              </li>
-            ))}
-          </ol>
-        );
-      }
-      // Handle horizontal rules
-      if (block.trim() === '---') {
-        return <hr key={idx} style={{ margin: '2rem 0', border: '1px solid var(--border-color)' }} />;
-      }
-
-      // Handle blockquotes (lines starting with '> ')
-      if (block.trim().startsWith('> ')) {
-        const quoteText = block.replace(/^>\s*/, '').trim();
-        return (
-          <div key={idx} className="blog-quote-container">
-            <div className="blog-quote-content">
-              <BlogTextBlock text={quoteText} delay={idx * 300} />
-            </div>
-          </div>
-        );
-      }
-
-      // Pass raw text to the block component; scrambling handles the visual effect
-      return <BlogTextBlock key={idx} text={block} delay={idx * 300} />;
-    });
-  };
 
   return (
     <PageTransition>
       <MatrixRainBackground />
       <ReturnButton to="/blog" />
-      <main style={{ position: 'relative', zIndex: 1, paddingTop: '4.5rem' }}>
-        <section style={{ maxWidth: '800px', margin: '0 auto' }}>
-          <article className="blog-article-content">
-            {/* --- Meta Row (Categories & Date) --- */}
-            <div className="blog-meta-row">
-              {post.categories && post.categories.length > 0 && (
-                <span className="blog-categories">
-                  {post.categories.join(' • ').toUpperCase()}
-                </span>
-              )}
-              <span className="blog-date-inline">{formatDate(post.date)}</span>
+      
+      <div className="article-editorial">
+        <article className="article-container">
+          <header className="article-header">
+            <div className="article-meta">
+              <span>ARTICLE</span>
+              <span>AI</span>
             </div>
+            <h1 className="article-title">{typedTitle}</h1>
+          </header>
 
-            {/* Title */}
-            <h1 className="blog-article-title">{typedTitle}</h1>
+          <div className="article-date">March 10, 2026 · 5 min read</div>
 
-            {/* Hero Image */}
-            {(post.heroImage || post.heroEmoji) && (
-              <figure className="blog-hero-image">
-                {post.heroImage ? (
-                  <LazyImage
-                    src={post.heroImage}
-                    alt={`${post.title} blog article hero image`}
-                    priority={true}
-                    quality="medium"
-                    maxWidth="800px"
-                    objectFit="contain"
-                    placeholder={<div style={{ width: '100%', height: '300px', background: 'var(--medium-bg)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '2rem' }}>📖</div>}
-                  />
-                ) : (
-                  <div style={{ width: '100%', height: '300px', background: 'var(--medium-bg)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '5rem', borderRadius: '12px' }}>
-                    {post.heroEmoji}
-                  </div>
-                )}
-                {post.excerpt && (
-                  <figcaption className="blog-hero-caption">{post.excerpt}</figcaption>
-                )}
-              </figure>
-            )}
+          <div className="article-hero">[Hero Image]</div>
 
-            {/* Article Body */}
-            {renderContent(post.content)}
-          </article>
-          <div style={{ marginTop: '2rem', textAlign: 'center' }}>
-            <Link to="/blog" className="blog-link">← Back to Articles</Link>
-          </div>
-        </section>
-      </main>
+          <section className="article-two-col">
+            <p>
+              Building a personal AI operating system starts with a clear architecture. 
+              FRIDAY began as an experiment in local inference, evolved into a full 
+              orchestration layer, and continues to grow with each new capability.
+            </p>
+            <p>
+              The core principle: privacy-first design with cloud fallback. Local models 
+              handle routine tasks, while complex reasoning routes to specialized providers. 
+              All memory persists in an Obsidian vault, creating a searchable knowledge graph.
+            </p>
+          </section>
+
+          <section className="article-section">
+            <h2 className="article-section-header">THE FOUNDATION</h2>
+            <div className="article-two-col">
+              <p>
+                OpenClaw provides the backbone — message routing, session management, 
+                and tool integration. Telegram serves as the primary interface, with 
+                voice integration planned for the next iteration.
+              </p>
+              <p>
+                The FRIDAY persona unifies the experience. Rather than switching between 
+                chatbots, you interact with one consistent intelligence that delegates 
+                to specialized sub-agents as needed.
+              </p>
+            </div>
+            <div className="article-image">[Architecture Diagram]</div>
+          </section>
+
+          <section className="article-section">
+            <h2 className="article-section-header">LESSONS LEARNED</h2>
+            <div className="article-two-col">
+              <p>
+                Thermal management proved critical. The RTX 4090 throttles without 
+                aggressive cooling, so custom curves and liquid cooling became essential. 
+                Model selection depends as much on temperature as capability.
+              </p>
+              <p>
+                Memory architecture matters more than expected. Without persistent storage, 
+                each session starts fresh. Obsidian integration transformed FRIDAY from 
+                a stateless tool into a true assistant with continuity.
+              </p>
+            </div>
+          </section>
+
+          <div className="article-handle">@preciado.tech</div>
+
+          <footer className="article-footer">
+            <p>More articles on AI, hardware, and automation</p>
+          </footer>
+        </article>
+      </div>
     </PageTransition>
   );
 }
 
-export default BlogArticle; 
+export default BlogArticle;
