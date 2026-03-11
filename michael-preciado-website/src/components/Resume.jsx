@@ -25,7 +25,7 @@ function Resume() {
       .resume-container {
         max-width: 900px;
         margin: 0 auto;
-        padding: 2rem 1.25rem 3rem;
+        padding: 5rem 1.25rem 3rem 3rem;
         position: relative;
         z-index: 1;
       }
@@ -33,8 +33,8 @@ function Resume() {
         text-align: center;
         margin-bottom: 1.5rem;
         padding-bottom: 1rem;
-        border-bottom: 1px solid rgba(30, 144, 255, 0.2);
-        box-shadow: 0 1px 0 rgba(30, 144, 255, 0.1);
+        border-bottom: 1px solid rgba(30, 144, 255, 0.08);
+        box-shadow: 0 1px 0 rgba(30, 144, 255, 0.08);
       }
       .resume-meta {
         display: flex;
@@ -54,7 +54,7 @@ function Resume() {
         content: '·';
         position: absolute;
         right: -0.75rem;
-        color: rgba(30, 144, 255, 0.4);
+        color: rgba(30, 144, 255, 0.08);
       }
       .resume-title {
         font-family: 'Playfair Display', serif;
@@ -63,7 +63,7 @@ function Resume() {
         letter-spacing: 0.02em;
         margin: 0;
         color: #FFFFFF;
-        text-shadow: 0 0 20px rgba(30, 144, 255, 0.3);
+        text-shadow: 0 0 20px rgba(30, 144, 255, 0.08);
       }
       .resume-intro {
         max-width: 700px;
@@ -82,25 +82,25 @@ function Resume() {
         color: #FFFFFF;
         margin-bottom: 1rem;
         padding-bottom: 0.5rem;
-        border-bottom: 1px solid rgba(30, 144, 255, 0.2);
-        text-shadow: 0 0 15px rgba(30, 144, 255, 0.2);
+        border-bottom: 1px solid rgba(30, 144, 255, 0.08);
+        text-shadow: 0 0 15px rgba(30, 144, 255, 0.08);
       }
       .experience-card {
         background: rgba(10, 25, 47, 0.4);
-        border: 1px solid rgba(30, 144, 255, 0.15);
+        border: 1px solid rgba(30, 144, 255, 0.08);
         border-radius: 8px;
         padding: 1.25rem;
         margin-bottom: 1rem;
-        backdrop-filter: blur(10px);
-        -webkit-backdrop-filter: blur(10px);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
         transition: all 0.2s ease;
       }
       .experience-card:hover {
-        border-color: rgba(30, 144, 255, 0.35);
+        border-color: rgba(30, 144, 255, 0.08);
         background: rgba(10, 25, 47, 0.6);
         box-shadow: 
-          0 0 20px rgba(30, 144, 255, 0.15),
-          inset 0 0 20px rgba(30, 144, 255, 0.05);
+          0 0 20px rgba(30, 144, 255, 0.08),
+          inset 0 0 20px rgba(30, 144, 255, 0.08);
       }
       .experience-header {
         display: flex;
@@ -122,7 +122,7 @@ function Resume() {
         color: #1E90FF;
         text-transform: uppercase;
         letter-spacing: 0.08em;
-        text-shadow: 0 0 10px rgba(30, 144, 255, 0.3);
+        text-shadow: 0 0 10px rgba(30, 144, 255, 0.08);
       }
       .experience-company {
         font-size: 0.85rem;
@@ -159,10 +159,10 @@ function Resume() {
       }
       .skill-category {
         background: rgba(10, 25, 47, 0.4);
-        border: 1px solid rgba(30, 144, 255, 0.15);
+        border: 1px solid rgba(30, 144, 255, 0.08);
         border-radius: 8px;
         padding: 1rem;
-        backdrop-filter: blur(10px);
+        backdrop-filter: blur(8px);
       }
       .skill-category-title {
         font-family: 'Playfair Display', serif;
@@ -183,14 +183,14 @@ function Resume() {
       }
       .cert-card {
         background: rgba(10, 25, 47, 0.4);
-        border: 1px solid rgba(30, 144, 255, 0.15);
+        border: 1px solid rgba(30, 144, 255, 0.08);
         border-radius: 8px;
         padding: 1rem;
-        backdrop-filter: blur(10px);
+        backdrop-filter: blur(8px);
         transition: all 0.2s ease;
       }
       .cert-card:hover {
-        border-color: rgba(30, 144, 255, 0.3);
+        border-color: rgba(30, 144, 255, 0.08);
       }
       .cert-date {
         font-size: 0.65rem;
@@ -198,7 +198,7 @@ function Resume() {
         text-transform: uppercase;
         letter-spacing: 0.08em;
         margin-bottom: 0.25rem;
-        text-shadow: 0 0 10px rgba(30, 144, 255, 0.3);
+        text-shadow: 0 0 10px rgba(30, 144, 255, 0.08);
       }
       .cert-title {
         font-family: 'Playfair Display', serif;
@@ -214,7 +214,7 @@ function Resume() {
         text-align: center;
         margin-top: 2rem;
         padding-top: 1rem;
-        border-top: 1px solid rgba(30, 144, 255, 0.1);
+        border-top: 1px solid rgba(30, 144, 255, 0.08);
         font-size: 0.7rem;
         color: #8B8680;
       }
@@ -222,8 +222,8 @@ function Resume() {
         display: inline-block;
         margin-top: 1rem;
         padding: 0.6rem 1.2rem;
-        background: rgba(30, 144, 255, 0.1);
-        border: 1px solid rgba(30, 144, 255, 0.3);
+        background: rgba(30, 144, 255, 0.08);
+        border: 1px solid rgba(30, 144, 255, 0.08);
         color: #FFFFFF;
         text-decoration: none;
         border-radius: 4px;
@@ -232,9 +232,9 @@ function Resume() {
         backdrop-filter: blur(5px);
       }
       .resume-download:hover {
-        background: rgba(30, 144, 255, 0.2);
-        border-color: rgba(30, 144, 255, 0.5);
-        box-shadow: 0 0 15px rgba(30, 144, 255, 0.2);
+        background: rgba(30, 144, 255, 0.08);
+        border-color: rgba(30, 144, 255, 0.08);
+        box-shadow: 0 0 15px rgba(30, 144, 255, 0.08);
       }
       @media (min-width: 640px) {
         .resume-container { padding: 2.5rem 2rem 3rem; }

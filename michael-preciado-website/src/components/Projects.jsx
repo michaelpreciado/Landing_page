@@ -88,7 +88,7 @@ function Projects() {
       .projects-container {
         max-width: 1000px;
         margin: 0 auto;
-        padding: 2rem 1.25rem 3rem;
+        padding: 5rem 1.25rem 3rem;
         position: relative;
         z-index: 1;
       }
@@ -96,8 +96,7 @@ function Projects() {
         text-align: center;
         margin-bottom: 1.5rem;
         padding-bottom: 1rem;
-        border-bottom: 1px solid rgba(30, 144, 255, 0.2);
-        box-shadow: 0 1px 0 rgba(30, 144, 255, 0.1);
+        border-bottom: 1px solid rgba(30, 144, 255, 0.15);
       }
       .projects-meta {
         display: flex;
@@ -117,7 +116,7 @@ function Projects() {
         content: '·';
         position: absolute;
         right: -0.75rem;
-        color: rgba(30, 144, 255, 0.4);
+        color: rgba(30, 144, 255, 0.3);
       }
       .projects-title {
         font-family: 'Playfair Display', serif;
@@ -126,7 +125,6 @@ function Projects() {
         letter-spacing: 0.02em;
         margin: 0;
         color: #FFFFFF;
-        text-shadow: 0 0 20px rgba(30, 144, 255, 0.3);
       }
       .projects-intro {
         max-width: 600px;
@@ -142,47 +140,42 @@ function Projects() {
         gap: 0.75rem;
       }
       .project-card-editorial {
-        background: rgba(10, 25, 47, 0.4);
-        border: 1px solid rgba(30, 144, 255, 0.15);
+        background: rgba(10, 25, 47, 0.3);
+        border: 1px solid rgba(30, 144, 255, 0.12);
         border-radius: 8px;
         overflow: hidden;
         transition: all 0.2s ease;
         text-decoration: none;
         color: inherit;
         display: block;
-        backdrop-filter: blur(10px);
-        -webkit-backdrop-filter: blur(10px);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
       }
       .project-card-editorial:hover {
-        border-color: rgba(30, 144, 255, 0.4);
-        background: rgba(10, 25, 47, 0.6);
-        box-shadow: 
-          0 0 20px rgba(30, 144, 255, 0.2),
-          inset 0 0 20px rgba(30, 144, 255, 0.05);
+        border-color: rgba(30, 144, 255, 0.25);
+        background: rgba(10, 25, 47, 0.45);
       }
       .project-card-image-wrap {
         aspect-ratio: 16/9;
-        background: rgba(5, 12, 28, 0.5);
+        background: rgba(5, 12, 28, 0.4);
         display: flex;
         align-items: center;
         justify-content: center;
         overflow: hidden;
-        border-bottom: 1px solid rgba(30, 144, 255, 0.1);
+        border-bottom: 1px solid rgba(30, 144, 255, 0.08);
       }
       .project-card-emoji {
         font-size: 2.5rem;
-        filter: drop-shadow(0 0 10px rgba(30, 144, 255, 0.3));
       }
       .project-card-content {
         padding: 0.875rem;
       }
       .project-card-date {
         font-size: 0.6rem;
-        color: #1E90FF;
+        color: rgba(30, 144, 255, 0.8);
         text-transform: uppercase;
         letter-spacing: 0.08em;
         margin-bottom: 0.25rem;
-        text-shadow: 0 0 10px rgba(30, 144, 255, 0.3);
       }
       .project-card-title {
         font-family: 'Playfair Display', serif;
@@ -190,7 +183,6 @@ function Projects() {
         color: #FFFFFF;
         margin-bottom: 0.25rem;
         line-height: 1.3;
-        text-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
       }
       .project-card-desc {
         font-size: 0.75rem;
@@ -211,11 +203,10 @@ function Projects() {
       .project-card-tag {
         font-size: 0.6rem;
         padding: 0.15rem 0.4rem;
-        background: rgba(30, 144, 255, 0.1);
-        border: 1px solid rgba(30, 144, 255, 0.25);
-        color: #5A8FC0;
+        background: rgba(30, 144, 255, 0.08);
+        border: 1px solid rgba(30, 144, 255, 0.15);
+        color: rgba(90, 143, 192, 0.9);
         border-radius: 2px;
-        backdrop-filter: blur(5px);
       }
       .project-card-links {
         display: flex;
@@ -225,35 +216,33 @@ function Projects() {
         flex: 1;
         padding: 0.4rem;
         font-size: 0.7rem;
-        border: 1px solid rgba(30, 144, 255, 0.3);
-        background: rgba(30, 144, 255, 0.08);
+        border: 1px solid rgba(30, 144, 255, 0.2);
+        background: rgba(30, 144, 255, 0.05);
         color: #FFFFFF;
         border-radius: 4px;
         cursor: pointer;
         text-align: center;
         text-decoration: none;
         transition: all 0.2s ease;
-        backdrop-filter: blur(5px);
       }
       .project-card-btn-link:hover {
-        background: rgba(30, 144, 255, 0.2);
-        border-color: rgba(30, 144, 255, 0.5);
-        box-shadow: 0 0 15px rgba(30, 144, 255, 0.2);
+        background: rgba(30, 144, 255, 0.12);
+        border-color: rgba(30, 144, 255, 0.35);
       }
       .project-card-btn-link.secondary {
-        border-color: rgba(100, 100, 100, 0.3);
-        background: rgba(100, 100, 100, 0.08);
+        border-color: rgba(100, 100, 100, 0.2);
+        background: rgba(100, 100, 100, 0.05);
       }
       .projects-footer {
         text-align: center;
         margin-top: 2rem;
         padding-top: 1rem;
-        border-top: 1px solid rgba(30, 144, 255, 0.1);
+        border-top: 1px solid rgba(30, 144, 255, 0.08);
         font-size: 0.7rem;
         color: #8B8680;
       }
       @media (min-width: 640px) {
-        .projects-container { padding: 2.5rem 2rem 3rem; }
+        .projects-container { padding: 5.5rem 2rem 3rem; }
         .projects-intro { font-size: 0.9rem; margin-bottom: 2.5rem; }
         .projects-grid { grid-template-columns: repeat(3, 1fr); gap: 1rem; }
         .project-card-title { font-size: 1rem; }
@@ -331,7 +320,6 @@ function Projects() {
     },
   ];
 
-  // Sort by date (most recent first)
   const sortedProjects = [...projectsData].sort((a, b) => {
     const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
     const [aMonth, aYear] = a.date.split(' ');

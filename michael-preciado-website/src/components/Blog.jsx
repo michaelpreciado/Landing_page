@@ -76,7 +76,7 @@ function Blog() {
       .blog-container {
         max-width: 1000px;
         margin: 0 auto;
-        padding: 2rem 1.25rem 3rem;
+        padding: 5rem 1.25rem 3rem 3rem;
         position: relative;
         z-index: 1;
       }
@@ -84,8 +84,8 @@ function Blog() {
         text-align: center;
         margin-bottom: 1.5rem;
         padding-bottom: 1rem;
-        border-bottom: 1px solid rgba(30, 144, 255, 0.2);
-        box-shadow: 0 1px 0 rgba(30, 144, 255, 0.1);
+        border-bottom: 1px solid rgba(30, 144, 255, 0.08);
+        box-shadow: 0 1px 0 rgba(30, 144, 255, 0.08);
       }
       .blog-meta {
         display: flex;
@@ -105,7 +105,7 @@ function Blog() {
         content: '·';
         position: absolute;
         right: -0.75rem;
-        color: rgba(30, 144, 255, 0.4);
+        color: rgba(30, 144, 255, 0.08);
       }
       .blog-title {
         font-family: 'Playfair Display', serif;
@@ -114,7 +114,7 @@ function Blog() {
         letter-spacing: 0.02em;
         margin: 0;
         color: #FFFFFF;
-        text-shadow: 0 0 20px rgba(30, 144, 255, 0.3);
+        text-shadow: 0 0 20px rgba(30, 144, 255, 0.08);
       }
       .blog-intro {
         max-width: 600px;
@@ -131,22 +131,22 @@ function Blog() {
       }
       .blog-card-editorial {
         background: rgba(10, 25, 47, 0.4);
-        border: 1px solid rgba(30, 144, 255, 0.15);
+        border: 1px solid rgba(30, 144, 255, 0.08);
         border-radius: 8px;
         overflow: hidden;
         transition: all 0.2s ease;
         text-decoration: none;
         color: inherit;
         display: block;
-        backdrop-filter: blur(10px);
-        -webkit-backdrop-filter: blur(10px);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
       }
       .blog-card-editorial:hover {
-        border-color: rgba(30, 144, 255, 0.4);
+        border-color: rgba(30, 144, 255, 0.08);
         background: rgba(10, 25, 47, 0.6);
         box-shadow: 
-          0 0 20px rgba(30, 144, 255, 0.2),
-          inset 0 0 20px rgba(30, 144, 255, 0.05);
+          0 0 20px rgba(30, 144, 255, 0.08),
+          inset 0 0 20px rgba(30, 144, 255, 0.08);
       }
       .blog-card-image-wrap {
         aspect-ratio: 16/9;
@@ -155,11 +155,11 @@ function Blog() {
         align-items: center;
         justify-content: center;
         overflow: hidden;
-        border-bottom: 1px solid rgba(30, 144, 255, 0.1);
+        border-bottom: 1px solid rgba(30, 144, 255, 0.08);
       }
       .blog-card-emoji {
         font-size: 2.5rem;
-        filter: drop-shadow(0 0 10px rgba(30, 144, 255, 0.3));
+        filter: drop-shadow(0 0 10px rgba(30, 144, 255, 0.08));
       }
       .blog-card-content {
         padding: 0.875rem;
@@ -175,7 +175,7 @@ function Blog() {
         color: #1E90FF;
         text-transform: uppercase;
         letter-spacing: 0.08em;
-        text-shadow: 0 0 10px rgba(30, 144, 255, 0.3);
+        text-shadow: 0 0 10px rgba(30, 144, 255, 0.08);
       }
       .blog-card-date {
         font-size: 0.6rem;
@@ -202,7 +202,7 @@ function Blog() {
         text-align: center;
         margin-top: 2rem;
         padding-top: 1rem;
-        border-top: 1px solid rgba(30, 144, 255, 0.1);
+        border-top: 1px solid rgba(30, 144, 255, 0.08);
         font-size: 0.7rem;
         color: #8B8680;
       }
