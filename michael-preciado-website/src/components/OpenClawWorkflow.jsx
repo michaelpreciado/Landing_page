@@ -1,159 +1,212 @@
 import React, { useEffect } from 'react';
-import MatrixRainBackground from './MatrixRainBackground';
 import PageTransition from './PageTransition.jsx';
 import ReturnButton from './ReturnButton.jsx';
 import useTypewriter from '../utils/hooks/useTypewriter';
-import { autoApplyLiquidGlass } from '../utils/liquidGlass.js';
 
 function OpenClawWorkflow() {
-  const typedTitle = useTypewriter('My OpenClaw Workflow 🦞', { speed: 35, scrambleOnMount: true });
+  const typedTitle = useTypewriter('OPENCLAW WORKFLOW', { speed: 40, scrambleOnMount: true });
 
   useEffect(() => {
-    autoApplyLiquidGlass();
-
     const style = document.createElement('style');
     style.textContent = `
+      @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500&display=swap');
+      
+      .openclaw-editorial {
+        min-height: 100vh;
+        background: #F5F3EF;
+        color: #1A1A1A;
+        font-family: 'Inter', sans-serif;
+        font-weight: 300;
+        line-height: 1.8;
+      }
+
       .openclaw-container {
-        max-width: 980px;
+        max-width: 900px;
         margin: 0 auto;
-        padding: 6rem 1.25rem 2.5rem;
+        padding: 4rem 2rem;
       }
 
       .openclaw-header {
         text-align: center;
+        margin-bottom: 3rem;
+        padding-bottom: 2rem;
+        border-bottom: 1px solid #D4D0C8;
+      }
+
+      .openclaw-meta {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 0.75rem;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: #8B8680;
         margin-bottom: 2rem;
       }
 
       .openclaw-title {
+        font-family: 'Playfair Display', serif;
+        font-size: clamp(2.5rem, 8vw, 5rem);
+        font-weight: 500;
+        letter-spacing: -0.02em;
         margin: 0;
-        font-size: clamp(2rem, 5vw, 3.2rem);
-        font-weight: 800;
-        color: var(--light-text);
+        color: #1A1A1A;
+        line-height: 1.1;
       }
 
-      .openclaw-subtitle {
-        margin: 0.9rem auto 0;
-        max-width: 62ch;
-        color: var(--medium-text);
-        line-height: 1.7;
-      }
-
-      .openclaw-terminal-card {
-        border: 1px solid var(--border-color);
-        border-radius: 18px;
-        overflow: hidden;
-        background: linear-gradient(180deg, rgba(8, 18, 38, 0.9), rgba(2, 8, 19, 0.92));
-        box-shadow: 0 20px 38px rgba(0, 0, 0, 0.45);
-      }
-
-      .terminal-window-header {
-        padding: 1rem;
-        border-bottom: 1px solid rgba(30, 144, 255, 0.35);
-        background: rgba(10, 25, 47, 0.82);
-      }
-
-      .terminal-window-buttons {
-        display: flex;
-        gap: 0.55rem;
-      }
-
-      .terminal-window-buttons span {
-        width: 13px;
-        height: 13px;
-        border-radius: 999px;
-        display: inline-block;
-      }
-
-      .terminal-window-buttons .red { background: #ff5f57; }
-      .terminal-window-buttons .yellow { background: #ffbd2e; }
-      .terminal-window-buttons .green { background: #28c840; }
-
-      .openclaw-content {
-        padding: 1.6rem 1.4rem 2rem;
-      }
-
-      .openclaw-template-grid {
+      .openclaw-intro {
         display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 1rem;
+        grid-template-columns: 1fr 1fr;
+        gap: 3rem;
+        margin: 3rem 0;
+        align-items: start;
       }
 
-      .template-block {
-        border: 1px solid rgba(30, 144, 255, 0.24);
-        border-radius: 14px;
-        background: rgba(5, 12, 28, 0.72);
-        padding: 1rem 1rem 1.1rem;
+      .openclaw-intro-text {
+        font-size: 0.95rem;
+        text-align: justify;
+        hyphens: auto;
+        color: #4A4A4A;
       }
 
-      .template-block h2 {
-        margin: 0 0 0.7rem;
-        color: var(--light-text);
-        font-size: 1rem;
-        letter-spacing: 0.01em;
+      .openclaw-intro-text p {
+        margin: 0 0 1.5rem 0;
       }
 
-      .template-block p,
-      .template-block li {
-        color: var(--medium-text);
-        line-height: 1.65;
-        margin: 0;
+      .openclaw-image-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0.5rem;
       }
 
-      .template-block ul {
-        margin: 0;
-        padding-left: 1.1rem;
-      }
-
-      .template-block code {
-        background: rgba(30, 144, 255, 0.15);
-        padding: 0.15rem 0.4rem;
-        border-radius: 4px;
-        font-family: 'JetBrains Mono', monospace;
-        font-size: 0.85em;
-        color: #1E90FF;
-      }
-
-      .openclaw-actions {
+      .grid-placeholder {
+        aspect-ratio: 1;
+        background: #E8E4DC;
+        border-radius: 2px;
         display: flex;
+        align-items: center;
         justify-content: center;
-        margin-top: 1.5rem;
-        gap: 1rem;
-        flex-wrap: wrap;
+        font-size: 0.65rem;
+        color: #A8A49C;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
       }
 
-      .openclaw-actions a {
-        text-decoration: none;
+      .openclaw-section {
+        margin: 4rem 0;
       }
 
-      .openclaw-actions button {
-        cursor: pointer;
+      .openclaw-section-header {
+        font-family: 'Playfair Display', serif;
+        font-size: clamp(1.8rem, 4vw, 2.8rem);
+        font-weight: 500;
+        letter-spacing: -0.01em;
+        margin: 0 0 1.5rem 0;
+        line-height: 1.2;
+        color: #1A1A1A;
       }
 
-      .architecture-diagram {
-        grid-column: 1 / -1;
-        text-align: center;
-        padding: 1.5rem;
-        background: rgba(5, 12, 28, 0.5);
-        border-radius: 14px;
-        border: 1px dashed rgba(30, 144, 255, 0.3);
+      .openclaw-two-col {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 3rem;
       }
 
-      .architecture-diagram img {
-        max-width: 100%;
-        height: auto;
-        border-radius: 8px;
-        opacity: 0.8;
+      .openclaw-text {
+        font-size: 0.95rem;
+        text-align: justify;
+        hyphens: auto;
+        color: #4A4A4A;
       }
 
-      .placeholder-text {
-        color: var(--medium-text);
-        font-style: italic;
+      .openclaw-text p {
+        margin: 0 0 1.5rem 0;
+      }
+
+      .openclaw-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .openclaw-list li {
+        padding: 0.75rem 0;
+        border-bottom: 1px solid #E8E4DC;
         font-size: 0.9rem;
+        color: #4A4A4A;
       }
 
-      @media (max-width: 760px) {
-        .openclaw-template-grid {
+      .openclaw-list li:last-child {
+        border-bottom: none;
+      }
+
+      .openclaw-list strong {
+        color: #1A1A1A;
+        font-weight: 500;
+      }
+
+      .openclaw-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin: 1.5rem 0;
+      }
+
+      .openclaw-tag {
+        font-size: 0.7rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        padding: 0.4rem 0.8rem;
+        background: #E8E4DC;
+        color: #6A6660;
+        border-radius: 2px;
+      }
+
+      .openclaw-handle {
+        text-align: center;
+        margin: 3rem 0;
+        font-family: 'Playfair Display', serif;
+        font-size: 1.1rem;
+        color: #8B8680;
+        font-style: italic;
+      }
+
+      .openclaw-hero {
+        width: 100%;
+        margin-top: 3rem;
+      }
+
+      .hero-placeholder {
+        width: 100%;
+        aspect-ratio: 16/9;
+        background: linear-gradient(135deg, #D4CFC5 0%, #B8B0A0 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #8B8680;
+        font-size: 0.85rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+      }
+
+      .openclaw-footer {
+        text-align: center;
+        margin-top: 4rem;
+        padding-top: 2rem;
+        border-top: 1px solid #D4D0C8;
+        font-size: 0.8rem;
+        color: #8B8680;
+      }
+
+      @media (max-width: 768px) {
+        .openclaw-intro,
+        .openclaw-two-col {
           grid-template-columns: 1fr;
+          gap: 2rem;
+        }
+        
+        .openclaw-container {
+          padding: 2rem 1.5rem;
         }
       }
     `;
@@ -168,134 +221,158 @@ function OpenClawWorkflow() {
 
   return (
     <PageTransition>
-      <MatrixRainBackground />
-      <ReturnButton to="/projects" />
-
-      <article className="openclaw-container">
-        <header className="openclaw-header">
-          <h1 className="openclaw-title">{typedTitle}</h1>
-          <p className="openclaw-subtitle">
-            A unified AI operating system built on OpenClaw, featuring a custom persona (FRIDAY), 
-            sub-agent orchestration, local/cloud model routing, and seamless Telegram integration 
-            for autonomous task execution.
-          </p>
-        </header>
-
-        <section className="openclaw-terminal-card" aria-label="OpenClaw workflow architecture">
-          <div className="terminal-window-header">
-            <div className="terminal-window-buttons">
-              <span className="red"></span>
-              <span className="yellow"></span>
-              <span className="green"></span>
+      <div className="openclaw-editorial">
+        <ReturnButton to="/projects" />
+        
+        <article className="openclaw-container">
+          <header className="openclaw-header">
+            <div className="openclaw-meta">
+              <span>#001</span>
+              <span>NEW POST</span>
+              <span>v1.0</span>
             </div>
+            <h1 className="openclaw-title">{typedTitle}</h1>
+          </header>
+
+          <section className="openclaw-intro">
+            <div className="openclaw-intro-text">
+              <p>
+                A unified AI operating system built on the OpenClaw framework, featuring a custom 
+                orchestration layer that manages multiple AI models, specialized sub-agents, and 
+                persistent memory through seamless integrations.
+              </p>
+              <p>
+                The architecture prioritizes local inference for privacy and speed, while maintaining 
+                the flexibility to route complex tasks to cloud providers when necessary.
+              </p>
+            </div>
+            <div className="openclaw-image-grid">
+              <div className="grid-placeholder">Arch</div>
+              <div className="grid-placeholder">Flow</div>
+              <div className="grid-placeholder">Stack</div>
+              <div className="grid-placeholder">Agent</div>
+              <div className="grid-placeholder">Model</div>
+              <div className="grid-placeholder">Memory</div>
+              <div className="grid-placeholder">Telegram</div>
+              <div className="grid-placeholder">Obsidian</div>
+              <div className="grid-placeholder">Swarm</div>
+            </div>
+          </section>
+
+          <div className="openclaw-handle">@preciado.tech</div>
+
+          <section className="openclaw-section">
+            <h2 className="openclaw-section-header">THE ARCHITECTURE</h2>
+            <div className="openclaw-two-col">
+              <div className="openclaw-text">
+                <p>
+                  At the center of the system is FRIDAY — a unified AI persona that serves as the 
+                  command interface. Unlike traditional chatbots, FRIDAY operates as a full 
+                  operating system layer, orchestrating specialized sub-agents and managing 
+                  context across sessions.
+                </p>
+                <p>
+                  Four core sub-agents handle specialized domains: CREATOR for business strategy 
+                  and content, RESEARCH for technical deep-dives, STOCKS for market analysis, 
+                  and ENGINEERING for software development tasks.
+                </p>
+              </div>
+              <div className="openclaw-text">
+                <p>
+                  Agent swarms provide parallel execution capabilities, spinning up temporary 
+                  micro-agents that work simultaneously on different aspects of a task before 
+                  merging results. This enables complex workflows to complete in minutes rather 
+                  than hours.
+                </p>
+                <p>
+                  All activity is logged to an Obsidian vault, creating a searchable knowledge 
+                  graph that persists across sessions and enables long-term memory for the 
+                  entire system.
+                </p>
+              </div>
+            </div>
+          </section>
+
+          <section className="openclaw-section">
+            <h2 className="openclaw-section-header">MODEL ROUTING</h2>
+            <div className="openclaw-two-col">
+              <ul className="openclaw-list">
+                <li><strong>Default:</strong> Qwen3.5-9B (local, thermal-managed)</li>
+                <li><strong>Fallback:</strong> Qwen3.5-4B/2B/0.8B (lighter loads)</li>
+                <li><strong>Complex Tasks:</strong> Claude Opus (high-stakes reasoning)</li>
+                <li><strong>Coding:</strong> Claude Code via ACP harness</li>
+                <li><strong>Vision:</strong> Gemini Nano Banana Pro</li>
+              </ul>
+              <div className="openclaw-text">
+                <p>
+                  The routing layer automatically selects the optimal model based on task 
+                  complexity, thermal constraints, and latency requirements. Local models 
+                  handle 90% of routine interactions, ensuring sub-5-second response times 
+                  and complete data privacy.
+                </p>
+              </div>
+            </div>
+          </section>
+
+          <section className="openclaw-section">
+            <h2 className="openclaw-section-header">DAILY WORKFLOW</h2>
+            <div className="openclaw-two-col">
+              <div className="openclaw-text">
+                <p>
+                  Every interaction flows through the same pipeline: Telegram message received 
+                  by OpenClaw gateway, classified by FRIDAY for intent and priority, routed to 
+                  the appropriate model or sub-agent, executed with safety tiering, and delivered 
+                  back via Telegram with a copy archived to Obsidian.
+                </p>
+              </div>
+              <div className="openclaw-text">
+                <p>
+                  Heartbeat automation handles periodic checks: system health, stock watchlists, 
+                  calendar reviews, and memory maintenance. The system proactively surfaces 
+                  relevant information without requiring explicit queries.
+                </p>
+              </div>
+            </div>
+            <div className="openclaw-tags">
+              <span className="openclaw-tag">OpenClaw</span>
+              <span className="openclaw-tag">Telegram</span>
+              <span className="openclaw-tag">Obsidian</span>
+              <span className="openclaw-tag">Ollama</span>
+              <span className="openclaw-tag">LM Studio</span>
+              <span className="openclaw-tag">Node.js</span>
+              <span className="openclaw-tag">Arch Linux</span>
+            </div>
+          </section>
+
+          <section className="openclaw-section">
+            <h2 className="openclaw-section-header">RESULTS & ROADMAP</h2>
+            <div className="openclaw-two-col">
+              <ul className="openclaw-list">
+                <li>Single interface for 10+ AI models</li>
+                <li>Sub-agent spawning for parallel execution</li>
+                <li>100% local inference for routine tasks</li>
+                <li>Persistent memory across sessions</li>
+                <li>Sub-5-second average response time</li>
+              </ul>
+              <ul className="openclaw-list">
+                <li><strong>Next:</strong> Voice integration with wake word</li>
+                <li><strong>Next:</strong> Friday Command Center UI</li>
+                <li><strong>Next:</strong> AutoResearch training swarms</li>
+                <li><strong>Next:</strong> Calendar integration</li>
+                <li><strong>Next:</strong> Email automation</li>
+              </ul>
+            </div>
+          </section>
+
+          <div className="openclaw-hero">
+            <div className="hero-placeholder">[System Architecture Visualization]</div>
           </div>
 
-          <div className="openclaw-content">
-            <div className="openclaw-template-grid">
-              <section className="template-block">
-                <h2>&gt; Project Goal</h2>
-                <p>
-                  Build a personal AI operating system that orchestrates multiple AI models, 
-                  manages sub-agents for specialized tasks, maintains long-term memory via Obsidian, 
-                  and provides a unified interface through Telegram for seamless human-AI collaboration.
-                </p>
-              </section>
-
-              <section className="template-block">
-                <h2>&gt; Core Architecture</h2>
-                <ul>
-                  <li><strong>FRIDAY</strong> — Unified AI persona and command center</li>
-                  <li><strong>Sub-Agents</strong> — CREATOR, RESEARCH, STOCKS, ENGINEERING</li>
-                  <li><strong>Agent Swarms</strong> — Parallel task execution workers</li>
-                  <li><strong>Model Router</strong> — Local (Ollama) + Cloud selection</li>
-                  <li><strong>Memory System</strong> — Obsidian vault integration</li>
-                </ul>
-              </section>
-
-              <section className="template-block">
-                <h2>&gt; Workflow Flow</h2>
-                <ul>
-                  <li><strong>Input:</strong> Telegram message → OpenClaw gateway</li>
-                  <li><strong>Classify:</strong> FRIDAY detects task type and priority</li>
-                  <li><strong>Route:</strong> Select model (local Qwen3.5 or cloud)</li>
-                  <li><strong>Execute:</strong> Spawn sub-agents or swarms as needed</li>
-                  <li><strong>Deliver:</strong> Response via Telegram + log to Obsidian</li>
-                </ul>
-              </section>
-
-              <section className="template-block">
-                <h2>&gt; Stack & Integrations</h2>
-                <p>
-                  <code>OpenClaw</code> <code>Telegram</code> <code>Obsidian</code> <code>Ollama</code>{' '}
-                  <code>LM Studio</code> <code>Node.js</code> <code>Arch Linux</code>
-                </p>
-                <p style={{ marginTop: '0.5rem' }}>
-                  Local models: Qwen3.5 series (0.8B–9B). Cloud: Claude, Gemini, Kimi. 
-                  Skills: weather, GitHub, 1Password, web search, coding agents.
-                </p>
-              </section>
-
-              <section className="template-block">
-                <h2>&gt; Model Routing Policy</h2>
-                <ul>
-                  <li><strong>Default:</strong> Local Qwen3.5-9B (cool temps + performance)</li>
-                  <li><strong>Fallback:</strong> Qwen3.5-4B, 2B, 0.8B (thermal management)</li>
-                  <li><strong>High-stakes:</strong> Claude Opus (major tasks)</li>
-                  <li><strong>Coding:</strong> Claude Code via ACP harness</li>
-                  <li><strong>Images:</strong> Gemini Nano Banana Pro</li>
-                </ul>
-              </section>
-
-              <section className="template-block">
-                <h2>&gt; Daily Automation</h2>
-                <ul>
-                  <li><strong>Heartbeat:</strong> Periodic system health checks</li>
-                  <li><strong>Memory:</strong> Auto-archive to Obsidian vault</li>
-                  <li><strong>Stocks:</strong> Watchlist monitoring (TSLA, NVDA, etc.)</li>
-                  <li><strong>Research:</strong> AutoResearch integration for LLM experiments</li>
-                </ul>
-              </section>
-
-              <section className="template-block">
-                <h2>&gt; Results & Metrics</h2>
-                <ul>
-                  <li>Single interface for 10+ AI models</li>
-                  <li>Sub-agent spawning for parallel execution</li>
-                  <li>100% local inference for routine tasks</li>
-                  <li>Persistent memory across sessions</li>
-                  <li>Sub-5-second response time (local)</li>
-                </ul>
-              </section>
-
-              <section className="template-block">
-                <h2>&gt; Roadmap</h2>
-                <ul>
-                  <li>Voice integration with wake word detection</li>
-                  <li>Friday Command Center UI (React + Three.js)</li>
-                  <li>AutoResearch overnight training swarms</li>
-                  <li>Calendar integration (khal/gcalcli)</li>
-                  <li>Email automation with security tiering</li>
-                </ul>
-              </section>
-
-              <section className="architecture-diagram">
-                <p className="placeholder-text">
-                  [Architecture Diagram Placeholder — System flowchart showing FRIDAY → Sub-Agents → Model Router → Local/Cloud Models → Telegram/Obsidian]
-                </p>
-              </section>
-            </div>
-
-            <div className="openclaw-actions">
-              <a href="https://openclaw.ai" target="_blank" rel="noopener noreferrer">
-                <button className="project-button project-button-primary">OpenClaw Docs</button>
-              </a>
-              <a href="https://github.com/openclaw/openclaw" target="_blank" rel="noopener noreferrer">
-                <button className="project-button project-button-primary">GitHub</button>
-              </a>
-            </div>
-          </div>
-        </section>
-      </article>
+          <footer className="openclaw-footer">
+            <p>Built with OpenClaw — openclaw.ai</p>
+          </footer>
+        </article>
+      </div>
     </PageTransition>
   );
 }
