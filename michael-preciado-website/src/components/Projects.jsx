@@ -7,7 +7,7 @@ import ReturnButton from './ReturnButton.jsx';
 import LazyImage from './LazyImage';
 import { autoApplyLiquidGlass } from '../utils/liquidGlass.js';
 
-const ProjectCard = React.memo(({ imageSrc, emoji, title, description, tech, codeLink, demoLink, index, fullImage = false }) => {
+const ProjectCard = React.memo(({ imageSrc, emoji, title, description, tech, codeLink, demoLink, index, fullImage = false, date }) => {
   const cardVariants = {
     hidden: { opacity: 0, y: 20 },
     visible: {
@@ -47,6 +47,7 @@ const ProjectCard = React.memo(({ imageSrc, emoji, title, description, tech, cod
         )}
       </div>
       <div className="project-card-content">
+        <div className="project-card-date">{date}</div>
         <h3 className="project-card-title">{title}</h3>
         <p className="project-card-desc">{description}</p>
         <div className="project-card-tags">
@@ -96,6 +97,7 @@ function Projects() {
         margin-bottom: 1.5rem;
         padding-bottom: 1rem;
         border-bottom: 1px solid rgba(30, 144, 255, 0.2);
+        box-shadow: 0 1px 0 rgba(30, 144, 255, 0.1);
       }
       .projects-meta {
         display: flex;
@@ -124,6 +126,7 @@ function Projects() {
         letter-spacing: 0.02em;
         margin: 0;
         color: #FFFFFF;
+        text-shadow: 0 0 20px rgba(30, 144, 255, 0.3);
       }
       .projects-intro {
         max-width: 600px;
@@ -139,7 +142,7 @@ function Projects() {
         gap: 0.75rem;
       }
       .project-card-editorial {
-        background: rgba(10, 25, 47, 0.5);
+        background: rgba(10, 25, 47, 0.4);
         border: 1px solid rgba(30, 144, 255, 0.15);
         border-radius: 8px;
         overflow: hidden;
@@ -147,24 +150,39 @@ function Projects() {
         text-decoration: none;
         color: inherit;
         display: block;
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
       }
       .project-card-editorial:hover {
-        border-color: rgba(30, 144, 255, 0.35);
-        background: rgba(10, 25, 47, 0.7);
+        border-color: rgba(30, 144, 255, 0.4);
+        background: rgba(10, 25, 47, 0.6);
+        box-shadow: 
+          0 0 20px rgba(30, 144, 255, 0.2),
+          inset 0 0 20px rgba(30, 144, 255, 0.05);
       }
       .project-card-image-wrap {
         aspect-ratio: 16/9;
-        background: rgba(5, 12, 28, 0.6);
+        background: rgba(5, 12, 28, 0.5);
         display: flex;
         align-items: center;
         justify-content: center;
         overflow: hidden;
+        border-bottom: 1px solid rgba(30, 144, 255, 0.1);
       }
       .project-card-emoji {
         font-size: 2.5rem;
+        filter: drop-shadow(0 0 10px rgba(30, 144, 255, 0.3));
       }
       .project-card-content {
         padding: 0.875rem;
+      }
+      .project-card-date {
+        font-size: 0.6rem;
+        color: #1E90FF;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        margin-bottom: 0.25rem;
+        text-shadow: 0 0 10px rgba(30, 144, 255, 0.3);
       }
       .project-card-title {
         font-family: 'Playfair Display', serif;
@@ -172,6 +190,7 @@ function Projects() {
         color: #FFFFFF;
         margin-bottom: 0.25rem;
         line-height: 1.3;
+        text-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
       }
       .project-card-desc {
         font-size: 0.75rem;
@@ -193,9 +212,10 @@ function Projects() {
         font-size: 0.6rem;
         padding: 0.15rem 0.4rem;
         background: rgba(30, 144, 255, 0.1);
-        border: 1px solid rgba(30, 144, 255, 0.2);
+        border: 1px solid rgba(30, 144, 255, 0.25);
         color: #5A8FC0;
         border-radius: 2px;
+        backdrop-filter: blur(5px);
       }
       .project-card-links {
         display: flex;
@@ -205,20 +225,24 @@ function Projects() {
         flex: 1;
         padding: 0.4rem;
         font-size: 0.7rem;
-        border: 1px solid rgba(30, 144, 255, 0.4);
-        background: rgba(30, 144, 255, 0.1);
+        border: 1px solid rgba(30, 144, 255, 0.3);
+        background: rgba(30, 144, 255, 0.08);
         color: #FFFFFF;
         border-radius: 4px;
         cursor: pointer;
         text-align: center;
         text-decoration: none;
+        transition: all 0.2s ease;
+        backdrop-filter: blur(5px);
       }
       .project-card-btn-link:hover {
         background: rgba(30, 144, 255, 0.2);
+        border-color: rgba(30, 144, 255, 0.5);
+        box-shadow: 0 0 15px rgba(30, 144, 255, 0.2);
       }
       .project-card-btn-link.secondary {
-        border-color: rgba(100, 100, 100, 0.4);
-        background: rgba(100, 100, 100, 0.1);
+        border-color: rgba(100, 100, 100, 0.3);
+        background: rgba(100, 100, 100, 0.08);
       }
       .projects-footer {
         text-align: center;
@@ -243,52 +267,13 @@ function Projects() {
 
   const projectsData = [
     {
-      imageSrc: "/images/projects/photography.png",
-      title: "Photography Portfolio",
-      description: "A minimalist photography showcase featuring responsive image galleries and optimized loading.",
-      tech: ['React', 'JavaScript', 'CSS3'],
-      codeLink: "https://github.com/michaelpreciado/mario.preciado.photography",
-      demoLink: "https://mariopreciado-photography.netlify.app"
-    },
-    {
-      imageSrc: "/images/projects/Solar.png",
-      title: "Interactive Solar System",
-      description: "An immersive 3D solar system simulation with realistic planetary orbits and interactive controls.",
-      tech: ['JavaScript', 'WebGL', 'Canvas'],
-      codeLink: "https://github.com/michaelpreciado/Interactive_Solar_System",
-      demoLink: "https://interactive-solar-system-bay.vercel.app/"
-    },
-    {
-      imageSrc: "/images/projects/flattenhund.png",
-      title: "Flappy Dog Game",
-      description: "A charming Flappy Bird-inspired game featuring my dogs with online leaderboard.",
-      tech: ['JavaScript', 'Supabase', 'Canvas'],
-      codeLink: "https://github.com/michaelpreciado/Flattenhund",
-      demoLink: "https://theflappydoggame.netlify.app/"
-    },
-    {
-      imageSrc: "/images/projects/planttracker.png",
-      title: "Plant Tracker PWA",
-      description: "A Progressive Web App for plant care management with smart watering reminders.",
-      tech: ['Next.js', 'TypeScript', 'Supabase'],
-      codeLink: "https://github.com/michaelpreciado/Planter",
-      demoLink: "https://planttracker.netlify.app/"
-    },
-    {
-      emoji: "📷",
-      title: "CRT Interactive Album",
-      description: "A nostalgic 3D experience showcasing a 90s-era CRT computer with dynamic slideshow.",
-      tech: ['React', 'Three.js', 'Tailwind'],
-      codeLink: "https://github.com/michaelpreciado/CRTinteractiveAlbum",
-      demoLink: "https://cr-tinteractive-album.vercel.app"
-    },
-    {
       imageSrc: "/images/projects/ai-server-placeholder.svg",
       title: "OpenClaw Workflow",
       description: "A structured OpenClaw project workflow with architecture and implementation.",
       tech: ['OpenClaw', 'Automation', 'AI'],
       demoLink: "/projects/openclaw-workflow",
-      fullImage: true
+      fullImage: true,
+      date: "Mar 2026"
     },
     {
       imageSrc: "/images/corne-keyboard/cornebuild.jpeg",
@@ -296,9 +281,65 @@ function Projects() {
       description: "Custom split ergonomic mechanical keyboard with ZMK firmware and 3D printed case.",
       tech: ['Hardware', 'ZMK', '3D Printing'],
       demoLink: "/projects/corne-keyboard",
-      fullImage: true
-    }
+      fullImage: true,
+      date: "Feb 2026"
+    },
+    {
+      emoji: "📷",
+      title: "CRT Interactive Album",
+      description: "A nostalgic 3D experience showcasing a 90s-era CRT computer with dynamic slideshow.",
+      tech: ['React', 'Three.js', 'Tailwind'],
+      codeLink: "https://github.com/michaelpreciado/CRTinteractiveAlbum",
+      demoLink: "https://cr-tinteractive-album.vercel.app",
+      date: "Jan 2026"
+    },
+    {
+      imageSrc: "/images/projects/planttracker.png",
+      title: "Plant Tracker PWA",
+      description: "A Progressive Web App for plant care management with smart watering reminders.",
+      tech: ['Next.js', 'TypeScript', 'Supabase'],
+      codeLink: "https://github.com/michaelpreciado/Planter",
+      demoLink: "https://planttracker.netlify.app/",
+      date: "Dec 2025"
+    },
+    {
+      imageSrc: "/images/projects/flattenhund.png",
+      title: "Flappy Dog Game",
+      description: "A charming Flappy Bird-inspired game featuring my dogs with online leaderboard.",
+      tech: ['JavaScript', 'Supabase', 'Canvas'],
+      codeLink: "https://github.com/michaelpreciado/Flattenhund",
+      demoLink: "https://theflappydoggame.netlify.app/",
+      date: "Nov 2025"
+    },
+    {
+      imageSrc: "/images/projects/Solar.png",
+      title: "Interactive Solar System",
+      description: "An immersive 3D solar system simulation with realistic planetary orbits and interactive controls.",
+      tech: ['JavaScript', 'WebGL', 'Canvas'],
+      codeLink: "https://github.com/michaelpreciado/Interactive_Solar_System",
+      demoLink: "https://interactive-solar-system-bay.vercel.app/",
+      date: "Oct 2025"
+    },
+    {
+      imageSrc: "/images/projects/photography.png",
+      title: "Photography Portfolio",
+      description: "A minimalist photography showcase featuring responsive image galleries and optimized loading.",
+      tech: ['React', 'JavaScript', 'CSS3'],
+      codeLink: "https://github.com/michaelpreciado/mario.preciado.photography",
+      demoLink: "https://mariopreciado-photography.netlify.app",
+      date: "Sep 2025"
+    },
   ];
+
+  // Sort by date (most recent first)
+  const sortedProjects = [...projectsData].sort((a, b) => {
+    const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    const [aMonth, aYear] = a.date.split(' ');
+    const [bMonth, bYear] = b.date.split(' ');
+    const aDate = new Date(parseInt(aYear), months.indexOf(aMonth));
+    const bDate = new Date(parseInt(bYear), months.indexOf(bMonth));
+    return bDate - aDate;
+  });
 
   return (
     <PageTransition>
@@ -322,7 +363,7 @@ function Projects() {
           </p>
 
           <div className="projects-grid">
-            {projectsData.map((project, index) => (
+            {sortedProjects.map((project, index) => (
               <ProjectCard key={project.title} {...project} index={index} />
             ))}
           </div>

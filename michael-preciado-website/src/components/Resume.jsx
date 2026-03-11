@@ -1,208 +1,340 @@
-import React from 'react';
-import PageHeader from './PageHeader';
+import React, { useEffect } from 'react';
+import MatrixRainBackground from './MatrixRainBackground';
+import PageTransition from './PageTransition.jsx';
+import ReturnButton from './ReturnButton.jsx';
+import useTypewriter from '../utils/hooks/useTypewriter';
+import { autoApplyLiquidGlass } from '../utils/liquidGlass.js';
 
-/**
- * Resume page with terminal-style theme
- */
 function Resume() {
+  const typedTitle = useTypewriter('EXPERIENCE', { speed: 40, scrambleOnMount: true });
+
+  useEffect(() => {
+    autoApplyLiquidGlass();
+    const style = document.createElement('style');
+    style.textContent = `
+      @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500&display=swap');
+      
+      .resume-editorial {
+        min-height: 100vh;
+        position: relative;
+        color: #E8E4DC;
+        font-family: 'Inter', sans-serif;
+        font-weight: 300;
+        line-height: 1.6;
+      }
+      .resume-container {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 2rem 1.25rem 3rem;
+        position: relative;
+        z-index: 1;
+      }
+      .resume-header {
+        text-align: center;
+        margin-bottom: 1.5rem;
+        padding-bottom: 1rem;
+        border-bottom: 1px solid rgba(30, 144, 255, 0.2);
+        box-shadow: 0 1px 0 rgba(30, 144, 255, 0.1);
+      }
+      .resume-meta {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 1rem;
+        font-size: 0.65rem;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: #8B8680;
+        margin-bottom: 0.75rem;
+      }
+      .resume-meta span {
+        position: relative;
+      }
+      .resume-meta span:not(:last-child)::after {
+        content: '·';
+        position: absolute;
+        right: -0.75rem;
+        color: rgba(30, 144, 255, 0.4);
+      }
+      .resume-title {
+        font-family: 'Playfair Display', serif;
+        font-size: clamp(2rem, 6vw, 3rem);
+        font-weight: 500;
+        letter-spacing: 0.02em;
+        margin: 0;
+        color: #FFFFFF;
+        text-shadow: 0 0 20px rgba(30, 144, 255, 0.3);
+      }
+      .resume-intro {
+        max-width: 600px;
+        margin: 0 auto 2rem;
+        text-align: center;
+        color: #B8B0A0;
+        font-size: 0.85rem;
+        line-height: 1.7;
+      }
+      .resume-section {
+        margin-bottom: 2.5rem;
+      }
+      .resume-section-title {
+        font-family: 'Playfair Display', serif;
+        font-size: 1.1rem;
+        color: #FFFFFF;
+        margin-bottom: 1rem;
+        padding-bottom: 0.5rem;
+        border-bottom: 1px solid rgba(30, 144, 255, 0.2);
+        text-shadow: 0 0 15px rgba(30, 144, 255, 0.2);
+      }
+      .experience-card {
+        background: rgba(10, 25, 47, 0.4);
+        border: 1px solid rgba(30, 144, 255, 0.15);
+        border-radius: 8px;
+        padding: 1.25rem;
+        margin-bottom: 1rem;
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        transition: all 0.2s ease;
+      }
+      .experience-card:hover {
+        border-color: rgba(30, 144, 255, 0.35);
+        background: rgba(10, 25, 47, 0.6);
+        box-shadow: 
+          0 0 20px rgba(30, 144, 255, 0.15),
+          inset 0 0 20px rgba(30, 144, 255, 0.05);
+      }
+      .experience-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 0.5rem;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+      }
+      .experience-role {
+        font-family: 'Playfair Display', serif;
+        font-size: 1rem;
+        color: #FFFFFF;
+        margin: 0;
+        text-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+      }
+      .experience-date {
+        font-size: 0.7rem;
+        color: #1E90FF;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        text-shadow: 0 0 10px rgba(30, 144, 255, 0.3);
+      }
+      .experience-company {
+        font-size: 0.85rem;
+        color: #B8B0A0;
+        margin-bottom: 0.75rem;
+      }
+      .experience-desc {
+        font-size: 0.8rem;
+        color: #B8B0A0;
+        line-height: 1.6;
+        margin-bottom: 0.75rem;
+      }
+      .experience-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.3rem;
+      }
+      .experience-tag {
+        font-size: 0.6rem;
+        padding: 0.2rem 0.5rem;
+        background: rgba(30, 144, 255, 0.1);
+        border: 1px solid rgba(30, 144, 255, 0.2);
+        color: #5A8FC0;
+        border-radius: 2px;
+        backdrop-filter: blur(5px);
+      }
+      .skills-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.75rem;
+      }
+      .skill-category {
+        background: rgba(10, 25, 47, 0.4);
+        border: 1px solid rgba(30, 144, 255, 0.15);
+        border-radius: 8px;
+        padding: 1rem;
+        backdrop-filter: blur(10px);
+      }
+      .skill-category-title {
+        font-family: 'Playfair Display', serif;
+        font-size: 0.85rem;
+        color: #FFFFFF;
+        margin-bottom: 0.5rem;
+        text-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+      }
+      .skill-list {
+        font-size: 0.75rem;
+        color: #B8B0A0;
+        line-height: 1.6;
+      }
+      .education-card {
+        background: rgba(10, 25, 47, 0.4);
+        border: 1px solid rgba(30, 144, 255, 0.15);
+        border-radius: 8px;
+        padding: 1.25rem;
+        backdrop-filter: blur(10px);
+      }
+      .education-degree {
+        font-family: 'Playfair Display', serif;
+        font-size: 1rem;
+        color: #FFFFFF;
+        margin: 0 0 0.25rem;
+      }
+      .education-school {
+        font-size: 0.85rem;
+        color: #B8B0A0;
+        margin-bottom: 0.25rem;
+      }
+      .education-date {
+        font-size: 0.7rem;
+        color: #1E90FF;
+        text-shadow: 0 0 10px rgba(30, 144, 255, 0.3);
+      }
+      .resume-footer {
+        text-align: center;
+        margin-top: 2rem;
+        padding-top: 1rem;
+        border-top: 1px solid rgba(30, 144, 255, 0.1);
+        font-size: 0.7rem;
+        color: #8B8680;
+      }
+      .resume-download {
+        display: inline-block;
+        margin-top: 1rem;
+        padding: 0.6rem 1.2rem;
+        background: rgba(30, 144, 255, 0.1);
+        border: 1px solid rgba(30, 144, 255, 0.3);
+        color: #FFFFFF;
+        text-decoration: none;
+        border-radius: 4px;
+        font-size: 0.8rem;
+        transition: all 0.2s ease;
+        backdrop-filter: blur(5px);
+      }
+      .resume-download:hover {
+        background: rgba(30, 144, 255, 0.2);
+        border-color: rgba(30, 144, 255, 0.5);
+        box-shadow: 0 0 15px rgba(30, 144, 255, 0.2);
+      }
+      @media (min-width: 640px) {
+        .resume-container { padding: 2.5rem 2rem 3rem; }
+        .resume-intro { font-size: 0.9rem; }
+        .skills-grid { grid-template-columns: repeat(3, 1fr); }
+      }
+    `;
+    document.head.appendChild(style);
+    return () => {
+      if (style.parentNode) document.head.removeChild(style);
+    };
+  }, []);
+
+  const experiences = [
+    {
+      role: "AI Systems Engineer",
+      company: "Preciado Tech",
+      date: "2024 - Present",
+      description: "Building FRIDAY, a unified AI operating system with local inference, sub-agent orchestration, and persistent memory. Architecting multi-model routing systems and autonomous research workflows.",
+      tags: ['OpenClaw', 'LLMs', 'System Design', 'Automation']
+    },
+    {
+      role: "Software Engineer",
+      company: "Robotics & Vehicle Tech Company",
+      date: "2022 - 2024",
+      description: "Developed embedded systems and automation tools for vehicle technology. Implemented real-time data processing pipelines and contributed to safety-critical software architecture.",
+      tags: ['Embedded', 'C++', 'Python', 'RTOS']
+    },
+    {
+      role: "Full Stack Developer",
+      company: "Freelance & Contract",
+      date: "2020 - 2022",
+      description: "Built responsive web applications and interactive experiences for clients. Specialized in React, Three.js, and modern JavaScript frameworks.",
+      tags: ['React', 'Node.js', 'Three.js', 'TypeScript']
+    }
+  ];
+
+  const skills = [
+    { category: "Languages", items: "Python, JavaScript, TypeScript, C++, SQL" },
+    { category: "Frontend", items: "React, Next.js, Three.js, Tailwind CSS" },
+    { category: "Backend", items: "Node.js, Express, PostgreSQL, Supabase" },
+    { category: "AI/ML", items: "OpenClaw, Ollama, LLM Routing, Prompt Engineering" },
+    { category: "DevOps", items: "Docker, Linux, Git, CI/CD" },
+    { category: "Hardware", items: "3D Printing, Embedded Systems, ZMK Firmware" }
+  ];
+
   return (
-    <div className="page-container">
-      <PageHeader
-        title="Work Experience"
-        subtitle="Professional Background & Technical Skills"
-      />
-
-      <section className="resume-section">
-        <div className="terminal-container resume-terminal">
-          <div className="terminal-header">
-            <div className="terminal-buttons">
-              <span className="terminal-button red"></span>
-              <span className="terminal-button yellow"></span>
-              <span className="terminal-button green"></span>
+    <PageTransition>
+      <MatrixRainBackground />
+      <ReturnButton to="/" />
+      
+      <div className="resume-editorial">
+        <div className="resume-container">
+          <header className="resume-header">
+            <div className="resume-meta">
+              <span>Resume</span>
+              <span>CV</span>
             </div>
-            <span className="terminal-title">resume@michael:~</span>
-          </div>
+            <h1 className="resume-title">{typedTitle}</h1>
+          </header>
 
-          <div className="terminal-content resume-content">
-            {/* Professional Summary */}
-            <div className="resume-block">
-              <h2 className="resume-heading">
-                <span className="terminal-prompt">&gt;</span> Professional Summary
-              </h2>
-              <p className="resume-text">
-                Self-taught software developer and IT specialist who keeps systems fast, stable, and easy to use.
-                Strong in troubleshooting, device support (Zebra printers), and cutting downtime with repeatable fixes.
-                Comfortable across Python, JavaScript, Linux (Ubuntu/Arch), Docker, Git, and modern web tools.
-                Actively building AI-powered workflows using Ollama, OpenAI, Notion, and HubSpot to automate tasks
-                and surface insights. Known for quick problem-solving, clear communication, and delivering small,
-                reliable solutions that make teams more productive.
-              </p>
-            </div>
+          <p className="resume-intro">
+            Software engineer specializing in AI systems, automation, and human-computer interaction. 
+            Currently building the future of personal AI at Preciado Tech.
+          </p>
 
-            {/* Technical Skills */}
-            <div className="resume-block">
-              <h2 className="resume-heading">
-                <span className="terminal-prompt">&gt;</span> Technical Skills
-              </h2>
-              <div className="skills-grid">
-                <div className="skill-item">
-                  <span className="skill-label">Programming & Scripting:</span>
-                  <span className="skill-value">Python (Pandas, NumPy, Matplotlib), JavaScript, SQL, HTML, CSS, Bash</span>
+          <section className="resume-section">
+            <h2 className="resume-section-title">Work Experience</h2>
+            {experiences.map((exp, index) => (
+              <div key={index} className="experience-card">
+                <div className="experience-header">
+                  <h3 className="experience-role">{exp.role}</h3>
+                  <span className="experience-date">{exp.date}</span>
                 </div>
-                <div className="skill-item">
-                  <span className="skill-label">Web Development & Design:</span>
-                  <span className="skill-value">Responsive design using HTML/CSS/JavaScript; familiar with React, Vite, Figma, and Adobe XD</span>
+                <div className="experience-company">{exp.company}</div>
+                <p className="experience-desc">{exp.description}</p>
+                <div className="experience-tags">
+                  {exp.tags.map((tag, i) => (
+                    <span key={i} className="experience-tag">{tag}</span>
+                  ))}
                 </div>
-                <div className="skill-item">
-                  <span className="skill-label">Artificial Intelligence:</span>
-                  <span className="skill-value">Working knowledge of AI tools and frameworks. Hands-on experience running local models with Ollama, LM Studio, and OpenWebUI. Skilled in prompt engineering and connecting AI workflows with Notion, HubSpot, and APIs for automation</span>
+              </div>
+            ))}
+          </section>
+
+          <section className="resume-section">
+            <h2 className="resume-section-title">Skills</h2>
+            <div className="skills-grid">
+              {skills.map((skill, index) => (
+                <div key={index} className="skill-category">
+                  <h3 className="skill-category-title">{skill.category}</h3>
+                  <p className="skill-list">{skill.items}</p>
                 </div>
-                <div className="skill-item">
-                  <span className="skill-label">Software & Tools:</span>
-                  <span className="skill-value">Linux (Ubuntu, Arch), Docker, Cloudflare tunnels, VS Code, Git, Notion, HubSpot, Tableau, Figma, Blender, 3D Printing Software (Orca Slicer, Ultimaker), Splunk queries and dashboards. Experience with in-house factory systems and Zebra printer troubleshooting</span>
-                </div>
-
-              </div>
+              ))}
             </div>
+          </section>
 
-            {/* Professional Experience */}
-            <div className="resume-block">
-              <h2 className="resume-heading">
-                <span className="terminal-prompt">&gt;</span> Professional Experience
-              </h2>
-
-              {/* Tesla - IT Application Support */}
-              <div className="job-entry">
-                <p className="terminal-text">
-                  <span className="job-meta">May 2021 – Present</span>
-                </p>
-                <p className="terminal-text terminal-indent">
-                  <h3 className="job-title">IT Application Support Technician</h3>
-                </p>
-                <p className="terminal-text terminal-indent">
-                  <span className="job-location">Tesla – Lathrop, CA</span>
-                </p>
-                <p className="terminal-text blank-line"></p>
-                <p className="terminal-text terminal-indent-double">
-                  <span className="bullet-point">▹</span> <strong>Industrial Engineering Support:</strong> Assisted in streamlining operations and optimizing systems, leading to a 15% increase in production efficiency.
-                </p>
-                <p className="terminal-text terminal-indent-double">
-                  <span className="bullet-point">▹</span> <strong>Controls Engineering Support:</strong> Troubleshot and maintained automated systems, reducing downtime by 20%.
-                </p>
-                <p className="terminal-text terminal-indent-double">
-                  <span className="bullet-point">▹</span> <strong>Quality Engineering Support:</strong> Ensured software and hardware solutions met high-quality standards, contributing to a 25% decrease in defect rates.
-                </p>
-                <p className="terminal-text terminal-indent-double">
-                  <span className="bullet-point">▹</span> <strong>Process Engineering Support:</strong> Facilitated seamless integration and effective workflow management, enhancing cross-departmental collaboration.
-                </p>
-                <p className="terminal-text terminal-indent-double">
-                  <span className="bullet-point">▹</span> <strong>IT Manufacturing Support:</strong> Provided dedicated IT support to manufacturing operations, ensuring system reliability and efficiency.
-                </p>
-                <p className="terminal-text blank-line"></p>
-
-                {/* Air Force */}
-                <p className="terminal-text">
-                  <span className="job-meta">December 2017 – May 2021</span>
-                </p>
-                <p className="terminal-text terminal-indent">
-                  <h3 className="job-title">Active Duty Air Force (Air Transportation Specialist)</h3>
-                </p>
-                <p className="terminal-text terminal-indent">
-                  <span className="job-location">United States Air Force – Joint Base Pearl-Harbor Hickam / Joint Base Lewis-McChord</span>
-                </p>
-                <p className="terminal-text blank-line"></p>
-                <p className="terminal-text terminal-indent-double">
-                  <span className="bullet-point">▹</span> Managed and coordinated the safe and efficient transportation of personnel and cargo, ensuring compliance with strict military regulations and safety standards.
-                </p>
-                <p className="terminal-text terminal-indent-double">
-                  <span className="bullet-point">▹</span> Operated and maintained specialized equipment, demonstrating proficiency in logistics and supply chain operations.
-                </p>
-                <p className="terminal-text terminal-indent-double">
-                  <span className="bullet-point">▹</span> Trained and supervised junior personnel, fostering teamwork and enhancing operational readiness.
-                </p>
-              </div>
+          <section className="resume-section">
+            <h2 className="resume-section-title">Education</h2>
+            <div className="education-card">
+              <h3 className="education-degree">BS Computer Science</h3>
+              <div className="education-school">Wilmington University</div>
+              <div className="education-date">2020 - 2024</div>
             </div>
+          </section>
 
-            {/* Certificates & Courses */}
-            <div className="resume-block">
-              <h2 className="resume-heading">
-                <span className="terminal-prompt">&gt;</span> Certificates & Courses
-              </h2>
-
-              {/* Certificate Entry 1 */}
-              <div className="job-entry">
-                <p className="terminal-text">
-                  <span className="job-meta">Issued November 2025</span>
-                </p>
-                <p className="terminal-text terminal-indent">
-                  <h3 className="job-title">Intro to AI Agents Course</h3>
-                </p>
-                <p className="terminal-text terminal-indent">
-                  <span className="job-location">Codecademy</span>
-                </p>
-                <p className="terminal-text blank-line"></p>
-              </div>
-
-              {/* Certificate Entry 2 */}
-              <div className="job-entry">
-                <p className="terminal-text">
-                  <span className="job-meta">Issued November 2025</span>
-                </p>
-                <p className="terminal-text terminal-indent">
-                  <h3 className="job-title">Intro to Vibe Coding Course</h3>
-                </p>
-                <p className="terminal-text terminal-indent">
-                  <span className="job-location">Codecademy</span>
-                </p>
-                <p className="terminal-text blank-line"></p>
-              </div>
-
-              {/* Certificate Entry 3 */}
-              <div className="job-entry">
-                <p className="terminal-text">
-                  <span className="job-meta">Issued April 2025</span>
-                </p>
-                <p className="terminal-text terminal-indent">
-                  <h3 className="job-title">AI Prompt Engineering</h3>
-                </p>
-                <p className="terminal-text terminal-indent">
-                  <span className="job-location">Chegg Inc.</span>
-                </p>
-                <p className="terminal-text terminal-indent-double">
-                  <span className="bullet-point">▹</span> Skills: AI for Project Management; Prompt Design.
-                </p>
-                <p className="terminal-text blank-line"></p>
-              </div>
-
-              {/* Certificate Entry 4 */}
-              <div className="job-entry">
-                <p className="terminal-text">
-                  <span className="job-meta">Issued March 2025</span>
-                </p>
-                <p className="terminal-text terminal-indent">
-                  <h3 className="job-title">Introduction to Artificial Intelligence (AI)</h3>
-                </p>
-                <p className="terminal-text terminal-indent">
-                  <span className="job-location">IBM</span>
-                </p>
-                <p className="terminal-text terminal-indent-double">
-                  <span className="bullet-point">▹</span> Credential ID: WXJ5EWMDBQR.
-                </p>
-                <p className="terminal-text blank-line"></p>
-              </div>
-            </div>
-
-            {/* Terminal prompt line */}
-            <div className="terminal-cursor-line" style={{ marginTop: '2rem' }}>
-              <span className="terminal-prompt">$</span>
-              <span className="terminal-cursor visible">_</span>
-            </div>
-          </div>
+          <footer className="resume-footer">
+            <p>Available for consulting and collaboration</p>
+            <a href="/resume.pdf" className="resume-download" target="_blank">Download PDF</a>
+          </footer>
         </div>
-      </section>
-    </div>
+      </div>
+    </PageTransition>
   );
 }
 
 export default Resume;
-

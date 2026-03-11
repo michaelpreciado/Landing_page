@@ -46,9 +46,11 @@ const BlogPostCard = React.memo(({ post, index }) => {
           )}
         </div>
         <div className="blog-card-content">
-          <span className="blog-card-category">{post.categories[0]}</span>
+          <div className="blog-card-meta-row">
+            <span className="blog-card-category">{post.categories[0]}</span>
+            <span className="blog-card-date">{formatDate(post.date)}</span>
+          </div>
           <h3 className="blog-card-title">{post.title}</h3>
-          <p className="blog-card-date">{formatDate(post.date)}</p>
           <p className="blog-card-excerpt">{post.excerpt}</p>
         </div>
       </Link>
@@ -83,6 +85,7 @@ function Blog() {
         margin-bottom: 1.5rem;
         padding-bottom: 1rem;
         border-bottom: 1px solid rgba(30, 144, 255, 0.2);
+        box-shadow: 0 1px 0 rgba(30, 144, 255, 0.1);
       }
       .blog-meta {
         display: flex;
@@ -111,6 +114,7 @@ function Blog() {
         letter-spacing: 0.02em;
         margin: 0;
         color: #FFFFFF;
+        text-shadow: 0 0 20px rgba(30, 144, 255, 0.3);
       }
       .blog-intro {
         max-width: 600px;
@@ -126,7 +130,7 @@ function Blog() {
         gap: 0.75rem;
       }
       .blog-card-editorial {
-        background: rgba(10, 25, 47, 0.5);
+        background: rgba(10, 25, 47, 0.4);
         border: 1px solid rgba(30, 144, 255, 0.15);
         border-radius: 8px;
         overflow: hidden;
@@ -134,43 +138,56 @@ function Blog() {
         text-decoration: none;
         color: inherit;
         display: block;
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
       }
       .blog-card-editorial:hover {
-        border-color: rgba(30, 144, 255, 0.35);
-        background: rgba(10, 25, 47, 0.7);
-        transform: translateY(-2px);
+        border-color: rgba(30, 144, 255, 0.4);
+        background: rgba(10, 25, 47, 0.6);
+        box-shadow: 
+          0 0 20px rgba(30, 144, 255, 0.2),
+          inset 0 0 20px rgba(30, 144, 255, 0.05);
       }
       .blog-card-image-wrap {
         aspect-ratio: 16/9;
-        background: rgba(5, 12, 28, 0.6);
+        background: rgba(5, 12, 28, 0.5);
         display: flex;
         align-items: center;
         justify-content: center;
         overflow: hidden;
+        border-bottom: 1px solid rgba(30, 144, 255, 0.1);
       }
       .blog-card-emoji {
         font-size: 2.5rem;
+        filter: drop-shadow(0 0 10px rgba(30, 144, 255, 0.3));
       }
       .blog-card-content {
         padding: 0.875rem;
+      }
+      .blog-card-meta-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 0.4rem;
       }
       .blog-card-category {
         font-size: 0.6rem;
         color: #1E90FF;
         text-transform: uppercase;
         letter-spacing: 0.08em;
+        text-shadow: 0 0 10px rgba(30, 144, 255, 0.3);
+      }
+      .blog-card-date {
+        font-size: 0.6rem;
+        color: #8B8680;
       }
       .blog-card-title {
         font-family: 'Playfair Display', serif;
         font-size: 0.9rem;
         color: #FFFFFF;
-        margin: 0.25rem 0 0.15rem;
+        margin-bottom: 0.3rem;
         line-height: 1.3;
-      }
-      .blog-card-date {
-        font-size: 0.65rem;
-        color: #8B8680;
-        margin-bottom: 0.4rem;
+        text-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
       }
       .blog-card-excerpt {
         font-size: 0.75rem;
@@ -202,6 +219,9 @@ function Blog() {
     };
   }, []);
 
+  // Sort by date (most recent first)
+  const sortedPosts = [...blogPosts].sort((a, b) => new Date(b.date) - new Date(a.date));
+
   return (
     <PageTransition>
       <MatrixRainBackground />
@@ -224,7 +244,7 @@ function Blog() {
           </p>
 
           <div className="blog-grid">
-            {blogPosts.map((post, index) => (
+            {sortedPosts.map((post, index) => (
               <BlogPostCard key={post.slug} post={post} index={index} />
             ))}
           </div>
