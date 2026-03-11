@@ -1,20 +1,24 @@
 import React, { useEffect } from 'react';
+import MatrixRainBackground from './MatrixRainBackground';
 import PageTransition from './PageTransition.jsx';
 import ReturnButton from './ReturnButton.jsx';
 import useTypewriter from '../utils/hooks/useTypewriter';
+import { autoApplyLiquidGlass } from '../utils/liquidGlass.js';
 
 function OpenClawWorkflow() {
   const typedTitle = useTypewriter('OPENCLAW WORKFLOW', { speed: 40, scrambleOnMount: true });
 
   useEffect(() => {
+    autoApplyLiquidGlass();
+
     const style = document.createElement('style');
     style.textContent = `
       @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500&display=swap');
       
       .openclaw-editorial {
         min-height: 100vh;
-        background: #F5F3EF;
-        color: #1A1A1A;
+        position: relative;
+        color: #E8E4DC;
         font-family: 'Inter', sans-serif;
         font-weight: 300;
         line-height: 1.8;
@@ -24,13 +28,15 @@ function OpenClawWorkflow() {
         max-width: 900px;
         margin: 0 auto;
         padding: 4rem 2rem;
+        position: relative;
+        z-index: 1;
       }
 
       .openclaw-header {
         text-align: center;
         margin-bottom: 3rem;
         padding-bottom: 2rem;
-        border-bottom: 1px solid #D4D0C8;
+        border-bottom: 1px solid rgba(30, 144, 255, 0.3);
       }
 
       .openclaw-meta {
@@ -44,14 +50,29 @@ function OpenClawWorkflow() {
         margin-bottom: 2rem;
       }
 
+      .openclaw-meta a {
+        color: #1E90FF;
+        text-decoration: none;
+        border: 1px solid rgba(30, 144, 255, 0.4);
+        padding: 0.3rem 0.8rem;
+        border-radius: 4px;
+        transition: all 0.2s ease;
+      }
+
+      .openclaw-meta a:hover {
+        background: rgba(30, 144, 255, 0.1);
+        border-color: #1E90FF;
+      }
+
       .openclaw-title {
         font-family: 'Playfair Display', serif;
         font-size: clamp(2.5rem, 8vw, 5rem);
         font-weight: 500;
         letter-spacing: -0.02em;
         margin: 0;
-        color: #1A1A1A;
+        color: #FFFFFF;
         line-height: 1.1;
+        text-shadow: 0 0 40px rgba(30, 144, 255, 0.3);
       }
 
       .openclaw-intro {
@@ -66,7 +87,7 @@ function OpenClawWorkflow() {
         font-size: 0.95rem;
         text-align: justify;
         hyphens: auto;
-        color: #4A4A4A;
+        color: #B8B0A0;
       }
 
       .openclaw-intro-text p {
@@ -79,17 +100,32 @@ function OpenClawWorkflow() {
         gap: 0.5rem;
       }
 
-      .grid-placeholder {
+      .grid-image-placeholder {
         aspect-ratio: 1;
-        background: #E8E4DC;
-        border-radius: 2px;
+        background: rgba(5, 12, 28, 0.8);
+        border: 1px solid rgba(30, 144, 255, 0.2);
+        border-radius: 4px;
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 0.65rem;
-        color: #A8A49C;
+        font-size: 0.6rem;
+        color: #5A8FC0;
         text-transform: uppercase;
-        letter-spacing: 0.1em;
+        letter-spacing: 0.08em;
+        overflow: hidden;
+        position: relative;
+      }
+
+      .grid-image-placeholder::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(135deg, rgba(30, 144, 255, 0.05) 0%, transparent 50%);
+      }
+
+      .grid-image-placeholder span {
+        position: relative;
+        z-index: 1;
       }
 
       .openclaw-section {
@@ -103,7 +139,8 @@ function OpenClawWorkflow() {
         letter-spacing: -0.01em;
         margin: 0 0 1.5rem 0;
         line-height: 1.2;
-        color: #1A1A1A;
+        color: #FFFFFF;
+        text-shadow: 0 0 30px rgba(30, 144, 255, 0.2);
       }
 
       .openclaw-two-col {
@@ -116,7 +153,7 @@ function OpenClawWorkflow() {
         font-size: 0.95rem;
         text-align: justify;
         hyphens: auto;
-        color: #4A4A4A;
+        color: #B8B0A0;
       }
 
       .openclaw-text p {
@@ -131,9 +168,9 @@ function OpenClawWorkflow() {
 
       .openclaw-list li {
         padding: 0.75rem 0;
-        border-bottom: 1px solid #E8E4DC;
+        border-bottom: 1px solid rgba(30, 144, 255, 0.15);
         font-size: 0.9rem;
-        color: #4A4A4A;
+        color: #B8B0A0;
       }
 
       .openclaw-list li:last-child {
@@ -141,7 +178,7 @@ function OpenClawWorkflow() {
       }
 
       .openclaw-list strong {
-        color: #1A1A1A;
+        color: #FFFFFF;
         font-weight: 500;
       }
 
@@ -157,8 +194,9 @@ function OpenClawWorkflow() {
         letter-spacing: 0.1em;
         text-transform: uppercase;
         padding: 0.4rem 0.8rem;
-        background: #E8E4DC;
-        color: #6A6660;
+        background: rgba(30, 144, 255, 0.1);
+        border: 1px solid rgba(30, 144, 255, 0.3);
+        color: #5A8FC0;
         border-radius: 2px;
       }
 
@@ -176,24 +214,43 @@ function OpenClawWorkflow() {
         margin-top: 3rem;
       }
 
-      .hero-placeholder {
+      .hero-image-placeholder {
         width: 100%;
-        aspect-ratio: 16/9;
-        background: linear-gradient(135deg, #D4CFC5 0%, #B8B0A0 100%);
+        aspect-ratio: 21/9;
+        background: linear-gradient(135deg, rgba(5, 12, 28, 0.9) 0%, rgba(10, 25, 47, 0.95) 100%);
+        border: 1px solid rgba(30, 144, 255, 0.2);
+        border-radius: 8px;
         display: flex;
         align-items: center;
         justify-content: center;
-        color: #8B8680;
+        color: #5A8FC0;
         font-size: 0.85rem;
         letter-spacing: 0.1em;
         text-transform: uppercase;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .hero-image-placeholder::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: 
+          linear-gradient(90deg, rgba(30, 144, 255, 0.03) 1px, transparent 1px),
+          linear-gradient(rgba(30, 144, 255, 0.03) 1px, transparent 1px);
+        background-size: 40px 40px;
+      }
+
+      .hero-image-placeholder span {
+        position: relative;
+        z-index: 1;
       }
 
       .openclaw-footer {
         text-align: center;
         margin-top: 4rem;
         padding-top: 2rem;
-        border-top: 1px solid #D4D0C8;
+        border-top: 1px solid rgba(30, 144, 255, 0.2);
         font-size: 0.8rem;
         color: #8B8680;
       }
@@ -221,15 +278,16 @@ function OpenClawWorkflow() {
 
   return (
     <PageTransition>
+      <MatrixRainBackground />
+      <ReturnButton to="/projects" />
+      
       <div className="openclaw-editorial">
-        <ReturnButton to="/projects" />
-        
         <article className="openclaw-container">
           <header className="openclaw-header">
             <div className="openclaw-meta">
-              <span>#001</span>
+              <a href="/">#001 Home</a>
               <span>NEW POST</span>
-              <span>v1.0</span>
+              <span>V1.0</span>
             </div>
             <h1 className="openclaw-title">{typedTitle}</h1>
           </header>
@@ -247,15 +305,15 @@ function OpenClawWorkflow() {
               </p>
             </div>
             <div className="openclaw-image-grid">
-              <div className="grid-placeholder">Arch</div>
-              <div className="grid-placeholder">Flow</div>
-              <div className="grid-placeholder">Stack</div>
-              <div className="grid-placeholder">Agent</div>
-              <div className="grid-placeholder">Model</div>
-              <div className="grid-placeholder">Memory</div>
-              <div className="grid-placeholder">Telegram</div>
-              <div className="grid-placeholder">Obsidian</div>
-              <div className="grid-placeholder">Swarm</div>
+              <div className="grid-image-placeholder"><span>[IMG: Architecture]</span></div>
+              <div className="grid-image-placeholder"><span>[IMG: Data Flow]</span></div>
+              <div className="grid-image-placeholder"><span>[IMG: Tech Stack]</span></div>
+              <div className="grid-image-placeholder"><span>[IMG: Agent Tree]</span></div>
+              <div className="grid-image-placeholder"><span>[IMG: Model Router]</span></div>
+              <div className="grid-image-placeholder"><span>[IMG: Memory Graph]</span></div>
+              <div className="grid-image-placeholder"><span>[IMG: Telegram UI]</span></div>
+              <div className="grid-image-placeholder"><span>[IMG: Obsidian Vault]</span></div>
+              <div className="grid-image-placeholder"><span>[IMG: Swarm Viz]</span></div>
             </div>
           </section>
 
@@ -365,7 +423,9 @@ function OpenClawWorkflow() {
           </section>
 
           <div className="openclaw-hero">
-            <div className="hero-placeholder">[System Architecture Visualization]</div>
+            <div className="hero-image-placeholder">
+              <span>[System Architecture Visualization]</span>
+            </div>
           </div>
 
           <footer className="openclaw-footer">
