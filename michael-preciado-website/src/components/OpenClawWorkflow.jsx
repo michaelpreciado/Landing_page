@@ -41,27 +41,14 @@ function OpenClawWorkflow() {
 
       .openclaw-meta {
         display: flex;
-        justify-content: space-between;
+        justify-content: center;
         align-items: center;
+        gap: 2rem;
         font-size: 0.75rem;
         letter-spacing: 0.15em;
         text-transform: uppercase;
         color: #8B8680;
         margin-bottom: 2rem;
-      }
-
-      .openclaw-meta a {
-        color: #1E90FF;
-        text-decoration: none;
-        border: 1px solid rgba(30, 144, 255, 0.4);
-        padding: 0.3rem 0.8rem;
-        border-radius: 4px;
-        transition: all 0.2s ease;
-      }
-
-      .openclaw-meta a:hover {
-        background: rgba(30, 144, 255, 0.1);
-        border-color: #1E90FF;
       }
 
       .openclaw-title {
@@ -272,7 +259,6 @@ function OpenClawWorkflow() {
         <article className="openclaw-container">
           <header className="openclaw-header">
             <div className="openclaw-meta">
-              <a href="/">#001 Home</a>
               <span>NEW POST</span>
               <span>V1.0</span>
             </div>
