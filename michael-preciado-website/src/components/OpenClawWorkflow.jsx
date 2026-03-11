@@ -415,8 +415,8 @@ function OpenClawWorkflow() {
                     <div className="model-desc">Fallback · Thermal</div>
                   </div>
                   <div className="model-box cloud">
-                    <div className="model-name">Claude Opus</div>
-                    <div className="model-desc">Complex tasks</div>
+                    <div className="model-name">Kimi K2.5</div>
+                    <div className="model-desc">High-stakes reasoning</div>
                   </div>
                   <div className="model-box cloud">
                     <div className="model-name">Gemini</div>
@@ -432,7 +432,7 @@ function OpenClawWorkflow() {
                 Local models handle 90% of interactions with sub-5-second response times.
               </p>
               <p>
-                High-stakes reasoning routes to Claude, vision tasks to Gemini. Smaller Qwen 
+                Kimi K2.5 handles high-stakes reasoning, vision tasks to Gemini. Smaller Qwen 
                 variants activate during thermal throttling or lighter workloads.
               </p>
             </div>
