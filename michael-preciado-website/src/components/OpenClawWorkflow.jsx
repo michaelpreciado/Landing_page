@@ -104,6 +104,15 @@ function OpenClawWorkflow() {
         padding-left: 1.1rem;
       }
 
+      .template-block code {
+        background: rgba(30, 144, 255, 0.15);
+        padding: 0.15rem 0.4rem;
+        border-radius: 4px;
+        font-family: 'Fira Code', monospace;
+        font-size: 0.85em;
+        color: #1e90ff;
+      }
+
       .openclaw-actions {
         display: flex;
         justify-content: center;
@@ -116,6 +125,28 @@ function OpenClawWorkflow() {
 
       .openclaw-actions button {
         cursor: default;
+      }
+
+      .architecture-diagram {
+        grid-column: 1 / -1;
+        text-align: center;
+        padding: 1.5rem;
+        background: rgba(5, 12, 28, 0.5);
+        border-radius: 14px;
+        border: 1px dashed rgba(30, 144, 255, 0.3);
+      }
+
+      .architecture-diagram img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 8px;
+        opacity: 0.8;
+      }
+
+      .architecture-placeholder {
+        color: var(--medium-text);
+        font-style: italic;
+        padding: 2rem;
       }
 
       @media (max-width: 760px) {
@@ -142,12 +173,13 @@ function OpenClawWorkflow() {
         <header className="openclaw-header">
           <h1 className="openclaw-title">{typedTitle}</h1>
           <p className="openclaw-subtitle">
-            A dedicated project container using an article-style layout. This is a polished placeholder template ready
-            for your final OpenClaw case study content.
+            A unified AI operating system built on OpenClaw. One intelligent persona (FRIDAY) 
+            orchestrates sub-agents, swarms, and local/cloud models to automate research, 
+            engineering, and daily workflows.
           </p>
         </header>
 
-        <section className="openclaw-terminal-card" aria-label="OpenClaw workflow project template">
+        <section className="openclaw-terminal-card" aria-label="OpenClaw workflow architecture">
           <div className="terminal-window-header">
             <div className="terminal-window-buttons">
               <span className="red"></span>
@@ -159,32 +191,75 @@ function OpenClawWorkflow() {
           <div className="openclaw-content">
             <div className="openclaw-template-grid">
               <section className="template-block">
-                <h2>&gt; Project Goal</h2>
-                <p>[Placeholder — Define the problem, target user, and expected business or technical outcome.]</p>
+                <h2>&gt; System Architecture</h2>
+                <p>
+                  <strong>FRIDAY</strong> serves as the unified intelligence layer — one voice 
+                  that orchestrates specialized sub-agents and temporary swarms. All execution 
+                  flows through a safety tier system (0-3) with explicit confirmations for 
+                  high-risk operations.
+                </p>
               </section>
 
               <section className="template-block">
-                <h2>&gt; Workflow Steps</h2>
+                <h2>&gt; Sub-Agent Ecosystem</h2>
                 <ul>
-                  <li>[Placeholder — Step 1: Input capture and validation]</li>
-                  <li>[Placeholder — Step 2: OpenClaw processing + automations]</li>
-                  <li>[Placeholder — Step 3: Output delivery + quality checks]</li>
+                  <li><strong>FRIDAY.CREATOR</strong> — Strategy & monetization</li>
+                  <li><strong>FRIDAY.RESEARCH</strong> — Technical deep-dives</li>
+                  <li><strong>FRIDAY.STOCKS</strong> — Market analysis</li>
+                  <li><strong>FRIDAY.ENGINEERING</strong> — Code & robotics</li>
                 </ul>
               </section>
 
               <section className="template-block">
-                <h2>&gt; Stack & Integrations</h2>
-                <p>[Placeholder — List OpenClaw components, APIs, orchestration tools, and storage integrations.]</p>
+                <h2>&gt; Model Routing Strategy</h2>
+                <p>
+                  <strong>Local-first policy:</strong> Qwen 3.5 models (0.8B–9B) for routine tasks. 
+                  Cloud models (Kimi K2.5, Claude) for complex reasoning. Local Ollama swarm 
+                  with <code>deepseek-r1:14b</code> and <code>qwen2.5-coder:14b</code> for 
+                  parallel execution.
+                </p>
               </section>
 
               <section className="template-block">
-                <h2>&gt; Results & Next Iteration</h2>
-                <p>[Placeholder — Add baseline metrics, wins, lessons learned, and roadmap items.]</p>
+                <h2>&gt; Communication Layer</h2>
+                <ul>
+                  <li><strong>Primary:</strong> Telegram (text + voice)</li>
+                  <li><strong>Desktop:</strong> Wake word "Friday" + Whisper STT</li>
+                  <li><strong>Memory:</strong> Obsidian vault with daily logs</li>
+                  <li><strong>UI:</strong> Friday Command Center (React + Vite)</li>
+                </ul>
+              </section>
+
+              <section className="template-block">
+                <h2>&gt; Daily Workflow Flow</h2>
+                <ul>
+                  <li><strong>Heartbeat checks</strong> — Calendar, stocks, news (2-4× daily)</li>
+                  <li><strong>Task ingestion</strong> — Telegram → FRIDAY classification</li>
+                  <li><strong>Agent dispatch</strong> — Spawn swarms or sub-agents</li>
+                  <li><strong>Execution & log</strong> — Output + Obsidian archive</li>
+                </ul>
+              </section>
+
+              <section className="template-block">
+                <h2>&gt; Safety & Permissions</h2>
+                <p>
+                  <strong>Tier 0:</strong> Read-only (default)<br/>
+                  <strong>Tier 1:</strong> File creation, safe commands<br/>
+                  <strong>Tier 2:</strong> Installs, config changes (confirm)<br/>
+                  <strong>Tier 3:</strong> Sudo, deletes, financial (explicit typed confirm)
+                </p>
+              </section>
+
+              <section className="architecture-diagram">
+                <div className="architecture-placeholder">
+                  [Architecture Diagram Placeholder]<br/>
+                  <small>FRIDAY → Sub-Agents → Swarms → Model Router → Execution → Obsidian Log</small>
+                </div>
               </section>
             </div>
 
             <div className="openclaw-actions">
-              <button className="project-button project-button-primary">Template Preview (Placeholder)</button>
+              <button className="project-button project-button-primary">System Documentation</button>
             </div>
           </div>
         </section>
