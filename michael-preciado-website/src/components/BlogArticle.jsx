@@ -1,18 +1,30 @@
 import React, { useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
 import MatrixRainBackground from './MatrixRainBackground';
 import PageTransition from './PageTransition.jsx';
 import ReturnButton from './ReturnButton.jsx';
-import useTypewriter from '../utils/hooks/useTypewriter';
+import LazyImage from './LazyImage';
+import { blogPosts } from '../data/blogData.js';
 import { autoApplyLiquidGlass } from '../utils/liquidGlass.js';
 
-function BlogArticle() {
-  const { id } = useParams();
-  const typedTitle = useTypewriter('BUILDING FRIDAY', { speed: 40, scrambleOnMount: true });
+const formatDate = (dateString) => {
+  return new Date(dateString).toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+    timeZone: 'UTC',
+  });
+};
 
+function BlogArticle() {
+  const { slug } = useParams();
+  const post = blogPosts.find(p => p.slug === slug);
+  
   useEffect(() => {
     autoApplyLiquidGlass();
-
+    window.scrollTo(0, 0);
+    
     const style = document.createElement('style');
     style.textContent = `
       @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500&display=swap');
@@ -25,152 +37,287 @@ function BlogArticle() {
         font-weight: 300;
         line-height: 1.7;
       }
-
       .article-container {
-        max-width: 900px;
+        max-width: 800px;
         margin: 0 auto;
-        padding: 3rem 1.25rem;
+        padding: 2rem 1.25rem 3rem;
         position: relative;
         z-index: 1;
       }
-
       .article-header {
         text-align: center;
-        margin-bottom: 2rem;
-        padding-bottom: 1.5rem;
-        border-bottom: 1px solid rgba(30, 144, 255, 0.3);
+        margin-bottom: 1.5rem;
+        padding-bottom: 1rem;
+        border-bottom: 1px solid rgba(30, 144, 255, 0.2);
       }
-
       .article-meta {
         display: flex;
         justify-content: center;
         align-items: center;
-        gap: 1.5rem;
-        font-size: 0.7rem;
-        letter-spacing: 0.12em;
+        gap: 1rem;
+        font-size: 0.65rem;
+        letter-spacing: 0.15em;
         text-transform: uppercase;
+        color: #8B8680;
+        margin-bottom: 0.75rem;
+      }
+      .article-meta span {
+        position: relative;
+      }
+      .article-meta span:not(:last-child)::after {
+        content: '·';
+        position: absolute;
+        right: -0.75rem;
+        color: rgba(30, 144, 255, 0.4);
+      }
+      .article-title {
+        font-family: 'Playfair Display', serif;
+        font-size: clamp(1.5rem, 5vw, 2.5rem);
+        font-weight: 500;
+        letter-spacing: 0.01em;
+        margin: 0;
+        color: #FFFFFF;
+        line-height: 1.2;
+      }
+      .article-date {
+        text-align: center;
+        font-size: 0.75rem;
         color: #8B8680;
         margin-bottom: 1.5rem;
       }
-
-      .article-title {
-        font-family: 'Playfair Display', serif;
-        font-size: clamp(1.8rem, 7vw, 3.5rem);
-        font-weight: 500;
-        letter-spacing: -0.01em;
-        margin: 0;
-        color: #FFFFFF;
-        line-height: 1.1;
-        text-shadow: 0 0 30px rgba(30, 144, 255, 0.3);
-      }
-
-      .article-date {
-        text-align: center;
-        font-size: 0.7rem;
-        color: #8B8680;
-        text-transform: uppercase;
-        letter-spacing: 0.1em;
-        margin-bottom: 2rem;
-      }
-
       .article-hero {
         width: 100%;
         aspect-ratio: 21/9;
         background: rgba(5, 12, 28, 0.6);
-        border: 1px solid rgba(30, 144, 255, 0.2);
+        border: 1px solid rgba(30, 144, 255, 0.15);
         border-radius: 8px;
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 0.8rem;
-        color: #5A8FC0;
-        text-transform: uppercase;
-        letter-spacing: 0.08em;
         margin-bottom: 2rem;
+        overflow: hidden;
       }
-
-      .article-two-col {
-        column-count: 2;
-        column-gap: 1.5rem;
-        text-align: left;
+      .article-hero-emoji {
+        font-size: 4rem;
+      }
+      .article-content {
         color: #B8B0A0;
-        font-size: 0.8rem;
-        line-height: 1.6;
-        margin: 2rem 0;
+        font-size: 0.9rem;
+        line-height: 1.8;
       }
-
-      .article-two-col p {
-        margin: 0 0 1rem 0;
-        break-inside: avoid;
-      }
-
-      .article-section {
-        margin: 2.5rem 0;
-      }
-
-      .article-section-header {
+      .article-content h2 {
         font-family: 'Playfair Display', serif;
-        font-size: clamp(1.3rem, 4vw, 2.2rem);
-        font-weight: 500;
-        letter-spacing: -0.01em;
-        margin: 0 0 1rem 0;
-        line-height: 1.2;
+        font-size: 1.3rem;
         color: #FFFFFF;
-        text-shadow: 0 0 20px rgba(30, 144, 255, 0.2);
+        margin: 2rem 0 1rem;
+        padding-bottom: 0.5rem;
+        border-bottom: 1px solid rgba(30, 144, 255, 0.2);
       }
-
-      .article-image {
-        width: 100%;
-        aspect-ratio: 16/9;
+      .article-content h3 {
+        font-family: 'Playfair Display', serif;
+        font-size: 1.1rem;
+        color: #FFFFFF;
+        margin: 1.5rem 0 0.75rem;
+      }
+      .article-content p {
+        margin-bottom: 1rem;
+      }
+      .article-content strong {
+        color: #FFFFFF;
+        font-weight: 500;
+      }
+      .article-content em {
+        color: #D0D0D0;
+      }
+      .article-content ul, .article-content ol {
+        margin: 1rem 0;
+        padding-left: 1.5rem;
+      }
+      .article-content li {
+        margin-bottom: 0.5rem;
+      }
+      .article-content blockquote {
+        border-left: 3px solid rgba(30, 144, 255, 0.4);
+        padding-left: 1rem;
+        margin: 1.5rem 0;
+        color: #D0D0D0;
+        font-style: italic;
+      }
+      .article-content code {
+        background: rgba(30, 144, 255, 0.1);
+        padding: 0.2rem 0.4rem;
+        border-radius: 3px;
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 0.85em;
+        color: #1E90FF;
+      }
+      .article-content pre {
+        background: rgba(5, 12, 28, 0.8);
+        padding: 1rem;
+        border-radius: 6px;
+        overflow-x: auto;
+        margin: 1rem 0;
+      }
+      .article-content pre code {
+        background: none;
+        padding: 0;
+      }
+      .article-footer {
+        margin-top: 3rem;
+        padding-top: 1.5rem;
+        border-top: 1px solid rgba(30, 144, 255, 0.15);
+      }
+      .article-nav {
+        display: flex;
+        justify-content: space-between;
+        gap: 1rem;
+      }
+      .article-nav-link {
+        flex: 1;
+        padding: 0.75rem;
         background: rgba(10, 25, 47, 0.6);
         border: 1px solid rgba(30, 144, 255, 0.2);
         border-radius: 6px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 0.7rem;
-        color: #5A8FC0;
+        color: #B8B0A0;
+        text-decoration: none;
+        font-size: 0.8rem;
+        transition: all 0.2s ease;
+      }
+      .article-nav-link:hover {
+        border-color: rgba(30, 144, 255, 0.4);
+        background: rgba(10, 25, 47, 0.8);
+      }
+      .article-nav-link.next {
+        text-align: right;
+      }
+      .article-nav-label {
+        font-size: 0.65rem;
+        color: #8B8680;
         text-transform: uppercase;
-        margin: 1.5rem 0;
+        letter-spacing: 0.08em;
+        display: block;
+        margin-bottom: 0.25rem;
       }
-
-      .article-handle {
+      .article-nav-title {
+        color: #FFFFFF;
+      }
+      .article-not-found {
         text-align: center;
-        margin: 2rem 0;
+        padding: 4rem 2rem;
+      }
+      .article-not-found h2 {
         font-family: 'Playfair Display', serif;
-        font-size: 0.95rem;
-        color: #8B8680;
-        font-style: italic;
+        font-size: 1.5rem;
+        color: #FFFFFF;
+        margin-bottom: 1rem;
       }
-
-      .article-footer {
-        text-align: center;
-        margin-top: 2.5rem;
-        padding-top: 1.25rem;
-        border-top: 1px solid rgba(30, 144, 255, 0.15);
-        font-size: 0.7rem;
-        color: #8B8680;
+      .article-not-found p {
+        color: #B8B0A0;
+        margin-bottom: 1.5rem;
       }
-
+      .article-not-found a {
+        color: #1E90FF;
+        text-decoration: none;
+      }
       @media (min-width: 640px) {
-        .article-container {
-          padding: 3rem 2rem;
-        }
-        
-        .article-two-col {
-          font-size: 0.9rem;
-          column-gap: 2rem;
-        }
+        .article-container { padding: 2.5rem 2rem 3rem; }
+        .article-content { font-size: 1rem; }
       }
     `;
-
     document.head.appendChild(style);
     return () => {
-      if (style.parentNode) {
-        document.head.removeChild(style);
+      if (style.parentNode) document.head.removeChild(style);
+    };
+  }, [slug]);
+
+  if (!post) {
+    return (
+      <PageTransition>
+        <MatrixRainBackground />
+        <ReturnButton to="/blog" />
+        <div className="article-editorial">
+          <div className="article-not-found">
+            <h2>Article Not Found</h2>
+            <p>The article you're looking for doesn't exist.</p>
+            <Link to="/blog">← Back to Blog</Link>
+          </div>
+        </div>
+      </PageTransition>
+    );
+  }
+
+  const currentIndex = blogPosts.findIndex(p => p.slug === slug);
+  const prevPost = currentIndex > 0 ? blogPosts[currentIndex - 1] : null;
+  const nextPost = currentIndex < blogPosts.length - 1 ? blogPosts[currentIndex + 1] : null;
+
+  // Convert markdown-like content to HTML
+  const renderContent = (content) => {
+    if (!content) return null;
+    
+    // Split by lines and process
+    const lines = content.split('\n');
+    const elements = [];
+    let inList = false;
+    let listItems = [];
+    let listType = 'ul';
+    
+    const flushList = () => {
+      if (inList && listItems.length > 0) {
+        const ListTag = listType;
+        elements.push(<ListTag key={`list-${elements.length}`}>{listItems}</ListTag>);
+        listItems = [];
+        inList = false;
       }
     };
-  }, []);
+    
+    lines.forEach((line, idx) => {
+      const trimmed = line.trim();
+      
+      // Headers
+      if (trimmed.startsWith('### ')) {
+        flushList();
+        elements.push(<h3 key={idx}>{trimmed.replace('### ', '')}</h3>);
+      } else if (trimmed.startsWith('## ')) {
+        flushList();
+        elements.push(<h2 key={idx}>{trimmed.replace('## ', '')}</h2>);
+      } else if (trimmed.startsWith('# ')) {
+        flushList();
+        elements.push(<h2 key={idx}>{trimmed.replace('# ', '')}</h2>);
+      } else if (trimmed.startsWith('**') && trimmed.endsWith('**')) {
+        // Bold paragraph
+        flushList();
+        elements.push(<p key={idx}><strong>{trimmed.slice(2, -2)}</strong></p>);
+      } else if (/^\d+\./.test(trimmed)) {
+        // Numbered list
+        if (!inList || listType !== 'ol') {
+          flushList();
+          inList = true;
+          listType = 'ol';
+        }
+        listItems.push(<li key={idx}>{trimmed.replace(/^\d+\.\s*/, '')}</li>);
+      } else if (trimmed.startsWith('- ') || trimmed.startsWith('* ')) {
+        // Bullet list
+        if (!inList || listType !== 'ul') {
+          flushList();
+          inList = true;
+          listType = 'ul';
+        }
+        listItems.push(<li key={idx}>{trimmed.slice(2)}</li>);
+      } else if (trimmed === '') {
+        flushList();
+      } else if (trimmed) {
+        flushList();
+        // Regular paragraph with bold/italic support
+        let processed = trimmed
+          .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+          .replace(/\*(.*?)\*/g, '<em>$1</em>');
+        elements.push(<p key={idx} dangerouslySetInnerHTML={{ __html: processed }} />);
+      }
+    });
+    
+    flushList();
+    return elements;
+  };
 
   return (
     <PageTransition>
@@ -181,66 +328,47 @@ function BlogArticle() {
         <article className="article-container">
           <header className="article-header">
             <div className="article-meta">
-              <span>ARTICLE</span>
-              <span>AI</span>
+              <span>{post.categories[0]}</span>
+              <span>Article</span>
             </div>
-            <h1 className="article-title">{typedTitle}</h1>
+            <h1 className="article-title">{post.title}</h1>
           </header>
 
-          <div className="article-date">March 10, 2026 · 5 min read</div>
+          <div className="article-date">{formatDate(post.date)}</div>
 
-          <div className="article-hero">[Hero Image]</div>
+          <div className="article-hero">
+            {post.heroImage ? (
+              <LazyImage
+                src={post.heroImage}
+                alt={`${post.title} hero`}
+                style={{ width: '100%', height: '100%', objectFit: post.fullImage ? 'contain' : 'cover' }}
+              />
+            ) : post.heroEmoji ? (
+              <span className="article-hero-emoji">{post.heroEmoji}</span>
+            ) : (
+              <span className="article-hero-emoji">📝</span>
+            )}
+          </div>
 
-          <section className="article-two-col">
-            <p>
-              Building a personal AI operating system starts with a clear architecture. 
-              FRIDAY began as an experiment in local inference, evolved into a full 
-              orchestration layer, and continues to grow with each new capability.
-            </p>
-            <p>
-              The core principle: privacy-first design with cloud fallback. Local models 
-              handle routine tasks, while complex reasoning routes to specialized providers. 
-              All memory persists in an Obsidian vault, creating a searchable knowledge graph.
-            </p>
-          </section>
-
-          <section className="article-section">
-            <h2 className="article-section-header">THE FOUNDATION</h2>
-            <div className="article-two-col">
-              <p>
-                OpenClaw provides the backbone — message routing, session management, 
-                and tool integration. Telegram serves as the primary interface, with 
-                voice integration planned for the next iteration.
-              </p>
-              <p>
-                The FRIDAY persona unifies the experience. Rather than switching between 
-                chatbots, you interact with one consistent intelligence that delegates 
-                to specialized sub-agents as needed.
-              </p>
-            </div>
-            <div className="article-image">[Architecture Diagram]</div>
-          </section>
-
-          <section className="article-section">
-            <h2 className="article-section-header">LESSONS LEARNED</h2>
-            <div className="article-two-col">
-              <p>
-                Thermal management proved critical. The RTX 4090 throttles without 
-                aggressive cooling, so custom curves and liquid cooling became essential. 
-                Model selection depends as much on temperature as capability.
-              </p>
-              <p>
-                Memory architecture matters more than expected. Without persistent storage, 
-                each session starts fresh. Obsidian integration transformed FRIDAY from 
-                a stateless tool into a true assistant with continuity.
-              </p>
-            </div>
-          </section>
-
-          <div className="article-handle">@preciado.tech</div>
+          <div className="article-content">
+            {renderContent(post.content)}
+          </div>
 
           <footer className="article-footer">
-            <p>More articles on AI, hardware, and automation</p>
+            <div className="article-nav">
+              {prevPost ? (
+                <Link to={`/blog/${prevPost.slug}`} className="article-nav-link">
+                  <span className="article-nav-label">← Previous</span>
+                  <span className="article-nav-title">{prevPost.title}</span>
+                </Link>
+              ) : <div />}
+              {nextPost ? (
+                <Link to={`/blog/${nextPost.slug}`} className="article-nav-link next">
+                  <span className="article-nav-label">Next →</span>
+                  <span className="article-nav-title">{nextPost.title}</span>
+                </Link>
+              ) : <div />}
+            </div>
           </footer>
         </article>
       </div>
