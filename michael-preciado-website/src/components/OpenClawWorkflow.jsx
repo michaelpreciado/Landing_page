@@ -25,7 +25,7 @@ function OpenClawWorkflow() {
       }
 
       .openclaw-container {
-        max-width: 900px;
+        max-width: 1000px;
         margin: 0 auto;
         padding: 4rem 2rem;
         position: relative;
@@ -75,29 +75,30 @@ function OpenClawWorkflow() {
         text-shadow: 0 0 40px rgba(30, 144, 255, 0.3);
       }
 
-      .openclaw-intro {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 3rem;
+      .openclaw-intro-section {
         margin: 3rem 0;
-        align-items: start;
       }
 
-      .openclaw-intro-text {
-        font-size: 0.95rem;
+      .openclaw-two-col-text {
+        column-count: 2;
+        column-gap: 3rem;
         text-align: justify;
         hyphens: auto;
         color: #B8B0A0;
+        font-size: 0.95rem;
+        line-height: 1.9;
       }
 
-      .openclaw-intro-text p {
+      .openclaw-two-col-text p {
         margin: 0 0 1.5rem 0;
+        break-inside: avoid;
       }
 
       .openclaw-image-grid {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
         gap: 0.5rem;
+        margin: 2rem 0;
       }
 
       .grid-image-placeholder {
@@ -143,21 +144,8 @@ function OpenClawWorkflow() {
         text-shadow: 0 0 30px rgba(30, 144, 255, 0.2);
       }
 
-      .openclaw-two-col {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 3rem;
-      }
-
-      .openclaw-text {
-        font-size: 0.95rem;
-        text-align: justify;
-        hyphens: auto;
-        color: #B8B0A0;
-      }
-
-      .openclaw-text p {
-        margin: 0 0 1.5rem 0;
+      .openclaw-content-block {
+        margin: 2rem 0;
       }
 
       .openclaw-list {
@@ -187,6 +175,7 @@ function OpenClawWorkflow() {
         flex-wrap: wrap;
         gap: 0.5rem;
         margin: 1.5rem 0;
+        justify-content: center;
       }
 
       .openclaw-tag {
@@ -256,10 +245,8 @@ function OpenClawWorkflow() {
       }
 
       @media (max-width: 768px) {
-        .openclaw-intro,
-        .openclaw-two-col {
-          grid-template-columns: 1fr;
-          gap: 2rem;
+        .openclaw-two-col-text {
+          column-count: 1;
         }
         
         .openclaw-container {
@@ -271,7 +258,7 @@ function OpenClawWorkflow() {
     document.head.appendChild(style);
     return () => {
       if (style.parentNode) {
-        style.parentNode.removeChild(style);
+        document.head.removeChild(style);
       }
     };
   }, []);
@@ -292,8 +279,8 @@ function OpenClawWorkflow() {
             <h1 className="openclaw-title">{typedTitle}</h1>
           </header>
 
-          <section className="openclaw-intro">
-            <div className="openclaw-intro-text">
+          <section className="openclaw-intro-section">
+            <div className="openclaw-two-col-text">
               <p>
                 A unified AI operating system built on the OpenClaw framework, featuring a custom 
                 orchestration layer that manages multiple AI models, specialized sub-agents, and 
@@ -304,92 +291,90 @@ function OpenClawWorkflow() {
                 the flexibility to route complex tasks to cloud providers when necessary.
               </p>
             </div>
-            <div className="openclaw-image-grid">
-              <div className="grid-image-placeholder"><span>[IMG: Architecture]</span></div>
-              <div className="grid-image-placeholder"><span>[IMG: Data Flow]</span></div>
-              <div className="grid-image-placeholder"><span>[IMG: Tech Stack]</span></div>
-              <div className="grid-image-placeholder"><span>[IMG: Agent Tree]</span></div>
-              <div className="grid-image-placeholder"><span>[IMG: Model Router]</span></div>
-              <div className="grid-image-placeholder"><span>[IMG: Memory Graph]</span></div>
-              <div className="grid-image-placeholder"><span>[IMG: Telegram UI]</span></div>
-              <div className="grid-image-placeholder"><span>[IMG: Obsidian Vault]</span></div>
-              <div className="grid-image-placeholder"><span>[IMG: Swarm Viz]</span></div>
-            </div>
           </section>
+
+          <div className="openclaw-image-grid">
+            <div className="grid-image-placeholder"><span>[IMG: Architecture]</span></div>
+            <div className="grid-image-placeholder"><span>[IMG: Data Flow]</span></div>
+            <div className="grid-image-placeholder"><span>[IMG: Tech Stack]</span></div>
+            <div className="grid-image-placeholder"><span>[IMG: Agent Tree]</span></div>
+            <div className="grid-image-placeholder"><span>[IMG: Model Router]</span></div>
+            <div className="grid-image-placeholder"><span>[IMG: Memory Graph]</span></div>
+            <div className="grid-image-placeholder"><span>[IMG: Telegram UI]</span></div>
+            <div className="grid-image-placeholder"><span>[IMG: Obsidian Vault]</span></div>
+            <div className="grid-image-placeholder"><span>[IMG: Swarm Viz]</span></div>
+          </div>
 
           <div className="openclaw-handle">@preciado.tech</div>
 
           <section className="openclaw-section">
             <h2 className="openclaw-section-header">THE ARCHITECTURE</h2>
-            <div className="openclaw-two-col">
-              <div className="openclaw-text">
-                <p>
-                  At the center of the system is FRIDAY — a unified AI persona that serves as the 
-                  command interface. Unlike traditional chatbots, FRIDAY operates as a full 
-                  operating system layer, orchestrating specialized sub-agents and managing 
-                  context across sessions.
-                </p>
-                <p>
-                  Four core sub-agents handle specialized domains: CREATOR for business strategy 
-                  and content, RESEARCH for technical deep-dives, STOCKS for market analysis, 
-                  and ENGINEERING for software development tasks.
-                </p>
-              </div>
-              <div className="openclaw-text">
-                <p>
-                  Agent swarms provide parallel execution capabilities, spinning up temporary 
-                  micro-agents that work simultaneously on different aspects of a task before 
-                  merging results. This enables complex workflows to complete in minutes rather 
-                  than hours.
-                </p>
-                <p>
-                  All activity is logged to an Obsidian vault, creating a searchable knowledge 
-                  graph that persists across sessions and enables long-term memory for the 
-                  entire system.
-                </p>
-              </div>
+            <div className="openclaw-two-col-text">
+              <p>
+                At the center of the system is FRIDAY — a unified AI persona that serves as the 
+                command interface. Unlike traditional chatbots, FRIDAY operates as a full 
+                operating system layer, orchestrating specialized sub-agents and managing 
+                context across sessions.
+              </p>
+              <p>
+                Four core sub-agents handle specialized domains: CREATOR for business strategy 
+                and content, RESEARCH for technical deep-dives, STOCKS for market analysis, 
+                and ENGINEERING for software development tasks.
+              </p>
+              <p>
+                Agent swarms provide parallel execution capabilities, spinning up temporary 
+                micro-agents that work simultaneously on different aspects of a task before 
+                merging results. This enables complex workflows to complete in minutes rather 
+                than hours.
+              </p>
+              <p>
+                All activity is logged to an Obsidian vault, creating a searchable knowledge 
+                graph that persists across sessions and enables long-term memory for the 
+                entire system.
+              </p>
             </div>
           </section>
 
           <section className="openclaw-section">
             <h2 className="openclaw-section-header">MODEL ROUTING</h2>
-            <div className="openclaw-two-col">
-              <ul className="openclaw-list">
-                <li><strong>Default:</strong> Qwen3.5-9B (local, thermal-managed)</li>
-                <li><strong>Fallback:</strong> Qwen3.5-4B/2B/0.8B (lighter loads)</li>
-                <li><strong>Complex Tasks:</strong> Claude Opus (high-stakes reasoning)</li>
-                <li><strong>Coding:</strong> Claude Code via ACP harness</li>
-                <li><strong>Vision:</strong> Gemini Nano Banana Pro</li>
-              </ul>
-              <div className="openclaw-text">
-                <p>
-                  The routing layer automatically selects the optimal model based on task 
-                  complexity, thermal constraints, and latency requirements. Local models 
-                  handle 90% of routine interactions, ensuring sub-5-second response times 
-                  and complete data privacy.
-                </p>
-              </div>
+            <div className="openclaw-two-col-text">
+              <p>
+                The routing layer automatically selects the optimal model based on task 
+                complexity, thermal constraints, and latency requirements. Local models 
+                handle 90% of routine interactions, ensuring sub-5-second response times 
+                and complete data privacy.
+              </p>
+              <p>
+                <strong>Default:</strong> Qwen3.5-9B runs locally for most tasks, balancing 
+                performance with thermal management. When temperatures rise or tasks are 
+                lighter, the system falls back to Qwen3.5-4B, 2B, or 0.8B variants.
+              </p>
+              <p>
+                <strong>Complex Tasks:</strong> Claude Opus handles high-stakes reasoning 
+                and major architectural decisions. For coding tasks, Claude Code integrates 
+                via the ACP harness for direct repository manipulation.
+              </p>
+              <p>
+                <strong>Vision:</strong> Gemini Nano Banana Pro handles image generation 
+                and analysis when visual capabilities are required.
+              </p>
             </div>
           </section>
 
           <section className="openclaw-section">
             <h2 className="openclaw-section-header">DAILY WORKFLOW</h2>
-            <div className="openclaw-two-col">
-              <div className="openclaw-text">
-                <p>
-                  Every interaction flows through the same pipeline: Telegram message received 
-                  by OpenClaw gateway, classified by FRIDAY for intent and priority, routed to 
-                  the appropriate model or sub-agent, executed with safety tiering, and delivered 
-                  back via Telegram with a copy archived to Obsidian.
-                </p>
-              </div>
-              <div className="openclaw-text">
-                <p>
-                  Heartbeat automation handles periodic checks: system health, stock watchlists, 
-                  calendar reviews, and memory maintenance. The system proactively surfaces 
-                  relevant information without requiring explicit queries.
-                </p>
-              </div>
+            <div className="openclaw-two-col-text">
+              <p>
+                Every interaction flows through the same pipeline: Telegram message received 
+                by OpenClaw gateway, classified by FRIDAY for intent and priority, routed to 
+                the appropriate model or sub-agent, executed with safety tiering, and delivered 
+                back via Telegram with a copy archived to Obsidian.
+              </p>
+              <p>
+                Heartbeat automation handles periodic checks: system health, stock watchlists, 
+                calendar reviews, and memory maintenance. The system proactively surfaces 
+                relevant information without requiring explicit queries.
+              </p>
             </div>
             <div className="openclaw-tags">
               <span className="openclaw-tag">OpenClaw</span>
@@ -404,21 +389,19 @@ function OpenClawWorkflow() {
 
           <section className="openclaw-section">
             <h2 className="openclaw-section-header">RESULTS & ROADMAP</h2>
-            <div className="openclaw-two-col">
-              <ul className="openclaw-list">
-                <li>Single interface for 10+ AI models</li>
-                <li>Sub-agent spawning for parallel execution</li>
-                <li>100% local inference for routine tasks</li>
-                <li>Persistent memory across sessions</li>
-                <li>Sub-5-second average response time</li>
-              </ul>
-              <ul className="openclaw-list">
-                <li><strong>Next:</strong> Voice integration with wake word</li>
-                <li><strong>Next:</strong> Friday Command Center UI</li>
-                <li><strong>Next:</strong> AutoResearch training swarms</li>
-                <li><strong>Next:</strong> Calendar integration</li>
-                <li><strong>Next:</strong> Email automation</li>
-              </ul>
+            <div className="openclaw-two-col-text">
+              <p>
+                <strong>Current capabilities:</strong> Single interface for 10+ AI models, 
+                sub-agent spawning for parallel execution, 100% local inference for routine 
+                tasks, persistent memory across sessions, and sub-5-second average response 
+                times.
+              </p>
+              <p>
+                <strong>Next iterations:</strong> Voice integration with wake word detection, 
+                Friday Command Center UI built in React with Three.js visualization, 
+                AutoResearch overnight training swarms, calendar integration via khal/gcalcli, 
+                and email automation with security tiering.
+              </p>
             </div>
           </section>
 
