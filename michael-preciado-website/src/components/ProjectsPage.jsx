@@ -25,8 +25,7 @@ function ProjectsPage() {
       <PageHeader
         navTo="/blog"
         navText="Articles"
-        title="My Projects"
-        subtitle="Things I've built and experimented with"
+        showHome={false}
       />
       <main style={{
         position: 'relative',
