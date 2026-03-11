@@ -9,7 +9,7 @@ const MotionLink = motion(Link);
  * PageHeader component for navigation between pages - Terminal style.
  * Displays back to home link and optional navigation to another section.
  */
-function PageHeader({ navTo, navText, title, subtitle }) {
+function PageHeader({ navTo, navText, title, subtitle, showHome = true }) {
   const [isAtTop, setIsAtTop] = useState(true);
 
   useEffect(() => {
@@ -45,7 +45,7 @@ function PageHeader({ navTo, navText, title, subtitle }) {
       padding: '1.5rem 1rem 1rem',
       display: 'flex',
       flexDirection: 'column',
-      gap: '3rem'
+      gap: title ? '3rem' : '1rem'
     }}>
       <div
         className={`page-header-nav ${isAtTop ? 'is-visible' : 'is-hidden'}`}
@@ -64,22 +64,24 @@ function PageHeader({ navTo, navText, title, subtitle }) {
         minHeight: '44px'
         }}
       >
-        <MotionLink
-          to="/"
-          className="return-button terminal-nav-button"
-          aria-label="Return to Home"
-          initial={{ opacity: 0, x: -20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.3, delay: 0.2 }}
-          style={{ 
-            marginRight: 'auto',
-            flexShrink: 0,
-            alignSelf: 'center'
-          }}
-        >
-          <FaArrowLeft />
-          <span className="return-button-text">Home</span>
-        </MotionLink>
+        {showHome && (
+          <MotionLink
+            to="/"
+            className="return-button terminal-nav-button"
+            aria-label="Return to Home"
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.3, delay: 0.2 }}
+            style={{
+              marginRight: 'auto',
+              flexShrink: 0,
+              alignSelf: 'center'
+            }}
+          >
+            <FaArrowLeft />
+            <span className="return-button-text">Home</span>
+          </MotionLink>
+        )}
 
         {navTo && navText && (
           <MotionLink
