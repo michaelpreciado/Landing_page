@@ -32,11 +32,6 @@ const BlogPostCard = React.memo(({ post, index }) => {
   return (
     <motion.div variants={cardVariants} initial="hidden" animate="visible">
       <Link to={`/blog/${post.slug}`} className="blog-card-editorial">
-        <div className="blog-card-header">
-          <span className="blog-card-btn red"></span>
-          <span className="blog-card-btn yellow"></span>
-          <span className="blog-card-btn green"></span>
-        </div>
         <div className="blog-card-image-wrap">
           {post.heroImage ? (
             <LazyImage
@@ -74,65 +69,66 @@ function Blog() {
         color: #E8E4DC;
         font-family: 'Inter', sans-serif;
         font-weight: 300;
-        line-height: 1.7;
+        line-height: 1.6;
       }
       .blog-container {
         max-width: 1000px;
         margin: 0 auto;
-        padding: 3rem 1.25rem;
+        padding: 2rem 1.25rem 3rem;
         position: relative;
         z-index: 1;
       }
       .blog-header {
         text-align: center;
-        margin-bottom: 2rem;
-        padding-bottom: 1.5rem;
-        border-bottom: 1px solid rgba(30, 144, 255, 0.3);
+        margin-bottom: 1.5rem;
+        padding-bottom: 1rem;
+        border-bottom: 1px solid rgba(30, 144, 255, 0.2);
       }
       .blog-meta {
         display: flex;
         justify-content: center;
         align-items: center;
-        gap: 1.5rem;
-        font-size: 0.7rem;
-        letter-spacing: 0.12em;
+        gap: 1rem;
+        font-size: 0.65rem;
+        letter-spacing: 0.15em;
         text-transform: uppercase;
         color: #8B8680;
-        margin-bottom: 1.5rem;
+        margin-bottom: 0.75rem;
+      }
+      .blog-meta span {
+        position: relative;
+      }
+      .blog-meta span:not(:last-child)::after {
+        content: '·';
+        position: absolute;
+        right: -0.75rem;
+        color: rgba(30, 144, 255, 0.4);
       }
       .blog-title {
         font-family: 'Playfair Display', serif;
-        font-size: clamp(1.8rem, 7vw, 3.5rem);
+        font-size: clamp(2rem, 6vw, 3rem);
         font-weight: 500;
-        letter-spacing: -0.01em;
+        letter-spacing: 0.02em;
         margin: 0;
         color: #FFFFFF;
-        line-height: 1.1;
-        text-shadow: 0 0 30px rgba(30, 144, 255, 0.3);
       }
       .blog-intro {
-        column-count: 2;
-        column-gap: 1.5rem;
-        text-align: left;
+        max-width: 600px;
+        margin: 0 auto 2rem;
+        text-align: center;
         color: #B8B0A0;
-        font-size: 0.8rem;
-        line-height: 1.6;
-        margin: 2rem 0;
-      }
-      .blog-intro p {
-        margin: 0 0 1rem 0;
-        break-inside: avoid;
+        font-size: 0.85rem;
+        line-height: 1.7;
       }
       .blog-grid {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
-        gap: 1rem;
-        margin: 2rem 0;
+        gap: 0.75rem;
       }
       .blog-card-editorial {
-        background: rgba(10, 25, 47, 0.6);
-        border: 1px solid rgba(30, 144, 255, 0.2);
-        border-radius: 10px;
+        background: rgba(10, 25, 47, 0.5);
+        border: 1px solid rgba(30, 144, 255, 0.15);
+        border-radius: 8px;
         overflow: hidden;
         transition: all 0.2s ease;
         text-decoration: none;
@@ -140,38 +136,23 @@ function Blog() {
         display: block;
       }
       .blog-card-editorial:hover {
-        border-color: rgba(30, 144, 255, 0.4);
-        background: rgba(10, 25, 47, 0.8);
-        transform: translateY(-3px);
+        border-color: rgba(30, 144, 255, 0.35);
+        background: rgba(10, 25, 47, 0.7);
+        transform: translateY(-2px);
       }
-      .blog-card-header {
-        padding: 0.6rem;
-        border-bottom: 1px solid rgba(30, 144, 255, 0.15);
-        background: rgba(5, 12, 28, 0.4);
-        display: flex;
-        gap: 0.4rem;
-      }
-      .blog-card-btn {
-        width: 10px;
-        height: 10px;
-        border-radius: 50%;
-      }
-      .blog-card-btn.red { background: #ff5f57; }
-      .blog-card-btn.yellow { background: #ffbd2e; }
-      .blog-card-btn.green { background: #28c840; }
       .blog-card-image-wrap {
-        aspect-ratio: 16/10;
-        background: rgba(5, 12, 28, 0.8);
+        aspect-ratio: 16/9;
+        background: rgba(5, 12, 28, 0.6);
         display: flex;
         align-items: center;
         justify-content: center;
         overflow: hidden;
       }
       .blog-card-emoji {
-        font-size: 3rem;
+        font-size: 2.5rem;
       }
       .blog-card-content {
-        padding: 1rem;
+        padding: 0.875rem;
       }
       .blog-card-category {
         font-size: 0.6rem;
@@ -181,45 +162,38 @@ function Blog() {
       }
       .blog-card-title {
         font-family: 'Playfair Display', serif;
-        font-size: 0.95rem;
+        font-size: 0.9rem;
         color: #FFFFFF;
-        margin: 0.3rem 0;
+        margin: 0.25rem 0 0.15rem;
         line-height: 1.3;
       }
       .blog-card-date {
         font-size: 0.65rem;
         color: #8B8680;
-        margin-bottom: 0.5rem;
+        margin-bottom: 0.4rem;
       }
       .blog-card-excerpt {
         font-size: 0.75rem;
         color: #B8B0A0;
         line-height: 1.5;
         display: -webkit-box;
-        -webkit-line-clamp: 3;
+        -webkit-line-clamp: 2;
         -webkit-box-orient: vertical;
         overflow: hidden;
       }
-      .blog-handle {
-        text-align: center;
-        margin: 2rem 0;
-        font-family: 'Playfair Display', serif;
-        font-size: 0.95rem;
-        color: #8B8680;
-        font-style: italic;
-      }
       .blog-footer {
         text-align: center;
-        margin-top: 2.5rem;
-        padding-top: 1.25rem;
-        border-top: 1px solid rgba(30, 144, 255, 0.15);
+        margin-top: 2rem;
+        padding-top: 1rem;
+        border-top: 1px solid rgba(30, 144, 255, 0.1);
         font-size: 0.7rem;
         color: #8B8680;
       }
       @media (min-width: 640px) {
-        .blog-container { padding: 3rem 2rem; }
-        .blog-intro { font-size: 0.9rem; column-gap: 2rem; }
-        .blog-grid { grid-template-columns: repeat(3, 1fr); }
+        .blog-container { padding: 2.5rem 2rem 3rem; }
+        .blog-intro { font-size: 0.9rem; margin-bottom: 2.5rem; }
+        .blog-grid { grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+        .blog-card-title { font-size: 1rem; }
       }
     `;
     document.head.appendChild(style);
@@ -237,31 +211,23 @@ function Blog() {
         <div className="blog-container">
           <header className="blog-header">
             <div className="blog-meta">
-              <span>JOURNAL</span>
-              <span>THOUGHTS</span>
+              <span>Journal</span>
+              <span>Thoughts</span>
             </div>
-            <h1 className="blog-title">BLOG</h1>
+            <h1 className="blog-title">Blog</h1>
           </header>
 
-          <section className="blog-intro">
-            <p>
-              A collection of thoughts on technology, ethics, productivity, and the 
-              intersection of hardware and software. Each article explores ideas I've 
-              encountered while building AI systems and working in tech.
-            </p>
-            <p>
-              From cybersecurity research to daily habits that keep me grounded, 
-              these writings document my journey as an engineer and creator.
-            </p>
-          </section>
+          <p className="blog-intro">
+            A collection of thoughts on technology, ethics, productivity, and the intersection 
+            of hardware and software. From cybersecurity research to daily habits that keep me 
+            grounded, these writings document my journey as an engineer and creator.
+          </p>
 
           <div className="blog-grid">
             {blogPosts.map((post, index) => (
               <BlogPostCard key={post.slug} post={post} index={index} />
             ))}
           </div>
-
-          <div className="blog-handle">@preciado.tech</div>
 
           <footer className="blog-footer">
             <p>Thoughts on AI, hardware, and automation</p>

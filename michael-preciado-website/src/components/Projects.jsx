@@ -8,117 +8,33 @@ import LazyImage from './LazyImage';
 import { autoApplyLiquidGlass } from '../utils/liquidGlass.js';
 
 const ProjectCard = React.memo(({ imageSrc, emoji, title, description, tech, codeLink, demoLink, index, fullImage = false }) => {
-  useEffect(() => {
-    const style = document.createElement('style');
-    style.textContent = `
-      .project-card-editorial {
-        background: rgba(10, 25, 47, 0.6);
-        border: 1px solid rgba(30, 144, 255, 0.2);
-        border-radius: 10px;
-        overflow: hidden;
-        transition: all 0.2s ease;
-        text-decoration: none;
-        color: inherit;
-        display: block;
-      }
-      .project-card-editorial:hover {
-        border-color: rgba(30, 144, 255, 0.4);
-        background: rgba(10, 25, 47, 0.8);
-        transform: translateY(-3px);
-      }
-      .project-card-header {
-        padding: 0.6rem;
-        border-bottom: 1px solid rgba(30, 144, 255, 0.15);
-        background: rgba(5, 12, 28, 0.4);
-        display: flex;
-        gap: 0.4rem;
-      }
-      .project-card-btn {
-        width: 10px;
-        height: 10px;
-        border-radius: 50%;
-      }
-      .project-card-btn.red { background: #ff5f57; }
-      .project-card-btn.yellow { background: #ffbd2e; }
-      .project-card-btn.green { background: #28c840; }
-      .project-card-image-wrap {
-        aspect-ratio: 16/10;
-        background: rgba(5, 12, 28, 0.8);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        overflow: hidden;
-      }
-      .project-card-emoji {
-        font-size: 3rem;
-      }
-      .project-card-content {
-        padding: 1rem;
-      }
-      .project-card-title {
-        font-family: 'Playfair Display', serif;
-        font-size: 1rem;
-        color: #FFFFFF;
-        margin-bottom: 0.5rem;
-      }
-      .project-card-desc {
-        font-size: 0.75rem;
-        color: #B8B0A0;
-        line-height: 1.5;
-        margin-bottom: 0.75rem;
-      }
-      .project-card-tags {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.3rem;
-        margin-bottom: 1rem;
-      }
-      .project-card-tag {
-        font-size: 0.6rem;
-        padding: 0.2rem 0.5rem;
-        background: rgba(30, 144, 255, 0.1);
-        border: 1px solid rgba(30, 144, 255, 0.25);
-        color: #5A8FC0;
-        border-radius: 2px;
-      }
-      .project-card-links {
-        display: flex;
-        gap: 0.5rem;
-      }
-      .project-card-btn-link {
-        flex: 1;
-        padding: 0.5rem;
-        font-size: 0.7rem;
-        border: 1px solid rgba(30, 144, 255, 0.4);
-        background: rgba(30, 144, 255, 0.1);
-        color: #FFFFFF;
-        border-radius: 4px;
-        cursor: pointer;
-        text-align: center;
-        text-decoration: none;
-        display: inline-block;
-      }
-      .project-card-btn-link:hover {
-        background: rgba(30, 144, 255, 0.2);
-      }
-    `;
-    document.head.appendChild(style);
-    return () => {
-      if (style.parentNode) document.head.removeChild(style);
-    };
-  }, []);
+  const cardVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.4,
+        delay: index * 0.08,
+      },
+    },
+  };
 
   const isInternalLink = demoLink && demoLink.startsWith('/');
-  const CardWrapper = isInternalLink ? Link : 'a';
-  const linkProps = isInternalLink ? { to: demoLink } : { href: demoLink, target: "_blank", rel: "noopener noreferrer" };
+  const CardWrapper = isInternalLink ? Link : motion.a;
+  const linkProps = isInternalLink 
+    ? { to: demoLink } 
+    : { href: demoLink, target: "_blank", rel: "noopener noreferrer" };
 
   return (
-    <CardWrapper {...linkProps} className="project-card-editorial">
-      <div className="project-card-header">
-        <span className="project-card-btn red"></span>
-        <span className="project-card-btn yellow"></span>
-        <span className="project-card-btn green"></span>
-      </div>
+    <CardWrapper 
+      {...linkProps}
+      className="project-card-editorial"
+      variants={cardVariants}
+      initial="hidden"
+      animate="visible"
+      whileHover={{ y: -3, transition: { duration: 0.2 } }}
+    >
       <div className="project-card-image-wrap">
         {emoji ? (
           <span className="project-card-emoji">{emoji}</span>
@@ -134,17 +50,17 @@ const ProjectCard = React.memo(({ imageSrc, emoji, title, description, tech, cod
         <h3 className="project-card-title">{title}</h3>
         <p className="project-card-desc">{description}</p>
         <div className="project-card-tags">
-          {tech && tech.map((t, i) => (
+          {tech && tech.slice(0, 4).map((t, i) => (
             <span key={i} className="project-card-tag">{t}</span>
           ))}
         </div>
         <div className="project-card-links">
           {demoLink && (
-            <span className="project-card-btn-link">View Project</span>
+            <span className="project-card-btn-link">View</span>
           )}
           {codeLink && (
-            <a href={codeLink} target="_blank" rel="noopener noreferrer" className="project-card-btn-link" onClick={(e) => e.stopPropagation()}>
-              View Code
+            <a href={codeLink} target="_blank" rel="noopener noreferrer" className="project-card-btn-link secondary" onClick={(e) => e.stopPropagation()}>
+              Code
             </a>
           )}
         </div>
@@ -166,81 +82,157 @@ function Projects() {
         color: #E8E4DC;
         font-family: 'Inter', sans-serif;
         font-weight: 300;
-        line-height: 1.7;
+        line-height: 1.6;
       }
       .projects-container {
         max-width: 1000px;
         margin: 0 auto;
-        padding: 3rem 1.25rem;
+        padding: 2rem 1.25rem 3rem;
         position: relative;
         z-index: 1;
       }
       .projects-header {
         text-align: center;
-        margin-bottom: 2rem;
-        padding-bottom: 1.5rem;
-        border-bottom: 1px solid rgba(30, 144, 255, 0.3);
+        margin-bottom: 1.5rem;
+        padding-bottom: 1rem;
+        border-bottom: 1px solid rgba(30, 144, 255, 0.2);
       }
       .projects-meta {
         display: flex;
         justify-content: center;
         align-items: center;
-        gap: 1.5rem;
-        font-size: 0.7rem;
-        letter-spacing: 0.12em;
+        gap: 1rem;
+        font-size: 0.65rem;
+        letter-spacing: 0.15em;
         text-transform: uppercase;
         color: #8B8680;
-        margin-bottom: 1.5rem;
+        margin-bottom: 0.75rem;
+      }
+      .projects-meta span {
+        position: relative;
+      }
+      .projects-meta span:not(:last-child)::after {
+        content: '·';
+        position: absolute;
+        right: -0.75rem;
+        color: rgba(30, 144, 255, 0.4);
       }
       .projects-title {
         font-family: 'Playfair Display', serif;
-        font-size: clamp(1.8rem, 7vw, 3.5rem);
+        font-size: clamp(2rem, 6vw, 3rem);
         font-weight: 500;
-        letter-spacing: -0.01em;
+        letter-spacing: 0.02em;
         margin: 0;
         color: #FFFFFF;
-        line-height: 1.1;
-        text-shadow: 0 0 30px rgba(30, 144, 255, 0.3);
       }
       .projects-intro {
-        column-count: 2;
-        column-gap: 1.5rem;
-        text-align: left;
+        max-width: 600px;
+        margin: 0 auto 2rem;
+        text-align: center;
         color: #B8B0A0;
-        font-size: 0.8rem;
-        line-height: 1.6;
-        margin: 2rem 0;
-      }
-      .projects-intro p {
-        margin: 0 0 1rem 0;
-        break-inside: avoid;
+        font-size: 0.85rem;
+        line-height: 1.7;
       }
       .projects-grid {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
-        gap: 1rem;
-        margin: 2rem 0;
+        gap: 0.75rem;
       }
-      .projects-handle {
-        text-align: center;
-        margin: 2rem 0;
+      .project-card-editorial {
+        background: rgba(10, 25, 47, 0.5);
+        border: 1px solid rgba(30, 144, 255, 0.15);
+        border-radius: 8px;
+        overflow: hidden;
+        transition: all 0.2s ease;
+        text-decoration: none;
+        color: inherit;
+        display: block;
+      }
+      .project-card-editorial:hover {
+        border-color: rgba(30, 144, 255, 0.35);
+        background: rgba(10, 25, 47, 0.7);
+      }
+      .project-card-image-wrap {
+        aspect-ratio: 16/9;
+        background: rgba(5, 12, 28, 0.6);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+      }
+      .project-card-emoji {
+        font-size: 2.5rem;
+      }
+      .project-card-content {
+        padding: 0.875rem;
+      }
+      .project-card-title {
         font-family: 'Playfair Display', serif;
-        font-size: 0.95rem;
-        color: #8B8680;
-        font-style: italic;
+        font-size: 0.9rem;
+        color: #FFFFFF;
+        margin-bottom: 0.25rem;
+        line-height: 1.3;
+      }
+      .project-card-desc {
+        font-size: 0.75rem;
+        color: #B8B0A0;
+        line-height: 1.5;
+        margin-bottom: 0.5rem;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+      .project-card-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.25rem;
+        margin-bottom: 0.75rem;
+      }
+      .project-card-tag {
+        font-size: 0.6rem;
+        padding: 0.15rem 0.4rem;
+        background: rgba(30, 144, 255, 0.1);
+        border: 1px solid rgba(30, 144, 255, 0.2);
+        color: #5A8FC0;
+        border-radius: 2px;
+      }
+      .project-card-links {
+        display: flex;
+        gap: 0.4rem;
+      }
+      .project-card-btn-link {
+        flex: 1;
+        padding: 0.4rem;
+        font-size: 0.7rem;
+        border: 1px solid rgba(30, 144, 255, 0.4);
+        background: rgba(30, 144, 255, 0.1);
+        color: #FFFFFF;
+        border-radius: 4px;
+        cursor: pointer;
+        text-align: center;
+        text-decoration: none;
+      }
+      .project-card-btn-link:hover {
+        background: rgba(30, 144, 255, 0.2);
+      }
+      .project-card-btn-link.secondary {
+        border-color: rgba(100, 100, 100, 0.4);
+        background: rgba(100, 100, 100, 0.1);
       }
       .projects-footer {
         text-align: center;
-        margin-top: 2.5rem;
-        padding-top: 1.25rem;
-        border-top: 1px solid rgba(30, 144, 255, 0.15);
+        margin-top: 2rem;
+        padding-top: 1rem;
+        border-top: 1px solid rgba(30, 144, 255, 0.1);
         font-size: 0.7rem;
         color: #8B8680;
       }
       @media (min-width: 640px) {
-        .projects-container { padding: 3rem 2rem; }
-        .projects-intro { font-size: 0.9rem; column-gap: 2rem; }
-        .projects-grid { grid-template-columns: repeat(3, 1fr); }
+        .projects-container { padding: 2.5rem 2rem 3rem; }
+        .projects-intro { font-size: 0.9rem; margin-bottom: 2.5rem; }
+        .projects-grid { grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+        .project-card-title { font-size: 1rem; }
       }
     `;
     document.head.appendChild(style);
@@ -253,7 +245,7 @@ function Projects() {
     {
       imageSrc: "/images/projects/photography.png",
       title: "Photography Portfolio",
-      description: "A minimalist photography showcase featuring responsive image galleries, smooth transitions, and optimized loading.",
+      description: "A minimalist photography showcase featuring responsive image galleries and optimized loading.",
       tech: ['React', 'JavaScript', 'CSS3'],
       codeLink: "https://github.com/michaelpreciado/mario.preciado.photography",
       demoLink: "https://mariopreciado-photography.netlify.app"
@@ -262,14 +254,14 @@ function Projects() {
       imageSrc: "/images/projects/Solar.png",
       title: "Interactive Solar System",
       description: "An immersive 3D solar system simulation with realistic planetary orbits and interactive controls.",
-      tech: ['JavaScript', 'WebGL', 'HTML5 Canvas'],
+      tech: ['JavaScript', 'WebGL', 'Canvas'],
       codeLink: "https://github.com/michaelpreciado/Interactive_Solar_System",
       demoLink: "https://interactive-solar-system-bay.vercel.app/"
     },
     {
       imageSrc: "/images/projects/flattenhund.png",
       title: "Flappy Dog Game",
-      description: "A charming Flappy Bird-inspired game featuring my dogs Taz & Chloe with online leaderboard.",
+      description: "A charming Flappy Bird-inspired game featuring my dogs with online leaderboard.",
       tech: ['JavaScript', 'Supabase', 'Canvas'],
       codeLink: "https://github.com/michaelpreciado/Flattenhund",
       demoLink: "https://theflappydoggame.netlify.app/"
@@ -292,15 +284,15 @@ function Projects() {
     },
     {
       imageSrc: "/images/projects/ai-server-placeholder.svg",
-      title: "My OpenClaw Workflow",
-      description: "A structured OpenClaw project workflow with architecture, implementation, and outcomes.",
+      title: "OpenClaw Workflow",
+      description: "A structured OpenClaw project workflow with architecture and implementation.",
       tech: ['OpenClaw', 'Automation', 'AI'],
       demoLink: "/projects/openclaw-workflow",
       fullImage: true
     },
     {
       imageSrc: "/images/corne-keyboard/cornebuild.jpeg",
-      title: "Corne Keyboard Build",
+      title: "Corne Keyboard",
       description: "Custom split ergonomic mechanical keyboard with ZMK firmware and 3D printed case.",
       tech: ['Hardware', 'ZMK', '3D Printing'],
       demoLink: "/projects/corne-keyboard",
@@ -317,31 +309,23 @@ function Projects() {
         <div className="projects-container">
           <header className="projects-header">
             <div className="projects-meta">
-              <span>WORK</span>
-              <span>SELECTED</span>
+              <span>Work</span>
+              <span>Selected</span>
             </div>
-            <h1 className="projects-title">PROJECTS</h1>
+            <h1 className="projects-title">Projects</h1>
           </header>
 
-          <section className="projects-intro">
-            <p>
-              Welcome to my workshop. Here you'll find a collection of my favorite projects, 
-              from web apps to hardware experiments. Each one is a story of a problem solved 
-              and something new learned.
-            </p>
-            <p>
-              Dive in and see what I've been building. From AI automation to 3D keyboards, 
-              each project represents a unique challenge and learning experience.
-            </p>
-          </section>
+          <p className="projects-intro">
+            Welcome to my workshop. Here you'll find a collection of my favorite projects, 
+            from web apps to hardware experiments. Each one is a story of a problem solved 
+            and something new learned.
+          </p>
 
           <div className="projects-grid">
             {projectsData.map((project, index) => (
               <ProjectCard key={project.title} {...project} index={index} />
             ))}
           </div>
-
-          <div className="projects-handle">@preciado.tech</div>
 
           <footer className="projects-footer">
             <p>AI systems, hardware, and automation</p>
