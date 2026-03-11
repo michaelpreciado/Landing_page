@@ -108,15 +108,17 @@ function OpenClawWorkflow() {
         background: rgba(30, 144, 255, 0.15);
         padding: 0.15rem 0.4rem;
         border-radius: 4px;
-        font-family: 'Fira Code', monospace;
+        font-family: 'JetBrains Mono', monospace;
         font-size: 0.85em;
-        color: #1e90ff;
+        color: #1E90FF;
       }
 
       .openclaw-actions {
         display: flex;
         justify-content: center;
         margin-top: 1.5rem;
+        gap: 1rem;
+        flex-wrap: wrap;
       }
 
       .openclaw-actions a {
@@ -124,7 +126,7 @@ function OpenClawWorkflow() {
       }
 
       .openclaw-actions button {
-        cursor: default;
+        cursor: pointer;
       }
 
       .architecture-diagram {
@@ -143,10 +145,10 @@ function OpenClawWorkflow() {
         opacity: 0.8;
       }
 
-      .architecture-placeholder {
+      .placeholder-text {
         color: var(--medium-text);
         font-style: italic;
-        padding: 2rem;
+        font-size: 0.9rem;
       }
 
       @media (max-width: 760px) {
@@ -173,9 +175,9 @@ function OpenClawWorkflow() {
         <header className="openclaw-header">
           <h1 className="openclaw-title">{typedTitle}</h1>
           <p className="openclaw-subtitle">
-            A unified AI operating system built on OpenClaw. One intelligent persona (FRIDAY) 
-            orchestrates sub-agents, swarms, and local/cloud models to automate research, 
-            engineering, and daily workflows.
+            A unified AI operating system built on OpenClaw, featuring a custom persona (FRIDAY), 
+            sub-agent orchestration, local/cloud model routing, and seamless Telegram integration 
+            for autonomous task execution.
           </p>
         </header>
 
@@ -191,75 +193,105 @@ function OpenClawWorkflow() {
           <div className="openclaw-content">
             <div className="openclaw-template-grid">
               <section className="template-block">
-                <h2>&gt; System Architecture</h2>
+                <h2>&gt; Project Goal</h2>
                 <p>
-                  <strong>FRIDAY</strong> serves as the unified intelligence layer — one voice 
-                  that orchestrates specialized sub-agents and temporary swarms. All execution 
-                  flows through a safety tier system (0-3) with explicit confirmations for 
-                  high-risk operations.
+                  Build a personal AI operating system that orchestrates multiple AI models, 
+                  manages sub-agents for specialized tasks, maintains long-term memory via Obsidian, 
+                  and provides a unified interface through Telegram for seamless human-AI collaboration.
                 </p>
               </section>
 
               <section className="template-block">
-                <h2>&gt; Sub-Agent Ecosystem</h2>
+                <h2>&gt; Core Architecture</h2>
                 <ul>
-                  <li><strong>FRIDAY.CREATOR</strong> — Strategy & monetization</li>
-                  <li><strong>FRIDAY.RESEARCH</strong> — Technical deep-dives</li>
-                  <li><strong>FRIDAY.STOCKS</strong> — Market analysis</li>
-                  <li><strong>FRIDAY.ENGINEERING</strong> — Code & robotics</li>
+                  <li><strong>FRIDAY</strong> — Unified AI persona and command center</li>
+                  <li><strong>Sub-Agents</strong> — CREATOR, RESEARCH, STOCKS, ENGINEERING</li>
+                  <li><strong>Agent Swarms</strong> — Parallel task execution workers</li>
+                  <li><strong>Model Router</strong> — Local (Ollama) + Cloud selection</li>
+                  <li><strong>Memory System</strong> — Obsidian vault integration</li>
                 </ul>
               </section>
 
               <section className="template-block">
-                <h2>&gt; Model Routing Strategy</h2>
+                <h2>&gt; Workflow Flow</h2>
+                <ul>
+                  <li><strong>Input:</strong> Telegram message → OpenClaw gateway</li>
+                  <li><strong>Classify:</strong> FRIDAY detects task type and priority</li>
+                  <li><strong>Route:</strong> Select model (local Qwen3.5 or cloud)</li>
+                  <li><strong>Execute:</strong> Spawn sub-agents or swarms as needed</li>
+                  <li><strong>Deliver:</strong> Response via Telegram + log to Obsidian</li>
+                </ul>
+              </section>
+
+              <section className="template-block">
+                <h2>&gt; Stack & Integrations</h2>
                 <p>
-                  <strong>Local-first policy:</strong> Qwen 3.5 models (0.8B–9B) for routine tasks. 
-                  Cloud models (Kimi K2.5, Claude) for complex reasoning. Local Ollama swarm 
-                  with <code>deepseek-r1:14b</code> and <code>qwen2.5-coder:14b</code> for 
-                  parallel execution.
+                  <code>OpenClaw</code> <code>Telegram</code> <code>Obsidian</code> <code>Ollama</code>{' '}
+                  <code>LM Studio</code> <code>Node.js</code> <code>Arch Linux</code>
+                </p>
+                <p style={{ marginTop: '0.5rem' }}>
+                  Local models: Qwen3.5 series (0.8B–9B). Cloud: Claude, Gemini, Kimi. 
+                  Skills: weather, GitHub, 1Password, web search, coding agents.
                 </p>
               </section>
 
               <section className="template-block">
-                <h2>&gt; Communication Layer</h2>
+                <h2>&gt; Model Routing Policy</h2>
                 <ul>
-                  <li><strong>Primary:</strong> Telegram (text + voice)</li>
-                  <li><strong>Desktop:</strong> Wake word "Friday" + Whisper STT</li>
-                  <li><strong>Memory:</strong> Obsidian vault with daily logs</li>
-                  <li><strong>UI:</strong> Friday Command Center (React + Vite)</li>
+                  <li><strong>Default:</strong> Local Qwen3.5-9B (cool temps + performance)</li>
+                  <li><strong>Fallback:</strong> Qwen3.5-4B, 2B, 0.8B (thermal management)</li>
+                  <li><strong>High-stakes:</strong> Claude Opus (major tasks)</li>
+                  <li><strong>Coding:</strong> Claude Code via ACP harness</li>
+                  <li><strong>Images:</strong> Gemini Nano Banana Pro</li>
                 </ul>
               </section>
 
               <section className="template-block">
-                <h2>&gt; Daily Workflow Flow</h2>
+                <h2>&gt; Daily Automation</h2>
                 <ul>
-                  <li><strong>Heartbeat checks</strong> — Calendar, stocks, news (2-4× daily)</li>
-                  <li><strong>Task ingestion</strong> — Telegram → FRIDAY classification</li>
-                  <li><strong>Agent dispatch</strong> — Spawn swarms or sub-agents</li>
-                  <li><strong>Execution & log</strong> — Output + Obsidian archive</li>
+                  <li><strong>Heartbeat:</strong> Periodic system health checks</li>
+                  <li><strong>Memory:</strong> Auto-archive to Obsidian vault</li>
+                  <li><strong>Stocks:</strong> Watchlist monitoring (TSLA, NVDA, etc.)</li>
+                  <li><strong>Research:</strong> AutoResearch integration for LLM experiments</li>
                 </ul>
               </section>
 
               <section className="template-block">
-                <h2>&gt; Safety & Permissions</h2>
-                <p>
-                  <strong>Tier 0:</strong> Read-only (default)<br/>
-                  <strong>Tier 1:</strong> File creation, safe commands<br/>
-                  <strong>Tier 2:</strong> Installs, config changes (confirm)<br/>
-                  <strong>Tier 3:</strong> Sudo, deletes, financial (explicit typed confirm)
-                </p>
+                <h2>&gt; Results & Metrics</h2>
+                <ul>
+                  <li>Single interface for 10+ AI models</li>
+                  <li>Sub-agent spawning for parallel execution</li>
+                  <li>100% local inference for routine tasks</li>
+                  <li>Persistent memory across sessions</li>
+                  <li>Sub-5-second response time (local)</li>
+                </ul>
+              </section>
+
+              <section className="template-block">
+                <h2>&gt; Roadmap</h2>
+                <ul>
+                  <li>Voice integration with wake word detection</li>
+                  <li>Friday Command Center UI (React + Three.js)</li>
+                  <li>AutoResearch overnight training swarms</li>
+                  <li>Calendar integration (khal/gcalcli)</li>
+                  <li>Email automation with security tiering</li>
+                </ul>
               </section>
 
               <section className="architecture-diagram">
-                <div className="architecture-placeholder">
-                  [Architecture Diagram Placeholder]<br/>
-                  <small>FRIDAY → Sub-Agents → Swarms → Model Router → Execution → Obsidian Log</small>
-                </div>
+                <p className="placeholder-text">
+                  [Architecture Diagram Placeholder — System flowchart showing FRIDAY → Sub-Agents → Model Router → Local/Cloud Models → Telegram/Obsidian]
+                </p>
               </section>
             </div>
 
             <div className="openclaw-actions">
-              <button className="project-button project-button-primary">System Documentation</button>
+              <a href="https://openclaw.ai" target="_blank" rel="noopener noreferrer">
+                <button className="project-button project-button-primary">OpenClaw Docs</button>
+              </a>
+              <a href="https://github.com/openclaw/openclaw" target="_blank" rel="noopener noreferrer">
+                <button className="project-button project-button-primary">GitHub</button>
+              </a>
             </div>
           </div>
         </section>
