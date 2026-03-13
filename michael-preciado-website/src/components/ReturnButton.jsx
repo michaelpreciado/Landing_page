@@ -17,7 +17,7 @@ function ReturnButton({ to = "/", label = "Home" }) {
       <style>{`
         .return-button {
           position: fixed;
-          top: 1.5rem;
+          top: 0.75rem;
           left: 1.5rem;
           z-index: 100;
           display: flex;
@@ -41,7 +41,7 @@ function ReturnButton({ to = "/", label = "Home" }) {
         }
         @media (min-width: 640px) {
           .return-button {
-            top: 2rem;
+            top: 1rem;
             left: 2rem;
           }
         }

@@ -76,7 +76,7 @@ function Blog() {
       .blog-container {
         max-width: 1000px;
         margin: 0 auto;
-        padding: 5rem 1.25rem 3rem 3rem;
+        padding: 5rem 1.25rem 3rem 1.25rem;
         position: relative;
         z-index: 1;
       }
@@ -234,7 +234,7 @@ function Blog() {
               <span>Journal</span>
               <span>Thoughts</span>
             </div>
-            <h1 className="blog-title">Blog</h1>
+            <h1 className="blog-title">Articles</h1>
           </header>
 
           <p className="blog-intro">
