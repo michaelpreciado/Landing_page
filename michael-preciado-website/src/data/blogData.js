@@ -1,5 +1,27 @@
 const blogPostsData = [
   {
+    slug: 'adhd-my-superpower',
+    title: 'ADHD - My superpower in today\'s digital age',
+    excerpt: 'The people who can\'t be automated are the ones who think sideways. Why ADHD and neurodivergence are becoming the last competitive advantage AI can\'t replicate.',
+    date: '2026-03-13',
+    content: `> The people who can't be automated are the ones who think sideways. The ones who see patterns nobody else sees. The ones whose brains jump from A to Z and somehow land on something brilliant. The ones every school system tried to medicate into compliance.
+
+> ADHD, autism, dyslexia.. every condition that made you "difficult" in a system designed for linear thinkers is about to become the only competitive advantage that AI can't replicate.
+
+> The corporate world spent 50 years optimizing for people who follow instructions. AI follows instructions better than all of them. Now what?
+
+> The misfits aren't the liability anymore. They're the last thing the machines can't copy.
+
+<figure class="blog-hero-image matrix-overlay" style="margin-top: 2rem; margin-bottom: 2rem;">
+  <div style="width: 100%; padding: 3rem 0; background: var(--medium-bg); display: flex; align-items: center; justify-content: center; font-size: 5rem; border-radius: 12px;">🧠</div>
+  <figcaption class="blog-hero-caption">ADHD as a superpower in the age of AI.</figcaption>
+</figure>`,
+    icon: 'brain',
+    categories: ['Wellness', 'Technology'],
+    heroImage: null,
+    heroEmoji: '🧠'
+  },
+  {
     slug: 'five-habits-that-help-me',
     title: 'Five Habits That Help Me',
     excerpt: 'Between working in tech, keeping up with personal projects, and trying to stay active, life can get pretty loud sometimes, especially through all the negativity you encounter on social media.',
