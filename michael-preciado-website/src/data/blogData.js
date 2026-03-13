@@ -11,11 +11,7 @@ const blogPostsData = [
 > The corporate world spent 50 years optimizing for people who follow instructions. AI follows instructions better than all of them. Now what?
 
 > The misfits aren't the liability anymore. They're the last thing the machines can't copy.
-
-<figure class="blog-hero-image matrix-overlay" style="margin-top: 2rem; margin-bottom: 2rem;">
-  <div style="width: 100%; padding: 3rem 0; background: var(--medium-bg); display: flex; align-items: center; justify-content: center; font-size: 5rem; border-radius: 12px;">🧠</div>
-  <figcaption class="blog-hero-caption">ADHD as a superpower in the age of AI.</figcaption>
-</figure>`,
+`,
     icon: 'brain',
     categories: ['Wellness', 'Technology'],
     heroImage: null,

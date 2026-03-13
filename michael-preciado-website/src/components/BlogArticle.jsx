@@ -46,8 +46,8 @@ function BlogArticle() {
       }
       .article-header {
         text-align: center;
-        margin-bottom: 1.5rem;
-        padding-bottom: 1rem;
+        margin-bottom: 2.5rem;
+        padding-bottom: 1.5rem;
         border-bottom: 1px solid rgba(30, 144, 255, 0.2);
       }
       .article-meta {
