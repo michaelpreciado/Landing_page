@@ -23,8 +23,6 @@ function ProjectsPage() {
     <PageTransition>
       {showBackground && <MatrixRainBackground />}
       <PageHeader
-        navTo="/blog"
-        navText="Articles"
         showHome={false}
       />
       <main style={{
