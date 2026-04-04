@@ -256,13 +256,13 @@ function Projects() {
 
   const projectsData = [
     {
-      imageSrc: "/images/projects/ai-server-placeholder.svg",
-      title: "OpenClaw Workflow",
-      description: "A structured OpenClaw project workflow with architecture and implementation.",
-      tech: ['OpenClaw', 'Automation', 'AI'],
-      demoLink: "/projects/openclaw-workflow",
+      imageSrc: "/images/projects/friday.png",
+      title: "F.R.I.D.A.Y.",
+      description: "My agentic second brain OS — local AI, persistent memory, and multi-agent orchestration.",
+      tech: ['AI', 'Ollama', 'Obsidian', 'OpenClaw'],
+      demoLink: "/projects/friday",
       fullImage: true,
-      date: "Mar 2026"
+      date: "Apr 2026"
     },
     {
       imageSrc: "/images/corne-keyboard/cornebuild.jpeg",
