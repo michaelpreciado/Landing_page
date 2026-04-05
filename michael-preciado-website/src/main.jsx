@@ -49,7 +49,7 @@ function AnimatedRoutes() {
           <Route path="/projects" element={<ProjectsPage />} />
           <Route path="/projects/corne-keyboard" element={<CorneKeyboard />} />
           <Route path="/projects/ai-server" element={<AIServer />} />
-          <Route path="/projects/openclaw-workflow" element={<OpenClawWorkflow />} />
+          <Route path="/projects/friday" element={<OpenClawWorkflow />} />
           <Route path="/resume" element={<Resume />} />
         </Routes>
       </Suspense>
