@@ -723,7 +723,7 @@ function OpenClawWorkflow() {
               <div className="friday-vault-root">
                 <div>
                   <div className="friday-vault-root-name">📁 Preciado Tech</div>
-                  <div className="friday-vault-root-sub">~/Documents/AIBrain · Friday/</div>
+                  <div className="friday-vault-root-sub">~/Documents/ObsidianVault/Friday</div>
                 </div>
               </div>
               <div className="friday-folder-list">
