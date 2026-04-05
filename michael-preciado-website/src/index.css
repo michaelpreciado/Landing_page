@@ -3057,8 +3057,8 @@ h3:hover {
 }
 
 .blog-intro-card {
-  background: rgba(10, 25, 47, 0.5);
-  border: 1px solid var(--primary-accent);
+  background: rgba(10, 25, 47, 0.25);
+  border: 1px solid rgba(30, 144, 255, 0.2);
   border-radius: 12px;
   padding: 2.5rem 2rem 2rem;
   max-width: min(90%, 1000px);
@@ -3079,8 +3079,8 @@ h3:hover {
   left: 0;
   right: 0;
   height: 32px;
-  background: rgba(30, 144, 255, 0.1);
-  border-bottom: 1px solid var(--primary-accent);
+  background: rgba(30, 144, 255, 0.06);
+  border-bottom: 1px solid rgba(30, 144, 255, 0.15);
   border-radius: 12px 12px 0 0;
 }
 
@@ -3212,8 +3212,8 @@ h3:hover {
 }
 
 .blog-post-card {
-  background: rgba(10, 25, 47, 0.5);
-  border: 1px solid var(--primary-accent);
+  background: rgba(10, 25, 47, 0.25);
+  border: 1px solid rgba(30, 144, 255, 0.2);
   border-radius: 12px;
   overflow: hidden;
   transition: all 0.2s ease;
@@ -3230,16 +3230,16 @@ h3:hover {
   left: 0;
   right: 0;
   height: 32px;
-  background: rgba(30, 144, 255, 0.1);
-  border-bottom: 1px solid var(--primary-accent);
+  background: rgba(30, 144, 255, 0.06);
+  border-bottom: 1px solid rgba(30, 144, 255, 0.15);
   z-index: 1;
 }
 
 .blog-post-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 0 20px rgba(30, 144, 255, 0.3);
-  border-color: var(--primary-accent);
-  background: rgba(10, 25, 47, 0.7);
+  box-shadow: 0 0 20px rgba(30, 144, 255, 0.15);
+  border-color: rgba(30, 144, 255, 0.35);
+  background: rgba(10, 25, 47, 0.4);
 }
 
 .blog-post-card .thumbnail {
@@ -3327,13 +3327,13 @@ h3:hover {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid var(--primary-accent);
+  border: 1px solid rgba(30, 144, 255, 0.2);
   border-radius: 6px;
   min-height: 44px;
   min-width: 140px;
   padding: 10px 24px;
   color: var(--primary-accent);
-  background: rgba(30, 144, 255, 0.1);
+  background: rgba(30, 144, 255, 0.06);
   cursor: pointer;
   font-family: var(--font-mono);
   font-size: 0.9rem;
@@ -3916,8 +3916,8 @@ h3:hover {
 
 /* --- Terminal Form Styles --- */
 .terminal-input {
-  background: rgba(0, 0, 0, 0.6) !important;
-  border: 1px solid var(--primary-accent) !important;
+  background: rgba(5, 12, 28, 0.35) !important;
+  border: 1px solid rgba(30, 144, 255, 0.2) !important;
   color: var(--light-text) !important;
   font-family: var(--font-mono) !important;
   font-size: 0.85rem !important;
@@ -3928,10 +3928,10 @@ h3:hover {
 
 .terminal-input:focus {
   outline: none !important;
-  border-color: var(--secondary-accent) !important;
+  border-color: rgba(30, 144, 255, 0.35) !important;
   /* Simplified box-shadow for performance */
-  box-shadow: 0 0 8px rgba(30, 144, 255, 0.3) !important;
-  background: rgba(0, 0, 0, 0.8) !important;
+  box-shadow: 0 0 8px rgba(30, 144, 255, 0.15) !important;
+  background: rgba(5, 12, 28, 0.5) !important;
 }
 
 .terminal-input::placeholder {
@@ -3950,8 +3950,8 @@ h3:hover {
 }
 
 .terminal-submit {
-  background: rgba(30, 144, 255, 0.1) !important;
-  border: 2px solid var(--primary-accent) !important;
+  background: rgba(30, 144, 255, 0.06) !important;
+  border: 1px solid rgba(30, 144, 255, 0.2) !important;
   color: var(--light-text) !important;
   font-family: var(--font-mono) !important;
   font-size: 0.85rem !important;
@@ -4045,7 +4045,7 @@ h3:hover {
 
 .job-entry {
   margin-bottom: 2.5rem;
-  border-left: 2px solid var(--primary-accent);
+  border-left: 2px solid rgba(30, 144, 255, 0.25);
   padding-left: 1.5rem;
 }
 
@@ -4205,8 +4205,8 @@ h3:hover {
   padding: 0.6rem 1.2rem;
   min-height: 44px;
   min-width: 132px;
-  background: rgba(30, 144, 255, 0.1);
-  border: 1px solid var(--primary-accent);
+  background: rgba(30, 144, 255, 0.06);
+  border: 1px solid rgba(30, 144, 255, 0.2);
   border-radius: 6px;
   color: var(--primary-accent) !important;
   text-decoration: none;
