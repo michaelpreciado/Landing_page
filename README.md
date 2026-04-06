@@ -1,5 +1,32 @@
 # Landing_page
 
-This repository hosts the Vercel deployment for the portfolio site. The app source lives in the `michael-preciado-website` directory.
+Professional portfolio repository for <https://michael-preciado.com>.
 
-> **Deployment note:** A recent force-push removed commit `a65f708`, which caused Vercel to fail while cloning that revision. Trigger deployments from the latest commit on `main` to avoid missing-revision clone errors.
+This repo is the deployable wrapper for the site, while the React/Vite application source lives in `michael-preciado-website/`.
+
+## Repository Layout
+
+- `michael-preciado-website/` - main application source
+- `vercel.json` - deployment routing and build configuration
+- root `package.json` - convenience scripts for local development and builds
+
+## Local Development
+
+```bash
+npm install
+npm run dev
+```
+
+## Production Build
+
+```bash
+npm run build
+```
+
+## Live Site
+
+- <https://michael-preciado.com>
+
+## License
+
+MIT License
