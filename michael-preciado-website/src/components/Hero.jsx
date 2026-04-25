@@ -99,15 +99,6 @@ const Hero = React.memo(() => {
             <p className="terminal-text">
               <span className="terminal-prompt">&gt;</span> California-based software developer building AI-assisted web tools, PWAs, and creative interfaces.
             </p>
-            <p className="terminal-text">
-              <span className="terminal-prompt">&gt;</span> Strongest stack: React, TypeScript, Next.js, Supabase, Vite, Three.js, automation workflows.
-            </p>
-            <p className="terminal-text blank-line"></p>
-            <p className="terminal-text">
-              <span className="terminal-prompt">&gt;</span> I like turning rough ideas into shipped, usable products — from full-stack apps to interactive 3D experiences.
-            </p>
-            <p className="terminal-text blank-line"></p>
-
             {/* Career snapshot */}
             <p className="terminal-text">
               <span className="terminal-label">current focus :</span> software engineering, applied AI, local-first products,
@@ -127,8 +118,6 @@ const Hero = React.memo(() => {
 
             <p className="terminal-text">
               <a href="/resume" className="terminal-link-inline" style={{ color: '#1E90FF' }}>my work experience</a>
-              <span> · </span>
-              <a href="#featured-projects" className="terminal-link-inline" style={{ color: '#1E90FF' }}>featured projects</a>
             </p>
             <p className="terminal-text blank-line"></p>
 
