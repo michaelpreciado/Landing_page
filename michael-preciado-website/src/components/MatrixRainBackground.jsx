@@ -33,8 +33,6 @@ const MatrixRainBackground = () => {
     let animationFrameId;
     let lastTime = 0;
     const fpsInterval = 1000 / settings.fps;
-    let scrollY = 0;
-
     let width = canvas.width = window.innerWidth;
     let height = canvas.height = window.innerHeight;
 

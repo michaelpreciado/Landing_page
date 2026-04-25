@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
+import { motion as Motion } from 'framer-motion';
 import MatrixRainBackground from './MatrixRainBackground';
 import PageTransition from './PageTransition.jsx';
 import ReturnButton from './ReturnButton.jsx';
@@ -30,7 +30,7 @@ const BlogPostCard = React.memo(({ post, index }) => {
   };
 
   return (
-    <motion.div variants={cardVariants} initial="hidden" animate="visible">
+    <Motion.div variants={cardVariants} initial="hidden" animate="visible">
       <Link to={`/blog/${post.slug}`} className="blog-card-editorial">
         <div className="blog-card-image-wrap">
           {post.heroImage ? (
@@ -54,7 +54,7 @@ const BlogPostCard = React.memo(({ post, index }) => {
           <p className="blog-card-excerpt">{post.excerpt}</p>
         </div>
       </Link>
-    </motion.div>
+    </Motion.div>
   );
 });
 

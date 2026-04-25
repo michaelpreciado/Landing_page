@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { motion } from 'framer-motion';
+import { motion as Motion } from 'framer-motion';
 import { autoApplyLiquidGlass } from '../utils/liquidGlass.js';
 
 /**
@@ -40,7 +40,7 @@ function Contact() {
       <div className="text-center" style={{ position: 'relative', zIndex: 1 }}>
         {/* Wrap motion.span with an anchor tag */}
         <a href="https://buymeacoffee.com/mpreciado" style={{ textDecoration: 'none', color: 'inherit' }}>
-          <motion.div
+          <Motion.div
             style={{ display: 'inline-flex', cursor: 'pointer' }}
             animate={{ y: [0, -8, 0] }}
             transition={{
@@ -51,7 +51,7 @@ function Contact() {
             }}
           >
             <SimpleCoffeeIcon size={80} />
-          </motion.div>
+          </Motion.div>
         </a>
 
         {/* Footer */}
