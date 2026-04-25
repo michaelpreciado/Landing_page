@@ -2,6 +2,7 @@ import React, { useEffect, Suspense, lazy } from 'react';
 import { Analytics } from '@vercel/analytics/react';
 import MatrixRainBackground from './components/MatrixRainBackground';
 import Hero from './components/Hero';
+import FeaturedProjects from './components/FeaturedProjects';
 import PageTransition from './components/PageTransition';
 import { autoApplyLiquidGlass } from './utils/liquidGlass.js';
 import { autoApplyScrollReveal } from './utils/scrollReveal.js';
@@ -34,6 +35,7 @@ function App() {
       <MatrixRainBackground />
       <main style={{ position: 'relative', zIndex: 1 }}>
         <Hero />
+        <FeaturedProjects />
         <Suspense fallback={<SectionLoader height="300px" />}>
           <Contact />
         </Suspense>

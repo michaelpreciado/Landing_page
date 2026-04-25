@@ -6,6 +6,7 @@ import PageTransition from './PageTransition.jsx';
 import ReturnButton from './ReturnButton.jsx';
 import LazyImage from './LazyImage';
 import { autoApplyLiquidGlass } from '../utils/liquidGlass.js';
+import { projectsData } from '../data/projectsData.js';
 
 const ProjectCard = React.memo(({ imageSrc, emoji, title, description, tech, codeLink, demoLink, index, fullImage = false, date }) => {
   const cardVariants = {
@@ -253,72 +254,6 @@ function Projects() {
       if (style.parentNode) document.head.removeChild(style);
     };
   }, []);
-
-  const projectsData = [
-    {
-      imageSrc: "/images/projects/friday.png",
-      title: "F.R.I.D.A.Y.",
-      description: "My agentic second brain OS — local AI, persistent memory, and multi-agent orchestration.",
-      tech: ['AI', 'Ollama', 'Obsidian', 'OpenClaw'],
-      demoLink: "/projects/friday",
-      fullImage: true,
-      date: "Apr 2026"
-    },
-    {
-      imageSrc: "/images/corne-keyboard/cornebuild.jpeg",
-      title: "Corne Keyboard",
-      description: "Custom split ergonomic mechanical keyboard with ZMK firmware and 3D printed case.",
-      tech: ['Hardware', 'ZMK', '3D Printing'],
-      demoLink: "/projects/corne-keyboard",
-      fullImage: true,
-      date: "Feb 2026"
-    },
-    {
-      emoji: "📷",
-      title: "CRT Interactive Album",
-      description: "A nostalgic 3D experience showcasing a 90s-era CRT computer with dynamic slideshow.",
-      tech: ['React', 'Three.js', 'Tailwind'],
-      codeLink: "https://github.com/michaelpreciado/CRTinteractiveAlbum",
-      demoLink: "https://cr-tinteractive-album.vercel.app",
-      date: "Jan 2026"
-    },
-    {
-      imageSrc: "/images/projects/planttracker.png",
-      title: "Plant Tracker PWA",
-      description: "A Progressive Web App for plant care management with smart watering reminders.",
-      tech: ['Next.js', 'TypeScript', 'Supabase'],
-      codeLink: "https://github.com/michaelpreciado/Planter",
-      demoLink: "https://planttracker.netlify.app/",
-      date: "Dec 2025"
-    },
-    {
-      imageSrc: "/images/projects/flattenhund.png",
-      title: "Flappy Dog Game",
-      description: "A charming Flappy Bird-inspired game featuring my dogs with online leaderboard.",
-      tech: ['JavaScript', 'Supabase', 'Canvas'],
-      codeLink: "https://github.com/michaelpreciado/Flattenhund",
-      demoLink: "https://theflappydoggame.netlify.app/",
-      date: "Nov 2025"
-    },
-    {
-      imageSrc: "/images/projects/Solar.png",
-      title: "Interactive Solar System",
-      description: "An immersive 3D solar system simulation with realistic planetary orbits and interactive controls.",
-      tech: ['JavaScript', 'WebGL', 'Canvas'],
-      codeLink: "https://github.com/michaelpreciado/Interactive_Solar_System",
-      demoLink: "https://interactive-solar-system-bay.vercel.app/",
-      date: "Oct 2025"
-    },
-    {
-      imageSrc: "/images/projects/photography.png",
-      title: "Photography Portfolio",
-      description: "A minimalist photography showcase featuring responsive image galleries and optimized loading.",
-      tech: ['React', 'JavaScript', 'CSS3'],
-      codeLink: "https://github.com/michaelpreciado/mario.preciado.photography",
-      demoLink: "https://mariopreciado-photography.netlify.app",
-      date: "Sep 2025"
-    },
-  ];
 
   const sortedProjects = [...projectsData].sort((a, b) => {
     const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
