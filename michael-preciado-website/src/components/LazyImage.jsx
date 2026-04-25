@@ -94,7 +94,7 @@ const LazyImage = ({
     onLoad();
   };
 
-  const handleError = (error) => {
+  const handleError = () => {
     setHasError(true);
     onError();
   };

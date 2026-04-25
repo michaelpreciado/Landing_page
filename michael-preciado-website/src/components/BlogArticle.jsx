@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
 import MatrixRainBackground from './MatrixRainBackground';
 import PageTransition from './PageTransition.jsx';
 import ReturnButton from './ReturnButton.jsx';

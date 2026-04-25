@@ -1,9 +1,9 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import { motion as Motion } from 'framer-motion';
 
 const PageTransition = React.memo(({ children }) => {
   return (
-    <motion.div
+    <Motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
@@ -14,7 +14,7 @@ const PageTransition = React.memo(({ children }) => {
       style={{ width: '100%', minHeight: '100vh' }}
     >
       {children}
-    </motion.div>
+    </Motion.div>
   );
 });
 
