@@ -1,18 +1,35 @@
 # Michael Preciado Website
 
-Personal portfolio and article site for Michael Preciado, built as a modern React single-page app with animated sections, project showcases, technical writing, and custom visual components.
+React/Vite source app for [michael-preciado.com](https://michael-preciado.com), Michael Preciado's personal portfolio and article site.
+
+## Positioning
+
+The site presents Michael as an AI-focused software builder with real operations instincts. It connects:
+
+- practical AI / automation work through Preciado Tech
+- portfolio projects and case studies
+- technical writing
+- resume and hiring signals
+- links to GitHub, LinkedIn, and contact routes
 
 ## Highlights
 
-- Project and article showcase
-- Animated UI with Framer Motion
-- React-based portfolio architecture
-- Fast Vite build pipeline
-- Custom components for experiments and technical storytelling
+- Terminal-inspired homepage with Dodger Blue matrix theme
+- Articles and projects pages matched to the same visual system
+- `/projects/planter` case-study route
+- Project cards with live demos and GitHub links
+- Framer Motion page transitions
+- Vercel Analytics
+
+## Visual Project Proof
+
+| Planter | F.R.I.D.A.Y. | AI Server |
+| --- | --- | --- |
+| ![Planter project screenshot](public/images/projects/planttracker.png) | ![F.R.I.D.A.Y. project screenshot](public/images/projects/friday.png) | ![AI server dashboard screenshot](public/images/projects/ai-server-dashboard.jpeg) |
 
 ## Tech Stack
 
-- React 19
+- React
 - Vite
 - React Router
 - Framer Motion
@@ -23,9 +40,9 @@ Personal portfolio and article site for Michael Preciado, built as a modern Reac
 
 ```text
 src/
-├── components/   # Reusable UI sections and feature components
-├── data/         # Content/data sources
-├── utils/        # Utility helpers and effects
+├── components/   # Reusable UI sections, routes, and case studies
+├── data/         # Blog/content data sources
+├── utils/        # Liquid glass, scroll reveal, and visual helpers
 └── main.jsx      # Application entry point
 ```
 
@@ -47,7 +64,8 @@ npm run preview
 
 ## Live Site
 
-- <https://michael-preciado.com>
+- Portfolio: <https://michael-preciado.com>
+- Preciado Tech: <https://preciado-tech.com>
 
 ## License
 

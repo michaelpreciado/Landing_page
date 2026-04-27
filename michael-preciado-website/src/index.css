@@ -250,6 +250,219 @@ section+section {
   margin-top: 20px;
 }
 
+/* --- Now / Hiring CTA --- */
+.now-section {
+  padding-top: 10px;
+}
+
+.now-terminal {
+  max-width: 960px;
+  margin: 0 auto;
+  border: 1px solid var(--border-color);
+  border-radius: 14px;
+  background: rgba(10, 25, 47, 0.62);
+  box-shadow: 0 0 28px rgba(30, 144, 255, 0.14), inset 0 0 24px rgba(30, 144, 255, 0.04);
+  backdrop-filter: blur(10px);
+  overflow: hidden;
+  text-align: left;
+}
+
+.now-terminal-bar {
+  padding: 0.85rem 1rem;
+  border-bottom: 1px solid rgba(30, 144, 255, 0.18);
+  color: var(--primary-accent);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+}
+
+.now-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+  padding: 1.25rem;
+}
+
+.now-kicker {
+  margin: 0 0 0.75rem;
+  color: var(--primary-accent);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.now-section h2 {
+  margin: 0 0 1rem;
+  font-size: clamp(1.35rem, 4vw, 2rem);
+}
+
+.now-copy {
+  margin: 0 0 1rem;
+}
+
+.now-actions,
+.now-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+}
+
+.now-btn {
+  border: 1px solid rgba(30, 144, 255, 0.25);
+  border-radius: 8px;
+  padding: 0.55rem 0.75rem;
+  color: var(--light-text);
+  background: rgba(30, 144, 255, 0.06);
+  font-size: 0.8rem;
+}
+
+.now-btn.primary {
+  border-color: var(--primary-accent);
+  color: #020c1b;
+  background: var(--primary-accent);
+  font-weight: 700;
+}
+
+.now-item {
+  flex: 1 1 230px;
+  border: 1px solid rgba(30, 144, 255, 0.14);
+  border-radius: 10px;
+  padding: 0.9rem;
+  background: rgba(2, 12, 27, 0.52);
+}
+
+.now-item span {
+  display: block;
+  color: var(--primary-accent);
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.now-item p {
+  margin: 0;
+  font-size: 0.85rem;
+}
+
+@media (min-width: 860px) {
+  .now-grid {
+    grid-template-columns: 0.9fr 1.1fr;
+    padding: 1.5rem;
+  }
+}
+
+/* --- Project case studies --- */
+.case-study-page {
+  position: relative;
+  z-index: 1;
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 5rem 1.25rem 3rem;
+}
+
+.case-terminal,
+.case-detail-card {
+  border: 1px solid var(--border-color);
+  border-radius: 14px;
+  background: rgba(10, 25, 47, 0.66);
+  box-shadow: 0 0 28px rgba(30, 144, 255, 0.14), inset 0 0 24px rgba(30, 144, 255, 0.04);
+  backdrop-filter: blur(10px);
+  overflow: hidden;
+}
+
+.case-terminal-bar {
+  padding: 0.85rem 1rem;
+  border-bottom: 1px solid rgba(30, 144, 255, 0.18);
+  color: var(--primary-accent);
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+}
+
+.case-hero-grid {
+  display: grid;
+  gap: 1.5rem;
+  padding: 1.25rem;
+}
+
+.case-kicker {
+  color: var(--primary-accent);
+  font-size: 0.75rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  margin: 0 0 0.8rem;
+}
+
+.case-study-page h1 {
+  margin: 0 0 1rem;
+  font-size: clamp(1.65rem, 5vw, 3rem);
+}
+
+.case-lede {
+  margin: 0 0 1rem;
+}
+
+.case-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+}
+
+.case-actions a {
+  border: 1px solid rgba(30, 144, 255, 0.3);
+  border-radius: 8px;
+  padding: 0.6rem 0.8rem;
+  color: var(--light-text);
+  background: rgba(30, 144, 255, 0.07);
+}
+
+.case-image-panel {
+  display: grid;
+  place-items: center;
+  min-height: 240px;
+  border: 1px solid rgba(30, 144, 255, 0.14);
+  border-radius: 12px;
+  background: rgba(2, 12, 27, 0.72);
+  overflow: hidden;
+}
+
+.case-image-panel img {
+  width: 100%;
+  height: 100%;
+  max-height: 360px;
+  object-fit: cover;
+}
+
+.case-detail-grid {
+  display: grid;
+  gap: 1rem;
+  padding: 1rem 0 0;
+}
+
+.case-detail-card {
+  padding: 1rem;
+  text-align: left;
+}
+
+.case-detail-card h2 {
+  margin: 0 0 0.75rem;
+  color: var(--primary-accent);
+  font-size: 1rem;
+}
+
+.case-detail-card p {
+  margin: 0;
+}
+
+@media (min-width: 840px) {
+  .case-hero-grid {
+    grid-template-columns: 0.95fr 1.05fr;
+    padding: 1.5rem;
+  }
+  .case-detail-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
 /* --- Canvas --- */
 /* Ensure matrix background covers full document height */
 canvas {

@@ -312,7 +312,7 @@ function Projects() {
       description: "A local-first AI botanical journal for plant records, progress photos, care notes, and offline-minded care intelligence.",
       tech: ['Next.js', 'TypeScript', 'Zustand', 'Vercel'],
       codeLink: "https://github.com/michaelpreciado/Planter",
-      demoLink: "https://planter-ekb2f1y8p-michael-preciados-projects.vercel.app",
+      demoLink: "/projects/planter",
       date: "Apr 2026"
     },
     {
