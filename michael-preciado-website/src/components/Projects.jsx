@@ -256,6 +256,15 @@ function Projects() {
 
   const projectsData = [
     {
+      emoji: "⚡",
+      title: "Preciado Tech",
+      description: "My business page for practical AI systems, automation sprints, custom assistants, and digital tools for real work.",
+      tech: ['React', 'Vite', 'AI Systems', 'Brand'],
+      codeLink: "https://github.com/michaelpreciado/business-page",
+      demoLink: "https://preciado-tech.com",
+      date: "Apr 2026"
+    },
+    {
       imageSrc: "/images/projects/friday.png",
       title: "F.R.I.D.A.Y.",
       description: "My agentic second brain OS — local AI, persistent memory, and multi-agent orchestration.",
@@ -284,12 +293,12 @@ function Projects() {
     },
     {
       imageSrc: "/images/projects/planttracker.png",
-      title: "Plant Tracker PWA",
-      description: "A Progressive Web App for plant care management with smart watering reminders.",
-      tech: ['Next.js', 'TypeScript', 'Supabase'],
+      title: "Planter",
+      description: "A local-first AI botanical journal for plant records, progress photos, care notes, and offline-minded care intelligence.",
+      tech: ['Next.js', 'TypeScript', 'Zustand', 'Vercel'],
       codeLink: "https://github.com/michaelpreciado/Planter",
-      demoLink: "https://planttracker.netlify.app/",
-      date: "Dec 2025"
+      demoLink: "https://planter-ekb2f1y8p-michael-preciados-projects.vercel.app",
+      date: "Apr 2026"
     },
     {
       imageSrc: "/images/projects/flattenhund.png",
@@ -312,9 +321,9 @@ function Projects() {
     {
       imageSrc: "/images/projects/photography.png",
       title: "Photography Portfolio",
-      description: "A minimalist photography showcase featuring responsive image galleries and optimized loading.",
+      description: "A production-ready photography showcase with responsive galleries, optimized assets, and client-ready deployment polish.",
       tech: ['React', 'JavaScript', 'CSS3'],
-      codeLink: "https://github.com/michaelpreciado/mario.preciado.photography",
+      codeLink: "https://github.com/michaelpreciado/photography-portfolio",
       demoLink: "https://mariopreciado-photography.netlify.app",
       date: "Sep 2025"
     },
@@ -345,9 +354,9 @@ function Projects() {
           </header>
 
           <p className="projects-intro">
-            Welcome to my workshop. Here you'll find a collection of my favorite projects, 
-            from web apps to hardware experiments. Each one is a story of a problem solved 
-            and something new learned.
+            Welcome to my workshop. These projects connect my software, AI, automation, and
+            systems interests — from Preciado Tech business work to local-first apps,
+            agentic workflows, creative interfaces, and hardware experiments.
           </p>
 
           <div className="projects-grid">
