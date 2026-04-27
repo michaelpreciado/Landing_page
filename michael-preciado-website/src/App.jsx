@@ -8,7 +8,6 @@ import { autoApplyLiquidGlass } from './utils/liquidGlass.js';
 import { autoApplyScrollReveal } from './utils/scrollReveal.js';
 
 // Lazy load below-the-fold components for better initial performance
-const BusinessOfferings = lazy(() => import('./components/BusinessOfferings'));
 const Contact = lazy(() => import('./components/Contact'));
 
 // Lightweight loading fallback for below-the-fold sections
@@ -37,8 +36,7 @@ function App() {
       <main style={{ position: 'relative', zIndex: 1 }}>
         <Hero />
         <NowSection />
-        <Suspense fallback={<SectionLoader height="500px" />}>
-          <BusinessOfferings />
+        <Suspense fallback={<SectionLoader height="300px" />}>
           <Contact />
         </Suspense>
       </main>
