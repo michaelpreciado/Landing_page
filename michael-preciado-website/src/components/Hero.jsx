@@ -13,7 +13,8 @@ const Icon = ({ type, size = 14 }) => {
     linkedin: <><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" /><rect x="2" y="9" width="4" height="12" /><circle cx="4" cy="4" r="2" /></>,
     twitter: <><path d="M4 4l16 16M20 4L4 20" /></>,
     mail: <><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" /><polyline points="22,6 12,13 2,6" /></>,
-    calendar: <><rect x="3" y="4" width="18" height="18" rx="2" ry="2" /><line x1="16" y1="2" x2="16" y2="6" /><line x1="8" y1="2" x2="8" y2="6" /><line x1="3" y1="10" x2="21" y2="10" /></>
+    calendar: <><rect x="3" y="4" width="18" height="18" rx="2" ry="2" /><line x1="16" y1="2" x2="16" y2="6" /><line x1="8" y1="2" x2="8" y2="6" /><line x1="3" y1="10" x2="21" y2="10" /></>,
+    business: <><rect x="3" y="7" width="18" height="14" rx="2" /><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" /><path d="M3 13h18" /><path d="M12 12v2" /></>
   };
 
   return (
@@ -100,23 +101,23 @@ const Hero = React.memo(() => {
               <span className="terminal-prompt">&gt;</span> Currently based in California
             </p>
             <p className="terminal-text">
-              <span className="terminal-prompt">&gt;</span> Self-taught full stack developer, tech enthusiast & builder
+              <span className="terminal-prompt">&gt;</span> AI-focused software builder with real operations instincts
             </p>
             <p className="terminal-text blank-line"></p>
             <p className="terminal-text">
-              <span className="terminal-prompt">&gt;</span> currently studying artificial intelligence and working on personal projects.
+              <span className="terminal-prompt">&gt;</span> building Preciado Tech: practical AI systems, automations, and digital tools for real work.
             </p>
             <p className="terminal-text blank-line"></p>
 
             {/* Interests section */}
             <p className="terminal-text">
-              <span className="terminal-label">interests :</span> tech, software engineering, ai/ml, automation,
+              <span className="terminal-label">focus :</span> ai workflows, software engineering, automation,
             </p>
             <p className="terminal-text terminal-indent">
-              web development, data science, photography, hiking,
+              web development, local-first apps, systems thinking,
             </p>
             <p className="terminal-text terminal-indent">
-              exploring new ideas
+              robotics, hardware experiments, and learning in public
             </p>
             <p className="terminal-text blank-line"></p>
 
@@ -127,7 +128,7 @@ const Hero = React.memo(() => {
 
             {/* Status update */}
             <p className="terminal-text terminal-indent">
-              <span className="terminal-prompt">↳</span> will update soon
+              <span className="terminal-prompt">↳</span> open to AI/software roles, automation work, and practical builder opportunities
             </p>
             <p className="terminal-text blank-line"></p>
 
@@ -141,6 +142,9 @@ const Hero = React.memo(() => {
               </p>
               <p className="terminal-text terminal-indent-double">
                 <span className="link-bullet">○</span> <a href="/projects" className="terminal-link-inline"><Icon type="code" />my projects...</a>
+              </p>
+              <p className="terminal-text terminal-indent-double">
+                <span className="link-bullet">○</span> <a href="https://preciado-tech.com" className="terminal-link-inline"><Icon type="business" />Preciado Tech...</a>
               </p>
 
               <p className="terminal-text">

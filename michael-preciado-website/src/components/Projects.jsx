@@ -75,13 +75,13 @@ function Projects() {
     autoApplyLiquidGlass();
     const style = document.createElement('style');
     style.textContent = `
-      @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500&display=swap');
+      @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&display=swap');
       
       .projects-editorial {
         min-height: 100vh;
         position: relative;
-        color: #E8E4DC;
-        font-family: 'Inter', sans-serif;
+        color: var(--light-text);
+        font-family: var(--font-sans);
         font-weight: 300;
         line-height: 1.6;
       }
@@ -93,20 +93,33 @@ function Projects() {
         z-index: 1;
       }
       .projects-header {
-        text-align: center;
+        text-align: left;
         margin-bottom: 1.5rem;
-        padding-bottom: 1rem;
-        border-bottom: 1px solid rgba(30, 144, 255, 0.15);
+        padding: 1rem;
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        background: rgba(10, 25, 47, 0.68);
+        box-shadow: 0 0 24px rgba(30, 144, 255, 0.12), inset 0 0 24px rgba(30, 144, 255, 0.04);
+        backdrop-filter: blur(10px);
+      }
+      .projects-header::before {
+        content: '● ● ●   michael@projects:~';
+        display: block;
+        font-size: 0.65rem;
+        letter-spacing: 0.12em;
+        color: var(--primary-accent);
+        margin-bottom: 0.85rem;
+        opacity: 0.9;
       }
       .projects-meta {
         display: flex;
-        justify-content: center;
+        justify-content: flex-start;
         align-items: center;
         gap: 1rem;
         font-size: 0.65rem;
         letter-spacing: 0.15em;
         text-transform: uppercase;
-        color: #8B8680;
+        color: var(--medium-text);
         margin-bottom: 0.75rem;
       }
       .projects-meta span {
@@ -119,18 +132,18 @@ function Projects() {
         color: rgba(30, 144, 255, 0.3);
       }
       .projects-title {
-        font-family: 'Playfair Display', serif;
-        font-size: clamp(2rem, 6vw, 3rem);
-        font-weight: 500;
-        letter-spacing: 0.02em;
+        font-family: var(--font-mono);
+        font-size: clamp(1.65rem, 5vw, 2.75rem);
+        font-weight: 700;
+        letter-spacing: -0.03em;
         margin: 0;
-        color: #FFFFFF;
+        color: var(--light-text);
       }
       .projects-intro {
-        max-width: 600px;
-        margin: 0 auto 2rem;
-        text-align: center;
-        color: #B8B0A0;
+        max-width: 720px;
+        margin: 0 0 2rem;
+        text-align: left;
+        color: var(--medium-text);
         font-size: 0.85rem;
         line-height: 1.7;
       }
@@ -140,9 +153,9 @@ function Projects() {
         gap: 0.75rem;
       }
       .project-card-editorial {
-        background: rgba(10, 25, 47, 0.3);
+        background: rgba(10, 25, 47, 0.52);
         border: 1px solid rgba(30, 144, 255, 0.12);
-        border-radius: 8px;
+        border-radius: 12px;
         overflow: hidden;
         transition: all 0.2s ease;
         text-decoration: none;
@@ -152,12 +165,13 @@ function Projects() {
         -webkit-backdrop-filter: blur(8px);
       }
       .project-card-editorial:hover {
-        border-color: rgba(30, 144, 255, 0.25);
-        background: rgba(10, 25, 47, 0.45);
+        border-color: var(--primary-accent);
+        background: rgba(10, 25, 47, 0.82);
+        box-shadow: 0 0 20px rgba(30, 144, 255, 0.12), inset 0 0 20px rgba(30, 144, 255, 0.06);
       }
       .project-card-image-wrap {
         aspect-ratio: 16/9;
-        background: rgba(5, 12, 28, 0.4);
+        background: rgba(2, 12, 27, 0.72);
         display: flex;
         align-items: center;
         justify-content: center;
@@ -166,6 +180,7 @@ function Projects() {
       }
       .project-card-emoji {
         font-size: 2.5rem;
+        filter: drop-shadow(0 0 10px rgba(30, 144, 255, 0.25));
       }
       .project-card-content {
         padding: 0.875rem;
@@ -178,15 +193,15 @@ function Projects() {
         margin-bottom: 0.25rem;
       }
       .project-card-title {
-        font-family: 'Playfair Display', serif;
+        font-family: var(--font-mono);
         font-size: 0.9rem;
-        color: #FFFFFF;
+        color: var(--light-text);
         margin-bottom: 0.25rem;
         line-height: 1.3;
       }
       .project-card-desc {
         font-size: 0.75rem;
-        color: #B8B0A0;
+        color: var(--medium-text);
         line-height: 1.5;
         margin-bottom: 0.5rem;
         display: -webkit-box;
@@ -218,7 +233,7 @@ function Projects() {
         font-size: 0.7rem;
         border: 1px solid rgba(30, 144, 255, 0.2);
         background: rgba(30, 144, 255, 0.05);
-        color: #FFFFFF;
+        color: var(--light-text);
         border-radius: 4px;
         cursor: pointer;
         text-align: center;
@@ -239,7 +254,7 @@ function Projects() {
         padding-top: 1rem;
         border-top: 1px solid rgba(30, 144, 255, 0.08);
         font-size: 0.7rem;
-        color: #8B8680;
+        color: var(--medium-text);
       }
       @media (min-width: 640px) {
         .projects-container { padding: 5.5rem 2rem 3rem; }
@@ -255,6 +270,15 @@ function Projects() {
   }, []);
 
   const projectsData = [
+    {
+      emoji: "⚡",
+      title: "Preciado Tech",
+      description: "My business page for practical AI systems, automation sprints, custom assistants, and digital tools for real work.",
+      tech: ['React', 'Vite', 'AI Systems', 'Brand'],
+      codeLink: "https://github.com/michaelpreciado/business-page",
+      demoLink: "https://preciado-tech.com",
+      date: "Apr 2026"
+    },
     {
       imageSrc: "/images/projects/friday.png",
       title: "F.R.I.D.A.Y.",
@@ -284,12 +308,12 @@ function Projects() {
     },
     {
       imageSrc: "/images/projects/planttracker.png",
-      title: "Plant Tracker PWA",
-      description: "A Progressive Web App for plant care management with smart watering reminders.",
-      tech: ['Next.js', 'TypeScript', 'Supabase'],
+      title: "Planter",
+      description: "A local-first AI botanical journal for plant records, progress photos, care notes, and offline-minded care intelligence.",
+      tech: ['Next.js', 'TypeScript', 'Zustand', 'Vercel'],
       codeLink: "https://github.com/michaelpreciado/Planter",
-      demoLink: "https://planttracker.netlify.app/",
-      date: "Dec 2025"
+      demoLink: "/projects/planter",
+      date: "Apr 2026"
     },
     {
       imageSrc: "/images/projects/flattenhund.png",
@@ -312,9 +336,9 @@ function Projects() {
     {
       imageSrc: "/images/projects/photography.png",
       title: "Photography Portfolio",
-      description: "A minimalist photography showcase featuring responsive image galleries and optimized loading.",
+      description: "A production-ready photography showcase with responsive galleries, optimized assets, and client-ready deployment polish.",
       tech: ['React', 'JavaScript', 'CSS3'],
-      codeLink: "https://github.com/michaelpreciado/mario.preciado.photography",
+      codeLink: "https://github.com/michaelpreciado/photography-portfolio",
       demoLink: "https://mariopreciado-photography.netlify.app",
       date: "Sep 2025"
     },
@@ -345,9 +369,9 @@ function Projects() {
           </header>
 
           <p className="projects-intro">
-            Welcome to my workshop. Here you'll find a collection of my favorite projects, 
-            from web apps to hardware experiments. Each one is a story of a problem solved 
-            and something new learned.
+            Welcome to my workshop. These projects connect my software, AI, automation, and
+            systems interests — from Preciado Tech business work to local-first apps,
+            agentic workflows, creative interfaces, and hardware experiments.
           </p>
 
           <div className="projects-grid">

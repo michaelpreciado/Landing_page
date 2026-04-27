@@ -26,13 +26,13 @@ function BlogArticle() {
     
     const style = document.createElement('style');
     style.textContent = `
-      @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500&display=swap');
+      @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&display=swap');
       
       .article-editorial {
         min-height: 100vh;
         position: relative;
-        color: #E8E4DC;
-        font-family: 'Inter', sans-serif;
+        color: var(--light-text);
+        font-family: var(--font-sans);
         font-weight: 300;
         line-height: 1.7;
       }
@@ -44,20 +44,33 @@ function BlogArticle() {
         z-index: 1;
       }
       .article-header {
-        text-align: center;
+        text-align: left;
         margin-bottom: 2.5rem;
-        padding-bottom: 1.5rem;
-        border-bottom: 1px solid rgba(30, 144, 255, 0.2);
+        padding: 1rem;
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        background: rgba(10, 25, 47, 0.68);
+        box-shadow: 0 0 24px rgba(30, 144, 255, 0.12), inset 0 0 24px rgba(30, 144, 255, 0.04);
+        backdrop-filter: blur(10px);
+      }
+      .article-header::before {
+        content: '● ● ●   michael@article:~';
+        display: block;
+        font-size: 0.65rem;
+        letter-spacing: 0.12em;
+        color: var(--primary-accent);
+        margin-bottom: 0.85rem;
+        opacity: 0.9;
       }
       .article-meta {
         display: flex;
-        justify-content: center;
+        justify-content: flex-start;
         align-items: center;
         gap: 1rem;
         font-size: 0.65rem;
         letter-spacing: 0.15em;
         text-transform: uppercase;
-        color: #8B8680;
+        color: var(--medium-text);
         margin-bottom: 0.75rem;
       }
       .article-meta span {
@@ -70,26 +83,26 @@ function BlogArticle() {
         color: rgba(30, 144, 255, 0.4);
       }
       .article-title {
-        font-family: 'Playfair Display', serif;
-        font-size: clamp(1.5rem, 5vw, 2.5rem);
-        font-weight: 500;
-        letter-spacing: 0.01em;
+        font-family: var(--font-mono);
+        font-size: clamp(1.45rem, 5vw, 2.45rem);
+        font-weight: 700;
+        letter-spacing: -0.03em;
         margin: 0;
-        color: #FFFFFF;
+        color: var(--light-text);
         line-height: 1.2;
       }
       .article-date {
-        text-align: center;
+        text-align: left;
         font-size: 0.75rem;
-        color: #8B8680;
+        color: var(--medium-text);
         margin-bottom: 1.5rem;
       }
       .article-hero {
         width: 100%;
         aspect-ratio: 21/9;
-        background: rgba(5, 12, 28, 0.6);
+        background: rgba(2, 12, 27, 0.72);
         border: 1px solid rgba(30, 144, 255, 0.15);
-        border-radius: 8px;
+        border-radius: 12px;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -100,33 +113,38 @@ function BlogArticle() {
         font-size: 4rem;
       }
       .article-content {
-        color: #B8B0A0;
+        color: var(--medium-text);
         font-size: 0.9rem;
         line-height: 1.8;
+        background: rgba(10, 25, 47, 0.34);
+        border: 1px solid rgba(30, 144, 255, 0.12);
+        border-radius: 12px;
+        padding: 1.25rem;
+        backdrop-filter: blur(8px);
       }
       .article-content h2 {
-        font-family: 'Playfair Display', serif;
+        font-family: var(--font-mono);
         font-size: 1.3rem;
-        color: #FFFFFF;
+        color: var(--light-text);
         margin: 2rem 0 1rem;
         padding-bottom: 0.5rem;
         border-bottom: 1px solid rgba(30, 144, 255, 0.2);
       }
       .article-content h3 {
-        font-family: 'Playfair Display', serif;
+        font-family: var(--font-mono);
         font-size: 1.1rem;
-        color: #FFFFFF;
+        color: var(--light-text);
         margin: 1.5rem 0 0.75rem;
       }
       .article-content p {
         margin-bottom: 1rem;
       }
       .article-content strong {
-        color: #FFFFFF;
+        color: var(--light-text);
         font-weight: 500;
       }
       .article-content em {
-        color: #D0D0D0;
+        color: var(--light-text);
       }
       .article-content ul, .article-content ol {
         margin: 1rem 0;
@@ -139,21 +157,24 @@ function BlogArticle() {
         border-left: 3px solid rgba(30, 144, 255, 0.4);
         padding-left: 1rem;
         margin: 1.5rem 0;
-        color: #D0D0D0;
+        color: var(--light-text);
         font-style: italic;
+        background: rgba(30, 144, 255, 0.05);
+        padding-top: 0.8rem;
+        padding-bottom: 0.8rem;
       }
       .article-content code {
         background: rgba(30, 144, 255, 0.1);
         padding: 0.2rem 0.4rem;
         border-radius: 3px;
-        font-family: 'JetBrains Mono', monospace;
+        font-family: var(--font-mono);
         font-size: 0.85em;
-        color: #1E90FF;
+        color: var(--primary-accent);
       }
       .article-content pre {
         background: rgba(5, 12, 28, 0.8);
         padding: 1rem;
-        border-radius: 6px;
+        border-radius: 10px;
         overflow-x: auto;
         margin: 1rem 0;
       }
@@ -174,10 +195,10 @@ function BlogArticle() {
       .article-nav-link {
         flex: 1;
         padding: 0.75rem;
-        background: rgba(10, 25, 47, 0.6);
+        background: rgba(10, 25, 47, 0.68);
         border: 1px solid rgba(30, 144, 255, 0.2);
-        border-radius: 6px;
-        color: #B8B0A0;
+        border-radius: 10px;
+        color: var(--medium-text);
         text-decoration: none;
         font-size: 0.8rem;
         transition: all 0.2s ease;
@@ -191,31 +212,31 @@ function BlogArticle() {
       }
       .article-nav-label {
         font-size: 0.65rem;
-        color: #8B8680;
+        color: var(--medium-text);
         text-transform: uppercase;
         letter-spacing: 0.08em;
         display: block;
         margin-bottom: 0.25rem;
       }
       .article-nav-title {
-        color: #FFFFFF;
+        color: var(--light-text);
       }
       .article-not-found {
         text-align: center;
         padding: 4rem 2rem;
       }
       .article-not-found h2 {
-        font-family: 'Playfair Display', serif;
+        font-family: var(--font-mono);
         font-size: 1.5rem;
-        color: #FFFFFF;
+        color: var(--light-text);
         margin-bottom: 1rem;
       }
       .article-not-found p {
-        color: #B8B0A0;
+        color: var(--medium-text);
         margin-bottom: 1.5rem;
       }
       .article-not-found a {
-        color: #1E90FF;
+        color: var(--primary-accent);
         text-decoration: none;
       }
       @media (min-width: 640px) {

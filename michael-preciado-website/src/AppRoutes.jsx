@@ -10,6 +10,7 @@ const ProjectsPage = lazy(() => import('./components/ProjectsPage.jsx'));
 const CorneKeyboard = lazy(() => import('./components/CorneKeyboard.jsx'));
 const AIServer = lazy(() => import('./components/AIServer.jsx'));
 const OpenClawWorkflow = lazy(() => import('./components/OpenClawWorkflow.jsx'));
+const PlanterCaseStudy = lazy(() => import('./components/PlanterCaseStudy.jsx'));
 const Resume = lazy(() => import('./components/Resume.jsx'));
 
 // Loading fallback component
@@ -44,6 +45,7 @@ function AppRoutes() {
           <Route path="/projects/corne-keyboard" element={<CorneKeyboard />} />
           <Route path="/projects/ai-server" element={<AIServer />} />
           <Route path="/projects/friday" element={<OpenClawWorkflow />} />
+          <Route path="/projects/planter" element={<PlanterCaseStudy />} />
           <Route path="/resume" element={<Resume />} />
         </Routes>
       </Suspense>
