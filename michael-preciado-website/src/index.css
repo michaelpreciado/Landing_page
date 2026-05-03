@@ -261,7 +261,7 @@ section+section {
   margin: 0 auto;
   border: 1px solid rgba(30, 144, 255, 0.2);
   border-radius: 12px;
-  background: rgba(10, 25, 47, 0.4);
+  background: rgba(5, 12, 28, 0.25);
   box-shadow: 0 0 20px rgba(30, 144, 255, 0.1);
   backdrop-filter: blur(10px);
   overflow: hidden;
