@@ -33,7 +33,7 @@ function App() {
   return (
     <PageTransition>
       <MatrixRainBackground />
-      <main style={{ position: 'relative', zIndex: 1 }}>
+      <main className="main-glass-container" style={{ position: 'relative', zIndex: 1 }}>
         <Hero />
         <NowSection />
         <Suspense fallback={<SectionLoader height="300px" />}>
