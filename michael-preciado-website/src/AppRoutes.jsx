@@ -2,6 +2,7 @@ import { Suspense, lazy } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
 import App from './App.jsx';
+import Navbar from './components/Navbar.jsx';
 
 // Lazy load route components for better performance
 const Blog = lazy(() => import('./components/Blog.jsx'));
@@ -35,21 +36,24 @@ function AppRoutes() {
   const location = useLocation();
 
   return (
-    <AnimatePresence mode="wait" initial={false}>
-      <Suspense fallback={<LoadingFallback />}>
-        <Routes location={location} key={location.pathname}>
-          <Route path="/" element={<App />} />
-          <Route path="/blog" element={<Blog />} />
-          <Route path="/blog/:slug" element={<BlogArticle />} />
-          <Route path="/projects" element={<ProjectsPage />} />
-          <Route path="/projects/corne-keyboard" element={<CorneKeyboard />} />
-          <Route path="/projects/ai-server" element={<AIServer />} />
-          <Route path="/projects/friday" element={<OpenClawWorkflow />} />
-          <Route path="/projects/planter" element={<PlanterCaseStudy />} />
-          <Route path="/resume" element={<Resume />} />
-        </Routes>
-      </Suspense>
-    </AnimatePresence>
+    <>
+      <Navbar />
+      <AnimatePresence mode="wait" initial={false}>
+        <Suspense fallback={<LoadingFallback />}>
+          <Routes location={location} key={location.pathname}>
+            <Route path="/" element={<App />} />
+            <Route path="/blog" element={<Blog />} />
+            <Route path="/blog/:slug" element={<BlogArticle />} />
+            <Route path="/projects" element={<ProjectsPage />} />
+            <Route path="/projects/corne-keyboard" element={<CorneKeyboard />} />
+            <Route path="/projects/ai-server" element={<AIServer />} />
+            <Route path="/projects/friday" element={<OpenClawWorkflow />} />
+            <Route path="/projects/planter" element={<PlanterCaseStudy />} />
+            <Route path="/resume" element={<Resume />} />
+          </Routes>
+        </Suspense>
+      </AnimatePresence>
+    </>
   );
 }
 
