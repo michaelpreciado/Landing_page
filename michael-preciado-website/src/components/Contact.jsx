@@ -69,6 +69,11 @@ function Contact() {
                 <circle cx="4" cy="4" r="2"/>
               </svg>
             </a>
+            <a href="https://www.tiktok.com/@preciado.tech" className="footer-icon" aria-label="TikTok" style={{ color: 'var(--medium-text)', textDecoration: 'none', transition: 'color 0.2s' }}>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ width: '24px', height: '24px' }}>
+                <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/>
+              </svg>
+            </a>
             <a href="mailto:michael@preciadotech.com" className="footer-icon" aria-label="Email" style={{ color: 'var(--medium-text)', textDecoration: 'none', transition: 'color 0.2s' }}>
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ width: '24px', height: '24px' }}>
                 <rect x="2" y="4" width="20" height="16" rx="2" ry="2"/>
@@ -88,4 +93,4 @@ function Contact() {
   );
 }
 
-export default Contact; 
+export default Contact;
